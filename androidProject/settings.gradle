@@ -1,5 +1,0 @@
-include ':app'
-rootProject.name = "ARCall"
-
-include ':unityLibrary'
-project(':unityLibrary').projectDir=new File('..\\unityProject\\ARCall\\Builds\\AndroidLibrary\\unityLibrary')
