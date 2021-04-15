@@ -2,4 +2,4 @@ include ':app'
 rootProject.name = "ARCall"
 
 include ':unityLibrary'
-project(':unityLibrary').projectDir=new File('..\\Unity\\Builds\\AndroidLibrary\\unityLibrary')
+project(':unityLibrary').projectDir=new File('..\\Unity\\Builds\\Android\\unityLibrary')

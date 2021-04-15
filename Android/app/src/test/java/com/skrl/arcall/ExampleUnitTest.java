@@ -1,4 +1,4 @@
-package es.skrl.arcall;
+package com.skrl.arcall;
 
 import org.junit.Test;
 
