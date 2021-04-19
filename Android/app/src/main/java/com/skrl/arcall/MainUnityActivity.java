@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.company.product.OverrideUnityActivity;
+import com.unity3d.player.UnityPlayer;
 
 public class MainUnityActivity extends OverrideUnityActivity {
     // Setup activity layout
@@ -14,8 +15,10 @@ public class MainUnityActivity extends OverrideUnityActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addControlsToUnityFrame();
+
         Intent intent = getIntent();
         handleIntent(intent);
+
     }
 
     @Override
@@ -28,6 +31,12 @@ public class MainUnityActivity extends OverrideUnityActivity {
     void handleIntent(Intent intent) {
         if(intent == null || intent.getExtras() == null) return;
 
+        if(intent.getExtras().containsKey("scene"))
+            if(mUnityPlayer != null) {
+                mUnityPlayer.UnitySendMessage("SceneLoader","LoadScene","SampleScene");
+            }
+
+        //Recibe orden de cerrar unity
         if(intent.getExtras().containsKey("doQuit"))
             if(mUnityPlayer != null) {
                 finish();
@@ -44,6 +53,7 @@ public class MainUnityActivity extends OverrideUnityActivity {
 
     @Override
     public void onUnityPlayerUnloaded() {
+        //Volvemos a la actividad principal
         showMainActivity("");
     }
 
@@ -104,6 +114,5 @@ public class MainUnityActivity extends OverrideUnityActivity {
             layout.addView(myButton, 300, 200);
         }
     }
-
 
 }

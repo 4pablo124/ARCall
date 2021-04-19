@@ -13,14 +13,16 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.ARCall.NoActionBar">
+        </activity>
+
+        <activity android:name="com.skrl.arcall.MainUnityActivity"
+            android:label="@string/app_name"
+            android:process=":unityplayer"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity android:name="com.skrl.arcall.MainUnityActivity" android:screenOrientation="fullSensor" android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density" android:hardwareAccelerated="false" android:process=":Unity"
-            android:label="@string/app_name">
         </activity>
     </application>
 

@@ -22,12 +22,12 @@ public class Cube : MonoBehaviour
         transform.Rotate(0, Time.deltaTime*10, 0);
 		
 		if (Application.platform == RuntimePlatform.Android)
-            if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
+            if (Input.GetKeyDown(KeyCode.Escape)) Application.Unload();
     }
 
     string lastStringColor = "";
     void ChangeColor(string newColor)
-    {
+{
         appendToText( "Chancing Color to " + newColor );
 
         lastStringColor = newColor;
@@ -41,20 +41,20 @@ public class Cube : MonoBehaviour
 
     void showHostMainWindow()
     {
-#if UNITY_ANDROID
-        try
-        {
-            AndroidJavaClass jc = new AndroidJavaClass("com.company.product.OverrideUnityActivity");
-            AndroidJavaObject overrideActivity = jc.GetStatic<AndroidJavaObject>("instance");
-            overrideActivity.Call("showMainActivity", lastStringColor);
-        } catch(Exception e)
-        {
-            appendToText("Exception during showHostMainWindow");
-            appendToText(e.Message);
-        }
-#elif UNITY_IOS || UNITY_TVOS
-        NativeAPI.showHostMainWindow(lastStringColor);
-#endif
+        #if UNITY_ANDROID
+            try
+            {
+                AndroidJavaClass jc = new AndroidJavaClass("com.company.product.OverrideUnityActivity");
+                AndroidJavaObject overrideActivity = jc.GetStatic<AndroidJavaObject>("instance");
+                overrideActivity.Call("showMainActivity", lastStringColor);
+            } catch(Exception e)
+            {
+                appendToText("Exception during showHostMainWindow");
+                appendToText(e.Message);
+            }
+        #elif UNITY_IOS || UNITY_TVOS
+            NativeAPI.showHostMainWindow(lastStringColor);
+        #endif
     }
 
     void OnGUI()
