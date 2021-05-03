@@ -1,5 +1,20 @@
 {
   "dependencies": {
+    "com.microsoft.mixedreality.webrtc": {
+      "version": "file:MixedReality/com.microsoft.mixedreality.webrtc-2.0.2.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {}
+    },
+    "com.microsoft.mixedreality.webrtc.samples": {
+      "version": "file:MixedReality/com.microsoft.mixedreality.webrtc.samples-2.0.2.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.microsoft.mixedreality.webrtc": "2.0.2",
+        "com.unity.textmeshpro": "1.4.1"
+      }
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
