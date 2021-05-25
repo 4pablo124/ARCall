@@ -11,7 +11,23 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/webRTCtest.unity
     guid: 02ce06efe767b384381ffbd3a895b9cb
-  m_configObjects: {}
+  - enabled: 0
+    path: Assets/Samples/WebRTC/2.4.0-exp.2/Example/PeerConnection/PeerConnection.unity
+    guid: b6162a25306134a9ea9c9c7556e5f136
+  - enabled: 1
+    path: Assets/Scenes/TESTMENU.unity
+    guid: 54338d31cb380e14284a1362d0c084be
+  - enabled: 1
+    path: Assets/Scenes/Host.unity
+    guid: 490e406d724828642b133c3b14fcefde
+  - enabled: 1
+    path: Assets/Scenes/Client.unity
+    guid: a4d6812b9b8dd1e49b8b65cbf31f5f11
+  m_configObjects:
+    Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 1767c3fc2b82f714489f841dc6c94fc0, type: 2}
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: a031bf9f607b20e42978d22728e568a3, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e391a71e4ede1664eae9a12589730688, type: 2}
+    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: b19c66f276c8564478c5eb9b8f4a9f3f, type: 2}
