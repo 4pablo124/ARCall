@@ -1,12 +1,14 @@
 using System;
+using System.Collections.Generic;
 using Unity.WebRTC;
 
-public struct User{
+public class User{
     public String Name;
     public RTCSessionDescription Description;
+    public List<RTCIceCandidateInit> IceCandidates;
 }
 
-public struct Room{
+public class Room{
     public User Host;
     public User Client;
 }

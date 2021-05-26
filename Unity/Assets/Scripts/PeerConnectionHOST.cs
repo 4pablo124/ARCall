@@ -43,6 +43,7 @@ class PeerConnectionHOST : MonoBehaviour
     private const int height = 1280;
 
     private DatabaseReference firebaseDB;
+    private String roomID = "1234";
 
     private void Awake()
     {
@@ -62,6 +63,8 @@ class PeerConnectionHOST : MonoBehaviour
     {
         // Obtenemos referencia a la base de datos
         firebaseDB = FirebaseDatabase.DefaultInstance.RootReference;
+        FirebaseDatabase.DefaultInstance.GetReference($"rooms/{roomID}/Host/IceCandidates").ChildAdded += OnHostIceCandidateAdded;
+        FirebaseDatabase.DefaultInstance.GetReference($"rooms/{roomID}/Client/IceCandidates").ChildAdded += OnClientIceCandidateAdded;
 
         // Configuramos metodos para los peers
         pc1Senders = new List<RTCRtpSender>();
@@ -109,10 +112,6 @@ class PeerConnectionHOST : MonoBehaviour
         sourceImage.color = Color.white;
     }
 
-    private void Update()
-    {
-
-    }
 
     //Devuelve la configuracion del SDP (offer)
     private static RTCConfiguration GetSelectedSdpSemantics()
@@ -281,11 +280,73 @@ class PeerConnectionHOST : MonoBehaviour
         receiveImage.color = Color.black;
     }
 
-    private void OnIceCandidate(RTCPeerConnection pc, RTCIceCandidate candidate)
-    {
-        GetOtherPc(pc).AddIceCandidate(candidate);
-        Debug.Log($"{GetName(pc)} ICE candidate:\n {candidate.Candidate}");
+
+
+
+
+
+
+
+    // Genera los datos necesarios para inicializar un ice candidate que mas tarde se guardaran en BD
+    private RTCIceCandidateInit InitIceCandidate(RTCIceCandidate candidate){
+        RTCIceCandidateInit iceCandidate = new RTCIceCandidateInit();
+        iceCandidate.candidate = candidate.Candidate;
+        iceCandidate.sdpMid = candidate.SdpMid;
+        iceCandidate.sdpMLineIndex = candidate.SdpMLineIndex;
+        return iceCandidate;
     }
+
+    // Invocada cada vez que un peer encuentra un ice candidate
+    private async void OnIceCandidate(RTCPeerConnection pc, RTCIceCandidate candidate)
+    {
+        String createdRoomID = "1234";
+        String peer;
+        if(pc == _pc1){
+            peer = "Host";
+        }
+        else{
+            peer = "Client";
+        }
+
+        var candidateJSON = JObject.FromObject(InitIceCandidate(candidate));
+        Debug.Log($"ENVIANDO ICE CANDIDATE:\n{candidateJSON.ToString()}");
+        await firebaseDB.Child("rooms/"+createdRoomID+"/"+peer+"/IceCandidates").Push().SetRawJsonValueAsync(candidateJSON.ToString());
+
+    }
+
+    private void OnHostIceCandidateAdded(object sender, ChildChangedEventArgs args) {
+        if (args.DatabaseError != null) {
+            Debug.LogError(args.DatabaseError.Message);
+            return;
+        }
+        var candidateJSON = args.Snapshot.GetRawJsonValue();
+        var candidateInit = JsonConvert.DeserializeObject<RTCIceCandidateInit>(candidateJSON);
+        var candidate = new RTCIceCandidate(candidateInit);
+        _pc2.AddIceCandidate(candidate);
+        Debug.Log($"pc2 ICE candidate:\n {candidate.Candidate}");
+    }
+
+    private void OnClientIceCandidateAdded(object sender, ChildChangedEventArgs args) {
+        if (args.DatabaseError != null) {
+            Debug.LogError(args.DatabaseError.Message);
+            return;
+        }
+        var candidateJSON = args.Snapshot.GetRawJsonValue();
+        var candidateInit = JsonConvert.DeserializeObject<RTCIceCandidateInit>(candidateJSON);
+        var candidate = new RTCIceCandidate(candidateInit);
+
+        _pc1.AddIceCandidate(candidate);
+        Debug.Log($"pc2 ICE candidate:\n {candidate.Candidate}");
+    }
+
+
+
+
+
+
+
+
+
 
     private string GetName(RTCPeerConnection pc)
     {
@@ -307,11 +368,18 @@ class PeerConnectionHOST : MonoBehaviour
     }
 
 
-    public async Task<Room> GetHostDescription(String RoomID){
+    public async Task<Room> GetRoom(String RoomID){
         Room receivedRoom = new Room();
         var dataSnapshot = await firebaseDB.Child("rooms/"+RoomID).GetValueAsync();
         receivedRoom = JsonConvert.DeserializeObject<Room>(dataSnapshot.GetRawJsonValue());
         return receivedRoom;
+    }
+
+    public async Task<RTCSessionDescription> GetSdp(String RoomID, String peer){
+        RTCSessionDescription receivedDesc = new RTCSessionDescription();
+        var dataSnapshot = await firebaseDB.Child("rooms/"+RoomID+"/"+peer+"/Description").GetValueAsync();
+        receivedDesc = JsonConvert.DeserializeObject<RTCSessionDescription>(dataSnapshot.GetRawJsonValue());
+        return receivedDesc;
     }
 
     // Establece el sdp local y lo transmite al otro peer
@@ -333,34 +401,30 @@ class PeerConnectionHOST : MonoBehaviour
         }
 
         // AQUI ES DONDE REALIZAMOS EL SIGNALING //
-        string createdRoomID = GenerateRandomNo().ToString(); // Se muestra al usuario y el cliente lo recibe por un medio externo (whatsapp, etc..)
+        string createdRoomID = "1234"; // Se muestra al usuario y el cliente lo recibe por un medio externo (whatsapp, etc..)
 
-        JObject roomJSON = JObject.FromObject(new Room{
-            Host = new User{
+        JObject roomJSON = JObject.FromObject(
+            new User{
                 Name = "Pepe",
                 Description = descHost
-            },
-            Client = new User{
-                Name = "Paco",
-                Description = descHost
             }
-        });
+        );
 
         Debug.Log($"ENVIANDO A BASE DE DATOS:\n{roomJSON.ToString()}");
-        firebaseDB.Child("rooms/"+createdRoomID).SetRawJsonValueAsync(roomJSON.ToString());
+        firebaseDB.Child("rooms/"+createdRoomID+"/Host").SetRawJsonValueAsync(roomJSON.ToString());
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////                        SIMULAMOS INTERNET AQUI                           //////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
        
-        var receivedRoomTask = GetHostDescription(createdRoomID);
-        yield return new WaitUntil(() => receivedRoomTask.IsCompleted);
-        Room receivedRoom = receivedRoomTask.Result;
-        Debug.Log($"RECIBIDO DE LA BASE DE DATOS:\n{JsonUtility.ToJson(receivedRoom)}");
+        var receivedDescTask = GetSdp(createdRoomID,"Host");
+        yield return new WaitUntil(() => receivedDescTask.IsCompleted);
+        RTCSessionDescription receivedDesc = receivedDescTask.Result;
+        Debug.Log($"RECIBIDO DE LA BASE DE DATOS=======================:\n{JsonUtility.ToJson(receivedDesc)}");
 
         var otherPc = GetOtherPc(pc);
         Debug.Log($"{GetName(otherPc)} setRemoteDescription start");
-        var op2 = otherPc.SetRemoteDescription(ref receivedRoom.Host.Description);
+        var op2 = otherPc.SetRemoteDescription(ref receivedDesc);
         yield return op2;
         if (!op2.IsError)
         {
@@ -404,11 +468,11 @@ class PeerConnectionHOST : MonoBehaviour
         Debug.Log($"{GetName(pc)} SetRemoteDescription complete");
     }
 
-    IEnumerator OnCreateAnswerSuccess(RTCPeerConnection pc, RTCSessionDescription descHost)
+    IEnumerator OnCreateAnswerSuccess(RTCPeerConnection pc, RTCSessionDescription descClient)
     {
-        Debug.Log($"Answer from {GetName(pc)}:\n{descHost.sdp}");
+        Debug.Log($"Answer from {GetName(pc)}:\n{descClient.sdp}");
         Debug.Log($"{GetName(pc)} setLocalDescription start");
-        var op = pc.SetLocalDescription(ref descHost);
+        var op = pc.SetLocalDescription(ref descClient);
         yield return op;
 
         if (!op.IsError)
@@ -421,18 +485,33 @@ class PeerConnectionHOST : MonoBehaviour
             OnSetSessionDescriptionError(ref error);
         }
 
+
+        // AQUI ES DONDE REALIZAMOS EL SIGNALING //
+        string createdRoomID = "1234"; // Se muestra al usuario y el cliente lo recibe por un medio externo (whatsapp, etc..)
+
+        JObject roomJSON = JObject.FromObject(
+            new User{
+                Name = "Antonio",
+                Description = descClient
+            }
+        );
+
+        Debug.Log($"ENVIANDO A BASE DE DATOS:\n{roomJSON.ToString()}");
+        firebaseDB.Child("rooms/"+createdRoomID+"/Client").SetRawJsonValueAsync(roomJSON.ToString());
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////                        SIMULAMOS INTERNET AQUI                           //////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       
+        var receivedDescTask = GetSdp(createdRoomID,"Client");
+        yield return new WaitUntil(() => receivedDescTask.IsCompleted);
+        RTCSessionDescription receivedDesc = receivedDescTask.Result;
+        Debug.Log($"RECIBIDO DE LA BASE DE DATOS=======================:\n{JsonUtility.ToJson(receivedDesc)}");
+
         var otherPc = GetOtherPc(pc);
         Debug.Log($"{GetName(otherPc)} setRemoteDescription start");
 
-
-        // AQUI ES DONDE REALIZAMOS EL SIGNALING //
-        var descClient = new RTCSessionDescription();
-        descClient.type = RTCSdpType.Answer; 
-        descClient.sdp = descHost.sdp; // Este valor es el que debemos compartir mediante firebase
-        // AQUI ES DONDE REALIZAMOS EL SIGNALING //
-
-
-        var op2 = otherPc.SetRemoteDescription(ref descClient);
+        var op2 = otherPc.SetRemoteDescription(ref receivedDesc);
         yield return op2;
         if (!op2.IsError)
         {
