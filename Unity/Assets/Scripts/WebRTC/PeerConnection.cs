@@ -13,7 +13,7 @@ using Firebase.Extensions;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-class PeerConnectionHOST : MonoBehaviour
+class PeerConnection : MonoBehaviour
 {
 #pragma warning disable 0649
     [SerializeField] private Button callButton;
@@ -43,7 +43,7 @@ class PeerConnectionHOST : MonoBehaviour
     private const int height = 1280;
 
     private DatabaseReference firebaseDB;
-    private String roomID = "1234";
+    private String roomID;
 
     private void Awake()
     {
@@ -61,6 +61,9 @@ class PeerConnectionHOST : MonoBehaviour
 
     private void Start()
     {
+        roomID = PersistentData.GetRoomID();
+        Debug.Log($"Room ID is {roomID}");
+
         // Obtenemos referencia a la base de datos
         firebaseDB = FirebaseDatabase.DefaultInstance.RootReference;
         FirebaseDatabase.DefaultInstance.GetReference($"rooms/{roomID}/Host/IceCandidates").ChildAdded += OnHostIceCandidateAdded;
@@ -299,7 +302,6 @@ class PeerConnectionHOST : MonoBehaviour
     // Invocada cada vez que un peer encuentra un ice candidate
     private async void OnIceCandidate(RTCPeerConnection pc, RTCIceCandidate candidate)
     {
-        String createdRoomID = "1234";
         String peer;
         if(pc == _pc1){
             peer = "Host";
@@ -310,7 +312,7 @@ class PeerConnectionHOST : MonoBehaviour
 
         var candidateJSON = JObject.FromObject(InitIceCandidate(candidate));
         Debug.Log($"ENVIANDO ICE CANDIDATE:\n{candidateJSON.ToString()}");
-        await firebaseDB.Child("rooms/"+createdRoomID+"/"+peer+"/IceCandidates").Push().SetRawJsonValueAsync(candidateJSON.ToString());
+        await firebaseDB.Child("rooms/"+roomID+"/"+peer+"/IceCandidates").Push().SetRawJsonValueAsync(candidateJSON.ToString());
 
     }
 
@@ -401,8 +403,6 @@ class PeerConnectionHOST : MonoBehaviour
         }
 
         // AQUI ES DONDE REALIZAMOS EL SIGNALING //
-        string createdRoomID = "1234"; // Se muestra al usuario y el cliente lo recibe por un medio externo (whatsapp, etc..)
-
         JObject roomJSON = JObject.FromObject(
             new User{
                 Name = "Pepe",
@@ -411,13 +411,13 @@ class PeerConnectionHOST : MonoBehaviour
         );
 
         Debug.Log($"ENVIANDO A BASE DE DATOS:\n{roomJSON.ToString()}");
-        firebaseDB.Child("rooms/"+createdRoomID+"/Host").SetRawJsonValueAsync(roomJSON.ToString());
+        firebaseDB.Child("rooms/"+roomID+"/Host").SetRawJsonValueAsync(roomJSON.ToString());
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////                        SIMULAMOS INTERNET AQUI                           //////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
        
-        var receivedDescTask = GetSdp(createdRoomID,"Host");
+        var receivedDescTask = GetSdp(roomID,"Host");
         yield return new WaitUntil(() => receivedDescTask.IsCompleted);
         RTCSessionDescription receivedDesc = receivedDescTask.Result;
         Debug.Log($"RECIBIDO DE LA BASE DE DATOS=======================:\n{JsonUtility.ToJson(receivedDesc)}");
@@ -487,8 +487,6 @@ class PeerConnectionHOST : MonoBehaviour
 
 
         // AQUI ES DONDE REALIZAMOS EL SIGNALING //
-        string createdRoomID = "1234"; // Se muestra al usuario y el cliente lo recibe por un medio externo (whatsapp, etc..)
-
         JObject roomJSON = JObject.FromObject(
             new User{
                 Name = "Antonio",
@@ -497,13 +495,13 @@ class PeerConnectionHOST : MonoBehaviour
         );
 
         Debug.Log($"ENVIANDO A BASE DE DATOS:\n{roomJSON.ToString()}");
-        firebaseDB.Child("rooms/"+createdRoomID+"/Client").SetRawJsonValueAsync(roomJSON.ToString());
+        firebaseDB.Child("rooms/"+roomID+"/Client").SetRawJsonValueAsync(roomJSON.ToString());
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////                        SIMULAMOS INTERNET AQUI                           //////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
        
-        var receivedDescTask = GetSdp(createdRoomID,"Client");
+        var receivedDescTask = GetSdp(roomID,"Client");
         yield return new WaitUntil(() => receivedDescTask.IsCompleted);
         RTCSessionDescription receivedDesc = receivedDescTask.Result;
         Debug.Log($"RECIBIDO DE LA BASE DE DATOS=======================:\n{JsonUtility.ToJson(receivedDesc)}");
