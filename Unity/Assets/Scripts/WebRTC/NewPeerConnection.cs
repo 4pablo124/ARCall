@@ -81,9 +81,16 @@ public class NewPeerConnection : MonoBehaviour
                 if (e.Track is VideoStreamTrack track)
                 {
                     videoImage.texture = track.InitializeReceiver(width, height);
-                    // videoImage.color = Color.white;
+                    videoImage.color = Color.white;
                 }
             };
+
+            if (!videoUpdateStarted)
+            {
+                Debug.Log("WebRTC.Update() Started");
+                StartCoroutine(WebRTC.Update());
+                videoUpdateStarted = true;
+            }
         }
 
         if(myPeerType == PeerType.Host){
@@ -102,21 +109,31 @@ public class NewPeerConnection : MonoBehaviour
         }
             
         videoImage.texture = cam.targetTexture;
-        // videoImage.color = Color.white;
 
-        foreach (var track in videoStream.GetTracks())
-        {
-            pcSenders.Add(pc.AddTrack(track, videoStream));
+        videoImage.color = Color.white;
+
+    }
+
+    private void AddTracks()
+    {   
+        if(myPeerType == PeerType.Host){
+            foreach (var track in videoStream.GetTracks())
+            {
+                pcSenders.Add(pc.AddTrack(track, videoStream));
+            }
         }
 
         if (!videoUpdateStarted)
         {
+            Debug.Log("WebRTC.Update() Started");
             StartCoroutine(WebRTC.Update());
             videoUpdateStarted = true;
         }
     }
 
     private IEnumerator Call(){
+        AddTracks();
+
         Debug.Log($"{myPeerType} - Realizando conexion");
 
         var op = pc.CreateOffer();
