@@ -2,295 +2,240 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
-using Unity.WebRTC;
-using UnityEngine.UI;
-using Button = UnityEngine.UI.Button;
 using Firebase.Database;
-using Newtonsoft.Json.Linq;
-using Random = System.Random;
-using Firebase.Extensions;
 using Newtonsoft.Json;
-using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+using TMPro;
+using Unity.WebRTC;
+using UnityEngine;
+using UnityEngine.UI;
 
-class PeerConnection : MonoBehaviour
+public class PeerConnection : MonoBehaviour
 {
-#pragma warning disable 0649
-    [SerializeField] private Button callButton;
-    [SerializeField] private Button restartButton;
-    [SerializeField] private Button hangUpButton;
-    [SerializeField] private Text localCandidateId;
-    [SerializeField] private Text remoteCandidateId;
 
+    [SerializeField] private TextMeshProUGUI roomIDText;
+    [SerializeField] private PeerType myPeerType = PeerType.Host;
     [SerializeField] private Camera cam;
-    [SerializeField] private RawImage sourceImage;
-    [SerializeField] private RawImage receiveImage;
+    [SerializeField] private RawImage videoImage;
+    [SerializeField] private MyEncoder encoder;
+    [SerializeField] private MyDecoder decoder;
 
-#pragma warning restore 0649
+    private String roomID;
+    private DatabaseReference database;
+    private MediaStream videoStream;
+    private MediaStream audioStream;
+    private RTCDataChannel audioDataChannel, remoteAudioDataChannel;
+    private RTCConfiguration RTCconfig;
+    private RTCPeerConnection pc;
+    private List<RTCRtpSender> pcSenders;
 
-    private RTCPeerConnection _pc1, _pc2;
-    private List<RTCRtpSender> pc1Senders;
-    private MediaStream videoStream, receiveStream;
-    private DelegateOnIceConnectionChange pc1OnIceConnectionChange;
-    private DelegateOnIceConnectionChange pc2OnIceConnectionChange;
-    private DelegateOnIceCandidate pc1OnIceCandidate;
-    private DelegateOnIceCandidate pc2OnIceCandidate;
-    private DelegateOnTrack pc2Ontrack;
-    private DelegateOnNegotiationNeeded pc1OnNegotiationNeeded;
-    private bool videoUpdateStarted;
-
+    private bool videoUpdateStarted = false;
+    private byte[] audioBuffer;
+    private bool audioConected = false;
+    private bool showingVideo = true;
     private const int width = 720;
     private const int height = 1280;
 
-    private DatabaseReference firebaseDB;
-    private String roomID;
-
     private void Awake()
     {
+        // Inicializamos WebRTC con decodificacion por software, ya que da problemas en android
         WebRTC.Initialize(EncoderType.Software);
-        callButton.onClick.AddListener(Call);
-        restartButton.onClick.AddListener(RestartIce);
-        hangUpButton.onClick.AddListener(HangUp);
-        receiveStream = new MediaStream();
+
+        //Establecemos ID de la sala
+        roomID = PersistentData.GetRoomID();
+        roomIDText.text = roomID;
+
+        // Obetemos referencia a la base de datos
+        database = FirebaseDatabase.DefaultInstance.GetReference("Rooms").Child(roomID);
+        Debug.Log($"{myPeerType} - Obtenida referencia de database: {database}");
+
+        // Configuramos servidores ICE
+        RTCconfig = ServersConfig();
+        Debug.Log($"{myPeerType} - Servidores configurados: {RTCconfig}");
     }
 
     private void OnDestroy()
     {
+        // Desarmamos webRTC en destructor
         WebRTC.Dispose();
+        database.Reference.RemoveValueAsync();
     }
 
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        roomID = PersistentData.GetRoomID();
-        Debug.Log($"Room ID is {roomID}");
+        // Esperamos a que esten todos los peers para comenzar la llamada
+        if(myPeerType == PeerType.Host){
+            database.Child("Host").Child("Ready").SetValueAsync(true);
+            database.Child("Client").ChildAdded += (sender, args) => { StartCoroutine(Call()); };
+        }else{
+            database.Child("Client").Child("Ready").SetValueAsync(true);     
+        }
 
-        // Obtenemos referencia a la base de datos
-        firebaseDB = FirebaseDatabase.DefaultInstance.RootReference;
-        FirebaseDatabase.DefaultInstance.GetReference($"rooms/{roomID}/Host/IceCandidates").ChildAdded += OnHostIceCandidateAdded;
-        FirebaseDatabase.DefaultInstance.GetReference($"rooms/{roomID}/Client/IceCandidates").ChildAdded += OnClientIceCandidateAdded;
+        // Cuando recibimos un mensjasre invocamos de manera asyncrona a la lectura del mismo
+        database.Child("Messages").ChildAdded += (sender, args) => { StartCoroutine(ReadMessageDB(args)); };
 
-        // Configuramos metodos para los peers
-        pc1Senders = new List<RTCRtpSender>();
-        callButton.interactable = true;
-        restartButton.interactable = false;
-        hangUpButton.interactable = false;
+        // Creamos nuestro peer
+        pcSenders = new List<RTCRtpSender>();
+        pc = new RTCPeerConnection(ref RTCconfig);
+        pc.OnIceCandidate = candidate => {OnIceCandidate(candidate);};
+        pc.OnIceConnectionChange = state => { Debug.Log($"{myPeerType} - IceConnectionState: {state}"); };
 
-        pc1OnIceConnectionChange = state => { OnIceConnectionChange(_pc1, state); };
-        pc2OnIceConnectionChange = state => { OnIceConnectionChange(_pc2, state); };
-        pc1OnIceCandidate = candidate => { OnIceCandidate(_pc1, candidate); };
-        pc2OnIceCandidate = candidate => { OnIceCandidate(_pc2, candidate); };
-        pc2Ontrack = e =>
-        {
-            receiveStream.AddTrack(e.Track);
-        };
+        RecordLive(); 
 
-        //Aqui comienza la negociacion entre peers
-        pc1OnNegotiationNeeded = () => { StartCoroutine(PeerNegotiationNeeded(_pc1)); };
+        // Añadimos los diferentes tracks ()
+        AddTracks();
 
-        receiveStream.OnAddTrack = e =>
-        {
-            if (e.Track is VideoStreamTrack track)
-            {
-                receiveImage.texture = track.InitializeReceiver(width, height);
-                receiveImage.color = Color.white;
+    }
+
+    //Todo: mover a un script propio para video
+    // Graba el video y audio
+    private void RecordLive(){
+        if(myPeerType == PeerType.Host){
+            // Capturamos Video
+            if (videoStream == null){
+                videoStream = cam.CaptureStream(width, height, 1000000);
+                Debug.Log($"{myPeerType} - Capturando stream: {videoStream}");
             }
-        };
-        Debug.Log($"INTENTANDO CAPTURAR CAMARA");
+                
+            videoImage.texture = cam.targetTexture;
+            videoImage.color = Color.white;
+        }
 
-        RecordCam();
- 
     }
 
-    // Capturamos la salida de la camara AR como textura para poder transmitirla.
-    private void RecordCam()
-    {
-        callButton.interactable = true;
-
-        if (videoStream == null)
-        {
+    public void ToggleVideo(){
+        if(showingVideo){
+            videoStream = null;
+            videoImage.color = Color.clear; //Todo: sustituir por imagen que diga que esta ocultado
+        }else{
             videoStream = cam.CaptureStream(width, height, 1000000);
+            videoImage.color = Color.white;
         }
-            
-        sourceImage.texture = cam.targetTexture;
-        sourceImage.color = Color.white;
+        showingVideo = !showingVideo;
     }
 
-
-    //Devuelve la configuracion del SDP (offer)
-    private static RTCConfiguration GetSelectedSdpSemantics()
-    {
-        RTCConfiguration config = default;
-        config.iceServers = new[] {new RTCIceServer {urls = new[] {"stun:stun.l.google.com:19302"}}};
-
-        return config;
-    }
-
-    // Devuelve informacion
-    private void OnIceConnectionChange(RTCPeerConnection pc, RTCIceConnectionState state)
-    {
-        Debug.Log($"{GetName(pc)} IceConnectionState: {state}");
-
-        if (state == RTCIceConnectionState.Connected || state == RTCIceConnectionState.Completed)
-        {
-            StartCoroutine(CheckStats(pc));
-        }
-    }
-
-    // Display the video codec that is actually used.
-    IEnumerator CheckStats(RTCPeerConnection pc)
-    {
-        yield return new WaitForSeconds(0.1f);
-        if (pc == null)
-            yield break;
-
-        var op = pc.GetStats();
-        yield return op;
-        if (op.IsError)
-        {
-            Debug.LogErrorFormat("RTCPeerConnection.GetStats failed: {0}", op.Error);
-            yield break;
-        }
-
-        RTCStatsReport report = op.Value;
-        RTCIceCandidatePairStats activeCandidatePairStats = null;
-        RTCIceCandidateStats remoteCandidateStats = null;
-
-        foreach (var transportStatus in report.Stats.Values.OfType<RTCTransportStats>())
-        {
-            if (report.Stats.TryGetValue(transportStatus.selectedCandidatePairId, out var tmp))
-            {
-                activeCandidatePairStats = tmp as RTCIceCandidatePairStats;
-            }
-        }
-
-        if (activeCandidatePairStats == null || string.IsNullOrEmpty(activeCandidatePairStats.remoteCandidateId))
-        {
-            yield break;
-        }
-
-        foreach (var iceCandidateStatus in report.Stats.Values.OfType<RTCIceCandidateStats>())
-        {
-            if (iceCandidateStatus.Id == activeCandidatePairStats.remoteCandidateId)
-            {
-                remoteCandidateStats = iceCandidateStatus;
-            }
-        }
-
-        if (remoteCandidateStats == null || string.IsNullOrEmpty(remoteCandidateStats.Id))
-        {
-            yield break;
-        }
-
-        Debug.Log($"{GetName(pc)} candidate stats Id:{remoteCandidateStats.Id}, Type:{remoteCandidateStats.candidateType}");
-        var updateText = GetName(pc) == "pc1" ? localCandidateId : remoteCandidateId;
-        updateText.text = remoteCandidateStats.Id;
-    }
-    
-    // Crea el sdp y comprueba siha tenido exito
-    IEnumerator PeerNegotiationNeeded(RTCPeerConnection pc)
-    {
-        var op = pc.CreateOffer();
-        yield return op;
-
-        if (!op.IsError)
-        {
-            if (pc.SignalingState != RTCSignalingState.Stable)
-            {
-                Debug.LogError($"{GetName(pc)} signaling state is not stable.");
-                yield break;
-            }
-
-            yield return StartCoroutine(OnCreateOfferSuccess(pc, op.Desc));
-        }
-        else
-        {
-            OnCreateSessionDescriptionError(op.Error);
-        }
-    }
-
+    //Añade los tracks a la conexion
     private void AddTracks()
-    {
-        foreach (var track in videoStream.GetTracks())
-        {
-            pc1Senders.Add(_pc1.AddTrack(track, videoStream));
+    {   
+        if(myPeerType == PeerType.Host){
+            // Enviamos video
+            foreach (var track in videoStream.GetTracks())
+            {
+                pcSenders.Add(pc.AddTrack(track, videoStream));
+            }
+        }
+        else if(myPeerType == PeerType.Client){
+            // Recibimos video
+            pc.OnTrack = e => videoStream.AddTrack(e.Track);    
+            videoStream = new MediaStream();
+            videoStream.OnAddTrack = e => {
+                if (e.Track is VideoStreamTrack track)
+                {
+                    videoImage.texture = track.InitializeReceiver(width, height);
+                    videoImage.color = Color.white;
+                }
+            };
         }
 
+        // Enviamos audioData
+        RTCDataChannelInit conf = new RTCDataChannelInit();
+        audioDataChannel = pc.CreateDataChannel("audio", conf);
+        encoder.OnEncoded += EncodeAndSendBytes;
+
+        // Recibimos data (y audio gracias a UnityOpus)
+        pc.OnDataChannel = channel =>{
+            remoteAudioDataChannel = channel;
+            remoteAudioDataChannel.OnMessage = bytes => { Decode(bytes); };
+        };
+        //PROVISIONAL
+        audioDataChannel.OnOpen = () => { audioConected = true; };
+        audioDataChannel.OnClose = () => { audioConected = false; };
+
+        // Inciamos actualizacion de "frames"
         if (!videoUpdateStarted)
         {
+            Debug.Log("WebRTC.Update() Started");
             StartCoroutine(WebRTC.Update());
             videoUpdateStarted = true;
         }
     }
 
-    private void RemoveTracks()
+
+    void Decode(byte[] bytes)
     {
-        foreach (var sender in pc1Senders)
-        {
-            _pc1.RemoveTrack(sender);
-        }
-
-        pc1Senders.Clear();
-
-        MediaStreamTrack[] tracks = receiveStream.GetTracks().ToArray();
-        foreach (var track in tracks)
-        {
-            receiveStream.RemoveTrack(track);
-            track.Dispose();
+        if(bytes.Length != 1){
+            int size = sizeof(int);
+            byte[] encodedLengthBytes = bytes.Take(size).ToArray();
+            byte[] encodedAudioBytes = bytes.Skip(sizeof(int)).Take(bytes.Length - sizeof(int)).ToArray();
+            int length = DecodeLength(encodedLengthBytes);
+            
+            decoder.Decode(encodedAudioBytes, length);
+        }else{
+            decoder.Decode(null, 0);
         }
     }
-
-    private void Call()
+    
+    int DecodeLength(byte[] bytes)
     {
-        callButton.interactable = false;
-        hangUpButton.interactable = true;
-        restartButton.interactable = true;
-
-        var configuration = GetSelectedSdpSemantics();
-        _pc1 = new RTCPeerConnection(ref configuration);
-        _pc1.OnIceCandidate = pc1OnIceCandidate;
-        _pc1.OnIceConnectionChange = pc1OnIceConnectionChange;
-        _pc1.OnNegotiationNeeded = pc1OnNegotiationNeeded;
-        _pc2 = new RTCPeerConnection(ref configuration);
-        _pc2.OnIceCandidate = pc2OnIceCandidate;
-        _pc2.OnIceConnectionChange = pc2OnIceConnectionChange;
-        _pc2.OnTrack = pc2Ontrack;
-
-        AddTracks();
+        int result = BitConverter.ToInt32(bytes, 0);
+        return result;
     }
 
-    private void RestartIce()
+    byte[] EncodeLength(byte[] bytes, int length)
     {
-        restartButton.interactable = false;
-
-        _pc1.RestartIce();
+        int[] lengthArr = new int[] { length };
+        byte[] result = new byte[lengthArr.Length * sizeof(int)];
+        Buffer.BlockCopy(lengthArr, 0, result, 0, result.Length);
+        return AddByteToArray(bytes, result);
     }
 
-    private void HangUp()
+    public byte[] AddByteToArray(byte[] bArray, byte[] newBytes)
     {
-        RemoveTracks();
-
-        _pc1.Close();
-        _pc2.Close();
-        _pc1.Dispose();
-        _pc2.Dispose();
-        _pc1 = null;
-        _pc2 = null;
-
-        callButton.interactable = true;
-        restartButton.interactable = false;
-        hangUpButton.interactable = false;
-
-        receiveImage.color = Color.black;
+        byte[] newArray = new byte[bArray.Length + newBytes.Length];
+        bArray.CopyTo(newArray, newBytes.Length);
+        newBytes.CopyTo(newArray, 0);
+        return newArray;
     }
 
+    void EncodeAndSendBytes(byte[] data, int length)
+    {
+        if (audioConected)
+        {
+            if(data != null){
+                audioBuffer = EncodeLength(data, length);
+                audioDataChannel.Send(audioBuffer);
+            }else{
+                audioDataChannel.Send(new byte[1]);
+            }
+        }
+    }
+
+    private IEnumerator Call(){
 
 
+        Debug.Log($"{myPeerType} - Realizando conexion");
 
+        var op = pc.CreateOffer();
+        yield return op;
+        Debug.Log($"{myPeerType} - Generada Offer: {!op.IsError}");
 
+        var offer = op.Desc;
+        var op2 = pc.SetLocalDescription(ref offer);
+        yield return op2;
+        Debug.Log($"{myPeerType} - Guardada Offer (LocalDescription): {!op2.IsError}");
 
+        Debug.Log($"{myPeerType} - Enviando Offer: {!op2.IsError}");
+        SendMessageDB(myPeerType, new Data{ sdp = pc.LocalDescription });
+    }
 
+    // Invocado cuando se añada un IceCandidate
+    private void OnIceCandidate(RTCIceCandidate candidate){
+        SendMessageDB(myPeerType,new Data{ ice = InitIceCandidate(candidate) });
+        Debug.Log($"{myPeerType} - Ice Enviado: {candidate.Candidate}");
+    }
 
-    // Genera los datos necesarios para inicializar un ice candidate que mas tarde se guardaran en BD
+    // Genera la informacion necesaria para inicializar un IceCandidate
     private RTCIceCandidateInit InitIceCandidate(RTCIceCandidate candidate){
         RTCIceCandidateInit iceCandidate = new RTCIceCandidateInit();
         iceCandidate.candidate = candidate.Candidate;
@@ -299,231 +244,78 @@ class PeerConnection : MonoBehaviour
         return iceCandidate;
     }
 
-    // Invocada cada vez que un peer encuentra un ice candidate
-    private async void OnIceCandidate(RTCPeerConnection pc, RTCIceCandidate candidate)
+    // Envia un mensaje mediante la base de datos
+    private void SendMessageDB(PeerType peerType, Data data)
     {
-        String peer;
-        if(pc == _pc1){
-            peer = "Host";
-        }
-        else{
-            peer = "Client";
-        }
-
-        var candidateJSON = JObject.FromObject(InitIceCandidate(candidate));
-        Debug.Log($"ENVIANDO ICE CANDIDATE:\n{candidateJSON.ToString()}");
-        await firebaseDB.Child("rooms/"+roomID+"/"+peer+"/IceCandidates").Push().SetRawJsonValueAsync(candidateJSON.ToString());
-
-    }
-
-    private void OnHostIceCandidateAdded(object sender, ChildChangedEventArgs args) {
-        if (args.DatabaseError != null) {
-            Debug.LogError(args.DatabaseError.Message);
-            return;
-        }
-        var candidateJSON = args.Snapshot.GetRawJsonValue();
-        var candidateInit = JsonConvert.DeserializeObject<RTCIceCandidateInit>(candidateJSON);
-        var candidate = new RTCIceCandidate(candidateInit);
-        _pc2.AddIceCandidate(candidate);
-        Debug.Log($"pc2 ICE candidate:\n {candidate.Candidate}");
-    }
-
-    private void OnClientIceCandidateAdded(object sender, ChildChangedEventArgs args) {
-        if (args.DatabaseError != null) {
-            Debug.LogError(args.DatabaseError.Message);
-            return;
-        }
-        var candidateJSON = args.Snapshot.GetRawJsonValue();
-        var candidateInit = JsonConvert.DeserializeObject<RTCIceCandidateInit>(candidateJSON);
-        var candidate = new RTCIceCandidate(candidateInit);
-
-        _pc1.AddIceCandidate(candidate);
-        Debug.Log($"pc2 ICE candidate:\n {candidate.Candidate}");
-    }
-
-
-
-
-
-
-
-
-
-
-    private string GetName(RTCPeerConnection pc)
-    {
-        return (pc == _pc1) ? "pc1" : "pc2";
-    }
-
-    private RTCPeerConnection GetOtherPc(RTCPeerConnection pc)
-    {
-        return (pc == _pc1) ? _pc2 : _pc1;
-    }
-
-    // TERMPORAL
-    public int GenerateRandomNo()
-    {
-        int _min = 1000;
-        int _max = 9999;
-        Random _rdm = new Random();
-        return _rdm.Next(_min, _max);
-    }
-
-
-    public async Task<Room> GetRoom(String RoomID){
-        Room receivedRoom = new Room();
-        var dataSnapshot = await firebaseDB.Child("rooms/"+RoomID).GetValueAsync();
-        receivedRoom = JsonConvert.DeserializeObject<Room>(dataSnapshot.GetRawJsonValue());
-        return receivedRoom;
-    }
-
-    public async Task<RTCSessionDescription> GetSdp(String RoomID, String peer){
-        RTCSessionDescription receivedDesc = new RTCSessionDescription();
-        var dataSnapshot = await firebaseDB.Child("rooms/"+RoomID+"/"+peer+"/Description").GetValueAsync();
-        receivedDesc = JsonConvert.DeserializeObject<RTCSessionDescription>(dataSnapshot.GetRawJsonValue());
-        return receivedDesc;
-    }
-
-    // Establece el sdp local y lo transmite al otro peer
-    private IEnumerator OnCreateOfferSuccess(RTCPeerConnection pc, RTCSessionDescription descHost)
-    {
-        Debug.Log($"Offer from {GetName(pc)}\n{descHost.sdp}");
-        Debug.Log($"{GetName(pc)} setLocalDescription start");
-        var op = pc.SetLocalDescription(ref descHost);
-        yield return op;
-
-        if (!op.IsError)
-        {
-            OnSetLocalSuccess(pc);
-        }
-        else
-        {
-            var error = op.Error;
-            OnSetSessionDescriptionError(ref error);
-        }
-
-        // AQUI ES DONDE REALIZAMOS EL SIGNALING //
-        JObject roomJSON = JObject.FromObject(
-            new User{
-                Name = "Pepe",
-                Description = descHost
-            }
+        JObject messageJSON = JObject.FromObject(
+            new Message{ peerType = peerType, data = data }
         );
-
-        Debug.Log($"ENVIANDO A BASE DE DATOS:\n{roomJSON.ToString()}");
-        firebaseDB.Child("rooms/"+roomID+"/Host").SetRawJsonValueAsync(roomJSON.ToString());
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////                        SIMULAMOS INTERNET AQUI                           //////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-       
-        var receivedDescTask = GetSdp(roomID,"Host");
-        yield return new WaitUntil(() => receivedDescTask.IsCompleted);
-        RTCSessionDescription receivedDesc = receivedDescTask.Result;
-        Debug.Log($"RECIBIDO DE LA BASE DE DATOS=======================:\n{JsonUtility.ToJson(receivedDesc)}");
-
-        var otherPc = GetOtherPc(pc);
-        Debug.Log($"{GetName(otherPc)} setRemoteDescription start");
-        var op2 = otherPc.SetRemoteDescription(ref receivedDesc);
-        yield return op2;
-        if (!op2.IsError)
-        {
-            OnSetRemoteSuccess(otherPc);
-        }
-        else
-        {
-            var error = op2.Error;
-            OnSetSessionDescriptionError(ref error);
-        }
-
-        Debug.Log($"{GetName(otherPc)} createAnswer start");
-        // Since the 'remote' side has no media stream we need
-        // to pass in the right constraints in order for it to
-        // accept the incoming offer of audio and video.
-
-        var op3 = otherPc.CreateAnswer();
-        yield return op3;
-        if (!op3.IsError)
-        {
-            yield return OnCreateAnswerSuccess(otherPc, op3.Desc);
-        }
-        else
-        {
-            OnCreateSessionDescriptionError(op3.Error);
-        }
+        var msg = database.Child("Messages").Push().SetRawJsonValueAsync(messageJSON.ToString());
     }
+    
+    // Lee un mensaje mediante la base de datos, se invoca cada vez que se envie un mensaje
+    private IEnumerator ReadMessageDB(ChildChangedEventArgs args){
+        var msg = JsonConvert.DeserializeObject<Message>(args.Snapshot.GetRawJsonValue());
+        args.Snapshot.Reference.RemoveValueAsync();
+        //El mensaje es para mi
+        if(myPeerType != msg.peerType){
 
-    private void OnSetLocalSuccess(RTCPeerConnection pc)
-    {
-        Debug.Log($"{GetName(pc)} SetLocalDescription complete");
-    }
-
-    static void OnSetSessionDescriptionError(ref RTCError error)
-    {
-        Debug.LogError($"Error Detail Type: {error.message}");
-    }
-
-    private void OnSetRemoteSuccess(RTCPeerConnection pc)
-    {
-        Debug.Log($"{GetName(pc)} SetRemoteDescription complete");
-    }
-
-    IEnumerator OnCreateAnswerSuccess(RTCPeerConnection pc, RTCSessionDescription descClient)
-    {
-        Debug.Log($"Answer from {GetName(pc)}:\n{descClient.sdp}");
-        Debug.Log($"{GetName(pc)} setLocalDescription start");
-        var op = pc.SetLocalDescription(ref descClient);
-        yield return op;
-
-        if (!op.IsError)
-        {
-            OnSetLocalSuccess(pc);
-        }
-        else
-        {
-            var error = op.Error;
-            OnSetSessionDescriptionError(ref error);
-        }
-
-
-        // AQUI ES DONDE REALIZAMOS EL SIGNALING //
-        JObject roomJSON = JObject.FromObject(
-            new User{
-                Name = "Antonio",
-                Description = descClient
+            // Me envia Ice
+            if(msg.data.ice != null){
+                pc.AddIceCandidate(new RTCIceCandidate(msg.data.ice));
+                Debug.Log($"{myPeerType} - Ice Añadido: {msg.data.ice.candidate}");
             }
-        );
 
-        Debug.Log($"ENVIANDO A BASE DE DATOS:\n{roomJSON.ToString()}");
-        firebaseDB.Child("rooms/"+roomID+"/Client").SetRawJsonValueAsync(roomJSON.ToString());
+            // Me envia Sdp (offer)
+            else if (msg.data.sdp.type == RTCSdpType.Offer){
+                // Guardamos offer
+                var description = msg.data.sdp;
+                var op = pc.SetRemoteDescription(ref description);
+                yield return op;
+                Debug.Log($"{myPeerType} - Guardada Offer (RemoteDescription): {!op.IsError}");
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////                        SIMULAMOS INTERNET AQUI                           //////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-       
-        var receivedDescTask = GetSdp(roomID,"Client");
-        yield return new WaitUntil(() => receivedDescTask.IsCompleted);
-        RTCSessionDescription receivedDesc = receivedDescTask.Result;
-        Debug.Log($"RECIBIDO DE LA BASE DE DATOS=======================:\n{JsonUtility.ToJson(receivedDesc)}");
+                // Creamos Answer
+                var op2 = pc.CreateAnswer();
+                yield return op2;
+                Debug.Log($"{myPeerType} - Creada Answer: {!op2.IsError}");
 
-        var otherPc = GetOtherPc(pc);
-        Debug.Log($"{GetName(otherPc)} setRemoteDescription start");
 
-        var op2 = otherPc.SetRemoteDescription(ref receivedDesc);
-        yield return op2;
-        if (!op2.IsError)
-        {
-            OnSetRemoteSuccess(otherPc);
+                // La guardamos
+                var answer = op2.Desc;
+                var op3 = pc.SetLocalDescription(ref answer);
+                yield return op3;
+                Debug.Log($"{myPeerType} - Guardada Answer (LocalDescription): {!op3.IsError}");
+
+                // Y la enviamos
+                SendMessageDB(myPeerType, new Data{ sdp = pc.LocalDescription });
+            }
+
+            // Me envia Sdp (Answer)
+            else if (msg.data.sdp.type == RTCSdpType.Answer){
+                var answer = msg.data.sdp;
+                var op4 = pc.SetRemoteDescription(ref answer);
+                yield return op4;
+                Debug.Log($"{myPeerType} - Guardada Answer (RemoteDescription): {!op4.IsError}");
+                if(op4.IsError){
+                    Debug.Log(op4.Error.message);
+                }
+
+            }
         }
-        else
-        {
-            var error = op2.Error;
-            OnSetSessionDescriptionError(ref error);
-        }
+
     }
 
-    private static void OnCreateSessionDescriptionError(RTCError error)
+    // Devuelve la configuracion de Servidores ICE y protocolos de transmision
+    private static RTCConfiguration ServersConfig()
     {
-        Debug.LogError($"Error Detail Type: {error.message}");
+        RTCConfiguration config = default;
+        config.iceServers = new[] {
+            new RTCIceServer {urls = new[] {"stun:stun.l.google.com:19302"}},
+            new RTCIceServer {urls = new[] {"stun:global.stun.twilio.com:3478?transport=udp"}},
+            new RTCIceServer {urls = new[] {"stun:stun.services.mozilla.com"}},
+            new RTCIceServer {urls = new[] {"turn:numb.viagenie.ca"}, username = "pablo.delosriosges@alum.uca.es", credential = "QCG%Q$x6XnzwNq"}
+            };
+
+        return config;
     }
 }

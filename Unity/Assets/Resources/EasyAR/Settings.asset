@@ -29,7 +29,7 @@ MonoBehaviour:
     APIKey: 
     APISecret: 
     CloudRecognizerAppID: 
-  IOSRecordingSupport: 0
+  IOSRecordingSupport: 1
   AndroidManifestPermissions:
     CameraDevice: 1
     Recording: 1

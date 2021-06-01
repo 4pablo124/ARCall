@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Client.unity
     guid: a4d6812b9b8dd1e49b8b65cbf31f5f11
+  - enabled: 0
+    path: Assets/Samples/WebRTC-Opus-Audio/Scenes/VoiceChannelExample.unity
+    guid: 88604ffa932dd4f4cb076f85a0aabaeb
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 1767c3fc2b82f714489f841dc6c94fc0, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: a031bf9f607b20e42978d22728e568a3, type: 2}
