@@ -17,6 +17,7 @@ public class Data{
     public RTCSessionDescription sdp;
 }
 
+// Actualmente no se usa
 public class User{
     public String Name;
     public RTCSessionDescription Description;

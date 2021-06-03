@@ -13,7 +13,7 @@ using UnityEngine.UI;
 public class PeerConnection : MonoBehaviour
 {
 
-    [SerializeField] private TextMeshProUGUI roomIDText;
+    [SerializeField] private Button roomIDBtn;
     [SerializeField] private PeerType myPeerType = PeerType.Host;
     [SerializeField] private Camera cam;
     [SerializeField] private RawImage videoImage;
@@ -38,12 +38,15 @@ public class PeerConnection : MonoBehaviour
 
     private void Awake()
     {
+        // Evitamos que la pantalla se apague
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+     
         // Inicializamos WebRTC con decodificacion por software, ya que da problemas en android
         WebRTC.Initialize(EncoderType.Software);
 
         //Establecemos ID de la sala
         roomID = PersistentData.GetRoomID();
-        roomIDText.text = roomID;
+        roomIDBtn.GetComponentInChildren<TextMeshProUGUI>().text = roomID;
 
         // Obetemos referencia a la base de datos
         database = FirebaseDatabase.DefaultInstance.GetReference("Rooms").Child(roomID);
@@ -58,7 +61,15 @@ public class PeerConnection : MonoBehaviour
     {
         // Desarmamos webRTC en destructor
         WebRTC.Dispose();
-        database.Reference.RemoveValueAsync();
+    }
+
+    private void OnApplicationQuit() {
+        // Quitamos al peer de la base de datos, se eliminara la sala automaticamente cuando no haya peers
+        database.Child(myPeerType.ToString()).RemoveValueAsync();
+
+        // Devolvemos la pantalla a su estado original
+        Screen.sleepTimeout = SleepTimeout.SystemSetting;
+
     }
 
     // Start is called before the first frame update
@@ -106,10 +117,10 @@ public class PeerConnection : MonoBehaviour
 
     public void ToggleVideo(){
         if(showingVideo){
-            videoStream = null;
-            videoImage.color = Color.clear; //Todo: sustituir por imagen que diga que esta ocultado
+            cam.gameObject.SetActive(false);
+            videoImage.color = Color.clear;
         }else{
-            videoStream = cam.CaptureStream(width, height, 1000000);
+            cam.gameObject.SetActive(true);
             videoImage.color = Color.white;
         }
         showingVideo = !showingVideo;
@@ -317,5 +328,9 @@ public class PeerConnection : MonoBehaviour
             };
 
         return config;
+    }
+
+    public void shareRoom(){
+        new NativeShare().SetTitle("ARCall Room").SetText("Unete a mi sala: "+roomID).Share();
     }
 }

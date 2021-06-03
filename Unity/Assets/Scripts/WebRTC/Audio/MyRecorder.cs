@@ -15,6 +15,7 @@ public class MyRecorder : MonoBehaviour
     float[] processBuffer = new float[512];
     float[] microphoneBuffer = new float[lengthSeconds * samplingFrequency];
     float[] mutedBuffer = new float[lengthSeconds * samplingFrequency];
+    AndroidJavaObject audioManager;
 
 
     public float GetRMS()
@@ -33,11 +34,11 @@ public class MyRecorder : MonoBehaviour
     }
 
     private void Awake() {
-// #if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
         try{
             AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             AndroidJavaObject activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-            AndroidJavaObject audioManager = activity.Call<AndroidJavaObject>("getSystemService", "audio");
+            audioManager = activity.Call<AndroidJavaObject>("getSystemService", "audio");
             // Set comunication mode
             var mode2 = audioManager.Call<Int32>("getMode");
             Debug.Log("Mode was set to: " + mode2);
@@ -55,9 +56,7 @@ public class MyRecorder : MonoBehaviour
         }catch (Exception ex){
              Debug.Log(ex.ToString());
         }
-
-
-// #endif
+#endif
     }
 
     void Start()
@@ -76,10 +75,21 @@ public class MyRecorder : MonoBehaviour
 
         muted = !muted;
     }
+    
+    private void OnApplicationFocus(bool hasFocus) {
+        if(!hasFocus){
+            Microphone.End(null);
+            Destroy(clip);
+            OnAudioReady?.Invoke(null);
+        }else{
+            clip = Microphone.Start(null, true, lengthSeconds, samplingFrequency);  
+        }
+    }
 
     void Update()
     {
         if(!muted){
+
             var position = Microphone.GetPosition(null);
             if (position <= 0 || head == position)
             {
@@ -88,9 +98,10 @@ public class MyRecorder : MonoBehaviour
             clip.GetData(microphoneBuffer, 0);
 
             #if UNITY_ANDROID && !UNITY_EDITOR
+            Debug.Log("Speakers are now set to: " + audioManager.Call<Boolean>("isSpeakerphoneOn"));
             for (int i = 0; i < microphoneBuffer.Length; i++)
             {
-                microphoneBuffer[i] = microphoneBuffer[i] * 2.0f;
+                microphoneBuffer[i] = microphoneBuffer[i] * 10.0f;
             }
             #endif
 
