@@ -1,1 +1,0 @@
-Speech Auto Detector v1.0
