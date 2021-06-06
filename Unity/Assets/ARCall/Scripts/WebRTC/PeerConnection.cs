@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using TMPro;
 using Unity.WebRTC;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PeerConnection : MonoBehaviour
@@ -38,6 +39,10 @@ public class PeerConnection : MonoBehaviour
 
     private void Awake()
     {
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+
+        ApplicationChrome.statusBarState = ApplicationChrome.navigationBarState = ApplicationChrome.States.Hidden;
+
         // Evitamos que la pantalla se apague
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
      
@@ -54,29 +59,48 @@ public class PeerConnection : MonoBehaviour
 
         // Configuramos servidores ICE
         RTCconfig = ServersConfig();
-        Debug.Log($"{myPeerType} - Servidores configurados: {RTCconfig}");
+        Debug.Log($"{myPeerType} - Servidores configurados: {RTCconfig.iceServers}");
     }
 
     private void OnDestroy()
     {
         // Desarmamos webRTC en destructor
+        Debug.Log("WebRTC.Dispose()");
         WebRTC.Dispose();
     }
 
-    private void OnApplicationQuit() {
+    private void UnReadyUser(){
         // Quitamos al peer de la base de datos, se eliminara la sala automaticamente cuando no haya peers
         database.Child(myPeerType.ToString()).RemoveValueAsync();
-
         // Devolvemos la pantalla a su estado original
         Screen.sleepTimeout = SleepTimeout.SystemSetting;
+    }
 
+    private void ReadyUser(){
+        database.Child(myPeerType.ToString()).Child("Ready").SetValueAsync(true);
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+    }
+
+    private void OnSceneUnloaded<Scene>(Scene scene){
+        ApplicationChrome.statusBarState = ApplicationChrome.navigationBarState = ApplicationChrome.States.Visible;
+        UnReadyUser();
+    }
+
+    private void OnApplicationPause(bool paused) {
+        if (paused){ UnReadyUser(); }
+        else{ ReadyUser(); }
+    }
+
+    private void OnApplicationFocus(bool focused) {
+        if (focused){ ReadyUser(); }
+        else{ UnReadyUser(); }
     }
 
     // Start is called before the first frame update
     void Start()
     {
         // Esperamos a que esten todos los peers para comenzar la llamada
-        if(myPeerType == PeerType.Host){
+        if(ImHost()){
             database.Child("Host").Child("Ready").SetValueAsync(true);
             database.Child("Client").ChildAdded += (sender, args) => { StartCoroutine(Call()); };
         }else{
@@ -92,29 +116,14 @@ public class PeerConnection : MonoBehaviour
         pc.OnIceCandidate = candidate => {OnIceCandidate(candidate);};
         pc.OnIceConnectionChange = state => { Debug.Log($"{myPeerType} - IceConnectionState: {state}"); };
 
-        RecordLive(); 
+        if(ImHost()){ 
+            videoStream = VideoManager.RecordLiveVideo(ref cam, ref videoImage);
+        }
 
         // Añadimos los diferentes tracks ()
         AddTracks();
 
     }
-
-    //Todo: mover a un script propio para video
-    // Graba el video y audio
-    private void RecordLive(){
-        if(myPeerType == PeerType.Host){
-            // Capturamos Video
-            if (videoStream == null){
-                videoStream = cam.CaptureStream(width, height, 1000000);
-                Debug.Log($"{myPeerType} - Capturando stream: {videoStream}");
-            }
-                
-            videoImage.texture = cam.targetTexture;
-            videoImage.color = Color.white;
-        }
-
-    }
-
     public void ToggleVideo(){
         if(showingVideo){
             cam.gameObject.SetActive(false);
@@ -129,14 +138,14 @@ public class PeerConnection : MonoBehaviour
     //Añade los tracks a la conexion
     private void AddTracks()
     {   
-        if(myPeerType == PeerType.Host){
+        if(ImHost()){
             // Enviamos video
             foreach (var track in videoStream.GetTracks())
             {
                 pcSenders.Add(pc.AddTrack(track, videoStream));
             }
         }
-        else if(myPeerType == PeerType.Client){
+        else if(!ImHost()){
             // Recibimos video
             pc.OnTrack = e => videoStream.AddTrack(e.Track);    
             videoStream = new MediaStream();
@@ -331,6 +340,10 @@ public class PeerConnection : MonoBehaviour
     }
 
     public void shareRoom(){
-        new NativeShare().SetTitle("ARCall Room").SetText("Unete a mi sala: "+roomID).Share();
+        RoomManager.shareRoom(roomID);
+    }
+
+    public bool ImHost(){
+        return myPeerType == PeerType.Host;
     }
 }

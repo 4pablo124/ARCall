@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Firebase.Database;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine;
 public static class PersistentData
 {
     private static String RoomID;
+    public static Stack<int> SceneStack = new Stack<int>();
 
     public static void SetRoomID(String roomID){
         RoomID = roomID;
