@@ -15,7 +15,6 @@ public class UINavigation : MonoBehaviour {
 
     public static void loadScene(string scene){
         PersistentData.SceneStack.Push(SceneManager.GetActiveScene().buildIndex);
-        Debug.Log(PersistentData.SceneStack.Peek());
         SceneManager.LoadScene(scene);
     }
 

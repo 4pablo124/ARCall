@@ -5,12 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/ARCall/Scenes/old/MainMenu.unity
-    guid: b91eb62d9d1855d4f8a6e8e8f52b9d56
-  - enabled: 0
-    path: Assets/ARCall/Scenes/old/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/ARCall/Scenes/Main.unity
     guid: 54338d31cb380e14284a1362d0c084be

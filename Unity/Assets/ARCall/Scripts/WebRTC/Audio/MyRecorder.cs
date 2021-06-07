@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.Android;
 
 public class MyRecorder : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class MyRecorder : MonoBehaviour
     const int samplingFrequency = 48000;
     const int lengthSeconds = 1;
 
-    public static bool muted;
+    public static bool muted = true;
 
     AudioClip clip = null;
     int head = 0;
@@ -17,72 +18,46 @@ public class MyRecorder : MonoBehaviour
     float[] mutedBuffer = new float[lengthSeconds * samplingFrequency];
     AndroidJavaObject audioManager;
 
+    PermissionCallbacks microphoneCallbacks;
 
-    public float GetRMS()
-    {
-        if(processBuffer != null){
-            float sum = 0.0f;
-            foreach (var sample in processBuffer)
-            {
-                sum += sample * sample;
-            }
-            return Mathf.Sqrt(sum / processBuffer.Length);
-        }else{
-            return 0f;
-        }
-            
-    }
-
+    // Mono methods
     private void Awake() {
-#if UNITY_ANDROID && !UNITY_EDITOR
-        try{
-            AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            AndroidJavaObject activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-            audioManager = activity.Call<AndroidJavaObject>("getSystemService", "audio");
-            // Set comunication mode
-            var mode2 = audioManager.Call<Int32>("getMode");
-            Debug.Log("Mode was set to: " + mode2);
-            audioManager.Call("setMode", 3);
-            mode2 = audioManager.Call<Int32>("getMode");
-            Debug.Log("Mode is now set to: " + mode2);
+        #if PLATFORM_ANDROID
+            try{
+                AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+                AndroidJavaObject activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+                audioManager = activity.Call<AndroidJavaObject>("getSystemService", "audio");
+                // Set comunication mode
+                var mode2 = audioManager.Call<Int32>("getMode");
+                Debug.Log("Mode was set to: " + mode2);
+                audioManager.Call("setMode", 3);
+                mode2 = audioManager.Call<Int32>("getMode");
+                Debug.Log("Mode is now set to: " + mode2);
 
-            // Set speakers
-            bool isSpeakers = audioManager.Call<Boolean>("isSpeakerphoneOn");
-            Debug.Log("Speakers were set to: " + isSpeakers);
-            audioManager.Call("setSpeakerphoneOn", true);
-            isSpeakers = audioManager.Call<Boolean>("isSpeakerphoneOn");
-            Debug.Log("Speakers are now set to: " + isSpeakers);
- 
-        }catch (Exception ex){
-             Debug.Log(ex.ToString());
-        }
-#endif
+                // Set speakers
+                bool isSpeakers = audioManager.Call<Boolean>("isSpeakerphoneOn");
+                Debug.Log("Speakers were set to: " + isSpeakers);
+                audioManager.Call("setSpeakerphoneOn", true);
+                isSpeakers = audioManager.Call<Boolean>("isSpeakerphoneOn");
+                Debug.Log("Speakers are now set to: " + isSpeakers);
+    
+            }catch (Exception ex){
+                Debug.Log(ex.ToString());
+            }
+        #endif
     }
 
     void Start()
     {
-        clip = Microphone.Start(null, true, lengthSeconds, samplingFrequency);
-    }
-
-    public void toggleMute(){
-        if(!muted){
-            Microphone.End(null);
-            Destroy(clip);
-            OnAudioReady?.Invoke(null);
+        if (Permission.HasUserAuthorizedPermission(Permission.Microphone)){
+            muted = false;
+            StartRecording();
         }else{
-            clip = Microphone.Start(null, true, lengthSeconds, samplingFrequency);
-        }
-
-        muted = !muted;
-    }
-    
-    private void OnApplicationFocus(bool hasFocus) {
-        if(!hasFocus){
-            Microphone.End(null);
-            Destroy(clip);
-            OnAudioReady?.Invoke(null);
-        }else{
-            clip = Microphone.Start(null, true, lengthSeconds, samplingFrequency);  
+            microphoneCallbacks = new PermissionCallbacks();
+            microphoneCallbacks.PermissionGranted += MicrophonePermissionGranted;
+            microphoneCallbacks.PermissionDenied += MicrophonePermissionDenied;
+            microphoneCallbacks.PermissionDeniedAndDontAskAgain += MicrophonePermissionDeniedAndDontAskAgain;
+            Permission.RequestUserPermission(Permission.Microphone);
         }
     }
 
@@ -96,12 +71,13 @@ public class MyRecorder : MonoBehaviour
                 return;
             }
             clip.GetData(microphoneBuffer, 0);
+            
 
-            #if UNITY_ANDROID && !UNITY_EDITOR
-            for (int i = 0; i < microphoneBuffer.Length; i++)
-            {
-                microphoneBuffer[i] = microphoneBuffer[i] * 10.0f;
-            }
+            #if PLATFORM_ANDROID
+                for (int i = 0; i < microphoneBuffer.Length; i++)
+                {
+                    microphoneBuffer[i] = microphoneBuffer[i] * 10.0f;
+                }
             #endif
 
             while (GetDataLength(microphoneBuffer.Length, head, position) > processBuffer.Length)
@@ -128,6 +104,53 @@ public class MyRecorder : MonoBehaviour
         }
     }
 
+    //Permissions Callbacks
+    private void MicrophonePermissionGranted(string permissionName){
+        muted = false;
+        StartRecording();
+    }
+    private void MicrophonePermissionDenied(string permissionName){
+        Permission.RequestUserPermission(Permission.Microphone);
+    }
+    private void MicrophonePermissionDeniedAndDontAskAgain(string permissionName){
+        UINavigation.loadScene("Main");
+    }
+
+
+
+    // Microphone control
+    private void StartRecording(){
+        clip = Microphone.Start(null, true, lengthSeconds, samplingFrequency);
+    }
+
+    private void StopRecording(){
+        Microphone.End(null);
+        Destroy(clip);
+        OnAudioReady?.Invoke(null);
+    }
+
+    public void toggleMute(){
+        if(!muted){
+            StopRecording();
+        }else{
+            StartRecording();
+        }
+
+        muted = !muted;
+    }
+    
+
+
+    private void OnApplicationFocus(bool hasFocus) {
+        if(!hasFocus){
+            StopRecording();
+        }else{
+            StartRecording(); 
+        }
+    }
+
+
+    //Aux methods
     static int GetDataLength(int bufferLength, int head, int tail)
     {
         if (head < tail)
@@ -138,5 +161,21 @@ public class MyRecorder : MonoBehaviour
         {
             return bufferLength - head + tail;
         }
+    }
+
+    // Public methods
+    public float GetRMS()
+    {
+        if(processBuffer != null){
+            float sum = 0.0f;
+            foreach (var sample in processBuffer)
+            {
+                sum += sample * sample;
+            }
+            return Mathf.Sqrt(sum / processBuffer.Length);
+        }else{
+            return 0f;
+        }
+            
     }
 }

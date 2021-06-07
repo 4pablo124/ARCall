@@ -41,8 +41,6 @@ public class PeerConnection : MonoBehaviour
     {
         SceneManager.sceneUnloaded += OnSceneUnloaded;
 
-        ApplicationChrome.statusBarState = ApplicationChrome.navigationBarState = ApplicationChrome.States.Hidden;
-
         // Evitamos que la pantalla se apague
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
      
@@ -82,7 +80,6 @@ public class PeerConnection : MonoBehaviour
     }
 
     private void OnSceneUnloaded<Scene>(Scene scene){
-        ApplicationChrome.statusBarState = ApplicationChrome.navigationBarState = ApplicationChrome.States.Visible;
         UnReadyUser();
     }
 
