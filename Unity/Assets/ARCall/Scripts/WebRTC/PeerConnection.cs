@@ -34,8 +34,8 @@ public class PeerConnection : MonoBehaviour
     private byte[] audioBuffer;
     private bool audioConected = false;
     private bool showingVideo = true;
-    private const int width = 720;
-    private const int height = 1280;
+    private const int width = 360;
+    private const int height = 640;
 
     private void Awake()
     {
@@ -108,19 +108,28 @@ public class PeerConnection : MonoBehaviour
         database.Child("Messages").ChildAdded += (sender, args) => { StartCoroutine(ReadMessageDB(args)); };
 
         // Creamos nuestro peer
-        pcSenders = new List<RTCRtpSender>();
+        pcSenders = new List<RTCRtpSender>();         
         pc = new RTCPeerConnection(ref RTCconfig);
         pc.OnIceCandidate = candidate => {OnIceCandidate(candidate);};
         pc.OnIceConnectionChange = state => { Debug.Log($"{myPeerType} - IceConnectionState: {state}"); };
+
+        //pc.GetSenders().First().SetParameters(SetBandwidth(pc.GetSenders().First().GetParameters(), 1000000, 125000));
 
         if(ImHost()){ 
             videoStream = VideoManager.RecordLiveVideo(ref cam, ref videoImage);
         }
 
-        // Añadimos los diferentes tracks ()
+        // Añadimos los diferentes tracks
         AddTracks();
 
     }
+
+    // private RTCRtpSendParameters SetBandwidth(RTCRtpSendParameters parameters, ulong maxBitrate, ulong minBitrate){
+    //     parameters.encodings[0].maxBitrate = maxBitrate;
+    //     parameters.encodings[0].minBitrate = minBitrate;
+    //     return parameters;
+    // }
+
     public void ToggleVideo(){
         if(showingVideo){
             cam.gameObject.SetActive(false);
