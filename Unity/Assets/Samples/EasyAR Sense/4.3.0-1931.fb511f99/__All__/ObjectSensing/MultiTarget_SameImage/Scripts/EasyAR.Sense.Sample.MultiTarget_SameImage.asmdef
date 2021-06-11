@@ -1,0 +1,10 @@
+{
+    "name": "EasyAR.Sense.Sample.MultiTarget_SameImage",
+    "references": [
+        "EasyAR.Sense"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

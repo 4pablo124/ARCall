@@ -28,11 +28,11 @@ public static class PersistentData
             roomID = random.Next(_min, _max).ToString();
             Debug.Log($"Evaluando codigo de sala: {roomID}");
             snapshot = await FirebaseDatabase.DefaultInstance.GetReference("Rooms").Child(roomID).GetValueAsync();
-
         }while(snapshot.Exists);
+        
         Debug.Log($"Sala valida: {roomID}");
         
-        RoomID = roomID;
+        RoomID = roomID; 
         return roomID;
     }
 }

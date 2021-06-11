@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 154b3ec8da63beb4687327e6c5878e2a, type: 3}
   m_Name: Unity XR Mock Settings
   m_EditorClassIdentifier: 
-  m_Requirement: 0
+  m_Requirement: 1

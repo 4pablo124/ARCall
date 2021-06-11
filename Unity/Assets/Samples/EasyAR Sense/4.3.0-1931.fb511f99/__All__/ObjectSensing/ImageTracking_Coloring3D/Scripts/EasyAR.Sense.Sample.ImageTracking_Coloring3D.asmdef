@@ -1,0 +1,10 @@
+{
+    "name": "EasyAR.Sense.Sample.ImageTracking_Coloring3D",
+    "references": [
+        "EasyAR.Sense"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
