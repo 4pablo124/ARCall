@@ -22,7 +22,7 @@ public class PeerConnection : MonoBehaviour
     [SerializeField] private RawImage videoImage;
     [SerializeField] private MyEncoder encoder;
     [SerializeField] private MyDecoder decoder;
-    [SerializeField] private InputCatcher inputCatcher;
+    [SerializeField] private InputManager inputManager;
 
 
     private String roomID;
@@ -39,8 +39,8 @@ public class PeerConnection : MonoBehaviour
     private bool audioConected = false;
     private bool showingVideo = true;
 
-    public const int width = 360;
-    public const int height = 640;
+    public static int width = 360;
+    public static int height = 640;
     public static ulong bitrate = 1000000;
     public static float aspectRatio;
 
@@ -138,7 +138,7 @@ public class PeerConnection : MonoBehaviour
 
         if(!ImHost()){
             clientInputDataChannel = pc.CreateDataChannel("clientInput", conf);
-            inputCatcher.OnClientInput += inputJson => {
+            inputManager.OnClientInput += inputJson => {
                 if(clientInputDataChannel.ReadyState == RTCDataChannelState.Open){
                     clientInputDataChannel.Send(inputJson);
                 }
@@ -161,7 +161,7 @@ public class PeerConnection : MonoBehaviour
                     clientInputDataChannel = channel;
                         clientInputDataChannel.OnMessage = bytes => {
                             var inputJson = System.Text.Encoding.UTF8.GetString(bytes);
-                            clientInput = JsonUtility.FromJson<Vector3>(inputJson);
+                            inputManager.clientInput = JsonUtility.FromJson<Vector3>(inputJson);
                         };
                     break;
 
@@ -170,6 +170,7 @@ public class PeerConnection : MonoBehaviour
                     if (!ImHost()){
                         aspectRatioDataChannel.OnMessage = bytes => {
                             aspectRatio = BitConverter.ToSingle(bytes,0);
+                            height = (int)Math.Round(width/aspectRatio);
                             Debug.Log($"Recibiendo aspect ratio de: {aspectRatio}");
                             videoImage.GetComponent<AspectRatioFitter>().aspectRatio = aspectRatio;
                         };

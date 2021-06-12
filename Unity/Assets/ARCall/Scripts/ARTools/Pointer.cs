@@ -4,28 +4,28 @@ using UnityEngine;
 public class Pointer : MonoBehaviour
 {    
  
-    private Vector3 cursorPosition;
+    public InputManager inputManager;
     private int cursorWidth;
-    private float scaledPixelRatio;
+    private GameObject hostPointer, clientPointer;
 
     private void Start () {      
-        cursorPosition.z = 19.99f;
-        scaledPixelRatio = (float)Screen.width/PeerConnection.width;
-        // scaledPixelRatio = 1;
-
+        hostPointer = transform.GetChild(0).gameObject;
+        clientPointer = transform.GetChild(1).gameObject;
     }
     private void Update () {
-        cursorPosition.x = Input.mousePosition.x/scaledPixelRatio;
-        cursorPosition.y = Input.mousePosition.y/scaledPixelRatio;
-
-
-
         cursorWidth = (int)Math.Round(Screen.width*0.1f);
-        GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, cursorWidth);
-        GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, cursorWidth);
-        transform.position = GetComponentInParent<Canvas>().worldCamera.ScreenToWorldPoint(cursorPosition);
+        hostPointer.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, cursorWidth);
+        hostPointer.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, cursorWidth);
+        clientPointer.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, cursorWidth);
+        clientPointer.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, cursorWidth);
 
-        GetComponent<SpriteRenderer>().enabled = Input.GetMouseButton(0);
+        hostPointer.transform.position = 
+            GetComponent<Canvas>().worldCamera.ScreenToWorldPoint(inputManager.hostInput);
+        clientPointer.transform.position =
+            GetComponent<Canvas>().worldCamera.ScreenToWorldPoint(inputManager.clientInput);
+
+        hostPointer.GetComponent<SpriteRenderer>().enabled = inputManager.hostInput.z != 0;
+        clientPointer.GetComponent<SpriteRenderer>().enabled = inputManager.clientInput.z != 0;
     }
  
 }

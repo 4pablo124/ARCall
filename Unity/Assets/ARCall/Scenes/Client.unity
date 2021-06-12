@@ -280,6 +280,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5957666115740046957, guid: ecbeab43058548048ab57a09c709ac60, type: 3}
+      propertyPath: myPeerType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5957666115740046957, guid: ecbeab43058548048ab57a09c709ac60, type: 3}
+      propertyPath: clientCanvas
+      value: 
+      objectReference: {fileID: 995649418}
+    - target: {fileID: 5957666115740046957, guid: ecbeab43058548048ab57a09c709ac60, type: 3}
+      propertyPath: videoRawImage
+      value: 
+      objectReference: {fileID: 995649415}
+    - target: {fileID: 5957666115740046957, guid: ecbeab43058548048ab57a09c709ac60, type: 3}
+      propertyPath: clientVideoRawImage
+      value: 
+      objectReference: {fileID: 1219974866}
     - target: {fileID: 7117882619847564464, guid: ecbeab43058548048ab57a09c709ac60, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -326,7 +342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8664869156931839000, guid: ecbeab43058548048ab57a09c709ac60, type: 3}
       propertyPath: m_Name
-      value: InputCatcher
+      value: InputManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecbeab43058548048ab57a09c709ac60, type: 3}
@@ -717,7 +733,7 @@ MonoBehaviour:
   videoImage: {fileID: 1219974866}
   encoder: {fileID: 775590479}
   decoder: {fileID: 805601617}
-  inputCatcher: {fileID: 248774680}
+  inputManager: {fileID: 248774680}
 --- !u!4 &479969510
 Transform:
   m_ObjectHideFlags: 0
