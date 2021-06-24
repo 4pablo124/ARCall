@@ -10,10 +10,9 @@ public class VideoManager {
         Debug.Log($"Capturando video con aspect ratio de: {camera.aspect}");
         var height = (int)Math.Round(PeerConnection.width/camera.aspect);
         video = camera.CaptureStream(PeerConnection.width, height, (int)PeerConnection.bitrate);
-        // video = camera.CaptureStream(360, 640, 500000);
 
 
-        // videoImage.GetComponent<AspectRatioFitter>().aspectRatio = camera.aspect;
+        videoImage.GetComponent<AspectRatioFitter>().aspectRatio = camera.aspect;
         videoImage.texture = camera.targetTexture;
         videoImage.color = Color.white;
 

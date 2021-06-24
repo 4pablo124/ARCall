@@ -5,7 +5,9 @@
         "ARCall.Plugins",
         "Unity.TextMeshPro",
         "Unity.WebRTC",
-        "NativeShare.Runtime"
+        "NativeShare.Runtime",
+        "Unity.XR.ARFoundation",
+        "Unity.XR.ARSubsystems"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

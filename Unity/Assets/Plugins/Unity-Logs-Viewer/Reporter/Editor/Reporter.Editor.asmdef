@@ -1,0 +1,18 @@
+{
+    "name": "Reporter.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c4e88834ad8d54d49bc17779d74461a6"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

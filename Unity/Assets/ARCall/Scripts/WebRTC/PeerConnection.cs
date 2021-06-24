@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using Firebase.Database;
 using Newtonsoft.Json;
@@ -12,6 +11,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
 
 public class PeerConnection : MonoBehaviour
 {
@@ -22,7 +22,8 @@ public class PeerConnection : MonoBehaviour
     [SerializeField] private RawImage videoImage;
     [SerializeField] private MyEncoder encoder;
     [SerializeField] private MyDecoder decoder;
-    [SerializeField] private InputManager inputManager;
+    private InputManager inputManager;
+    private ARSession aRSession;
 
 
     private String roomID;
@@ -49,6 +50,13 @@ public class PeerConnection : MonoBehaviour
 
     private void Awake()
     {
+        if(myPeerType == PeerType.Host){
+            aRSession = GameObject.Find("ARSession").GetComponent<ARSession>();
+        }
+            
+        inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
+
+
         SceneManager.sceneUnloaded += OnSceneUnloaded;
 
         // Evitamos que la pantalla se apague
@@ -114,6 +122,7 @@ public class PeerConnection : MonoBehaviour
         // Desarmamos webRTC en destructor
         Debug.Log("WebRTC.Dispose()");
         WebRTC.Dispose();
+        aRSession.Reset();
     }
 
 
@@ -161,7 +170,7 @@ public class PeerConnection : MonoBehaviour
                     clientInputDataChannel = channel;
                         clientInputDataChannel.OnMessage = bytes => {
                             var inputJson = System.Text.Encoding.UTF8.GetString(bytes);
-                            inputManager.clientInput = JsonUtility.FromJson<Vector3>(inputJson);
+                            inputManager.clientPosition = JsonUtility.FromJson<Vector3>(inputJson);
                         };
                     break;
 

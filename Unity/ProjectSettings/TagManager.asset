@@ -3,12 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - HostMarker
+  - ClientMarker
+  - HostMarkerText
+  - ClientMarkerText
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - AR
   - Water
   - UI
   - 
