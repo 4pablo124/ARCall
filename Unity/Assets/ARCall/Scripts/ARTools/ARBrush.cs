@@ -9,7 +9,8 @@ public class ARBrush : MonoBehaviour
 
     [SerializeField] private PeerType myPeerType = PeerType.Host;
 
-    [SerializeField] private GameObject prefab;
+    [SerializeField] private GameObject linePrefab;
+    [SerializeField] private GameObject guidePrefab;
     
     private Camera arCam;
     private InputManager inputManager;
@@ -41,9 +42,14 @@ public class ARBrush : MonoBehaviour
                 }
             }
         }else if(line != null) {
-            GameObject.Instantiate(line).transform.parent = myPeerType == PeerType.Host ?  
+            var lineClone = GameObject.Instantiate(line);
+            lineClone.transform.parent = myPeerType == PeerType.Host ?  
                                                                 ARToolController.hostDrawings.transform :
                                                                 ARToolController.clientDrawings.transform;
+
+            var guide = GameObject.Instantiate(guidePrefab);
+            guide.transform.parent = ARToolController.guides.transform;
+            guide.GetComponent<ARGuide>().target = lineClone.transform;
             Destroy(line.gameObject);
         }
     }
@@ -55,7 +61,7 @@ public class ARBrush : MonoBehaviour
     }
 
     private LineRenderer createLineStart(UnityEngine.Vector3 start,Color color){
-        LineRenderer line = GameObject.Instantiate(prefab, start, UnityEngine.Quaternion.identity).GetComponent<LineRenderer>();
+        LineRenderer line = GameObject.Instantiate(linePrefab, start, UnityEngine.Quaternion.identity).GetComponent<LineRenderer>();
         line.endColor = line.startColor = color;
         line.SetPosition(0,start);
         return line;

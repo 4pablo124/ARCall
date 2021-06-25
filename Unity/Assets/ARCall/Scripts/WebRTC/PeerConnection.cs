@@ -56,6 +56,7 @@ public class PeerConnection : MonoBehaviour
             
         inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
 
+        height = (int)Math.Round(width/cam.aspect);
 
         SceneManager.sceneUnloaded += OnSceneUnloaded;
 

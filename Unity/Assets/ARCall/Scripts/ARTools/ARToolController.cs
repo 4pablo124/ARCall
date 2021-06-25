@@ -8,6 +8,7 @@ public class ARToolController : MonoBehaviour
     
     public static GameObject hostDrawings;
     public static GameObject clientDrawings;
+    public static GameObject guides;
 
     private  GameObject aRTools;
     private  GameObject aRBrush;
@@ -23,6 +24,7 @@ public class ARToolController : MonoBehaviour
     {
         hostDrawings = ARToolController.hostDrawings = GameObject.Find("HostDrawings");
         clientDrawings = ARToolController.clientDrawings = GameObject.Find("ClientDrawings");
+        guides = ARToolController.clientDrawings = GameObject.Find("Guides");
 
         aRTools = this.gameObject;
         aRBrush = transform.Find("ARBrush").gameObject;
@@ -51,10 +53,12 @@ public class ARToolController : MonoBehaviour
             case PeerType.Host:
                 if(hostDrawings.transform.childCount > 0)
                     Destroy(hostDrawings.transform.GetChild(hostDrawings.transform.childCount-1).gameObject);
+                    Destroy(guides.transform.GetChild(hostDrawings.transform.childCount-1).gameObject);
                 break;
             case PeerType.Client:
                 if(clientDrawings.transform.childCount > 0)
                     Destroy(clientDrawings.transform.GetChild(clientDrawings.transform.childCount-1).gameObject);
+                    Destroy(guides.transform.GetChild(hostDrawings.transform.childCount-1).gameObject);
                 break;
         }
     }
@@ -69,6 +73,10 @@ public class ARToolController : MonoBehaviour
             foreach(Transform child in hostDrawings.transform){
                 Destroy(child.gameObject);
             }
+        }
+
+        foreach(Transform child in guides.transform){
+            Destroy(child.gameObject);
         }
     }
 }
