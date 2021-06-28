@@ -23,6 +23,8 @@ EditorBuildSettings:
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 1767c3fc2b82f714489f841dc6c94fc0, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: a031bf9f607b20e42978d22728e568a3, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: a29ec3b9832cb634e840b75dbaa3dea9, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 6f7fbab671a5848ddae17e25cb330888, type: 2}
     com.unity.xr.management.build: {fileID: 11400000, guid: cdbbc4ac7decf6d4c9a2103337d89397, type: 2}
     com.unity.xr.management.loader: {fileID: 11400000, guid: 98fbc46b929092f4a99fb28b4f43c3fc, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e391a71e4ede1664eae9a12589730688, type: 2}
