@@ -30,7 +30,7 @@ public class SalasTestSuite
         RoomManager roomManager = new RoomManager();
         roomManager.peerType = PeerType.Host;
         //Sala 0000 no existe como sala real luego la podemos usar para pruebas
-        roomManager.roomID = "0000";
+        RoomManager.roomID = "0000";
         roomManager.JoinRoom();
         yield return new WaitForSeconds(0.5f);
         var task = FirebaseDatabase.DefaultInstance.GetReference("Rooms/0000/Host/Ready").GetValueAsync();
@@ -49,7 +49,7 @@ public class SalasTestSuite
         errorObj.AddComponent<TextMeshProUGUI>();
         roomManager.errorText = errorObj.GetComponent<TextMeshProUGUI>();
         //Sala 0000 no existe como sala real luego la podemos usar para pruebas
-        roomManager.roomID = "0000";
+        RoomManager.roomID = "0000";
         var task = FirebaseDatabase.DefaultInstance.GetReference("Rooms/0000/Host/Ready").SetValueAsync(true);
         yield return new WaitUntil(()=>task.IsCompleted);
         roomManager.JoinRoom();
@@ -70,7 +70,7 @@ public class SalasTestSuite
         errorObj.AddComponent<TextMeshProUGUI>();
         roomManager.errorText = errorObj.GetComponent<TextMeshProUGUI>();
         //Sala 0000 no existe como sala real luego la podemos usar para pruebas
-        roomManager.roomID = "0000";
+        RoomManager.roomID = "0000";
         roomManager.JoinRoom();
         yield return new WaitForSeconds(0.5f);
         Assert.True(errorObj.activeSelf);

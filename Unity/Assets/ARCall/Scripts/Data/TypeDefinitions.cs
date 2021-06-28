@@ -18,13 +18,13 @@ public class Data{
 }
 
 // Actualmente no se usa
-public class User{
-    public String Name;
-    public RTCSessionDescription Description;
-    public Dictionary<string,RTCIceCandidateInit> IceCandidates;
-}
+// public class User{
+//     public String Name;
+//     public RTCSessionDescription Description;
+//     public Dictionary<string,RTCIceCandidateInit> IceCandidates;
+// }
 
-public class Room{
-    public User Host;
-    public User Client;
-}
+// public class Room{
+//     public User Host;
+//     public User Client;
+// }

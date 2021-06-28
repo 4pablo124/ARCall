@@ -44,7 +44,7 @@ public class ARText : MonoBehaviour
                     currentMarker = AddMarker(hitPose.position);             
                 }
             }
-        }else{
+        }else if(currentMarker != null){
             currentMarker.GetComponentInChildren<TextMeshPro>().text = keyboard.text;
             placingMarker = false;
         }
@@ -66,7 +66,7 @@ public class ARText : MonoBehaviour
                 break;
         }
         keyboard = TouchScreenKeyboard.Open("",TouchScreenKeyboardType.Default,true,true,false,false,
-                                    "Introduzca su texto",25);
+                                    "Introduzca su texto",36);
         return marker;
     }
 

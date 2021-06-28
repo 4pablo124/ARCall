@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7117882619847564464}
   - component: {fileID: 5957666115740046957}
   m_Layer: 0
-  m_Name: InputCatcher
+  m_Name: InputManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,6 +40,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8664869156931839000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74bfb23883da7744b9e846ecc7671416, type: 3}
+  m_Script: {fileID: 11500000, guid: 3adb8c81260b11c4babf6b6fbcd33560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myPeerType: 0
+  hostPosition: {x: 0, y: 0, z: 0}
+  clientPosition: {x: 0, y: 0, z: 0}

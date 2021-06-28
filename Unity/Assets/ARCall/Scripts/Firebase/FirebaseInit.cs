@@ -24,9 +24,5 @@ public class FirebaseInit : MonoBehaviour
         });
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

@@ -32,7 +32,7 @@ public class ARToolController : MonoBehaviour
         aRMarker = transform.Find("ARMarker").gameObject;
         aRText = transform.Find("ARText").gameObject;
         
-        SelectTool("ARBrush");
+        SelectTool("ARPointer");
     }
 
     public void SelectTool(string toolName){

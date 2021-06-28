@@ -11,7 +11,7 @@ public class RoomManager : MonoBehaviour
     [SerializeField] public TMP_InputField roomIDInput;
     [SerializeField] public TextMeshProUGUI errorText;
     [SerializeField] public Button joinButton;
-    public string roomID;
+    public static string roomID;
 
     // Start is called before the first frame update
     async void Start()
@@ -50,7 +50,7 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public static void shareRoom(string roomID){
+    public static void shareRoom(){
         new NativeShare().SetTitle("ARCall Room ID").SetText("Unete a mi sala:\n"+roomID).Share();
     }
 }
