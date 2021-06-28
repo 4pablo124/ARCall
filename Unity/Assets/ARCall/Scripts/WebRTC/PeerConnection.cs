@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using Firebase.Database;
 using Newtonsoft.Json;
@@ -15,101 +16,91 @@ using UnityEngine.XR.ARFoundation;
 
 public class PeerConnection : MonoBehaviour
 {
+    public PeerType peerType = PeerType.Host; // Para poder inicializar el valor statico desde el editor
+    public static PeerType myPeerType;
 
     [SerializeField] private Button roomIDBtn;
-    [SerializeField] private PeerType myPeerType = PeerType.Host;
-    [SerializeField] private Camera cam;
-    [SerializeField] private RawImage videoImage;
-    [SerializeField] private MyEncoder encoder;
-    [SerializeField] private MyDecoder decoder;
     private InputManager inputManager;
+    private VideoManager videoManager;
+    private AudioManager audioManager;
     private ARSession aRSession;
 
-
-    private String roomID;
     private DatabaseReference database;
-    private MediaStream videoStream;
-    private MediaStream audioStream;
     private RTCDataChannel audioDataChannel, remoteAudioDataChannel, clientInputDataChannel, aspectRatioDataChannel;
     private RTCConfiguration RTCconfig;
-    private RTCPeerConnection pc;
-    private List<RTCRtpSender> pcSenders;
-
-    private bool videoUpdateStarted = false;
-    private byte[] audioBuffer;
-    private bool audioConected = false;
-    private bool showingVideo = true;
-
-    public static int width = 360;
-    public static int height = 640;
-    public static ulong bitrate = 1000000;
-    public static float aspectRatio;
-
-    public static Vector3 clientInput;
+    public static RTCPeerConnection pc;
+    public static List<RTCRtpSender> pcSenders;
 
 
     private void Awake()
     {
-        if(myPeerType == PeerType.Host){
-            aRSession = GameObject.Find("ARSession").GetComponent<ARSession>();
-        }
+        myPeerType = peerType;
+
+        if(ImHost()) aRSession = GameObject.Find("ARSession").GetComponent<ARSession>();
             
         inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
-
-        height = (int)Math.Round(width/cam.aspect);
-
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
-
-        // Evitamos que la pantalla se apague
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
-     
-        // Inicializamos WebRTC con decodificacion por software, ya que hardware aun no se soporta en android por ahora
-        WebRTC.Initialize(EncoderType.Software);
+        videoManager = GameObject.Find("VideoManager").GetComponent<VideoManager>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         //Establecemos ID de la sala
-        roomID = PersistentData.GetRoomID();
-        roomIDBtn.GetComponentInChildren<TextMeshProUGUI>().text = roomID;
+        RoomManager.roomID = PersistentData.GetRoomID();
+        roomIDBtn.GetComponentInChildren<TextMeshProUGUI>().text = RoomManager.roomID;
 
         // Obetemos referencia a la base de datos
-        database = FirebaseDatabase.DefaultInstance.GetReference("Rooms").Child(roomID);
+        database = FirebaseDatabase.DefaultInstance.GetReference("Rooms").Child(RoomManager.roomID);
         Debug.Log($"{myPeerType} - Obtenida referencia de database: {database}");
 
-        // Configuramos servidores ICE
-        RTCconfig = ServersConfig();
-        Debug.Log($"{myPeerType} - Servidores configurados: {RTCconfig.iceServers}");
+
+        // Inicializamos los callbacks
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+
+        // Host realiza llamada cuando llegue el cliente
+        if(ImHost()) database.Child("Client").ChildAdded += (sender, args) => { StartCoroutine(Call()); };
+
+        // Cuando recibimos un mensaje invocamos de manera asincrona la lectura del mismo
+        database.Child("Messages").ChildAdded += (sender, args) => { StartCoroutine(ReadMessageDB(args)); };
+
+
+        // Inicializamos WebRTC con decodificacion por software, ya que hardware aun no se soporta en android por ahora
+        WebRTC.Initialize(EncoderType.Software);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        // Esperamos a que esten todos los peers para comenzar la llamada
+        // Señalizamos que el peer esta listo
         if(ImHost()){
             database.Child("Host").Child("Ready").SetValueAsync(true);
-            database.Child("Client").ChildAdded += (sender, args) => { StartCoroutine(Call()); };
         }else{
             database.Child("Client").Child("Ready").SetValueAsync(true);     
         }
+        // Evitamos que la pantalla se apague
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
-        // Cuando recibimos un mensjasre invocamos de manera asyncrona a la lectura del mismo
-        database.Child("Messages").ChildAdded += (sender, args) => { StartCoroutine(ReadMessageDB(args)); };
+        // Configuramos servidores ICE
+        RTCconfig = ServersConfig();
 
-        // Creamos nuestro peer
+        // Creamos los senders
         pcSenders = new List<RTCRtpSender>();    
  
+        // Creamos nuestro peer
         pc = new RTCPeerConnection(ref RTCconfig);
+
+        // Cuando se encuentre un Ice Candidate
         pc.OnIceCandidate = candidate => {
             SendMessageDB(myPeerType,new Data{ ice = InitIceCandidate(candidate) });
             Debug.Log($"{myPeerType} - Ice Enviado: {candidate.Candidate}");
         };
+
+        // Cuando cambie el estado de la conexion
         pc.OnIceConnectionChange = state => { 
             Debug.Log($"{myPeerType} - IceConnectionState: {state}");
         };
 
-        //pc.GetSenders().First().SetParameters(SetBandwidth(pc.GetSenders().First().GetParameters(), 1000000, 125000));
 
-        if(ImHost()){ 
-            videoStream = VideoManager.RecordLiveVideo(ref cam, ref videoImage);
-        }
+        if(ImHost()) videoManager.RecordCamera();
+
+        //pc.GetSenders().First().SetParameters(SetBandwidth(pc.GetSenders().First().GetParameters(), 1000000, 125000));
 
         // Añadimos los diferentes tracks
         addAudioTracks();
@@ -118,31 +109,25 @@ public class PeerConnection : MonoBehaviour
 
     }
 
-    private void OnDestroy()
-    {
-        // Desarmamos webRTC en destructor
-        Debug.Log("WebRTC.Dispose()");
-        WebRTC.Dispose();
-        aRSession.Reset();
-    }
-
-
-
 
     // MAIN CONECCTION
 
     private void addAudioTracks(){
+
         // Creamos audioData
         RTCDataChannelInit conf = new RTCDataChannelInit();
         audioDataChannel = pc.CreateDataChannel("audio", conf);
-        // Enviamos el audio una vez este codificado
-        encoder.OnEncoded += EncodeAndSendBytes;
+        // Se envia el audio una vez codificado a bytes
+        audioManager.OnEncoded += (data, length) => {
+            if(audioManager.audioConected) audioDataChannel.Send(audioManager.Encode(data,length));
+        };
         //PROVISIONAL
-        audioDataChannel.OnOpen = () => { audioConected = true; };
-        audioDataChannel.OnClose = () => { audioConected = false; };
+        audioDataChannel.OnOpen = () => { audioManager.audioConected = true; };
+        audioDataChannel.OnClose = () => { audioManager.audioConected = false; };
     }
 
     private void addDataChannels(){
+
         // Creamos canales de Datos
         RTCDataChannelInit conf = new RTCDataChannelInit(){ordered = true, };
 
@@ -157,14 +142,16 @@ public class PeerConnection : MonoBehaviour
 
         aspectRatioDataChannel = pc.CreateDataChannel("aspectRatio", conf);
         aspectRatioDataChannel.OnOpen = () => {
-            if(ImHost()) aspectRatioDataChannel.Send(BitConverter.GetBytes(cam.aspect));
+            if(ImHost()) {
+                aspectRatioDataChannel.Send(BitConverter.GetBytes(videoManager.aspectRatio));
+            }
         };
 
         pc.OnDataChannel = channel => {
             switch(channel.Label){
                 case "audio": // Recibimos data (y audio gracias a UnityOpus)  
                     remoteAudioDataChannel = channel;
-                    remoteAudioDataChannel.OnMessage = bytes => { Decode(bytes); };
+                    remoteAudioDataChannel.OnMessage = bytes => { audioManager.Decode(bytes); };
                     break;
 
                 case "clientInput":
@@ -179,10 +166,10 @@ public class PeerConnection : MonoBehaviour
                     aspectRatioDataChannel = channel;
                     if (!ImHost()){
                         aspectRatioDataChannel.OnMessage = bytes => {
-                            aspectRatio = BitConverter.ToSingle(bytes,0);
-                            height = (int)Math.Round(width/aspectRatio);
-                            Debug.Log($"Recibiendo aspect ratio de: {aspectRatio}");
-                            videoImage.GetComponent<AspectRatioFitter>().aspectRatio = aspectRatio;
+                            videoManager.aspectRatio = BitConverter.ToSingle(bytes,0);
+                            videoManager.height = (int)Math.Round(videoManager.width/videoManager.aspectRatio);
+                            Debug.Log($"Recibiendo aspect ratio de: {videoManager.aspectRatio}");
+                            videoManager.videoRawImage.GetComponent<AspectRatioFitter>().aspectRatio = videoManager.aspectRatio;
                         };
                     }
                     break;
@@ -190,40 +177,41 @@ public class PeerConnection : MonoBehaviour
         };
     }
     private void addVideoTracks(){
+
         if(ImHost()) {
-            foreach (var track in videoStream.GetTracks())
+            foreach (var track in videoManager.videoStream.GetTracks())
                 {
-                    pcSenders.Add(pc.AddTrack(track, videoStream));
+                    pcSenders.Add(pc.AddTrack(track, videoManager.videoStream));
                 }
                 
             var parameters = pcSenders.First().GetParameters();
             foreach (var encoding in parameters.encodings)
             {
-                encoding.maxBitrate = bitrate;
-                encoding.maxFramerate = 30;
+                // encoding.maxBitrate = videoManager.bitrate;
+                // encoding.maxFramerate = videoManager.framerate;
             }
         }else{
             // Recibimos video
-            pc.OnTrack = e => videoStream.AddTrack(e.Track);    
-            videoStream = new MediaStream();
-            videoStream.OnAddTrack = e => {
+            pc.OnTrack = e => videoManager.videoStream.AddTrack(e.Track);
+            videoManager.videoStream = new MediaStream();
+            videoManager.videoStream.OnAddTrack = e => {
                 if (e.Track is VideoStreamTrack track){
-                    videoImage.texture = track.InitializeReceiver(width, height);
-                    videoImage.color = Color.white;
+                    videoManager.videoRawImage.texture = track.InitializeReceiver(videoManager.width, videoManager.height);
+                    videoManager.videoRawImage.color = Color.white;
                 }
             };
         }
 
         // Inciamos actualizacion de "frames"
-        if (!videoUpdateStarted)
+        if (!videoManager.videoUpdateStarted)
         {
-            Debug.Log("WebRTC.Update() Started");
             StartCoroutine(WebRTC.Update());
-            videoUpdateStarted = true;
+            videoManager.videoUpdateStarted = true;
         }
     }
 
     private IEnumerator Call(){
+
         Debug.Log($"{myPeerType} - Realizando conexion");
 
         var op = pc.CreateOffer();
@@ -258,13 +246,17 @@ public class PeerConnection : MonoBehaviour
         else{ UnReadyUser(); }
     }
 
-
+    private void OnDestroy(){
+        aRSession?.Reset();
+        // Desarmamos webRTC en destructor
+        Debug.Log("WebRTC.Dispose()");
+        WebRTC.Dispose();
+    }
 
 
 
     // DATABASE AUX 
-    private void SendMessageDB(PeerType peerType, Data data)
-    {
+    private void SendMessageDB(PeerType peerType, Data data){
         JObject messageJSON = JObject.FromObject(
             new Message{ peerType = peerType, data = data }
         );
@@ -341,8 +333,7 @@ public class PeerConnection : MonoBehaviour
     // CONNECTION AUX
 
     // Devuelve la configuracion de Servidores ICE y protocolos de transmision
-    private static RTCConfiguration ServersConfig()
-    {
+    private static RTCConfiguration ServersConfig() {
         RTCConfiguration config = default;
         config.iceServers = new[] {
             new RTCIceServer {urls = new[] {"stun:stun.l.google.com:19302"}},
@@ -364,81 +355,9 @@ public class PeerConnection : MonoBehaviour
     }
 
 
-
-
-
-
     // MISC AUX
-    public void shareRoom(){
-        RoomManager.shareRoom(roomID);
-    }
 
-    public bool ImHost(){
+    public static bool ImHost(){
         return myPeerType == PeerType.Host;
-    }
-
-    //TODO - mover a videomanager
-    public void ToggleVideo(){
-        if(showingVideo){
-            cam.gameObject.SetActive(false);
-            videoImage.color = Color.clear;
-        }else{
-            cam.gameObject.SetActive(true);
-            videoImage.color = Color.white;
-        }
-        showingVideo = !showingVideo;
-    }
-
-
-
-
-    // ENCODING AUX
-    void Decode(byte[] bytes)
-    {
-        if(bytes.Length != 1){
-            int size = sizeof(int);
-            byte[] encodedLengthBytes = bytes.Take(size).ToArray();
-            byte[] encodedAudioBytes = bytes.Skip(sizeof(int)).Take(bytes.Length - sizeof(int)).ToArray();
-            int length = DecodeLength(encodedLengthBytes);
-            
-            decoder.Decode(encodedAudioBytes, length);
-        }else{
-            decoder.Decode(null, 0);
-        }
-    }
-    
-    int DecodeLength(byte[] bytes)
-    {
-        int result = BitConverter.ToInt32(bytes, 0);
-        return result;
-    }
-
-    byte[] EncodeLength(byte[] bytes, int length)
-    {
-        int[] lengthArr = new int[] { length };
-        byte[] result = new byte[lengthArr.Length * sizeof(int)];
-        Buffer.BlockCopy(lengthArr, 0, result, 0, result.Length);
-        return AddByteToArray(bytes, result);
-    }
-
-    public byte[] AddByteToArray(byte[] bArray, byte[] newBytes)
-    {
-        byte[] newArray = new byte[bArray.Length + newBytes.Length];
-        bArray.CopyTo(newArray, newBytes.Length);
-        newBytes.CopyTo(newArray, 0);
-        return newArray;
-    }
-
-    void EncodeAndSendBytes(byte[] data, int length)
-    {
-        if (audioConected)
-        {
-            if(data != null){
-                audioBuffer = EncodeLength(data, length);
-                audioDataChannel.Send(audioBuffer);
-            }else{
-                audioDataChannel.Send(new byte[1]);
-            }
-        }
     }
 }

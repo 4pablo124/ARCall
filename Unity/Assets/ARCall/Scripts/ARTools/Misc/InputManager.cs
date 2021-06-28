@@ -6,13 +6,19 @@ public class InputManager : MonoBehaviour
 {
 
     public event Action<string> OnClientInput;
-    [SerializeField] private PeerType myPeerType = PeerType.Host;
+    // [SerializeField] private PeerType myPeerType = PeerType.Host;
 
     public Vector3 hostPosition, clientPosition;
 
     private float scaledPixelRatioX,scaledPixelRatioY, clientAspectRatio;
     private int croppedScreenWidth, croppedScreenHeight, offsetX, offsetY;
 
+    private VideoManager videoManager;
+
+
+    private void Awake() {
+        videoManager = GameObject.Find("VideoManager").GetComponent<VideoManager>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -27,20 +33,20 @@ public class InputManager : MonoBehaviour
         if(Input.GetMouseButton(0) && EventSystem.current.currentSelectedGameObject == null){
             clientAspectRatio = (float)Screen.width/Screen.height;
 
-            croppedScreenWidth = clientAspectRatio < PeerConnection.aspectRatio ?
-                (int)Math.Round(PeerConnection.height*clientAspectRatio) : PeerConnection.width;
+            croppedScreenWidth = clientAspectRatio < videoManager.aspectRatio ?
+                (int)Math.Round(videoManager.height*clientAspectRatio) : videoManager.width;
 
-            croppedScreenHeight = clientAspectRatio > PeerConnection.aspectRatio ?
-                (int)Math.Round(PeerConnection.width/clientAspectRatio) : PeerConnection.height;
+            croppedScreenHeight = clientAspectRatio > videoManager.aspectRatio ?
+                (int)Math.Round(videoManager.width/clientAspectRatio) : videoManager.height;
 
             scaledPixelRatioX = (float)Screen.width/croppedScreenWidth;
             scaledPixelRatioY = (float)Screen.height/croppedScreenHeight;
 
-            offsetX = (int)Math.Round( ((float)(PeerConnection.width - croppedScreenWidth)/2) * scaledPixelRatioX );
-            offsetY = (int)Math.Round( ((float)(PeerConnection.height - croppedScreenHeight)/2) * scaledPixelRatioY );
+            offsetX = (int)Math.Round( ((float)(videoManager.width - croppedScreenWidth)/2) * scaledPixelRatioX );
+            offsetY = (int)Math.Round( ((float)(videoManager.height - croppedScreenHeight)/2) * scaledPixelRatioY );
 
 
-            if(myPeerType == PeerType.Host){
+            if(PeerConnection.ImHost()){
                 hostPosition.x = Input.mousePosition.x/scaledPixelRatioX;
                 hostPosition.y = Input.mousePosition.y/scaledPixelRatioY;
                 hostPosition.z = 19.99f;
@@ -56,7 +62,7 @@ public class InputManager : MonoBehaviour
         }
 
         if(Input.GetMouseButtonUp(0)){
-            if(myPeerType == PeerType.Host){
+            if(PeerConnection.ImHost()){
                 hostPosition.z = 0;
             }else{
                 clientPosition.z = 0;

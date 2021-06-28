@@ -12,12 +12,17 @@ public class ARGuide : MonoBehaviour
     private Vector3 guideScreenPos;
     private int cursorWidth;
 
+    private VideoManager videoManager;
 
+
+    private void Awake() {
+        videoManager = GameObject.Find("VideoManager").GetComponent<VideoManager>();
+        arCam = GameObject.Find("ARCamera").GetComponent<Camera>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        arCam = GameObject.Find("ARCamera").GetComponent<Camera>();
         guideScreenPos.z = 19;
         transform.rotation = Quaternion.identity;
     }
@@ -31,15 +36,15 @@ public class ARGuide : MonoBehaviour
 
         targetScreenPos = arCam.WorldToScreenPoint(target.position);
 
-        if((targetScreenPos.x > 0 && targetScreenPos.x < PeerConnection.width) &&
-            targetScreenPos.y > 0 && targetScreenPos.y < PeerConnection.height){
+        if((targetScreenPos.x > 0 && targetScreenPos.x < videoManager.width) &&
+            targetScreenPos.y > 0 && targetScreenPos.y < videoManager.height){
                 GetComponent<Renderer>().enabled = false;
         }else{
             GetComponent<Renderer>().enabled = true;
 
 
-            guideScreenPos.x = Mathf.Clamp(targetScreenPos.x, 0, PeerConnection.width);
-            guideScreenPos.y = Mathf.Clamp(targetScreenPos.y, 0, PeerConnection.height);
+            guideScreenPos.x = Mathf.Clamp(targetScreenPos.x, 0, videoManager.width);
+            guideScreenPos.y = Mathf.Clamp(targetScreenPos.y, 0, videoManager.height);
 
             transform.position = arCam.ScreenToWorldPoint(guideScreenPos);
             transform.LookAt(arCam.transform);
