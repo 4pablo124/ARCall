@@ -23,7 +23,6 @@ public class PeerConnection : MonoBehaviour
     private InputManager inputManager;
     private VideoManager videoManager;
     private AudioManager audioManager;
-    private ARSession aRSession;
 
     private DatabaseReference database;
     private RTCDataChannel audioDataChannel, remoteAudioDataChannel, clientInputDataChannel, aspectRatioDataChannel;
@@ -36,7 +35,6 @@ public class PeerConnection : MonoBehaviour
     {
         myPeerType = peerType;
 
-        if(ImHost()) aRSession = GameObject.Find("ARSession").GetComponent<ARSession>();
             
         inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
         videoManager = GameObject.Find("VideoManager").GetComponent<VideoManager>();
@@ -97,9 +95,6 @@ public class PeerConnection : MonoBehaviour
             Debug.Log($"{myPeerType} - IceConnectionState: {state}");
         };
 
-
-        if(ImHost()) videoManager.RecordCamera();
-
         //pc.GetSenders().First().SetParameters(SetBandwidth(pc.GetSenders().First().GetParameters(), 1000000, 125000));
 
         // Añadimos los diferentes tracks
@@ -108,7 +103,6 @@ public class PeerConnection : MonoBehaviour
         addVideoTracks();
 
     }
-
 
     // MAIN CONECCTION
 
@@ -179,17 +173,20 @@ public class PeerConnection : MonoBehaviour
     private void addVideoTracks(){
 
         if(ImHost()) {
-            foreach (var track in videoManager.videoStream.GetTracks())
+            videoManager.OnCamReady += ()=>{
+                videoManager.RecordCamera();
+                foreach (var track in videoManager.videoStream.GetTracks())
+                    {
+                        pcSenders.Add(pc.AddTrack(track, videoManager.videoStream));
+                    }
+                    
+                var parameters = pcSenders.First().GetParameters();
+                foreach (var encoding in parameters.encodings)
                 {
-                    pcSenders.Add(pc.AddTrack(track, videoManager.videoStream));
+                    encoding.maxBitrate = videoManager.bitrate;
+                    encoding.maxFramerate = videoManager.framerate;
                 }
-                
-            var parameters = pcSenders.First().GetParameters();
-            foreach (var encoding in parameters.encodings)
-            {
-                // encoding.maxBitrate = videoManager.bitrate;
-                // encoding.maxFramerate = videoManager.framerate;
-            }
+            };
         }else{
             // Recibimos video
             pc.OnTrack = e => videoManager.videoStream.AddTrack(e.Track);
@@ -247,7 +244,6 @@ public class PeerConnection : MonoBehaviour
     }
 
     private void OnDestroy(){
-        aRSession?.Reset();
         // Desarmamos webRTC en destructor
         Debug.Log("WebRTC.Dispose()");
         WebRTC.Dispose();

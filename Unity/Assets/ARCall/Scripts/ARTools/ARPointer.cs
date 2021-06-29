@@ -10,10 +10,14 @@ public class ARPointer : MonoBehaviour
     private int cursorWidth;
     private GameObject pointer;
 
-    private void Start () { 
+    private void Awake() { 
         inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
-
         pointer = transform.GetChild(0).gameObject;
+        GameObject.Find("VideoManager").GetComponent<VideoManager>().OnCamReady += setUpCam;
+    }
+
+    void setUpCam(){
+        GetComponent<Canvas>().worldCamera = VideoManager.mainCam;
     }
     private void Update () {
         cursorWidth = (int)Math.Round(Screen.width*0.1f);

@@ -48,7 +48,7 @@ public class ARBrush : MonoBehaviour
                                                                 ARToolController.clientDrawings.transform;
 
             var guide = GameObject.Instantiate(guidePrefab);
-            guide.transform.parent = ARToolController.guides.transform;
+            guide.transform.SetParent(ARToolController.guides.transform);
             guide.GetComponent<ARGuide>().target = lineClone.transform;
             Destroy(line.gameObject);
         }
