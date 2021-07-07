@@ -36,3 +36,8 @@ ARCall es una aplicación de asistencia remota que une las clásicas videollamad
 | `v0.4-beta` | [Grabación de tutoriales](https://github.com/4pablo124/ARCall/milestone/4) |
 | `v0.5-beta` | [Web y versiones de navegador y escritorio](https://github.com/4pablo124/ARCall/milestone/5) |
 | `v1.0-release` | [Pulido de interfaz y funcionalidad](https://github.com/4pablo124/ARCall/milestone/6) |
+
+## Descarga
+Descarga el apk de la última versión desde la pestaña de [releases](https://github.com/4pablo124/ARCall/releases)
+
+_Proximamente en Google Play..._
