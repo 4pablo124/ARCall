@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Unity.WebRTC;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,11 +6,11 @@ using UnityEngine.XR.ARFoundation;
 
 public class VideoManager : MonoBehaviour {
 
-    public event Action OnCamReady; 
+    // public PeerType myPeerType = PeerType.Host;
     public int width = 360;
     public int height = 640;
     public float aspectRatio = 0.5f;
-    public ulong bitrate = 1000000;
+    public ulong bitrate = 100000;
     public uint framerate = 30;
 
     
@@ -19,14 +18,14 @@ public class VideoManager : MonoBehaviour {
     [HideInInspector] public MediaStream videoStream;
     [HideInInspector] public bool videoUpdateStarted = false;
     [HideInInspector] public bool showingVideo = true;
+    [HideInInspector] public Camera mainCam;
+    [HideInInspector] public ARSession arSession;
 
-
-
-    private ARSession arSession;
     private Camera arCam, webCam;
-    public static Camera mainCam;
     private RawImage webCamRawImage;
     private WebCamTexture webcamTexture;
+    private Canvas noVideoCanvas;
+    private Canvas arToolTipsUI;
 
 
 
@@ -35,66 +34,80 @@ public class VideoManager : MonoBehaviour {
         arCam = GameObject.Find("ARCamera")?.GetComponent<Camera>();
         webCam = GameObject.Find("WebCamera")?.GetComponent<Camera>();
         videoRawImage = GameObject.Find("VideoRawImage").GetComponent<RawImage>();
-
-
-        if(PeerConnection.ImHost()){
-            ARSession.stateChanged += changeCamera;
-            StartCoroutine(ARSession.CheckAvailability());  
-        } 
+        noVideoCanvas = GameObject.Find("NoVideo")?.GetComponent<Canvas>();
+        arToolTipsUI = GameObject.Find("ARToolTipsUI")?.GetComponentInChildren<Canvas>();
     }
-    private void changeCamera(ARSessionStateChangedEventArgs args) {
-        if(args.state == ARSessionState.Ready){
-            aspectRatio = arCam.aspect;
-            height = (int)Math.Round(width/aspectRatio);
-            mainCam = arCam;
-            OnCamReady?.Invoke();
-        }
-        if(args.state == ARSessionState.Unsupported){
-            arSession.enabled=false;
-            webcamTexture = new WebCamTexture();
-            webcamTexture.Play();
-            mainCam = webCam;
-            OnCamReady?.Invoke();
-        }
-    }
+
+    // private void Start() {
+    //     width = Screen.width/2;
+    //     height = Screen.height/2;
+    // }
+
+    // TODO: implementar webcam para no ar
+
+    // private void changeCamera(ARSessionStateChangedEventArgs args) {
+    //     if(args.state == ARSessionState.Ready || args.state == ARSessionState.SessionTracking){
+    //         aspectRatio = arCam.aspect;
+    //         height = (int)Math.Round(width/aspectRatio);
+    //         mainCam = arCam;
+    //     }
+    //     if(args.state == ARSessionState.Unsupported){
+    //         arSession.enabled=false;
+    //         arToolTipsUI.gameObject.SetActive(false);
+    //         webcamTexture = new WebCamTexture();
+    //         webcamTexture.Play();
+    //         mainCam = webCam;
+    //     }
+    //     ARSession.stateChanged -= changeCamera;
+    //     RecordCamera();
+    // }
 
     public void RecordCamera(){       
-        // Capturamos Video
+        aspectRatio = arCam.aspect;
+        height = (int)Math.Round(width/aspectRatio);
+        mainCam = arCam; 
+
         videoStream = mainCam.CaptureStream(width, height, (int)bitrate);
 
         if(mainCam == arCam) videoRawImage.texture = arCam.targetTexture;
-        if(mainCam == webCam) videoRawImage.texture = webcamTexture;
+        // if(mainCam == webCam) videoRawImage.texture = webcamTexture; 
+
+        noVideoCanvas.worldCamera = mainCam;
+
         videoRawImage.GetComponent<AspectRatioFitter>().aspectRatio = aspectRatio;
         videoRawImage.color = Color.white;
         videoRawImage.texture.filterMode = FilterMode.Trilinear;
     }
 
-    private void SetUpWebCam(){
-        videoRawImage.GetComponent<AspectRatioFitter>().aspectRatio = aspectRatio;
-        videoRawImage.texture = webcamTexture;
-        videoRawImage.color = Color.white;
-        webcamTexture = new WebCamTexture();
-        webcamTexture.Play();
+
+    private void OnApplicationPause(bool paused) {
+        Debug.Log("aplications pasuie");
+        if(paused){
+            ShowVideo(false);
+        }else{
+            ShowVideo(true);
+        }
     }
 
-    private void SetUpArCam(){
-        videoRawImage.GetComponent<AspectRatioFitter>().aspectRatio = aspectRatio;
-        videoRawImage.texture = webcamTexture;
-        videoRawImage.color = Color.white;
-        webcamTexture = new WebCamTexture();
-        webcamTexture.Play();
+    public void ShowVideo(bool show){
+        noVideoCanvas.enabled = !show;
+        ARToolManager.hostDrawings.gameObject.SetActive(show);
+        ARToolManager.hostGuides.gameObject.SetActive(show);
+        ARToolManager.clientDrawings.gameObject.SetActive(show);
+        ARToolManager.clientGuides.gameObject.SetActive(show);
+        arToolTipsUI.gameObject.SetActive(show);
+        arSession.enabled = show;
+        showingVideo = show;
     }
 
     // TODO: Enviar mensaje al cliente 
     public void ToggleVideo(){
 
         if(showingVideo){
-            mainCam.gameObject.SetActive(false);
-            videoRawImage.color = Color.clear;
+            ShowVideo(false);
         }else{
-            mainCam.gameObject.SetActive(true);
-            videoRawImage.color = Color.white;
+            ShowVideo(true);
         }
-        showingVideo = !showingVideo;
     }
+
 }
