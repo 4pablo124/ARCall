@@ -18,33 +18,27 @@ public class MyRecorder : MonoBehaviour
     float[] mutedBuffer = new float[lengthSeconds * samplingFrequency];
     AndroidJavaObject audioManager;
 
+    int defaultMode;
+    bool defaultIsSpeakerphone;
+
     PermissionCallbacks microphoneCallbacks;
 
     // Mono methods
     private void Awake() {
-        #if PLATFORM_ANDROID && !UNITY_EDITOR
-            try{
-                AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-                AndroidJavaObject activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-                audioManager = activity.Call<AndroidJavaObject>("getSystemService", "audio");
-                // Set comunication mode
-                var mode2 = audioManager.Call<Int32>("getMode");
-                Debug.Log("Mode was set to: " + mode2);
-                audioManager.Call("setMode", 3);
-                mode2 = audioManager.Call<Int32>("getMode");
-                Debug.Log("Mode is now set to: " + mode2);
+        if(Application.platform == RuntimePlatform.Android){ 
+            AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            AndroidJavaObject activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            audioManager = activity.Call<AndroidJavaObject>("getSystemService", "audio");
 
-                // Set speakers
-                bool isSpeakers = audioManager.Call<Boolean>("isSpeakerphoneOn");
-                Debug.Log("Speakers were set to: " + isSpeakers);
-                audioManager.Call("setSpeakerphoneOn", true);
-                isSpeakers = audioManager.Call<Boolean>("isSpeakerphoneOn");
-                Debug.Log("Speakers are now set to: " + isSpeakers);
-    
-            }catch (Exception ex){
-                Debug.Log(ex.ToString());
-            }
-        #endif
+            defaultMode = audioManager.Call<Int32>("getMode");
+            defaultIsSpeakerphone = audioManager.Call<Boolean>("isSpeakerphoneOn");
+
+        }
+    }
+
+    public void SetModeAndSpeakerphone(int mode, bool isSpeakerphoneOn){
+        audioManager.Call("setMode", mode);
+        audioManager.Call("setSpeakerphoneOn", isSpeakerphoneOn);
     }
 
     void Start()
@@ -76,7 +70,7 @@ public class MyRecorder : MonoBehaviour
             #if PLATFORM_ANDROID
                 for (int i = 0; i < microphoneBuffer.Length; i++)
                 {
-                    microphoneBuffer[i] = microphoneBuffer[i] * 10.0f;
+                    microphoneBuffer[i] = microphoneBuffer[i] * 50.0f;
                 }
             #endif
 
@@ -113,17 +107,25 @@ public class MyRecorder : MonoBehaviour
         Permission.RequestUserPermission(Permission.Microphone);
     }
     private void MicrophonePermissionDeniedAndDontAskAgain(string permissionName){
-        UINavigation.loadScene("Main");
+        UISceneNav.loadScene("Main");
     }
 
 
 
     // Microphone control
     private void StartRecording(){
+        muted = false;
+
+        if(Application.platform == RuntimePlatform.Android) SetModeAndSpeakerphone(3,true);
+
         clip = Microphone.Start(null, true, lengthSeconds, samplingFrequency);
     }
 
     private void StopRecording(){
+        muted = true;
+
+        if(Application.platform == RuntimePlatform.Android) SetModeAndSpeakerphone(defaultMode,defaultIsSpeakerphone);
+        
         Microphone.End(null);
         Destroy(clip);
         OnAudioReady?.Invoke(null);
@@ -135,18 +137,20 @@ public class MyRecorder : MonoBehaviour
         }else{
             StartRecording();
         }
-
-        muted = !muted;
     }
     
 
 
-    private void OnApplicationFocus(bool hasFocus) {
-        if(!hasFocus){
+    private void OnApplicationPause(bool paused) {
+        if(paused){
             StopRecording();
         }else{
             StartRecording(); 
         }
+    }
+
+    private void OnDestroy() {
+        StopRecording();
     }
 
 
