@@ -13,6 +13,8 @@ public class RoomManager : MonoBehaviour
     [SerializeField] public Button joinButton;
     public static string roomID;
 
+    
+
     // Start is called before the first frame update
     async void Start()
     {
@@ -36,14 +38,14 @@ public class RoomManager : MonoBehaviour
         if(peerType == PeerType.Host){
             PersistentData.SetRoomID(roomID);
             Debug.Log($"Entrando en sala: {roomID}");
-            UINavigation.loadScene("Host");
+            UISceneNav.loadScene("Host");
         }else{
             //TODO: filtrar entrada de texto
             var snapshot = await FirebaseDatabase.DefaultInstance.GetReference("Rooms").Child(roomID).GetValueAsync();
             if(snapshot.Exists){
                 errorText.gameObject.SetActive(false);
                 PersistentData.SetRoomID(roomID);
-                UINavigation.loadScene("Client");
+                UISceneNav.loadScene("Client");
             }else{
                 errorText.gameObject.SetActive(true);
             }

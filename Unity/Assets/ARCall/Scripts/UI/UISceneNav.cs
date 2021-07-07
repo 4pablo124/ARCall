@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UINavigation : MonoBehaviour {
+public class UISceneNav : MonoBehaviour {
     private void Awake() {
         // ApplicationChrome.statusBarState = ApplicationChrome.navigationBarState = ApplicationChrome.States.Visible;
     }
