@@ -10,7 +10,6 @@ public class ARText : MonoBehaviour
 {
     [SerializeField] private PeerType myPeerType = PeerType.Host;
     [SerializeField] private  GameObject prefab;
-    [SerializeField] private  Material hostMaterial, clientMaterial;
 
 
     private Camera cam;
@@ -22,12 +21,16 @@ public class ARText : MonoBehaviour
     private TouchScreenKeyboard keyboard;
     private GameObject currentMarker;
     
+    private ARToolManager aRToolManager;
+
     // Start is called before the first frame update
     void Start()
     {
         cam = GameObject.Find("ARCamera").GetComponent<Camera>();
         inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
         arRaycastManager = GameObject.Find("ARSessionOrigin").GetComponent<ARRaycastManager>();
+        aRToolManager = GameObject.Find("ARToolManager").GetComponent<ARToolManager>();
+
     }
 
     // Update is called once per frame
@@ -41,7 +44,8 @@ public class ARText : MonoBehaviour
                                     inputManager.clientPosition;
                 if(arRaycastManager.Raycast(cam.ScreenPointToRay(screenPoint),hitResults,TrackableType.PlaneWithinPolygon)){
                     Pose hitPose = hitResults[0].pose;
-                    currentMarker = AddMarker(hitPose.position);             
+                    currentMarker = AddMarker(hitPose.position);   
+                    aRToolManager.placeGuide(myPeerType, currentMarker.transform);
                 }
             }
         }else if(currentMarker != null){
@@ -56,13 +60,14 @@ public class ARText : MonoBehaviour
         placingMarker = true;
         switch (myPeerType){
             case PeerType.Host:
-                marker.transform.GetChild(1).GetComponent<Renderer>().material = hostMaterial;
-                marker.transform.parent = ARToolController.hostDrawings.transform;
+                marker.transform.GetChild(1).GetComponent<Renderer>().material = aRToolManager.hostMaterial;
+                marker.transform.parent = ARToolManager.hostDrawings.transform;
+                
                 break;
 
             case PeerType.Client:
-                marker.transform.GetChild(1).GetComponent<Renderer>().material = clientMaterial;
-                marker.transform.parent = ARToolController.clientDrawings.transform;
+                marker.transform.GetChild(1).GetComponent<Renderer>().material = aRToolManager.clientMaterial;
+                marker.transform.parent = ARToolManager.clientDrawings.transform;
                 break;
         }
         keyboard = TouchScreenKeyboard.Open("",TouchScreenKeyboardType.Default,true,true,false,false,

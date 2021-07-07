@@ -10,12 +10,13 @@ public class ARMarker : MonoBehaviour
 {
     [SerializeField] private PeerType myPeerType = PeerType.Host;
     [SerializeField] private  GameObject prefab;
-    [SerializeField] private  Material hostMaterial, clientMaterial;
 
 
     private Camera cam;
     private InputManager inputManager;
     private ARRaycastManager arRaycastManager;
+    private ARToolManager aRToolManager;
+
     private LineRenderer hostMarker;
     private bool placingMarker = false;
     
@@ -25,6 +26,8 @@ public class ARMarker : MonoBehaviour
         cam = GameObject.Find("ARCamera").GetComponent<Camera>();
         inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
         arRaycastManager = GameObject.Find("ARSessionOrigin").GetComponent<ARRaycastManager>();
+        aRToolManager = GameObject.Find("ARToolManager").GetComponent<ARToolManager>();
+
     }
 
     // Update is called once per frame
@@ -38,7 +41,8 @@ public class ARMarker : MonoBehaviour
                                     inputManager.clientPosition;
                 if(arRaycastManager.Raycast(cam.ScreenPointToRay(screenPoint),hitResults,TrackableType.PlaneWithinPolygon)){
                     Pose hitPose = hitResults[0].pose;
-                    AddMarker(hitPose.position);             
+                    var marker = AddMarker(hitPose.position);
+                    aRToolManager.placeGuide(myPeerType, marker.transform);
                 }
             }
         }else{
@@ -47,28 +51,30 @@ public class ARMarker : MonoBehaviour
 
     }
 
-    private void AddMarker(Vector3 position){
+    private GameObject AddMarker(Vector3 position){
         var marker = GameObject.Instantiate(prefab,position,Quaternion.identity);
         int count = 0;
         switch (myPeerType){
             case PeerType.Host:
                 placingMarker = true;
                 marker.tag = "HostMarker";
-                marker.transform.GetChild(1).GetComponent<Renderer>().material = hostMaterial;
-                marker.transform.parent = ARToolController.hostDrawings.transform;
-                foreach (Transform child in ARToolController.hostDrawings.transform) {
+                marker.transform.GetChild(1).GetComponent<Renderer>().material = aRToolManager.hostMaterial;
+                marker.transform.parent = ARToolManager.hostDrawings.transform;
+                foreach (Transform child in ARToolManager.hostDrawings.transform) {
                     if(child.gameObject.tag == "HostMarker") count++;
                 } break;
 
             case PeerType.Client:
                 placingMarker = true;
                 marker.tag = "ClientMarker";
-                marker.transform.GetChild(1).GetComponent<Renderer>().material = clientMaterial;
-                marker.transform.parent = ARToolController.clientDrawings.transform;
-                foreach (Transform child in ARToolController.clientDrawings.transform) {
+                marker.transform.GetChild(1).GetComponent<Renderer>().material = aRToolManager.clientMaterial;
+                marker.transform.parent = ARToolManager.clientDrawings.transform;
+                foreach (Transform child in ARToolManager.clientDrawings.transform) {
                     if(child.gameObject.tag == "ClientMarker") count++;
                 } break;
         }
         marker.GetComponentInChildren<TextMeshPro>().text = count.ToString();
+
+        return marker;
     }
 }

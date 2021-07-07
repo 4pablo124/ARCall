@@ -23,6 +23,7 @@ public class ARGuide : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<Renderer>().enabled = false;
         guideScreenPos.z = 19;
         transform.rotation = Quaternion.identity;
     }

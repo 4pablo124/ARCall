@@ -10,16 +10,27 @@ public class ARPointer : MonoBehaviour
     private int cursorWidth;
     private GameObject pointer;
 
+    private VideoManager videoManager;
+    private ARToolManager aRToolManager;
+
+
     private void Awake() { 
         inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
         pointer = transform.GetChild(0).gameObject;
-        GameObject.Find("VideoManager").GetComponent<VideoManager>().OnCamReady += setUpCam;
+        videoManager = GameObject.Find("VideoManager").GetComponent<VideoManager>();
+        // videoManager.OnCamReady += setUpCam;
+        aRToolManager = GameObject.Find("ARToolManager").GetComponent<ARToolManager>();
+
+
     }
 
-    void setUpCam(){
-        GetComponent<Canvas>().worldCamera = VideoManager.mainCam;
+    private void Start() {
+        pointer.GetComponent<SpriteRenderer>().enabled = false;
     }
+
     private void Update () {
+        pointer.GetComponent<SpriteRenderer>().color = myPeerType == PeerType.Host ?
+            aRToolManager.hostMaterial.color : aRToolManager.clientMaterial.color;
         cursorWidth = (int)Math.Round(Screen.width*0.1f);
         pointer.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, cursorWidth);
         pointer.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, cursorWidth);
@@ -33,4 +44,7 @@ public class ARPointer : MonoBehaviour
         pointer.GetComponent<SpriteRenderer>().enabled = inputManager.IsHeldDown(myPeerType);
     }
  
+    void setUpCam(){
+        GetComponent<Canvas>().worldCamera = videoManager.mainCam;
+    }
 }

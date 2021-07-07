@@ -10,11 +10,11 @@ public class ARBrush : MonoBehaviour
     [SerializeField] private PeerType myPeerType = PeerType.Host;
 
     [SerializeField] private GameObject linePrefab;
-    [SerializeField] private GameObject guidePrefab;
     
     private Camera arCam;
     private InputManager inputManager;
     private ARRaycastManager arRaycastManager;
+    private ARToolManager aRToolManager;
     private LineRenderer line;
 
     private void Start()
@@ -22,6 +22,7 @@ public class ARBrush : MonoBehaviour
         arCam = GameObject.Find("ARCamera").GetComponent<Camera>();
         inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
         arRaycastManager = GameObject.Find("ARSessionOrigin").GetComponent<ARRaycastManager>();
+        aRToolManager = GameObject.Find("ARToolManager").GetComponent<ARToolManager>();
     }
 
     // Update is called once per frame
@@ -36,7 +37,7 @@ public class ARBrush : MonoBehaviour
             if(arRaycastManager.Raycast(arCam.ScreenPointToRay(screenPoint),hitResults,TrackableType.PlaneWithinPolygon)){
                 Pose hitPose = hitResults[0].pose;
                 if(line == null) {
-                    line = createLineStart(hitPose.position, Color.red);
+                    line = createLineStart(hitPose.position);
                 }else{
                     drawNextPointInLine(line,hitPose.position);
                 }
@@ -44,15 +45,15 @@ public class ARBrush : MonoBehaviour
         }else if(line != null) {
             var lineClone = GameObject.Instantiate(line);
             lineClone.transform.parent = myPeerType == PeerType.Host ?  
-                                                                ARToolController.hostDrawings.transform :
-                                                                ARToolController.clientDrawings.transform;
+                                                                ARToolManager.hostDrawings.transform :
+                                                                ARToolManager.clientDrawings.transform;
 
-            var guide = GameObject.Instantiate(guidePrefab);
-            guide.transform.SetParent(ARToolController.guides.transform);
-            guide.GetComponent<ARGuide>().target = lineClone.transform;
+            aRToolManager.placeGuide(myPeerType,lineClone.transform);
             Destroy(line.gameObject);
         }
     }
+
+    
 
     private LineRenderer drawNextPointInLine(LineRenderer line, UnityEngine.Vector3 point){
         line.SetPosition(line.positionCount++,point);
@@ -60,9 +61,10 @@ public class ARBrush : MonoBehaviour
         return line;
     }
 
-    private LineRenderer createLineStart(UnityEngine.Vector3 start,Color color){
+    private LineRenderer createLineStart(UnityEngine.Vector3 start){
         LineRenderer line = GameObject.Instantiate(linePrefab, start, UnityEngine.Quaternion.identity).GetComponent<LineRenderer>();
-        line.endColor = line.startColor = color;
+        line.GetComponent<Renderer>().material = myPeerType == PeerType.Host ?
+            aRToolManager.hostMaterial : aRToolManager.clientMaterial;
         line.SetPosition(0,start);
         return line;
     }
