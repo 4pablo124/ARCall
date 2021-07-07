@@ -1,48 +1,47 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Linq;
 using Firebase.Database;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TMPro;
 using Unity.WebRTC;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.XR.ARFoundation;
 
 public class PeerConnection : MonoBehaviour
 {
-    public PeerType peerType = PeerType.Host; // Para poder inicializar el valor statico desde el editor
-    public static PeerType myPeerType;
+    public PeerType myPeerType = PeerType.Host;
+    //public static PeerType myPeerType;
 
-    [SerializeField] private Button roomIDBtn;
     private InputManager inputManager;
     private VideoManager videoManager;
-    private AudioManager audioManager;
+    private AudioManager audioManager;    
+    private ClientManager clientManager;    
+    private ARToolManager arToolManager;  
 
     private DatabaseReference database;
-    private RTCDataChannel audioDataChannel, remoteAudioDataChannel, clientInputDataChannel, aspectRatioDataChannel;
+    private RTCDataChannel audioDataChannel, remoteAudioDataChannel, clientInputDataChannel, aspectRatioDataChannel, clientActionDataChannel;
     private RTCConfiguration RTCconfig;
-    public static RTCPeerConnection pc;
-    public static List<RTCRtpSender> pcSenders;
+    public RTCPeerConnection pc;
+    public List<RTCRtpSender> pcSenders;
 
 
     private void Awake()
     {
-        myPeerType = peerType;
-
-            
+        // myPeerType = peerType;
+           
         inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
         videoManager = GameObject.Find("VideoManager").GetComponent<VideoManager>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        clientManager = GameObject.Find("ClientManager")?.GetComponent<ClientManager>();
+        arToolManager = GameObject.Find("ARToolManager")?.GetComponent<ARToolManager>();
 
         //Establecemos ID de la sala
         RoomManager.roomID = PersistentData.GetRoomID();
-        roomIDBtn.GetComponentInChildren<TextMeshProUGUI>().text = RoomManager.roomID;
+        GameObject.Find("RoomBtn").GetComponentInChildren<TextMeshProUGUI>().text = RoomManager.roomID;
 
         // Obetemos referencia a la base de datos
         database = FirebaseDatabase.DefaultInstance.GetReference("Rooms").Child(RoomManager.roomID);
@@ -58,9 +57,7 @@ public class PeerConnection : MonoBehaviour
         // Cuando recibimos un mensaje invocamos de manera asincrona la lectura del mismo
         database.Child("Messages").ChildAdded += (sender, args) => { StartCoroutine(ReadMessageDB(args)); };
 
-
-        // Inicializamos WebRTC con decodificacion por software, ya que hardware aun no se soporta en android por ahora
-        WebRTC.Initialize(EncoderType.Software);
+        WebRTC.Initialize(type: EncoderType.Software, limitTextureSize: true);
     }
 
     // Start is called before the first frame update
@@ -93,6 +90,19 @@ public class PeerConnection : MonoBehaviour
         // Cuando cambie el estado de la conexion
         pc.OnIceConnectionChange = state => { 
             Debug.Log($"{myPeerType} - IceConnectionState: {state}");
+            switch (state)
+            {
+                case RTCIceConnectionState.Disconnected:
+                    OnDisconnect();
+                break;
+                case RTCIceConnectionState.Connected:
+                    GameObject.Find("UserConnected").GetComponent<Image>().enabled = true;
+                    GameObject.Find("UserConnected").GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+                    break;
+                case RTCIceConnectionState.Failed:
+                    if(myPeerType == PeerType.Host) StartCoroutine(Call());
+                break;
+            }
         };
 
         //pc.GetSenders().First().SetParameters(SetBandwidth(pc.GetSenders().First().GetParameters(), 1000000, 125000));
@@ -132,21 +142,43 @@ public class PeerConnection : MonoBehaviour
                     clientInputDataChannel.Send(inputJson);
                 }
             };
+
+            clientActionDataChannel = pc.CreateDataChannel("clientAction", conf);
+            clientManager.OnToolSelected += tool => {
+                if(clientActionDataChannel.ReadyState == RTCDataChannelState.Open){
+                    clientActionDataChannel.Send(tool);
+                }
+            };
+            clientManager.OnUndo += () => {
+                if(clientActionDataChannel.ReadyState == RTCDataChannelState.Open){
+                    clientActionDataChannel.Send("undo");
+                }
+            };
+            clientManager.OnDelete += peer => {
+                if(clientActionDataChannel.ReadyState == RTCDataChannelState.Open){
+                    clientActionDataChannel.Send("delete"+peer);
+                }
+            };
+            clientManager.OnColorChanged += color => {
+                if(clientActionDataChannel.ReadyState == RTCDataChannelState.Open){
+                    clientActionDataChannel.Send(color);
+                }
+            };
         }
 
-        aspectRatioDataChannel = pc.CreateDataChannel("aspectRatio", conf);
-        aspectRatioDataChannel.OnOpen = () => {
-            if(ImHost()) {
-                aspectRatioDataChannel.Send(BitConverter.GetBytes(videoManager.aspectRatio));
-            }
-        };
+        if(ImHost()) {
+            aspectRatioDataChannel = pc.CreateDataChannel("aspectRatio", conf);
+            aspectRatioDataChannel.OnOpen = () => {
+                    aspectRatioDataChannel.Send(BitConverter.GetBytes(videoManager.aspectRatio));
+            };
+        }   
 
         pc.OnDataChannel = channel => {
             switch(channel.Label){
                 case "audio": // Recibimos data (y audio gracias a UnityOpus)  
                     remoteAudioDataChannel = channel;
                     remoteAudioDataChannel.OnMessage = bytes => { audioManager.Decode(bytes); };
-                    break;
+                break;
 
                 case "clientInput":
                     clientInputDataChannel = channel;
@@ -154,7 +186,25 @@ public class PeerConnection : MonoBehaviour
                             var inputJson = System.Text.Encoding.UTF8.GetString(bytes);
                             inputManager.clientPosition = JsonUtility.FromJson<Vector3>(inputJson);
                         };
-                    break;
+                break;
+
+                case "clientAction":
+                    clientActionDataChannel = channel;
+                        clientActionDataChannel.OnMessage = bytes => {
+                            var msg = System.Text.Encoding.UTF8.GetString(bytes);
+                            switch (msg){
+                                case "undo" : arToolManager.UndoDrawing("client"); break;
+                                case "deleteclient" : arToolManager.DeleteDrawings("client"); break;
+                                case "deleteboth" : arToolManager.DeleteDrawings("both"); break;
+                                case "ARBrush":case "ARPointer":case "ARMarker":case "ARText":
+                                    arToolManager.SelectClientTool(msg);
+                                break;
+                                case "red":case "green":case "blue":case "yellow":
+                                    arToolManager.changeClientColor(msg);
+                                break;
+                            }
+                        };
+                break;
 
                 case "aspectRatio":
                     aspectRatioDataChannel = channel;
@@ -162,31 +212,29 @@ public class PeerConnection : MonoBehaviour
                         aspectRatioDataChannel.OnMessage = bytes => {
                             videoManager.aspectRatio = BitConverter.ToSingle(bytes,0);
                             videoManager.height = (int)Math.Round(videoManager.width/videoManager.aspectRatio);
-                            Debug.Log($"Recibiendo aspect ratio de: {videoManager.aspectRatio}");
                             videoManager.videoRawImage.GetComponent<AspectRatioFitter>().aspectRatio = videoManager.aspectRatio;
                         };
                     }
-                    break;
+                break;
             }
         };
     }
     private void addVideoTracks(){
 
         if(ImHost()) {
-            videoManager.OnCamReady += ()=>{
-                videoManager.RecordCamera();
-                foreach (var track in videoManager.videoStream.GetTracks())
-                    {
-                        pcSenders.Add(pc.AddTrack(track, videoManager.videoStream));
-                    }
-                    
-                var parameters = pcSenders.First().GetParameters();
-                foreach (var encoding in parameters.encodings)
+            videoManager.RecordCamera();
+            foreach (var track in videoManager.videoStream.GetTracks())
                 {
-                    encoding.maxBitrate = videoManager.bitrate;
-                    encoding.maxFramerate = videoManager.framerate;
+                    pcSenders.Add(pc.AddTrack(track, videoManager.videoStream));
                 }
-            };
+                
+            var parameters = pcSenders.First().GetParameters();
+            foreach (var encoding in parameters.encodings)
+            {
+                encoding.active = true;
+                encoding.maxBitrate = videoManager.bitrate;
+                encoding.maxFramerate = videoManager.framerate;
+            }
         }else{
             // Recibimos video
             pc.OnTrack = e => videoManager.videoStream.AddTrack(e.Track);
@@ -244,9 +292,27 @@ public class PeerConnection : MonoBehaviour
     }
 
     private void OnDestroy(){
-        // Desarmamos webRTC en destructor
-        Debug.Log("WebRTC.Dispose()");
         WebRTC.Dispose();
+    }
+
+    private void OnDisable() {
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+    }
+    private void OnDisconnect(){
+        HangUp();
+    }
+
+    public void HangUp(){
+        if(myPeerType == PeerType.Host){
+            videoManager.arSession.Reset();
+        }
+
+        UnReadyUser();
+
+        pc.Close();
+        pc.Dispose();
+
+        UISceneNav.loadScene("main");
     }
 
 
@@ -333,9 +399,26 @@ public class PeerConnection : MonoBehaviour
         RTCConfiguration config = default;
         config.iceServers = new[] {
             new RTCIceServer {urls = new[] {"stun:stun.l.google.com:19302"}},
+            new RTCIceServer {urls = new[] {"stun:stun1.l.google.com:19302"}},
+            new RTCIceServer {urls = new[] {"stun:stun2.l.google.com:19302"}},
+            new RTCIceServer {urls = new[] {"stun:stun3.l.google.com:19302"}},
+            new RTCIceServer {urls = new[] {"stun:stun4.l.google.com:19302"}},
+            new RTCIceServer {urls = new[] {"stun:stun.ekiga.net"}},
+            new RTCIceServer {urls = new[] {"stun:stun.ideasip.com"}},
+            new RTCIceServer {urls = new[] {"stun:stun.rixtelecom.se"}},
+            new RTCIceServer {urls = new[] {"stun:stun.schlund.de"}},
+            new RTCIceServer {urls = new[] {"stun:stun.stunprotocol.org:3478"}},
+            new RTCIceServer {urls = new[] {"stun:stun.voiparound.com"}},
+            new RTCIceServer {urls = new[] {"stun:stun.voipbuster.com"}},
+            new RTCIceServer {urls = new[] {"stun:stun.voipstunt.com"}},
+            new RTCIceServer {urls = new[] {"stun:stun.voxgratia.org"}},
             new RTCIceServer {urls = new[] {"stun:global.stun.twilio.com:3478?transport=udp"}},
             new RTCIceServer {urls = new[] {"stun:stun.services.mozilla.com"}},
-            new RTCIceServer {urls = new[] {"turn:numb.viagenie.ca"}, username = "pablo.delosriosges@alum.uca.es", credential = "QCG%Q$x6XnzwNq"}
+            new RTCIceServer {urls = new[] {"turn:numb.viagenie.ca"}, username = "pablo.delosriosges@alum.uca.es", credential = "QCG%Q$x6XnzwNq"},
+            new RTCIceServer {urls = new[] {"turn:192.158.29.39:3478?transport=udp"}, username = "28224511:1379330808", credential = "JZEOEt2V3Qb0y27GRntt2u2PAYA="},
+            new RTCIceServer {urls = new[] {"turn:192.158.29.39:3478?transport=tcp"}, username = "28224511:1379330808", credential = "JZEOEt2V3Qb0y27GRntt2u2PAYA="},
+            new RTCIceServer {urls = new[] {"turn:turn.bistri.com:80"}, username = "homeo", credential = "homeo"},
+            new RTCIceServer {urls = new[] {"turn:turn.anyfirewall.com:443?transport=tcp"}, username = "webrtc", credential = "webrtc"}
             };
 
         return config;
@@ -353,7 +436,11 @@ public class PeerConnection : MonoBehaviour
 
     // MISC AUX
 
-    public static bool ImHost(){
+    public bool ImHost(){
         return myPeerType == PeerType.Host;
+    }
+
+    public void shareRoom(){
+        RoomManager.shareRoom();
     }
 }
