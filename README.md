@@ -28,14 +28,14 @@ ARCall es una aplicación de asistencia remota que une las clásicas videollamad
 * Versión de escritorio para recibir videollamadas con funciones de realidad aumentada
 
 ## Roadmap
-| Release | Objetivo | Done |
-| ------- | -------- | ---- |
-| [`v0.1-alpha`](https://github.com/4pablo124/ARCall/releases/tag/v0.1-alpha) | [Videollamadas mediante enlace](https://github.com/4pablo124/ARCall/milestone/1) | ✔
-| [`v0.2-alpha`](https://github.com/4pablo124/ARCall/releases/tag/v0.2-alpha) | [Funcionalidad de realidad aumentada](https://github.com/4pablo124/ARCall/milestone/2) | ✔
-| `v0.3-alpha` | [Registro y videollamadas a contactos](https://github.com/4pablo124/ARCall/milestone/3) |
-| `v0.4-beta` | [Grabación de tutoriales](https://github.com/4pablo124/ARCall/milestone/4) |
-| `v0.5-beta` | [Web y versiones de navegador y escritorio](https://github.com/4pablo124/ARCall/milestone/5) |
-| `v1.0-release` | [Pulido de interfaz y funcionalidad](https://github.com/4pablo124/ARCall/milestone/6) |
+| Release | Objetivo | Done | Fecha
+| ------- | -------- | ---- | -----
+| [`v0.1-alpha`](https://github.com/4pablo124/ARCall/releases/tag/v0.1-alpha) | [Videollamadas mediante enlace](https://github.com/4pablo124/ARCall/milestone/1) | ✔ | **Junio**
+| [`v0.2-alpha`](https://github.com/4pablo124/ARCall/releases/tag/v0.2-alpha) | [Funcionalidad de realidad aumentada](https://github.com/4pablo124/ARCall/milestone/2) | ✔ | **Julio**
+| `v0.3-alpha` | [Registro y videollamadas a contactos](https://github.com/4pablo124/ARCall/milestone/3) |  |**Julio**
+| `v0.4-beta` | [Grabación de tutoriales](https://github.com/4pablo124/ARCall/milestone/4) |  | **Julio**
+| `v0.5-beta` | [Web y versiones de navegador y escritorio](https://github.com/4pablo124/ARCall/milestone/5) |  | **Agosto**
+| `v1.0-release` | [Pulido de interfaz y funcionalidad](https://github.com/4pablo124/ARCall/milestone/6) |  | **Agosto**
 
 ## Descarga
 Descarga el apk de la última versión desde la pestaña de [releases](https://github.com/4pablo124/ARCall/releases)
