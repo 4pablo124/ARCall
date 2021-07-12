@@ -7,6 +7,10 @@ public enum PeerType {
     Client
 }
 
+public struct CountryCode {
+    public static string Spain = "+34";
+}
+
 public class Message{
     public PeerType peerType;
     public Data data;
