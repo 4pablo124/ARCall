@@ -9,6 +9,12 @@ ARCall es una aplicación de asistencia remota que une las clásicas videollamad
 * [Unity](https://unity.com/)
 * [WebRTC for Unity](https://github.com/Unity-Technologies/com.unity.webrtc)
 * [Firebase](https://firebase.google.com/)
+* [OneSignal](https://onesignal.com/)
+
+## Gracias a
+* [Viagénie](http://numb.viagenie.ca/)
+* [UnityOpus](https://github.com/TyounanMOTI/UnityOpus)
+* [unity-webrtc-opus-audio](https://github.com/EphTron/unity-webrtc-opus-audio)
 
 ## Requisitos
 * **Android 7.0+ arm64-v8a** (_armeabi-v7a no esta soportado por ahora_)
