@@ -40,11 +40,10 @@ public class PeerConnection : MonoBehaviour
         arToolManager = GameObject.Find("ARToolManager")?.GetComponent<ARToolManager>();
 
         //Establecemos ID de la sala
-        RoomManager.roomID = PersistentData.GetRoomID();
-        GameObject.Find("RoomBtn").GetComponentInChildren<TextMeshProUGUI>().text = RoomManager.roomID;
+        GameObject.Find("RoomBtn").GetComponentInChildren<TextMeshProUGUI>().text = RoomManager.RoomID;
 
         // Obetemos referencia a la base de datos
-        database = FirebaseDatabase.DefaultInstance.GetReference("Rooms").Child(RoomManager.roomID);
+        database = FirebaseDatabase.DefaultInstance.GetReference("Rooms").Child(RoomManager.RoomID);
         Debug.Log($"{myPeerType} - Obtenida referencia de database: {database}");
 
 
@@ -278,15 +277,21 @@ public class PeerConnection : MonoBehaviour
 
     // CALLBACKS
     private void OnSceneUnloaded<Scene>(Scene scene){
+        Debug.Log("OnSceneUnloaded");
         UnReadyUser();
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
 
     private void OnApplicationPause(bool paused) {
+        Debug.Log("OnApplicationPause");
+
         if (paused){ UnReadyUser(); }
         else{ ReadyUser(); }
     }
 
     private void OnApplicationFocus(bool focused) {
+        Debug.Log("OnApplicationFocus");
+
         if (focused){ ReadyUser(); }
         else{ UnReadyUser(); }
     }
@@ -295,14 +300,15 @@ public class PeerConnection : MonoBehaviour
         WebRTC.Dispose();
     }
 
-    private void OnDisable() {
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
-    }
     private void OnDisconnect(){
+        Debug.Log("OnDisconnect");
+
         HangUp();
     }
 
     public void HangUp(){
+        Debug.Log("HangUp");
+
         if(myPeerType == PeerType.Host){
             videoManager.arSession.Reset();
         }
@@ -312,7 +318,7 @@ public class PeerConnection : MonoBehaviour
         pc.Close();
         pc.Dispose();
 
-        UISceneNav.loadScene("main");
+        UISceneNav.LoadScene("Main");
     }
 
 
@@ -438,9 +444,5 @@ public class PeerConnection : MonoBehaviour
 
     public bool ImHost(){
         return myPeerType == PeerType.Host;
-    }
-
-    public void shareRoom(){
-        RoomManager.shareRoom();
     }
 }
