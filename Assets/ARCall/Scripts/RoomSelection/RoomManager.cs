@@ -1,58 +1,47 @@
+using System;
+using System.Threading.Tasks;
 using Firebase.Database;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class RoomManager : MonoBehaviour
-{   
-    [SerializeField] public PeerType peerType = PeerType.Host;
-    [SerializeField] public TextMeshProUGUI roomIDText;
-    [SerializeField] public TMP_InputField roomIDInput;
-    [SerializeField] public TextMeshProUGUI errorText;
-    [SerializeField] public Button joinButton;
-    public static string roomID;
-
+public static class RoomManager {
+    public static string RoomID = "0000";
     
+    //Genera un codigo de sala
+    public static async Task<String> GenerateRoomID(){
+        int _min = 1000;
+        int _max = 9999;
+        var random = new System.Random();
+        DataSnapshot snapshot;
+        string roomID;
 
-    // Start is called before the first frame update
-    async void Start()
-    {
-        if(peerType == PeerType.Host){
-            roomIDText.text = await PersistentData.GenerateRoomID();
-        }
-
-        joinButton.onClick.AddListener(JoinRoom);
+        do{
+            roomID = random.Next(_min, _max).ToString();
+            Debug.Log($"Evaluando codigo de sala: {roomID}");
+            snapshot = await FirebaseDatabase.DefaultInstance.GetReference("Rooms").Child(roomID).GetValueAsync();
+        }while(snapshot.Exists);
+        
+        Debug.Log($"Sala valida: {roomID}");
+        
+        RoomID = roomID; 
+        return roomID;
     }
 
-    private void Update() {
-        if(peerType == PeerType.Host){
-            joinButton.interactable = roomIDText.text == "----" ? false : true;
-            roomID = roomIDText.text;
+    public static async Task<bool> JoinRoom(PeerType peer){
+        if(peer == PeerType.Host){
+            Debug.Log($"Entrando en sala: {RoomID}");
+            UISceneNav.LoadScene("Host");
+            return true;
         }else{
-            joinButton.interactable = roomIDInput.text == "" ? false : true;
-            roomID = roomIDInput.text;
-        }
-    }
-    public async void JoinRoom(){
-        if(peerType == PeerType.Host){
-            PersistentData.SetRoomID(roomID);
-            Debug.Log($"Entrando en sala: {roomID}");
-            UISceneNav.loadScene("Host");
-        }else{
-            //TODO: filtrar entrada de texto
-            var snapshot = await FirebaseDatabase.DefaultInstance.GetReference("Rooms").Child(roomID).GetValueAsync();
+            var snapshot = await FirebaseDatabase.DefaultInstance.GetReference("Rooms").Child(RoomID).GetValueAsync();
             if(snapshot.Exists){
-                errorText.gameObject.SetActive(false);
-                PersistentData.SetRoomID(roomID);
-                UISceneNav.loadScene("Client");
+                UISceneNav.LoadScene("Client");
+                return true;
             }else{
-                errorText.gameObject.SetActive(true);
+                return false;
             }
         }
     }
-
-    public static void shareRoom(){
-        new NativeShare().SetTitle("ARCall Room ID").SetText("Unete a mi sala:\n"+roomID).Share();
+    public static void ShareRoom(){
+        new NativeShare().SetTitle("ARCall Room ID").SetText("Unete a mi sala:\n"+RoomID).Share();
     }
 }
