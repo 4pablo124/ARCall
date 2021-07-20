@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Firebase;
 using Firebase.Auth;
+using Firebase.Database;
 using Firebase.Extensions;
 using UnityEngine;
 
@@ -90,6 +91,11 @@ public static class AuthManager
 
     public static Task VerifyPhone(string code){
         Credential credential = PhoneAuthProvider.GetInstance(Auth).GetCredential(verificationId, code);
-        return Auth.SignInWithCredentialAsync(credential);
+        return Auth.SignInWithCredentialAsync(credential).ContinueWithOnMainThread(task => {
+            if(task.IsCompleted){
+                var userID = OneSignal.GetPermissionSubscriptionState().subscriptionStatus.userId;
+                FirebaseDatabase.DefaultInstance.GetReference("UserIDs").Child(AuthManager.Auth.CurrentUser.PhoneNumber).SetValueAsync(userID);
+            }
+        });
     }
 }

@@ -9,7 +9,8 @@
         "Unity.XR.ARFoundation",
         "Unity.XR.ARSubsystems",
         "VoxelBusters.CoreLibrary",
-        "VoxelBusters.EssentialKit"
+        "VoxelBusters.EssentialKit",
+        "OneSignal"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
