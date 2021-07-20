@@ -37,7 +37,7 @@ public class PhoneSignIn : MonoBehaviour
         {
             AuthManager.VerifyPhone(codeInput.text).ContinueWithOnMainThread(task => {   
                 if(task.IsCompleted){
-                    UISceneNav.loadScene("Registro");
+                    UISceneNav.LoadScene("Registro");
                 }
                 if(task.IsFaulted){
                     Debug.LogError(task.Exception); 

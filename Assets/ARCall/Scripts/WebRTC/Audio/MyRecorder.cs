@@ -107,7 +107,7 @@ public class MyRecorder : MonoBehaviour
         Permission.RequestUserPermission(Permission.Microphone);
     }
     private void MicrophonePermissionDeniedAndDontAskAgain(string permissionName){
-        UISceneNav.loadScene("Main");
+        UISceneNav.LoadScene("Main");
     }
 
 

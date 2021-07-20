@@ -19,11 +19,15 @@ public class NameSetUp : MonoBehaviour
     public void register(){
         if(AuthManager.IsUserRegistered()){
             AuthManager.ChangeUsername(nameInput.text).ContinueWithOnMainThread(task => {
-                UISceneNav.loadScene("Main");
+                if(task.IsCompleted){
+                    UISceneNav.LoadScene("Main");   
+                }
             });
         }else{
             AuthManager.SignUp(nameInput.text).ContinueWithOnMainThread(task => {
-                UISceneNav.loadScene("Main");
+                if(task.IsCompleted){
+                    UISceneNav.LoadScene("Main");   
+                }
             });
         }
     }
