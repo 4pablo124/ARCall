@@ -29,6 +29,8 @@ public class RoomLoader : MonoBehaviour
         }
 
         joinBtn.onClick.AddListener(() => {
+            //TODO: incluir en JoinRoom el id 
+            RoomManager.RoomID = roomIDInput.text;
             RoomManager.JoinRoom(peerType).ContinueWithOnMainThread(success =>{
                 errorText.enabled = !success.Result;
             });

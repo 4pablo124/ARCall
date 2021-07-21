@@ -4,7 +4,7 @@ using Firebase.Database;
 using UnityEngine;
 
 public static class RoomManager {
-    public static string RoomID = "0000";
+    public static string RoomID;
     
     //Genera un codigo de sala
     public static async Task<String> GenerateRoomID(){
@@ -40,8 +40,5 @@ public static class RoomManager {
                 return false;
             }
         }
-    }
-    public static void ShareRoom(){
-        new NativeShare().SetTitle("ARCall Room ID").SetText("Unete a mi sala:\n"+RoomID).Share();
     }
 }

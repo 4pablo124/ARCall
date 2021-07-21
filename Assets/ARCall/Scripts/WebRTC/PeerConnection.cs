@@ -445,4 +445,8 @@ public class PeerConnection : MonoBehaviour
     public bool ImHost(){
         return myPeerType == PeerType.Host;
     }
+
+    public void ShareRoom(){
+        Sharing.ShareRoom();
+    }
 }
