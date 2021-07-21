@@ -4254,7 +4254,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1930372707}
         m_TargetAssemblyTypeName: PeerConnection, ARCall
-        m_MethodName: shareRoom
+        m_MethodName: ShareRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
