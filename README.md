@@ -1,5 +1,5 @@
 # ARCall
-![version](https://img.shields.io/badge/version-v0.2.alpha-yellow)
+![version](https://img.shields.io/badge/version-v0.3.alpha-yellow)
 ![Android version](https://img.shields.io/badge/android-7.0+-green)
 ![Android architecture](https://img.shields.io/badge/architecture-arm64.v8a-green)
 
