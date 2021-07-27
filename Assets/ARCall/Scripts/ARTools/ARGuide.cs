@@ -16,7 +16,7 @@ public class ARGuide : MonoBehaviour
 
 
     private void Awake() {
-        videoManager = GameObject.Find("VideoManager").GetComponent<VideoManager>();
+        videoManager = GameObject.Find("VideoManager")?.GetComponent<VideoManager>();
         arCam = GameObject.Find("ARCamera").GetComponent<Camera>();
     }
 
@@ -37,15 +37,26 @@ public class ARGuide : MonoBehaviour
 
         targetScreenPos = arCam.WorldToScreenPoint(target.position);
 
-        if((targetScreenPos.x > 0 && targetScreenPos.x < videoManager.width) &&
-            targetScreenPos.y > 0 && targetScreenPos.y < videoManager.height){
+
+        int width;
+        int height;
+        if(videoManager != null){
+            width = videoManager.width;
+            height = videoManager.height;
+        }else{
+            width = Screen.width;
+            height = Screen.height;
+        }
+
+        if((targetScreenPos.x > 0 && targetScreenPos.x < width) &&
+            targetScreenPos.y > 0 && targetScreenPos.y < height){
                 GetComponent<Renderer>().enabled = false;
         }else{
             GetComponent<Renderer>().enabled = true;
 
 
-            guideScreenPos.x = Mathf.Clamp(targetScreenPos.x, 0, videoManager.width);
-            guideScreenPos.y = Mathf.Clamp(targetScreenPos.y, 0, videoManager.height);
+            guideScreenPos.x = Mathf.Clamp(targetScreenPos.x, 0, width);
+            guideScreenPos.y = Mathf.Clamp(targetScreenPos.y, 0, height);
 
             transform.position = arCam.ScreenToWorldPoint(guideScreenPos);
             transform.LookAt(arCam.transform);

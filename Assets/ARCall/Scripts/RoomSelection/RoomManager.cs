@@ -4,7 +4,7 @@ using Firebase.Database;
 using UnityEngine;
 
 public static class RoomManager {
-    public static string RoomID;
+    public static string RoomID = "0000"; //TODO: Temporal
     
     //Genera un codigo de sala
     public static async Task<String> GenerateRoomID(){

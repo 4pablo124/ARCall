@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class ARToolManager : MonoBehaviour
 {    
+
+    public bool recording = false;
+
     [HideInInspector] public Material hostMaterial, clientMaterial;
     public Material ColorRed, ColorBlue, ColorGreen, ColorYellow;
     public GameObject guidePrefab;
@@ -37,7 +40,7 @@ public class ARToolManager : MonoBehaviour
         clientTools = GameObject.Find("ClientTools");
         
         SelectHostTool("ARBrush");
-        SelectClientTool("ARBrush");
+        if(!recording) SelectClientTool("ARBrush");
     }
 
     public void SelectHostTool(string toolName){

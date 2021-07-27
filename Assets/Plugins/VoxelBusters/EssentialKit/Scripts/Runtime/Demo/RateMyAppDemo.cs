@@ -19,7 +19,7 @@ namespace VoxelBusters.EssentialKit.Demo
             {
                 case RateMyAppDemoActionType.AskForReviewNow:
 					Log("Asking for review."); 
-                    RateMyApp.AskForReviewNow();
+                    // RateMyApp.AskForReviewNow();
                     break;
 
                 case RateMyAppDemoActionType.ResourcePage:

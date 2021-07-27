@@ -19,13 +19,13 @@ namespace VoxelBusters.EssentialKit.Editor.Android
 		private static readonly string DependencyName = "CrossPlatformEssentialKitDependencies.xml";
 
 		
-		private static readonly string BillingClientVersionString		= "3.0.2+";
-		private static readonly string PlayServicesVersionString		= "21.0.0+";
-		private static readonly string PlayServicesNearByVersionString	= "17.0.0+";
-		private static readonly string PlayServicesAuthVersionString	= "18.1.0+";
+		// private static readonly string BillingClientVersionString		= "3.0.2+";
+		// private static readonly string PlayServicesVersionString		= "21.0.0+";
+		// private static readonly string PlayServicesNearByVersionString	= "17.0.0+";
+		// private static readonly string PlayServicesAuthVersionString	= "18.1.0+";
 		private static readonly string AndroidXCoreVersionString		= "1.3.2+";
 		private static readonly string ExifInterfaceVersionString		= "1.3.0+";
-        private static readonly string FCMVersionString					= "20.2.4+";
+        // private static readonly string FCMVersionString					= "20.2.4+";
 		private static readonly string PlayCoreVersionString			= "1.9.0";
 
 		/// <summary>

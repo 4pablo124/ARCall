@@ -34,7 +34,7 @@ public class MainUI : MonoBehaviour
         });
 
         recBtn.onClick.AddListener(()=>{
-            //UISceneNav.LoadScene("");
+            UISceneNav.LoadScene("Record");
         });
 
         signOffBtn.onClick.AddListener(()=>{

@@ -4,12 +4,11 @@ using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
-
     public event Action<string> OnClientInput;
-    // [SerializeField] private PeerType myPeerType = PeerType.Host;
     public PeerType myPeerType = PeerType.Host;
+    public bool recording = false;
 
-    public Vector3 hostPosition, clientPosition;
+    [HideInInspector] public Vector3 hostPosition, clientPosition;
 
     private float scaledPixelRatioX,scaledPixelRatioY, clientAspectRatio;
     private int croppedScreenWidth, croppedScreenHeight, offsetX, offsetY;
@@ -18,7 +17,7 @@ public class InputManager : MonoBehaviour
 
 
     private void Awake() {
-        videoManager = GameObject.Find("VideoManager").GetComponent<VideoManager>();
+        videoManager = GameObject.Find("VideoManager")?.GetComponent<VideoManager>();
     }
 
     // Start is called before the first frame update
@@ -28,38 +27,43 @@ public class InputManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
+    void Update() {
         if(Input.GetMouseButton(0) && EventSystem.current.currentSelectedGameObject == null){
-            clientAspectRatio = (float)Screen.width/Screen.height;
-
-            croppedScreenWidth = clientAspectRatio < videoManager.aspectRatio ?
-                (int)Math.Round(videoManager.height*clientAspectRatio) : videoManager.width;
-
-            croppedScreenHeight = clientAspectRatio > videoManager.aspectRatio ?
-                (int)Math.Round(videoManager.width/clientAspectRatio) : videoManager.height;
-
-            scaledPixelRatioX = (float)Screen.width/croppedScreenWidth;
-            scaledPixelRatioY = (float)Screen.height/croppedScreenHeight;
-
-            offsetX = (int)Math.Round( ((float)(videoManager.width - croppedScreenWidth)/2) * scaledPixelRatioX );
-            offsetY = (int)Math.Round( ((float)(videoManager.height - croppedScreenHeight)/2) * scaledPixelRatioY );
-
-
-            if(myPeerType == PeerType.Host){
-                hostPosition.x = Input.mousePosition.x/scaledPixelRatioX;
-                hostPosition.y = Input.mousePosition.y/scaledPixelRatioY;
-                hostPosition.z = 19.99f;
-
-            }else{
-                clientPosition.x = (Input.mousePosition.x + offsetX) /scaledPixelRatioX;
-                clientPosition.y = (Input.mousePosition.y + offsetY) /scaledPixelRatioY;
-                clientPosition.z = 19.99f;
-
-                OnClientInput?.Invoke(JsonUtility.ToJson(clientPosition)); 
-            }
             
+            if(recording){
+                hostPosition.x = Input.mousePosition.x;
+                hostPosition.y = Input.mousePosition.y;
+                hostPosition.z = 19.99f;
+            }else{
+
+                clientAspectRatio = (float)Screen.width/Screen.height;
+
+                croppedScreenWidth = clientAspectRatio < videoManager.aspectRatio ?
+                    (int)Math.Round(videoManager.height*clientAspectRatio) : videoManager.width;
+
+                croppedScreenHeight = clientAspectRatio > videoManager.aspectRatio ?
+                    (int)Math.Round(videoManager.width/clientAspectRatio) : videoManager.height;
+
+                scaledPixelRatioX = (float)Screen.width/croppedScreenWidth;
+                scaledPixelRatioY = (float)Screen.height/croppedScreenHeight;
+
+                offsetX = (int)Math.Round( ((float)(videoManager.width - croppedScreenWidth)/2) * scaledPixelRatioX );
+                offsetY = (int)Math.Round( ((float)(videoManager.height - croppedScreenHeight)/2) * scaledPixelRatioY );
+
+
+                if(myPeerType == PeerType.Host){
+                    hostPosition.x = Input.mousePosition.x/scaledPixelRatioX;
+                    hostPosition.y = Input.mousePosition.y/scaledPixelRatioY;
+                    hostPosition.z = 19.99f;
+
+                }else{
+                    clientPosition.x = (Input.mousePosition.x + offsetX) /scaledPixelRatioX;
+                    clientPosition.y = (Input.mousePosition.y + offsetY) /scaledPixelRatioY;
+                    clientPosition.z = 19.99f;
+
+                    OnClientInput?.Invoke(JsonUtility.ToJson(clientPosition)); 
+                }
+            }
         }
 
         if(Input.GetMouseButtonUp(0)){

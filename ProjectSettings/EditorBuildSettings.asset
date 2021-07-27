@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/ARCall/Scenes/RoomCreation/JoinRoom.unity
     guid: 7ef87543a2d47e448a4f14149ce57c47
   - enabled: 1
+    path: Assets/ARCall/Scenes/Call/Record.unity
+    guid: 2fb9cf100b4054f4898d2dc70d4e13c1
+  - enabled: 1
     path: Assets/ARCall/Scenes/Call/Host.unity
     guid: 490e406d724828642b133c3b14fcefde
   - enabled: 1

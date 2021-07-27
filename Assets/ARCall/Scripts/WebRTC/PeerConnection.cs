@@ -14,7 +14,7 @@ using UnityEngine.UI;
 public class PeerConnection : MonoBehaviour
 {
     public PeerType myPeerType = PeerType.Host;
-    //public static PeerType myPeerType;
+    public bool isRecording;
 
     private InputManager inputManager;
     private VideoManager videoManager;

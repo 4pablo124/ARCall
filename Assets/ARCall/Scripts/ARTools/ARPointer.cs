@@ -15,9 +15,9 @@ public class ARPointer : MonoBehaviour
 
 
     private void Awake() { 
-        inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
+        inputManager = GameObject.Find("InputManager")?.GetComponent<InputManager>();
         pointer = transform.GetChild(0).gameObject;
-        videoManager = GameObject.Find("VideoManager").GetComponent<VideoManager>();
+        videoManager = GameObject.Find("VideoManager")?.GetComponent<VideoManager>();
         // videoManager.OnCamReady += setUpCam;
         aRToolManager = GameObject.Find("ARToolManager").GetComponent<ARToolManager>();
 

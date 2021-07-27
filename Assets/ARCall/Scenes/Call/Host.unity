@@ -5187,6 +5187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd16f768c067a5347a0944ff182e88a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recording: 0
   hostMaterial: {fileID: 2100000, guid: a0b9ae78a556ccf40b24326235c3fe98, type: 2}
   clientMaterial: {fileID: 2100000, guid: f8d43ed44c4e79a4c841eb74bdf95a1e, type: 2}
   ColorRed: {fileID: 2100000, guid: a0b9ae78a556ccf40b24326235c3fe98, type: 2}
@@ -5228,6 +5229,7 @@ MonoBehaviour:
   aspectRatio: 0.5
   bitrate: 1000000
   framerate: 30
+  isRecording: 0
   videoRawImage: {fileID: 0}
   videoUpdateStarted: 0
   showingVideo: 1
@@ -7730,6 +7732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPeerType: 0
+  isRecording: 0
 --- !u!4 &1984143965
 Transform:
   m_ObjectHideFlags: 0
@@ -7927,6 +7930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPeerType: 0
+  recording: 0
   hostPosition: {x: 0, y: 0, z: 0}
   clientPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &2040121916 stripped

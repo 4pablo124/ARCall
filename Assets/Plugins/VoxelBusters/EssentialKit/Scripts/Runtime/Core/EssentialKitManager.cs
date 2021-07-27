@@ -56,13 +56,7 @@ namespace VoxelBusters.EssentialKit
             {
                 NotificationServices.Initialize();
             }
-            if (settings.ApplicationSettings.RateMyAppSettings.IsEnabled)
-            {
-                if (null == FindObjectOfType<RateMyApp>())
-                {
-                    ActivateRateMyAppService();
-                }
-            }
+
         }
 
         #endregion

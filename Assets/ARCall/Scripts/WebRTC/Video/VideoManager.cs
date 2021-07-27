@@ -13,6 +13,8 @@ public class VideoManager : MonoBehaviour {
     public ulong bitrate = 100000;
     public uint framerate = 30;
 
+    public bool isRecording = false;
+
     
     [HideInInspector] public RawImage videoRawImage;
     [HideInInspector] public MediaStream videoStream;
@@ -62,15 +64,20 @@ public class VideoManager : MonoBehaviour {
     //     RecordCamera();
     // }
 
+
+    private void Start() {
+        if(isRecording) RecordCamera();
+    }
+
     public void RecordCamera(){       
+        Debug.Log(arCam.targetTexture);
         aspectRatio = arCam.aspect;
         height = (int)Math.Round(width/aspectRatio);
         mainCam = arCam; 
 
-        videoStream = mainCam.CaptureStream(width, height, (int)bitrate);
+        if(!isRecording) videoStream = mainCam.CaptureStream(width, height, (int)bitrate);
 
         if(mainCam == arCam) videoRawImage.texture = arCam.targetTexture;
-        // if(mainCam == webCam) videoRawImage.texture = webcamTexture; 
 
         noVideoCanvas.worldCamera = mainCam;
 

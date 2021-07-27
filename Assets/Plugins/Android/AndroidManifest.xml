@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.unity3d.player"
+    package="com.setik.androidutils"
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
+    <application android:requestLegacyExternalStorage="true" >
 
-    <application>
-        <activity android:name="com.unity3d.player.UnityPlayerActivity"
+        <provider tools:replace="android:authorities"
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.skrl.ARCall.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data tools:replace="android:resource"
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+
+        <activity android:name="com.setik.androidutils.AndroidUtils"
                   android:theme="@style/UnityThemeSelector">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+            <meta-data android:name="unityplayer.SkipPermissionsDialog" android:value="true" />
         </activity>
     </application>
 </manifest>
