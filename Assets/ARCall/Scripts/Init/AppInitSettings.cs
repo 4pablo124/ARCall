@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class AppInitSettings : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    void Awake(){
         Application.targetFrameRate = Screen.currentResolution.refreshRate;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // ApplicationChrome.navigationBarState = ApplicationChrome.States.Visible;
+        // ApplicationChrome.statusBarState = ApplicationChrome.States.Visible;
+        // ApplicationChrome.statusBarTextColor = ApplicationChrome.StatusBarTextColor.Default;
     }
 }

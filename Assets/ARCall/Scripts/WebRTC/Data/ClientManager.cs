@@ -11,8 +11,14 @@ public class ClientManager : MonoBehaviour
     public event Action<string> OnDelete;
     public event Action<string> OnColorChanged;
 
+    public InputManager inputManager;
+
+    private void Awake() {
+        inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
+    }
 
     public void SelectTool(string toolName){
+        inputManager.currentClientTool = toolName;
         OnToolSelected?.Invoke(toolName);
     }
     public void UndoDrawing(){

@@ -5,15 +5,21 @@ using UnityEngine.EventSystems;
 public class InputManager : MonoBehaviour
 {
     public event Action<string> OnClientInput;
+    public event Action<string> OnClientText;
     public PeerType myPeerType = PeerType.Host;
     public bool recording = false;
 
     [HideInInspector] public Vector3 hostPosition, clientPosition;
+    [HideInInspector] public string currentHostTool,currentClientTool;
+    [HideInInspector] public string clientText;
+    
 
     private float scaledPixelRatioX,scaledPixelRatioY, clientAspectRatio;
     private int croppedScreenWidth, croppedScreenHeight, offsetX, offsetY;
 
     private VideoManager videoManager;
+
+    [HideInInspector] public TouchScreenKeyboard clientKeyboard;
 
 
     private void Awake() {
@@ -28,8 +34,7 @@ public class InputManager : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if(Input.GetMouseButton(0) && EventSystem.current.currentSelectedGameObject == null){
-            
+        if(Input.GetMouseButton(0) && EventSystem.current.currentSelectedGameObject == null){            
             if(recording){
                 hostPosition.x = Input.mousePosition.x;
                 hostPosition.y = Input.mousePosition.y;
@@ -57,6 +62,12 @@ public class InputManager : MonoBehaviour
                     hostPosition.z = 19.99f;
 
                 }else{
+
+                    if(currentClientTool == "ARText"){
+                        clientKeyboard = TouchScreenKeyboard.Open("",TouchScreenKeyboardType.Default,true,true,false,false,
+                                            "Introduzca su texto",36);
+                    }
+
                     clientPosition.x = (Input.mousePosition.x + offsetX) /scaledPixelRatioX;
                     clientPosition.y = (Input.mousePosition.y + offsetY) /scaledPixelRatioY;
                     clientPosition.z = 19.99f;
@@ -73,6 +84,11 @@ public class InputManager : MonoBehaviour
                 clientPosition.z = 0;
                 OnClientInput?.Invoke(JsonUtility.ToJson(clientPosition));
             }
+        }
+
+        if(myPeerType == PeerType.Client && clientText != clientKeyboard?.text){
+            clientText = clientKeyboard?.text;
+            OnClientText?.Invoke(clientText);
         }
     }
 

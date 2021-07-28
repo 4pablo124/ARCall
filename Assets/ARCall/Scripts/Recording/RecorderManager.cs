@@ -41,8 +41,7 @@ public class RecorderManager : MonoBehaviour
 		// new NativeShare().AddFile(destPath).Share();
 	}
 
-	// private void OnApplicationFocus(bool focused) {
-
-    //     if (!focused){ StopRecording(); }
-    // }
+	private void OnApplicationFocus(bool focused) {
+        if (!focused && !TouchScreenKeyboard.visible){ StopRecording(); }
+    }
 }

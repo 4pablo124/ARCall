@@ -6,6 +6,8 @@ using UnityEngine;
 public class ARToolManager : MonoBehaviour
 {    
 
+    public event Action OnARTextClick;
+
     public bool recording = false;
 
     [HideInInspector] public Material hostMaterial, clientMaterial;
@@ -18,18 +20,14 @@ public class ARToolManager : MonoBehaviour
 
 
     private  GameObject hostTools, clientTools;
-    private  GameObject aRTools;
-    private  GameObject aRBrush;
-    private  GameObject aRPointer;
-    private  GameObject aRMarker;
-    private  GameObject aRText;
-
-
+    private  ARText aRText;
 
 
     // Start is called before the first frame update
     void Awake()
     {
+        GameObject.Find("ARText").GetComponent<ARText>().OnARTextClick += () => OnARTextClick?.Invoke();
+
         hostDrawings = GameObject.Find("HostDrawings");
         clientDrawings = GameObject.Find("ClientDrawings");
 
@@ -60,7 +58,7 @@ public class ARToolManager : MonoBehaviour
 
         clientTools.transform.Find(toolName).gameObject.SetActive(true);
     }
-    
+
     public void UndoDrawing(string peer){
         switch (peer){
             case "host":

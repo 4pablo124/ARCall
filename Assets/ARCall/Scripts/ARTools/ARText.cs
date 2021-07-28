@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,11 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ARText : MonoBehaviour
 {
+
+    public event Action OnARTextClick;
+
     [SerializeField] private PeerType myPeerType = PeerType.Host;
     [SerializeField] private  GameObject prefab;
-
 
     private Camera cam;
     private InputManager inputManager;
@@ -49,7 +52,14 @@ public class ARText : MonoBehaviour
                 }
             }
         }else if(currentMarker != null){
-            currentMarker.GetComponentInChildren<TextMeshPro>().text = keyboard.text;
+            switch (myPeerType){
+                case PeerType.Host:
+                    currentMarker.GetComponentInChildren<TextMeshPro>().text = keyboard.text;
+                break;
+                case PeerType.Client:
+                    currentMarker.GetComponentInChildren<TextMeshPro>().text = inputManager.clientText;
+                break;
+            }
             placingMarker = false;
         }
 
@@ -62,16 +72,18 @@ public class ARText : MonoBehaviour
             case PeerType.Host:
                 marker.transform.GetChild(1).GetComponent<Renderer>().material = aRToolManager.hostMaterial;
                 marker.transform.parent = ARToolManager.hostDrawings.transform;
+                keyboard = TouchScreenKeyboard.Open("",TouchScreenKeyboardType.Default,true,true,false,false,
+                                            "Introduzca su texto",36);
                 
                 break;
 
             case PeerType.Client:
                 marker.transform.GetChild(1).GetComponent<Renderer>().material = aRToolManager.clientMaterial;
                 marker.transform.parent = ARToolManager.clientDrawings.transform;
+                OnARTextClick?.Invoke();
+                // keyboard.text = inputManager.clientText;
                 break;
         }
-        keyboard = TouchScreenKeyboard.Open("",TouchScreenKeyboardType.Default,true,true,false,false,
-                                    "Introduzca su texto",36);
         return marker;
     }
 

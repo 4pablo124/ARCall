@@ -23,7 +23,8 @@ public class PeerConnection : MonoBehaviour
     private ARToolManager arToolManager;  
 
     private DatabaseReference database;
-    private RTCDataChannel audioDataChannel, remoteAudioDataChannel, clientInputDataChannel, aspectRatioDataChannel, clientActionDataChannel;
+    private RTCDataChannel audioDataChannel, remoteAudioDataChannel, clientInputDataChannel,
+    aspectRatioDataChannel, clientActionDataChannel, clientTextDataChannel;
     private RTCConfiguration RTCconfig;
     public RTCPeerConnection pc;
     public List<RTCRtpSender> pcSenders;
@@ -134,6 +135,18 @@ public class PeerConnection : MonoBehaviour
         // Creamos canales de Datos
         RTCDataChannelInit conf = new RTCDataChannelInit(){ordered = true, };
 
+        clientTextDataChannel = pc.CreateDataChannel("clientText", conf);
+        arToolManager.OnARTextClick += () => {
+            if(clientTextDataChannel.ReadyState == RTCDataChannelState.Open){
+                clientTextDataChannel.Send("ARTextClick");
+            }
+        };
+        inputManager.OnClientText += text => {
+            if(clientTextDataChannel.ReadyState == RTCDataChannelState.Open){
+                clientTextDataChannel.Send(text);
+            }
+        };
+
         if(!ImHost()){
             clientInputDataChannel = pc.CreateDataChannel("clientInput", conf);
             inputManager.OnClientInput += inputJson => {
@@ -205,6 +218,22 @@ public class PeerConnection : MonoBehaviour
                         };
                 break;
 
+                case "clientText":
+                    clientTextDataChannel = channel;
+                        clientTextDataChannel.OnMessage = bytes => {
+                            var msg = System.Text.Encoding.UTF8.GetString(bytes);
+                            // Cliente recibiendo aviso de que ha pulsado un plano
+                            if(msg == "ARTextClick"){
+                                inputManager.clientKeyboard = TouchScreenKeyboard.Open("",TouchScreenKeyboardType.Default,true,true,false,false,
+                                            "Introduzca su texto",36);
+                            // Host recibiendo el texto del cliente
+                            }else{
+                                inputManager.clientText = msg;
+                            }
+                        };
+
+                break;
+
                 case "aspectRatio":
                     aspectRatioDataChannel = channel;
                     if (!ImHost()){
@@ -215,6 +244,7 @@ public class PeerConnection : MonoBehaviour
                         };
                     }
                 break;
+
             }
         };
     }

@@ -46,7 +46,8 @@ public class AndroidUtils : MonoBehaviour
     private const string VIDEO_NAME = "Record", GALLERY_PATH = "/../../../../DCIM/VideoRecorders";
     public UnityAction onStartRecord, onStopRecord;
     public static UnityAction onAllowCallback, onDenyCallback, onDenyAndNeverAskAgainCallback;
-    public string filePath, fileName;
+    [HideInInspector] public string filePath, fileName;
+
 #if UNITY_ANDROID && !UNITY_EDITOR
     private AndroidJavaObject androidRecorder;
 #endif
