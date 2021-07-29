@@ -5,14 +5,10 @@ using UnityEngine.EventSystems;
 public class InputManager : MonoBehaviour
 {
     public event Action<string> OnClientInput;
-    public event Action<string> OnClientText;
     public PeerType myPeerType = PeerType.Host;
     public bool recording = false;
 
-    [HideInInspector] public Vector3 hostPosition, clientPosition;
-    [HideInInspector] public string currentHostTool,currentClientTool;
-    [HideInInspector] public string clientText;
-    
+    [HideInInspector] public Vector3 hostPosition, clientPosition;    
 
     private float scaledPixelRatioX,scaledPixelRatioY, clientAspectRatio;
     private int croppedScreenWidth, croppedScreenHeight, offsetX, offsetY;
@@ -62,12 +58,6 @@ public class InputManager : MonoBehaviour
                     hostPosition.z = 19.99f;
 
                 }else{
-
-                    if(currentClientTool == "ARText"){
-                        clientKeyboard = TouchScreenKeyboard.Open("",TouchScreenKeyboardType.Default,true,true,false,false,
-                                            "Introduzca su texto",36);
-                    }
-
                     clientPosition.x = (Input.mousePosition.x + offsetX) /scaledPixelRatioX;
                     clientPosition.y = (Input.mousePosition.y + offsetY) /scaledPixelRatioY;
                     clientPosition.z = 19.99f;
@@ -86,10 +76,6 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        if(myPeerType == PeerType.Client && clientText != clientKeyboard?.text){
-            clientText = clientKeyboard?.text;
-            OnClientText?.Invoke(clientText);
-        }
     }
 
     public bool IsHeldDown(PeerType peer){

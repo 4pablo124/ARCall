@@ -34,7 +34,7 @@ public class ARBrush : MonoBehaviour
                                     inputManager.hostPosition :
                                     inputManager.clientPosition;
 
-            if(arRaycastManager.Raycast(arCam.ScreenPointToRay(screenPoint),hitResults,TrackableType.PlaneWithinPolygon)){
+            if(arRaycastManager.Raycast(arCam.ScreenPointToRay(screenPoint),hitResults,TrackableType.All)){
                 Pose hitPose = hitResults[0].pose;
                 if(line == null) {
                     line = createLineStart(hitPose.position);

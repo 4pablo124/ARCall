@@ -10,8 +10,6 @@ using UnityEngine.XR.ARSubsystems;
 public class ARText : MonoBehaviour
 {
 
-    public event Action OnARTextClick;
-
     [SerializeField] private PeerType myPeerType = PeerType.Host;
     [SerializeField] private  GameObject prefab;
 
@@ -45,21 +43,14 @@ public class ARText : MonoBehaviour
                 Vector3 screenPoint = myPeerType == PeerType.Host ?
                                     inputManager.hostPosition :
                                     inputManager.clientPosition;
-                if(arRaycastManager.Raycast(cam.ScreenPointToRay(screenPoint),hitResults,TrackableType.PlaneWithinPolygon)){
+                if(arRaycastManager.Raycast(cam.ScreenPointToRay(screenPoint),hitResults,TrackableType.All)){
                     Pose hitPose = hitResults[0].pose;
                     currentMarker = AddMarker(hitPose.position);   
                     aRToolManager.placeGuide(myPeerType, currentMarker.transform);
                 }
             }
         }else if(currentMarker != null){
-            switch (myPeerType){
-                case PeerType.Host:
-                    currentMarker.GetComponentInChildren<TextMeshPro>().text = keyboard.text;
-                break;
-                case PeerType.Client:
-                    currentMarker.GetComponentInChildren<TextMeshPro>().text = inputManager.clientText;
-                break;
-            }
+            currentMarker.GetComponentInChildren<TextMeshPro>().text = keyboard.text;
             placingMarker = false;
         }
 
@@ -80,7 +71,7 @@ public class ARText : MonoBehaviour
             case PeerType.Client:
                 marker.transform.GetChild(1).GetComponent<Renderer>().material = aRToolManager.clientMaterial;
                 marker.transform.parent = ARToolManager.clientDrawings.transform;
-                OnARTextClick?.Invoke();
+                // OnARTextClick?.Invoke();
                 // keyboard.text = inputManager.clientText;
                 break;
         }

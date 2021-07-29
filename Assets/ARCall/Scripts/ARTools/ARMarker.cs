@@ -39,7 +39,7 @@ public class ARMarker : MonoBehaviour
                 Vector3 screenPoint = myPeerType == PeerType.Host ?
                                     inputManager.hostPosition :
                                     inputManager.clientPosition;
-                if(arRaycastManager.Raycast(cam.ScreenPointToRay(screenPoint),hitResults,TrackableType.PlaneWithinPolygon)){
+                if(arRaycastManager.Raycast(cam.ScreenPointToRay(screenPoint),hitResults,TrackableType.All)){
                     Pose hitPose = hitResults[0].pose;
                     var marker = AddMarker(hitPose.position);
                     aRToolManager.placeGuide(myPeerType, marker.transform);

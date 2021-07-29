@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ClientManager : MonoBehaviour
@@ -13,12 +11,8 @@ public class ClientManager : MonoBehaviour
 
     public InputManager inputManager;
 
-    private void Awake() {
-        inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
-    }
 
     public void SelectTool(string toolName){
-        inputManager.currentClientTool = toolName;
         OnToolSelected?.Invoke(toolName);
     }
     public void UndoDrawing(){
