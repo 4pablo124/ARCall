@@ -1,5 +1,5 @@
 # ARCall
-![version](https://img.shields.io/badge/version-v0.3.alpha-yellow)
+![version](https://img.shields.io/badge/version-v0.4.beta-orange)
 ![Android version](https://img.shields.io/badge/android-7.0+-green)
 ![Android architecture](https://img.shields.io/badge/architecture-arm64.v8a-green)
 
@@ -39,7 +39,7 @@ ARCall es una aplicación de asistencia remota que une las clásicas videollamad
 | [`v0.1-alpha`](https://github.com/4pablo124/ARCall/releases/tag/v0.1-alpha) | [Videollamadas mediante enlace](https://github.com/4pablo124/ARCall/milestone/1) | ✔ | **Junio 2021**
 | [`v0.2-alpha`](https://github.com/4pablo124/ARCall/releases/tag/v0.2-alpha) | [Funcionalidad de realidad aumentada](https://github.com/4pablo124/ARCall/milestone/2) | ✔ | **Julio 2021**
 | [`v0.3-alpha`](https://github.com/4pablo124/ARCall/releases/tag/v0.3-alpha) | [Registro y videollamadas a contactos](https://github.com/4pablo124/ARCall/milestone/3) | ✔ |**Julio 2021**
-| `v0.4-beta` | [Grabación de tutoriales](https://github.com/4pablo124/ARCall/milestone/4) |  | **Julio 2021**
+| [`v0.4-beta`](https://github.com/4pablo124/ARCall/releases/tag/v0.4-beta) | [Grabación de tutoriales](https://github.com/4pablo124/ARCall/milestone/4) | ✔ | **Julio 2021**
 | `v0.5-beta` | [Web y versiones de navegador y escritorio](https://github.com/4pablo124/ARCall/milestone/5) |  | **Agosto 2021**
 | `v1.0-release` | [Pulido de interfaz y funcionalidad](https://github.com/4pablo124/ARCall/milestone/6) |  | **Agosto 2021**
 
