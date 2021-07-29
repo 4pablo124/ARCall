@@ -88,7 +88,6 @@ public class VideoManager : MonoBehaviour {
 
 
     private void OnApplicationPause(bool paused) {
-        Debug.Log("aplications pasuie");
         if(paused){
             ShowVideo(false);
         }else{

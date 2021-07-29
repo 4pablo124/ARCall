@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Extensions;

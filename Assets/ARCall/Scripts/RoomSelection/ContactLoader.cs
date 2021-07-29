@@ -1,12 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
 using Firebase.Database;
-using Firebase.DynamicLinks;
 using Firebase.Extensions;
-using OneSignalPush.MiniJSON;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Android;

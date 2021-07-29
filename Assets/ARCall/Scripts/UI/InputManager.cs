@@ -36,7 +36,6 @@ public class InputManager : MonoBehaviour
                 hostPosition.y = Input.mousePosition.y;
                 hostPosition.z = 19.99f;
             }else{
-
                 clientAspectRatio = (float)Screen.width/Screen.height;
 
                 croppedScreenWidth = clientAspectRatio < videoManager.aspectRatio ?

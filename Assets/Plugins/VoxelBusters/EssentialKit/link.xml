@@ -1,9 +1,9 @@
 ﻿<linker>
-  <assembly fullname="VoxelBusters.EssentialKit.AndroidModule">
-    <namespace fullname="VoxelBusters.EssentialKit.AddressBookCore.Android" preserve="all" />
-    <namespace fullname="VoxelBusters.EssentialKit.NativeUICore.Android" preserve="all" />
-    <namespace fullname="VoxelBusters.EssentialKit.NetworkServicesCore.Android" preserve="all" />
-    <namespace fullname="VoxelBusters.EssentialKit.SharingServicesCore.Android" preserve="all" />
-    <namespace fullname="VoxelBusters.EssentialKit.ExtrasCore.Android" preserve="all" />
+  <assembly fullname="VoxelBusters.EssentialKit">
+    <type fullname="VoxelBusters.EssentialKit.AddressBookCore.NullAddressBookInterface" preserve="all" />
+    <type fullname="VoxelBusters.EssentialKit.NativeUICore.UnityUIInterface" preserve="all" />
+    <type fullname="VoxelBusters.EssentialKit.NetworkServicesCore.UnityNetworkServicesInterface" preserve="all" />
+    <type fullname="VoxelBusters.EssentialKit.SharingServicesCore.NullSharingInterface" preserve="all" />
+    <type fullname="VoxelBusters.EssentialKit.ExtrasCore.NullNativeUtilityInterface" preserve="all" />
   </assembly>
 </linker>

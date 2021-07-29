@@ -19,11 +19,16 @@ public class FirebaseInit : MonoBehaviour
                 // where app is a Firebase.FirebaseApp property of your application class.
                 FirebaseApp = FirebaseApp.DefaultInstance;
                 AuthManager.Auth = Firebase.Auth.FirebaseAuth.GetAuth(FirebaseApp);
-                if(AuthManager.IsUserRegistered()){
-                    UISceneNav.LoadScene("Main");
-                }else{
-                    UISceneNav.LoadScene("RegistroTlf");
-                }
+                #if UNITY_ANDROID || UNITY_EDITOR
+                    if(AuthManager.IsUserRegistered()){
+                        UISceneNav.LoadScene("Main");
+                    }else{
+                        UISceneNav.LoadScene("RegistroTlf");
+                    }
+                #else
+                    UISceneNav.LoadScene("JoinRoom");
+                #endif
+
                 // Set a flag here to indicate whether Firebase is ready to use by your app.
                 Ready = true;
                 OnReady?.Invoke();

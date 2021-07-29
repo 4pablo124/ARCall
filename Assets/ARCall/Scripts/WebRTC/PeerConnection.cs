@@ -320,7 +320,11 @@ public class PeerConnection : MonoBehaviour
         pc.Close();
         pc.Dispose();
 
-        UISceneNav.LoadScene("Main");
+        #if UNITY_ANDROID || UNITY_EDITOR
+            UISceneNav.LoadScene("Main");
+        #else
+            UISceneNav.LoadScene("JoinRoom");
+        #endif
     }
 
 
