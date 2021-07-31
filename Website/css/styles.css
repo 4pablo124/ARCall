@@ -1,0 +1,91 @@
+
+:root{
+    --darkGreen: #57cc99;
+    --Green: #6bdc99;
+    --lightGreen: #80ed99;
+    --lightGray:  whitesmoke;
+}
+
+
+html,body{
+    height: 100%;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+header{
+    position: relative;
+    padding-top: 7%;
+    font-size: 1.5rem;
+    font-weight: 300;
+
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+h1{
+    font-weight: 800;
+}
+h3{
+    font-weight: 800;
+}
+
+
+p{
+    text-align: justify;
+}
+
+.container{
+    padding: 2rem;
+}
+
+.gradient{
+    background: linear-gradient(135deg, var(--darkGreen) 0%, var(--lightGreen) 100%); 
+}
+
+.storeBtns{
+    height: 50px;
+}
+
+.feature{
+    color: white;
+}
+
+.feature ul{
+    padding-left: 2rem;
+    list-style-type: none;
+}
+
+.feature ul li{
+    padding-left: 2rem;
+    background-image: url(../img/check.svg);
+    background-repeat: no-repeat;
+    line-height: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.icon {
+    color: white;
+    height: 5rem;
+    width: 5rem;
+    font-size: 1.75rem;
+    border-radius: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.tecnologies{
+    padding-bottom: -10rem;
+}
+.footer{
+    background-color: black;
+}
+
+.footer p{
+    color: silver;
+    text-align: center;
+    font-weight: 200;
+    padding-top: 4rem;
+}
