@@ -19,7 +19,7 @@ public class MainUI : MonoBehaviour
         recBtn = GameObject.Find("RecBtn").GetComponent<Button>();
         signOffBtn = GameObject.Find("SignOffBtn").GetComponent<Button>();
 
-        usernameText = GameObject.Find("Username").GetComponent<TextMeshProUGUI>();
+        // usernameText = GameObject.Find("Username").GetComponent<TextMeshProUGUI>();
     }
 
     // Start is called before the first frame update
@@ -38,14 +38,11 @@ public class MainUI : MonoBehaviour
         });
 
         signOffBtn.onClick.AddListener(()=>{
-             if(AuthManager.Auth.CurrentUser.IsAnonymous){
-            AuthManager.Auth.CurrentUser.DeleteAsync();
-        }
-            AuthManager.Auth.SignOut();
+            AuthManager.SignOut();
             UISceneNav.LoadScene("RegistroTlf");
         });
         
-        usernameText.text = "Usuario: " + AuthManager.Auth.CurrentUser.DisplayName;
+        // usernameText.text = "Usuario: " + AuthManager.Auth.CurrentUser.DisplayName;
     }
 
     // Update is called once per frame
