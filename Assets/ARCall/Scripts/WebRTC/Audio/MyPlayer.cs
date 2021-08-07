@@ -13,9 +13,16 @@ public class MyPlayer : MonoBehaviour
     MyDecoder decoder;
     int head = 0;
     float[] audioClipData;
+    private AndroidJavaObject context;
+    private AndroidJavaObject audioManager;
+    private int voiceMinVol;
+    private int voiceMaxVol;
+    private int mediaMinVol;
+    private int mediaMaxVol;
+    private int originalMediaVol;
 
-    public void ToggleMute(){
-        source.mute = !source.mute;
+    public bool ToggleMute(){
+        return source.mute = !source.mute;
     }
 
     void OnEnable()
@@ -23,8 +30,45 @@ public class MyPlayer : MonoBehaviour
         source = GetComponent<AudioSource>();
         source.clip = AudioClip.Create("Loopback", audioClipLength, (int)channels, (int)frequency, false);
         source.loop = true;
+
+        //TODO: cambiar por audiomanager
         decoder = GetComponent<MyDecoder>();
         decoder.OnDecoded += OnDecoded;
+    }
+
+    private void Start() {
+        if(Application.platform == RuntimePlatform.Android){ 
+            AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            context = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            audioManager = context.Call<AndroidJavaObject>("getSystemService", "audio");
+
+            voiceMinVol = 0;
+            mediaMinVol = 1;
+            voiceMaxVol = audioManager.Call<int>("getStreamMaxVolume", 0);
+            mediaMaxVol = audioManager.Call<int>("getStreamMaxVolume", 3);
+            originalMediaVol = audioManager.Call<int>("getStreamVolume", 3);
+
+        }
+    }
+
+    private float scaleValueToRange(float value, float valueMin, float valueMax, float rangeMin, float rangeMax){
+        return ( (value - valueMin) / (valueMax - valueMin)) * (rangeMax - rangeMin) + rangeMin;
+    }
+
+    private void Update() {
+        // Debug.Log("STREAM_MUSIC: "+audioManager.Call<int>("getStreamVolume",0));
+        // Debug.Log("STREAM_VOICE_CALL: "+audioManager.Call<int>("getStreamVolume",3));
+
+        // Debug.Log(audioManager.Call<int>("getStreamVolume", 0));
+        // Debug.Log(audioManager.Call<int>("getStreamVolume", 3));
+
+        if(Application.platform == RuntimePlatform.Android){ 
+            audioManager.Call("setStreamVolume",
+                3, // STREAM_MUSIC
+                (int)Math.Round(scaleValueToRange(audioManager.Call<int>("getStreamVolume", 0), voiceMinVol, voiceMaxVol, mediaMinVol, mediaMaxVol)), // Usar el volumen de STREAM_VOICE_CALL
+                0 // no flags
+            );
+        }
     }
 
     public float GetRMS()
@@ -43,6 +87,14 @@ public class MyPlayer : MonoBehaviour
 
     void OnDisable()
     {
+        if(Application.platform == RuntimePlatform.Android){ 
+            audioManager.Call("setStreamVolume",
+                3, // STREAM_MUSIC
+                originalMediaVol, // Usar el volumen antes de entrar en la videollamada
+                0 // no flags
+            );
+        }
+        
         decoder.OnDecoded -= OnDecoded;
         source.Stop();
     }

@@ -7,9 +7,9 @@ public class ClientManager : MonoBehaviour
     public event Action<string> OnToolSelected;
     public event Action OnUndo;
     public event Action<string> OnDelete;
-    public event Action<string> OnColorChanged;
+    public event Action<string> OnColorSelected;
 
-    public InputManager inputManager;
+    // public InputManager inputManager;
 
 
     public void SelectTool(string toolName){
@@ -23,8 +23,8 @@ public class ClientManager : MonoBehaviour
         OnDelete?.Invoke(peer);
     }
 
-    public void ChangeColor(string color){
-        OnColorChanged?.Invoke(color);
+    public void SelectColor(string color){
+        OnColorSelected?.Invoke(color);
     }
 
 }

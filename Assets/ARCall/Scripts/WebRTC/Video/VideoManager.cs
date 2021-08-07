@@ -19,7 +19,7 @@ public class VideoManager : MonoBehaviour {
     [HideInInspector] public RawImage videoRawImage;
     [HideInInspector] public MediaStream videoStream;
     [HideInInspector] public bool videoUpdateStarted = false;
-    [HideInInspector] public bool showingVideo = true;
+    [HideInInspector] public bool videoDisabled = false;
     [HideInInspector] public Camera mainCam;
     [HideInInspector] public ARSession arSession;
 
@@ -34,7 +34,6 @@ public class VideoManager : MonoBehaviour {
     private void Awake() {
         arSession = GameObject.Find("ARSession")?.GetComponent<ARSession>();
         arCam = GameObject.Find("ARCamera")?.GetComponent<Camera>();
-        webCam = GameObject.Find("WebCamera")?.GetComponent<Camera>();
         videoRawImage = GameObject.Find("VideoRawImage").GetComponent<RawImage>();
         noVideoCanvas = GameObject.Find("NoVideo")?.GetComponent<Canvas>();
         arToolTipsUI = GameObject.Find("ARToolTipsUI")?.GetComponentInChildren<Canvas>();
@@ -70,7 +69,6 @@ public class VideoManager : MonoBehaviour {
     }
 
     public void RecordCamera(){       
-        Debug.Log(arCam.targetTexture);
         aspectRatio = arCam.aspect;
         height = (int)Math.Round(width/aspectRatio);
         mainCam = arCam; 
@@ -103,17 +101,19 @@ public class VideoManager : MonoBehaviour {
         ARToolManager.clientGuides.gameObject.SetActive(show);
         arToolTipsUI.gameObject.SetActive(show);
         arSession.enabled = show;
-        showingVideo = show;
+        videoDisabled = !show;
     }
 
     // TODO: Enviar mensaje al cliente 
-    public void ToggleVideo(){
+    public bool ToggleVideo(){
 
-        if(showingVideo){
+        if(!videoDisabled){
             ShowVideo(false);
         }else{
             ShowVideo(true);
         }
+
+        return videoDisabled;
     }
 
 }

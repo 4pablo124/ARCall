@@ -42,7 +42,7 @@ public enum VideoEncoder
 }
 public class AndroidUtils : MonoBehaviour
 {
-    private const float SCREEN_WIDTH = 720f;
+    private const float SCREEN_WIDTH = 360f;
     private const string VIDEO_NAME = "Record", GALLERY_PATH = "/../../../../DCIM/VideoRecorders";
     public UnityAction onStartRecord, onStopRecord;
     public static UnityAction onAllowCallback, onDenyCallback, onDenyAndNeverAskAgainCallback;

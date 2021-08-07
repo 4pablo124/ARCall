@@ -33,16 +33,22 @@ public class OneSignalInit : MonoBehaviour {
     }
 
 	private static async void HandleNotification(OSNotificationOpenedResult result){
-		if(result.action.type == OSNotificationAction.ActionType.ActionTaken){
-			switch (result.action.actionID){
-				case "acceptCall":
-					string body = result.notification.payload.body;
-					RoomManager.RoomID = body.Substring(body.LastIndexOf(' ') + 1);
-					await RoomManager.JoinRoom(PeerType.Client);
-				break;
-				case "denyCall": ;break;
-			}
-		}
+		string body = result.notification.payload.body;
+		RoomManager.RoomID = body.Substring(body.LastIndexOf(' ') + 1);
+		if(!await RoomManager.JoinRoom(PeerType.Client)){
+			AndroidUtils.ShowToast("La sala no esta disponible en este momento");
+		};
+		// if(result.action.type == OSNotificationAction.ActionType.ActionTaken){
+		// 	switch (result.action.actionID){
+		// 		case "acceptCall":
+		// 			string body = result.notification.payload.body;
+		// 			RoomManager.RoomID = body.Substring(body.LastIndexOf(' ') + 1);
+		// 			await RoomManager.JoinRoom(PeerType.Client);
+		// 		break;
+		// 		case "denyCall": ;break;
+		// 	}
+		// }else{
+		// }
 		FirebaseInit.OnReady -= ()=>HandleNotification(result);
 	}
 

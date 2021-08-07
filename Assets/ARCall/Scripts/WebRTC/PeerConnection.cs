@@ -13,6 +13,9 @@ using UnityEngine.UI;
 
 public class PeerConnection : MonoBehaviour
 {
+
+    public event Action OnUserConnected;
+
     public PeerType myPeerType = PeerType.Host;
     public bool isRecording;
 
@@ -96,8 +99,9 @@ public class PeerConnection : MonoBehaviour
                     OnDisconnect();
                 break;
                 case RTCIceConnectionState.Connected:
-                    GameObject.Find("UserConnected").GetComponent<Image>().enabled = true;
-                    GameObject.Find("UserConnected").GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+                    OnUserConnected?.Invoke();
+                    // GameObject.Find("UserConnected").GetComponent<Image>().enabled = true;
+                    // GameObject.Find("UserConnected").GetComponentInChildren<TextMeshProUGUI>().enabled = true;
                     break;
                 case RTCIceConnectionState.Failed:
                     if(myPeerType == PeerType.Host) StartCoroutine(Call());
@@ -159,7 +163,7 @@ public class PeerConnection : MonoBehaviour
                     clientActionDataChannel.Send("delete"+peer);
                 }
             };
-            clientManager.OnColorChanged += color => {
+            clientManager.OnColorSelected += color => {
                 if(clientActionDataChannel.ReadyState == RTCDataChannelState.Open){
                     clientActionDataChannel.Send(color);
                 }
@@ -193,14 +197,14 @@ public class PeerConnection : MonoBehaviour
                         clientActionDataChannel.OnMessage = bytes => {
                             var msg = System.Text.Encoding.UTF8.GetString(bytes);
                             switch (msg){
-                                case "undo" : arToolManager.UndoDrawing("client"); break;
-                                case "deleteclient" : arToolManager.DeleteDrawings("client"); break;
-                                case "deleteboth" : arToolManager.DeleteDrawings("both"); break;
+                                case "undo" : arToolManager.UndoDrawing("Client"); break;
+                                case "deleteClient" : arToolManager.DeleteDrawings("Client"); break;
+                                case "deleteBoth" : arToolManager.DeleteDrawings("Both"); break;
                                 case "ARBrush":case "ARPointer":case "ARMarker":case "ARText":
-                                    arToolManager.SelectClientTool(msg);
+                                    arToolManager.SelectTool(PeerType.Client,msg);
                                 break;
-                                case "red":case "green":case "blue":case "yellow":
-                                    arToolManager.changeClientColor(msg);
+                                case "DC6B6D":case "6BDC99":case "6BD4DC":case "FFF64A":
+                                    arToolManager.SelectColor(PeerType.Client,msg);
                                 break;
                             }
                         };
@@ -450,9 +454,5 @@ public class PeerConnection : MonoBehaviour
 
     public bool ImHost(){
         return myPeerType == PeerType.Host;
-    }
-
-    public void ShareRoom(){
-        Sharing.ShareRoom();
     }
 }

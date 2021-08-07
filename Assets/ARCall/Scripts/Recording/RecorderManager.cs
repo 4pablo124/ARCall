@@ -15,13 +15,13 @@ public class RecorderManager : MonoBehaviour
 	private void Start() {
 		androidUtils.onStopRecord += onStopRecord;
 	}
-    public void ToggleRecord(){
+    public bool ToggleRecord(){
 		if(!isRecording){
 			StartRecording();
 		}else{
 			StopRecording();
 		}
-		isRecording = !isRecording;
+		return isRecording = !isRecording;
 	}
 	void StartRecording(){
 		androidUtils.StartRecording();

@@ -25,6 +25,14 @@ public static class AuthManager
         await Auth.SignInAnonymouslyAsync();
         return ChangeUsername(username);
     }
+
+    public static async void SignOut(){
+        if(AuthManager.Auth.CurrentUser.IsAnonymous){
+            await Auth.CurrentUser.DeleteAsync();
+        }
+        Auth.SignOut();
+    }
+
     
     public static Task ChangeUsername(string username){
         UserProfile profile = new UserProfile();

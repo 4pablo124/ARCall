@@ -34,7 +34,9 @@ public class DynamicLinksInit : MonoBehaviour
                         
         Debug.LogFormat("Received dynamic link {0}",url);
         RoomManager.RoomID = url.Substring(url.LastIndexOf('/') + 1);
-        await RoomManager.JoinRoom(PeerType.Client);
+        if(!await RoomManager.JoinRoom(PeerType.Client)){
+            AndroidUtils.ShowToast("La sala no existe o el Host no esta activo en este momento");
+        };
     }
 
 }

@@ -17,6 +17,7 @@ public class MyRecorder : MonoBehaviour
     float[] microphoneBuffer = new float[lengthSeconds * samplingFrequency];
     float[] mutedBuffer = new float[lengthSeconds * samplingFrequency];
     AndroidJavaObject audioManager;
+    AndroidJavaObject context;
 
     int defaultMode;
     bool defaultIsSpeakerphone;
@@ -27,16 +28,18 @@ public class MyRecorder : MonoBehaviour
     private void Awake() {
         if(Application.platform == RuntimePlatform.Android){ 
             AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            AndroidJavaObject activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-            audioManager = activity.Call<AndroidJavaObject>("getSystemService", "audio");
+            context = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            audioManager = context.Call<AndroidJavaObject>("getSystemService", "audio");
 
+            Debug.Log("getVolumeControlStream: "+context.Call<int>("getVolumeControlStream"));
             defaultMode = audioManager.Call<Int32>("getMode");
             defaultIsSpeakerphone = audioManager.Call<Boolean>("isSpeakerphoneOn");
 
         }
     }
 
-    public void SetModeAndSpeakerphone(int mode, bool isSpeakerphoneOn){
+    public void SetVideocallAudio(int stream, int mode, bool isSpeakerphoneOn){
+        // context.Call("setVolumeControlStream", stream);
         audioManager.Call("setMode", mode);
         audioManager.Call("setSpeakerphoneOn", isSpeakerphoneOn);
     }
@@ -64,15 +67,14 @@ public class MyRecorder : MonoBehaviour
             {
                 return;
             }
+            
             clip.GetData(microphoneBuffer, 0);
             
 
-            #if PLATFORM_ANDROID
-                for (int i = 0; i < microphoneBuffer.Length; i++)
-                {
-                    microphoneBuffer[i] = microphoneBuffer[i] * 50.0f;
-                }
-            #endif
+            // for (int i = 0; i < microphoneBuffer.Length; i++)
+            // {
+            //     microphoneBuffer[i] = microphoneBuffer[i] * 50.0f;
+            // }
 
             while (GetDataLength(microphoneBuffer.Length, head, position) > processBuffer.Length)
             {
@@ -116,27 +118,25 @@ public class MyRecorder : MonoBehaviour
     private void StartRecording(){
         muted = false;
 
-        if(Application.platform == RuntimePlatform.Android) SetModeAndSpeakerphone(3,true);
+        if(Application.platform == RuntimePlatform.Android) SetVideocallAudio(3,3,true);
 
         clip = Microphone.Start(null, true, lengthSeconds, samplingFrequency);
     }
 
     private void StopRecording(){
         muted = true;
-
-        if(Application.platform == RuntimePlatform.Android) SetModeAndSpeakerphone(defaultMode,defaultIsSpeakerphone);
-        
-        Microphone.End(null);
-        Destroy(clip);
+        // Microphone.End(null);
+        // Destroy(clip);
         OnAudioReady?.Invoke(null);
     }
 
-    public void toggleMute(){
+    public bool ToggleMute(){
         if(!muted){
             StopRecording();
         }else{
             StartRecording();
         }
+        return muted;
     }
     
 
@@ -150,6 +150,7 @@ public class MyRecorder : MonoBehaviour
     }
 
     private void OnDestroy() {
+        if(Application.platform == RuntimePlatform.Android) SetVideocallAudio(-2147483648,defaultMode,defaultIsSpeakerphone);
         StopRecording();
     }
 

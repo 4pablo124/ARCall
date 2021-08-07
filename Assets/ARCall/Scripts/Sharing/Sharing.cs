@@ -12,31 +12,41 @@ public static class Sharing{
     public static void SendNotification(string userID){
         var notification = new Dictionary<string,object>();
         notification["headings"] = new Dictionary<string, string>() { 
-            {"en", "Llamada entrante de "+AuthManager.Auth.CurrentUser.DisplayName}
+            {"en", "Incoming call from "+AuthManager.Auth.CurrentUser.DisplayName},
+            {"es", "Llamada entrante de "+AuthManager.Auth.CurrentUser.DisplayName}
         };
         
         notification["contents"] = new Dictionary<string, string>() {
-            {"en", AuthManager.Auth.CurrentUser.DisplayName + " quiere invitarle a la sala: " + RoomManager.RoomID}
+            {"en", AuthManager.Auth.CurrentUser.DisplayName + " wants to invite you to the room: " + RoomManager.RoomID},
+            {"es", AuthManager.Auth.CurrentUser.DisplayName + " quiere invitarle a la sala: " + RoomManager.RoomID}
         };
+
 
         notification["include_player_ids"] = new List<string>() { userID };
 
         notification["android_channel_id"] = "bc08d491-65bf-4ecb-9e46-8fd6ed85ca26";
+        notification["priority"] = 10;
 
         notification["android_background_layout"] = new Dictionary<string,string>() {
-            {"headings_color","FFFF0000"}
+            {"image","onesignal_bgimage_default_image"},
+            {"headings_color","ffffffff"},
+            {"contents_color","ffffffff"}
         };
+        notification["large_icon"] = "ic_phone_call";
+        notification["large_icon"] = "ic_phone_call";
 
-        notification["buttons"] = new List<Dictionary<string,string>>() {
-            new Dictionary<string,string>(){
-                {"id","acceptCall"},
-                {"text","Aceptar Llamada"}
-            },
-            // new Dictionary<string,string>(){
-            //     {"id","denyCall"},
-            //     {"text","Cancelar"}
-            // }
-        };
+        notification["android_group"] = "ARCall";
+
+        // notification["buttons"] = new List<Dictionary<string,string>>() {
+        //     new Dictionary<string,string>(){
+        //         {"id","acceptCall"},
+        //         {"text","Aceptar Llamada"}
+        //     },
+        //     new Dictionary<string,string>(){
+        //         {"id","denyCall"},
+        //         {"text","Cancelar"}
+        //     }
+        // };
 
         var lines = notification.Select(kvp => kvp.Key + ": " + kvp.Value.ToString());
         Debug.Log(string.Join(Environment.NewLine, lines));
