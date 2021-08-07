@@ -15,7 +15,6 @@ public class PhoneSignIn : MonoBehaviour
     private Button verifyBtn;
     private Button skipBtn;
 
-    private TextMeshProUGUI codeNotif;
 
 
     private void Awake() {
@@ -24,7 +23,6 @@ public class PhoneSignIn : MonoBehaviour
         sendBtn = GameObject.Find("SendBtn").GetComponent<Button>();
         verifyBtn = GameObject.Find("VerifyBtn").GetComponent<Button>();
         skipBtn = GameObject.Find("SkipBtn").GetComponent<Button>();
-        codeNotif = GameObject.Find("CodeNotif").GetComponent<TextMeshProUGUI>();
     }
 
     // Start is called before the first frame update
@@ -35,46 +33,70 @@ public class PhoneSignIn : MonoBehaviour
         AuthManager.OnCodeSent += OnCodeSent;
         AuthManager.OnCodeAutoRetrievalTimeOut += OnCodeAutoRetrievalTimeOut;
 
-        sendBtn.onClick.AddListener(() => {
-            codeNotif.text = "Enviando codigo!";
-            AuthManager.SendVerificationCode(CountryCode.Spain,phoneInput.text);
-        });
+        sendBtn.onClick.AddListener(() => SendCode(phoneInput.text));
+        phoneInput.onSubmit.AddListener((phone) => {if(IsValidPhoneInput()) SendCode(phone);});
 
-        verifyBtn.onClick.AddListener(async () => {
-            if( await AuthManager.VerifyPhone(codeInput.text) ){
-                Unsubscribe();
-                UISceneNav.LoadScene("Registro");
-            }else{
-                codeNotif.text = "Codigo Incorrecto!";
-            }
-        });
+        verifyBtn.onClick.AddListener(() => VerifyPhone(codeInput.text));
+        codeInput.onSubmit.AddListener((code) => {if(IsValidCodeInput()) VerifyPhone(code);});
 
         skipBtn.onClick.AddListener(() => {
             Unsubscribe();
             UISceneNav.LoadScene("Registro");
         });
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        sendBtn.interactable = phoneInput.text.Length == 9 ? true : false;
-        verifyBtn.interactable = codeInput.text.Length == 6 ? true : false;
+        sendBtn.interactable = IsValidPhoneInput();
+        verifyBtn.interactable = IsValidCodeInput();
+    }
+
+    void SendCode(string phone){
+        // codeNotif.text = "Enviando codigo!";
+        AndroidUtils.ShowToast("¡Enviando codigo!");
+        AuthManager.SendVerificationCode(CountryCode.Spain,phone);
+    }
+
+    async void VerifyPhone(string code){
+        // codeNotif.text = "Enviando codigo!";
+        // AndroidUtils.ShowToast("¡Enviando codigo!");
+        
+        if( await AuthManager.VerifyPhone(codeInput.text) ){
+            Unsubscribe();
+            UISceneNav.LoadScene("Registro");
+        }else{
+            // codeNotif.text = "Codigo Incorrecto!";
+            AndroidUtils.ShowToast("¡Código Incorrecto!");
+        }
+    }
+
+    bool IsValidPhoneInput(){
+        return phoneInput.text.Length == 9;
+    }
+    bool IsValidCodeInput(){
+        return codeInput.text.Length == 6;
     }
 
     private void OnVerificationCompleted(){
-        codeNotif.text = "Verificación automatica completada!";
+        // codeNotif.text = "Verificación automatica completada!";
+        AndroidUtils.ShowToast("¡Verificación automatica completada!");
+
         Unsubscribe();
         UISceneNav.LoadScene("Registro");
     }
 
     private void OnVerificationFailed(){
-        codeNotif.text = "Verificación fallida!";
+        // codeNotif.text = "Verificación fallida!";
+        AndroidUtils.ShowToast("¡Verificación fallida!");
 
     }
 
     private void OnCodeSent(){
-        codeNotif.text = "Codigo enviado!";
+        // codeNotif.text = "Codigo enviado!";
+        AndroidUtils.ShowToast("¡Codigo enviado!");
+
     }
 
     private void OnCodeAutoRetrievalTimeOut(){
