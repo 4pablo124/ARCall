@@ -25,7 +25,7 @@ public static class Colors {
         new Entry("yellow","#FFF64A"),
     };
 
-    public static Color GetColorByName(string name) 
+    public static Color GetColor(string name) 
     { 
          var entry = colors.Find(c => c.name == name);
          if (entry != null) {
@@ -33,12 +33,12 @@ public static class Colors {
          }
          return Color.white;
     }
-    public static Color GetColorByHex(string hex) 
+    public static string GetHex(string name) 
     { 
-         var entry = colors.Find(c => c.hex == hex);
+         var entry = colors.Find(c => c.name == name);
          if (entry != null) {
-              return entry.color;
+              return entry.name;
          }
-         return Color.white;
+         return "#FFFFFF";
     }
 }

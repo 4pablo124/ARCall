@@ -11,7 +11,7 @@ public class ARBrush : MonoBehaviour
     [SerializeField] private GameObject linePrefab;
     
     private Camera arCam;
-    private InputManager inputManager;
+    private MyInputManager inputManager;
     private ARRaycastManager arRaycastManager;
     private ARToolManager aRToolManager;
     private LineRenderer line;
@@ -19,7 +19,7 @@ public class ARBrush : MonoBehaviour
     private void Start()
     {
         arCam = GameObject.Find("ARCamera").GetComponent<Camera>();
-        inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
+        inputManager = GameObject.Find("InputManager").GetComponent<MyInputManager>();
         arRaycastManager = GameObject.Find("ARSessionOrigin").GetComponent<ARRaycastManager>();
         aRToolManager = GameObject.Find("ARToolManager").GetComponent<ARToolManager>();
     }

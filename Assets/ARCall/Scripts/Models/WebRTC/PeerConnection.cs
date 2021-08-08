@@ -16,7 +16,7 @@ public class PeerConnection : MonoBehaviour
     public PeerType myPeerType = PeerType.Host;
     public bool isRecording;
 
-    private InputManager inputManager;
+    private MyInputManager inputManager;
     private VideoManager videoManager;
     private AudioManager audioManager;    
     private ClientManager clientManager;    
@@ -34,7 +34,7 @@ public class PeerConnection : MonoBehaviour
     {
         // myPeerType = peerType;
            
-        inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
+        inputManager = GameObject.Find("InputManager").GetComponent<MyInputManager>();
         videoManager = GameObject.Find("VideoManager").GetComponent<VideoManager>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         clientManager = GameObject.Find("ClientManager")?.GetComponent<ClientManager>();
@@ -198,7 +198,7 @@ public class PeerConnection : MonoBehaviour
                                 case "ARBrush":case "ARPointer":case "ARMarker":case "ARText":
                                     arToolManager.SelectTool(PeerType.Client,msg);
                                 break;
-                                case "DC6B6D":case "6BDC99":case "6BD4DC":case "FFF64A":
+                                case "red":case "green":case "blue":case "yellow":
                                     arToolManager.SelectColor(PeerType.Client,msg);
                                 break;
                             }
@@ -323,7 +323,7 @@ public class PeerConnection : MonoBehaviour
         pc.Dispose();
 
         #if UNITY_ANDROID || UNITY_EDITOR
-            UISceneNav.LoadScene("Main");
+            MySceneManager.LoadScene("Main");
         #else
             UISceneNav.LoadScene("JoinRoom");
         #endif

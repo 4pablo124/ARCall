@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Firebase.DynamicLinks;
 using UnityEngine;
 
-public static class Sharing{
+public static class SharingManager{
 
     public static void SendNotification(string userID){
         var notification = new Dictionary<string,object>();

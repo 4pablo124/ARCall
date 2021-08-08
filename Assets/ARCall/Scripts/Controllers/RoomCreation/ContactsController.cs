@@ -1,5 +1,3 @@
-using Firebase.Database;
-using Firebase.Extensions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Android;
@@ -8,8 +6,8 @@ using VoxelBusters.EssentialKit;
 
 public class ContactsController : MonoBehaviour
 {
-    Transform scrollContent;
     public GameObject contactPrefab;
+    Transform scrollContent;
     IAddressBookContact[] contacts;
 
     PermissionCallbacks permissionCallback;
@@ -20,11 +18,14 @@ public class ContactsController : MonoBehaviour
         permissionCallback.PermissionGranted += PermissionGranted;
         permissionCallback.PermissionDenied += PermissionDenied;
         permissionCallback.PermissionDeniedAndDontAskAgain += PermissionDeniedAndDontAskAgain;
+
+        scrollContent = GameObject.Find("ScrollContent").transform;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(UserManager.CurrentUser.phoneNumber);
         if(UserManager.CurrentUser.phoneNumber != null){
             if(!Permission.HasUserAuthorizedPermission("android.permission.READ_CONTACTS")){
                 Permission.RequestUserPermission("android.permission.READ_CONTACTS", permissionCallback);
@@ -56,7 +57,7 @@ public class ContactsController : MonoBehaviour
     void ShowContacts(IAddressBookContact[] contacts){
         foreach (IAddressBookContact contact in contacts){
             // Instanciamos prefab
-            var contactLine = GameObject.Instantiate(contactPrefab,transform).transform;
+            var contactLine = GameObject.Instantiate(contactPrefab,scrollContent).transform;
             contactLine.localScale = Vector3.one;
 
             // Asignamos nombre
@@ -69,9 +70,9 @@ public class ContactsController : MonoBehaviour
 
                 var userID = await DatabaseManager.GetUserID(phoneNumber);
                 if(userID != null){
-                    Sharing.SendNotification(userID);
+                    SharingManager.SendNotification(userID);
                 }else{
-                    Sharing.ShareRoomWhatsappContact(phoneNumber);
+                    SharingManager.ShareRoomWhatsappContact(phoneNumber);
                 }
             });
         }

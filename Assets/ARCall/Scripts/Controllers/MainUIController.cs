@@ -20,20 +20,20 @@ public class MainUIController : MonoBehaviour
     void Start()
     {
         createBtn.onClick.AddListener(()=>{
-            UISceneNav.LoadScene("CreateRoom");
+            MySceneManager.LoadScene("CreateRoom");
         });
         
         joinBtn.onClick.AddListener(()=>{
-            UISceneNav.LoadScene("JoinRoom");
+            MySceneManager.LoadScene("JoinRoom");
         });
 
         recBtn.onClick.AddListener(()=>{
-            UISceneNav.LoadScene("Record");
+            MySceneManager.LoadScene("Record");
         });
 
         signOffBtn.onClick.AddListener(()=>{
             UserManager.SignOut();
-            UISceneNav.LoadScene("RegistroTlf");
+            MySceneManager.LoadScene("RegistroTlf");
         });
         
     }

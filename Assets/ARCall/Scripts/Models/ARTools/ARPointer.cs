@@ -6,7 +6,7 @@ public class ARPointer : MonoBehaviour
 
     [SerializeField] private PeerType myPeerType = PeerType.Host;
 
-    private InputManager inputManager;
+    private MyInputManager inputManager;
     private int cursorWidth;
     private GameObject pointer;
 
@@ -15,7 +15,7 @@ public class ARPointer : MonoBehaviour
 
 
     private void Awake() { 
-        inputManager = GameObject.Find("InputManager")?.GetComponent<InputManager>();
+        inputManager = GameObject.Find("InputManager")?.GetComponent<MyInputManager>();
         pointer = transform.GetChild(0).gameObject;
         videoManager = GameObject.Find("VideoManager")?.GetComponent<VideoManager>();
         // videoManager.OnCamReady += setUpCam;

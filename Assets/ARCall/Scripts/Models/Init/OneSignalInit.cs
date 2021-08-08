@@ -28,7 +28,7 @@ public class OneSignalInit : MonoBehaviour {
 		if(FirebaseInit.Ready){
 			HandleNotification(result);
 		}else{
-			FirebaseInit.OnReady += ()=>HandleNotification(result);
+			FirebaseInit.OnReady += (database,auth) => HandleNotification(result);
 		}
     }
 
@@ -38,18 +38,8 @@ public class OneSignalInit : MonoBehaviour {
 		if(!await RoomManager.JoinRoom(PeerType.Client)){
 			AndroidUtils.ShowToast("La sala no esta disponible en este momento");
 		};
-		// if(result.action.type == OSNotificationAction.ActionType.ActionTaken){
-		// 	switch (result.action.actionID){
-		// 		case "acceptCall":
-		// 			string body = result.notification.payload.body;
-		// 			RoomManager.RoomID = body.Substring(body.LastIndexOf(' ') + 1);
-		// 			await RoomManager.JoinRoom(PeerType.Client);
-		// 		break;
-		// 		case "denyCall": ;break;
-		// 	}
-		// }else{
-		// }
-		FirebaseInit.OnReady -= ()=>HandleNotification(result);
+
+		FirebaseInit.OnReady -= (database,auth) => HandleNotification(result);
 	}
 
     // iOS - Fires when the user anwser the notification permission prompt.

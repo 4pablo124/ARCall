@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PhoneSignIn : MonoBehaviour
+public class PhoneVerificationUIController : MonoBehaviour
 {
     private TMP_InputField phoneInput;
     private TMP_InputField codeInput;
@@ -36,7 +36,7 @@ public class PhoneSignIn : MonoBehaviour
 
         skipBtn.onClick.AddListener(() => {
             Unsubscribe();
-            UISceneNav.LoadScene("Registro");
+            MySceneManager.LoadScene("Registro");
         });
 
     }
@@ -49,20 +49,15 @@ public class PhoneSignIn : MonoBehaviour
     }
 
     void SendCode(string phone){
-        // codeNotif.text = "Enviando codigo!";
         AndroidUtils.ShowToast("¡Enviando codigo!");
         UserManager.SendVerificationCode(CountryCodes.SPAIN,phone);
     }
 
-    async void VerifyPhone(string code){
-        // codeNotif.text = "Enviando codigo!";
-        // AndroidUtils.ShowToast("¡Enviando codigo!");
-        
+    async void VerifyPhone(string code){        
         if( await UserManager.VerifyPhone(codeInput.text) ){
             Unsubscribe();
-            UISceneNav.LoadScene("Registro");
+            MySceneManager.LoadScene("Registro");
         }else{
-            // codeNotif.text = "Codigo Incorrecto!";
             AndroidUtils.ShowToast("¡Código Incorrecto!");
         }
     }
@@ -75,21 +70,18 @@ public class PhoneSignIn : MonoBehaviour
     }
 
     private void OnVerificationCompleted(){
-        // codeNotif.text = "Verificación automatica completada!";
         AndroidUtils.ShowToast("¡Verificación automatica completada!");
 
         Unsubscribe();
-        UISceneNav.LoadScene("Registro");
+        MySceneManager.LoadScene("Registro");
     }
 
     private void OnVerificationFailed(){
-        // codeNotif.text = "Verificación fallida!";
         AndroidUtils.ShowToast("¡Verificación fallida!");
 
     }
 
     private void OnCodeSent(){
-        // codeNotif.text = "Codigo enviado!";
         AndroidUtils.ShowToast("¡Codigo enviado!");
 
     }

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InputManager : MonoBehaviour
+public class MyInputManager : MonoBehaviour
 {
     public event Action<string> OnClientInput;
     public PeerType myPeerType = PeerType.Host;

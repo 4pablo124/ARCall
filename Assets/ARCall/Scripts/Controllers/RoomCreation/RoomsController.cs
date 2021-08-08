@@ -23,7 +23,7 @@ public class RoomsController : MonoBehaviour
     async void Start() {
         if(peerType == PeerType.Host){
             roomIDText.text = await RoomManager.GenerateRoomID();
-            shareBtn.onClick.AddListener(() => Sharing.ShareRoom());
+            shareBtn.onClick.AddListener(() => SharingManager.ShareRoom());
             joinBtn.onClick.AddListener(() => JoinRoom(roomIDText.text));
         }else{
             joinBtn.onClick.AddListener(() => JoinRoom(roomIDInput.text));

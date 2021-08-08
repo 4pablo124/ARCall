@@ -25,11 +25,11 @@ public static class RoomManager {
     public static async Task<bool> JoinRoom(PeerType peer){
         if(peer == PeerType.Host){
             Debug.Log($"Entrando en sala: {RoomID}");
-            UISceneNav.LoadScene("Host");
+            MySceneManager.LoadScene("Host");
             return true;
         }else{
             if(await DatabaseManager.RoomIDExists(RoomID)){
-                UISceneNav.LoadScene("Client");
+                MySceneManager.LoadScene("Client");
                 return true;
             }else{
                 return false;

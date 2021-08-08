@@ -29,17 +29,8 @@ public class ARToolManager : MonoBehaviour
         hostTools = GameObject.Find("HostTools");
         clientTools = GameObject.Find("ClientTools");
         
-        SelectHostTool("ARBrush");
-        if(!recording) SelectClientTool("ARBrush");
-    }
-
-    public void SelectHostTool(string toolName){
-
-        foreach(Transform tool in hostTools.transform){
-            tool.gameObject.SetActive(false);
-        }
-
-        hostTools.transform.Find(toolName).gameObject.SetActive(true);
+        SelectTool(PeerType.Host,"ARBrush");
+        if(!recording) SelectTool(PeerType.Client,"ARBrush");
     }
 
     public void SelectTool(PeerType peer, string toolName){
@@ -58,15 +49,6 @@ public class ARToolManager : MonoBehaviour
             break;
         }
 
-    }
-
-    public void SelectClientTool(string toolName){
-
-        foreach(Transform tool in clientTools.transform){
-            tool.gameObject.SetActive(false);
-        }
-
-        clientTools.transform.Find(toolName).gameObject.SetActive(true);
     }
 
     public void UndoDrawing(string peer){
@@ -106,16 +88,7 @@ public class ARToolManager : MonoBehaviour
     }
 
 
-    public void changeHostColor(string color){
-        switch(color){
-            case "red" : hostMaterial = ColorRed; break;
-            case "green" : hostMaterial = ColorGreen; break;
-            case "blue" : hostMaterial = ColorBlue; break;
-            case "yellow" : hostMaterial = ColorYellow; break;
-        }
-    }
-
-    //TODO: Quitar colores "hardcoded"
+    //TODO: Quitar colores "hardcoded"   
     public void SelectColor(PeerType peer, string color){
         switch (peer){
             case PeerType.Host:
@@ -134,15 +107,6 @@ public class ARToolManager : MonoBehaviour
                     case "FFF64A" : clientMaterial = ColorYellow; break;
                 }
             break;
-        }
-    }
-
-    public void changeClientColor(string color){
-        switch(color){
-            case "red" : clientMaterial = ColorRed; break;
-            case "green" : clientMaterial = ColorGreen; break;
-            case "blue" : clientMaterial = ColorBlue; break;
-            case "yellow" : clientMaterial = ColorYellow; break;
         }
     }
 

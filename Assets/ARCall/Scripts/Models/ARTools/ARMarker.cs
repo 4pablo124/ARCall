@@ -11,7 +11,7 @@ public class ARMarker : MonoBehaviour
 
 
     private Camera cam;
-    private InputManager inputManager;
+    private MyInputManager inputManager;
     private ARRaycastManager arRaycastManager;
     private ARToolManager aRToolManager;
 
@@ -22,7 +22,7 @@ public class ARMarker : MonoBehaviour
     void Start()
     {
         cam = GameObject.Find("ARCamera").GetComponent<Camera>();
-        inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
+        inputManager = GameObject.Find("InputManager").GetComponent<MyInputManager>();
         arRaycastManager = GameObject.Find("ARSessionOrigin").GetComponent<ARRaycastManager>();
         aRToolManager = GameObject.Find("ARToolManager").GetComponent<ARToolManager>();
 

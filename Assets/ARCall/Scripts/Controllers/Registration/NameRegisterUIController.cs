@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Firebase.Extensions;
 
-public class NameSetUp : MonoBehaviour
+public class NameRegisterUIController : MonoBehaviour
 {
 
     private TMP_InputField nameInput;
@@ -34,11 +34,11 @@ public class NameSetUp : MonoBehaviour
     public void RegisterName(string name){
         if(UserManager.IsUserRegistered()){
             UserManager.ChangeUsername(name).ContinueWithOnMainThread(task => {
-                UISceneNav.LoadScene("Main");
+                MySceneManager.LoadScene("Main");
             });
         }else{
             UserManager.SignUp(name).ContinueWithOnMainThread(task => {
-                UISceneNav.LoadScene("Main");
+                MySceneManager.LoadScene("Main");
             });
         }
     }

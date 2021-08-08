@@ -47,10 +47,10 @@ public class TopbarUIController : MonoBehaviour
             var icon = muteMyAudioBtn.transform.Find("Icon").GetComponent<Image>();
             if(audioInput.ToggleMute()){
                 icon.sprite = muteAudioIcon;
-                icon.color = Colors.GetColorByName("red");
+                icon.color = Colors.GetColor("red");
             }else{
                 icon.sprite = audioIcon;
-                icon.color = Colors.GetColorByName("black");
+                icon.color = Colors.GetColor("black");
             }
         });
 
@@ -58,15 +58,15 @@ public class TopbarUIController : MonoBehaviour
             var icon = disableVideoBtn.transform.Find("Icon").GetComponent<Image>();
             if(videoManager.ToggleVideo()){
                 icon.sprite = disableVideoIcon;
-                icon.color = Colors.GetColorByName("red");
+                icon.color = Colors.GetColor("red");
             }else{
                 icon.sprite = videoIcon;
-                icon.color = Colors.GetColorByName("black");
+                icon.color = Colors.GetColor("black");
             }
         });
 
         roomBtn.onClick.AddListener(() => {
-            Sharing.ShareRoom();
+            SharingManager.ShareRoom();
         });
 
         otherUserBubble.GetComponent<Button>().onClick.AddListener(() => {
@@ -74,10 +74,10 @@ public class TopbarUIController : MonoBehaviour
                 var icon = otherUserBubble.transform.Find("Icon").GetComponent<Image>();
                 if(audioOutput.ToggleMute()){
                     icon.sprite = muteAudioIcon;
-                    icon.color = Colors.GetColorByName("red");
+                    icon.color = Colors.GetColor("red");
                 }else{
                     icon.sprite = audioIcon;
-                    icon.color = Colors.GetColorByName("black");
+                    icon.color = Colors.GetColor("black");
                 }
             }
         });

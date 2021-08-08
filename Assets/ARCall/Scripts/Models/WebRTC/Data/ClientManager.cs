@@ -9,8 +9,6 @@ public class ClientManager : MonoBehaviour
     public event Action<string> OnDelete;
     public event Action<string> OnColorSelected;
 
-    // public InputManager inputManager;
-
 
     public void SelectTool(string toolName){
         OnToolSelected?.Invoke(toolName);

@@ -1,12 +1,14 @@
 using System;
 using Firebase;
+using Firebase.Auth;
+using Firebase.Database;
 using Firebase.Extensions;
 using UnityEngine;
 
 public class FirebaseInit : MonoBehaviour
 {
     public static Firebase.FirebaseApp FirebaseApp;
-    public static event Action OnReady;
+    public static event Action<FirebaseDatabase,FirebaseAuth> OnReady;
     public static bool Ready;
     
     // Start is called before the first frame update
@@ -18,21 +20,10 @@ public class FirebaseInit : MonoBehaviour
                 // Create and hold a reference to your FirebaseApp,
                 // where app is a Firebase.FirebaseApp property of your application class.
                 FirebaseApp = FirebaseApp.DefaultInstance;
-                DatabaseManager.Database = Firebase.Database.FirebaseDatabase.DefaultInstance;
-                UserManager.LogIn(Firebase.Auth.FirebaseAuth.GetAuth(FirebaseApp));
-                #if UNITY_ANDROID || UNITY_EDITOR
-                    if(UserManager.IsUserRegistered()){
-                        UISceneNav.LoadScene("Main");
-                    }else{
-                        UISceneNav.LoadScene("RegistroTlf");
-                    }
-                #else
-                    UISceneNav.LoadScene("JoinRoom");
-                #endif
-
+   
                 // Set a flag here to indicate whether Firebase is ready to use by your app.
                 Ready = true;
-                OnReady?.Invoke();
+                OnReady?.Invoke(Firebase.Database.FirebaseDatabase.DefaultInstance,Firebase.Auth.FirebaseAuth.GetAuth(FirebaseApp));
             } else {
                 UnityEngine.Debug.LogError(System.String.Format(
                 "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
