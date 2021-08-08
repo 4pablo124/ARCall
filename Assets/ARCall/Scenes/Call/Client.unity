@@ -2660,7 +2660,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1004894996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ec27e6e86f1b1841b133e2f99889516, type: 3}
+  m_Script: {fileID: 11500000, guid: 92c6cc054440647479c7e70a67b36e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioIcon: {fileID: 21300000, guid: da7db09419ea2e742a374c563b438e28, type: 3}
@@ -4911,7 +4911,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2012942955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2e8f3895c6f1594b88beeca48a18094, type: 3}
+  m_Script: {fileID: 11500000, guid: f4fee5d4d5f47fa4fa074954a621fb9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   peer: 1
