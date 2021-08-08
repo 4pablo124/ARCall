@@ -1,20 +1,18 @@
 using System;
 using System.Threading.Tasks;
 using Firebase.Auth;
-using Firebase.Database;
 using Firebase.Extensions;
 using UnityEngine;
 
-public static class AuthManager
+public static class UserManager
 {
-
     public static event Action OnVerificationCompleted;
     public static event Action OnVerificationFailed;
     public static event Action OnCodeSent;
     public static event Action OnCodeAutoRetrievalTimeOut;
+    public static User CurrentUser;
 
     public static FirebaseAuth Auth;
-
     private static string verificationId;
 
     public static bool IsUserRegistered(){
@@ -27,25 +25,33 @@ public static class AuthManager
     }
 
     public static async void SignOut(){
-        if(AuthManager.Auth.CurrentUser.IsAnonymous){
+        if(UserManager.Auth.CurrentUser.IsAnonymous){
             await Auth.CurrentUser.DeleteAsync();
         }
+
+        CurrentUser = null;
         Auth.SignOut();
     }
 
+    public static void LogIn(FirebaseAuth auth){
+        Auth = auth;
+        if(IsUserRegistered()){
+            CurrentUser = new User(Auth.CurrentUser.DisplayName, Auth.CurrentUser.DisplayName);
+        }else{
+            CurrentUser = new User();
+        }
+    }
     
     public static Task ChangeUsername(string username){
         UserProfile profile = new UserProfile();
-        profile.DisplayName = username;
+        CurrentUser.username = profile.DisplayName = username;
         return Auth.CurrentUser.UpdateUserProfileAsync(profile);
     }
 
-    public static void ChangePhoneNumber(string phoneNumber){
-        
-    }
-
-
     public static void SendVerificationCode(string countryCode, string phoneNumber){
+
+        CurrentUser.phoneNumber = phoneNumber;
+
         PhoneAuthProvider.GetInstance(Auth).VerifyPhoneNumber(countryCode+phoneNumber, 120000, null,
             verificationCompleted: async (credential) => {
                 // Auto-sms-retrieval or instant validation has succeeded (Android only).
@@ -60,6 +66,9 @@ public static class AuthManager
                 // The verification code was not sent.
                 // `error` contains a human readable explanation of the problem.
                 Debug.LogError(error);
+
+                CurrentUser.phoneNumber = null;
+
                 OnVerificationFailed?.Invoke();
             },
             codeSent: (id, token) => {
@@ -96,7 +105,7 @@ public static class AuthManager
     private static Task VerifyPhoneCredential(Credential credential){
         return Auth.SignInWithCredentialAsync(credential).ContinueWithOnMainThread(task => {
             var userID = OneSignal.GetPermissionSubscriptionState().subscriptionStatus.userId;
-            return FirebaseDatabase.DefaultInstance.GetReference("UserIDs").Child(AuthManager.Auth.CurrentUser.PhoneNumber).SetValueAsync(userID);
+            return DatabaseManager.SetUserID(UserManager.Auth.CurrentUser.PhoneNumber,userID);
         });
     }
 }

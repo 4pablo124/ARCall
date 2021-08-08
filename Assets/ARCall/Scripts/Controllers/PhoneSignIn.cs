@@ -23,10 +23,10 @@ public class PhoneSignIn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AuthManager.OnVerificationCompleted += OnVerificationCompleted;
-        AuthManager.OnVerificationFailed += OnVerificationFailed;
-        AuthManager.OnCodeSent += OnCodeSent;
-        AuthManager.OnCodeAutoRetrievalTimeOut += OnCodeAutoRetrievalTimeOut;
+        UserManager.OnVerificationCompleted += OnVerificationCompleted;
+        UserManager.OnVerificationFailed += OnVerificationFailed;
+        UserManager.OnCodeSent += OnCodeSent;
+        UserManager.OnCodeAutoRetrievalTimeOut += OnCodeAutoRetrievalTimeOut;
 
         sendBtn.onClick.AddListener(() => SendCode(phoneInput.text));
         phoneInput.onSubmit.AddListener((phone) => {if(IsValidPhoneInput()) SendCode(phone);});
@@ -51,14 +51,14 @@ public class PhoneSignIn : MonoBehaviour
     void SendCode(string phone){
         // codeNotif.text = "Enviando codigo!";
         AndroidUtils.ShowToast("¡Enviando codigo!");
-        AuthManager.SendVerificationCode(CountryCodes.SPAIN,phone);
+        UserManager.SendVerificationCode(CountryCodes.SPAIN,phone);
     }
 
     async void VerifyPhone(string code){
         // codeNotif.text = "Enviando codigo!";
         // AndroidUtils.ShowToast("¡Enviando codigo!");
         
-        if( await AuthManager.VerifyPhone(codeInput.text) ){
+        if( await UserManager.VerifyPhone(codeInput.text) ){
             Unsubscribe();
             UISceneNav.LoadScene("Registro");
         }else{
@@ -99,9 +99,9 @@ public class PhoneSignIn : MonoBehaviour
     }
 
     private void Unsubscribe(){
-        AuthManager.OnVerificationCompleted -= OnVerificationCompleted;
-        AuthManager.OnVerificationFailed -= OnVerificationFailed;
-        AuthManager.OnCodeSent -= OnCodeSent;
-        AuthManager.OnCodeAutoRetrievalTimeOut -= OnCodeAutoRetrievalTimeOut;
+        UserManager.OnVerificationCompleted -= OnVerificationCompleted;
+        UserManager.OnVerificationFailed -= OnVerificationFailed;
+        UserManager.OnCodeSent -= OnCodeSent;
+        UserManager.OnCodeAutoRetrievalTimeOut -= OnCodeAutoRetrievalTimeOut;
     }
 }

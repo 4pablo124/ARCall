@@ -20,11 +20,9 @@ public class RoomsController : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start() {
+    async void Start() {
         if(peerType == PeerType.Host){
-            RoomManager.GenerateRoomID().ContinueWithOnMainThread( roomIDTask => {
-                roomIDText.text = roomIDTask.Result;
-            });
+            roomIDText.text = await RoomManager.GenerateRoomID();
             shareBtn.onClick.AddListener(() => Sharing.ShareRoom());
             joinBtn.onClick.AddListener(() => JoinRoom(roomIDText.text));
         }else{
@@ -35,18 +33,18 @@ public class RoomsController : MonoBehaviour
 
     }
 
-    private void Update() {
-        if(peerType == PeerType.Host) shareBtn.interactable = IsValidRoomCode();
+    void Update() {
+        if(peerType == PeerType.Host) {
+            shareBtn.interactable = IsValidRoomCode();
+        }
         joinBtn.interactable = IsValidRoomCode();
     }
 
-    void JoinRoom(string roomID){
+    async void JoinRoom(string roomID){
         RoomManager.RoomID = roomID;
-        RoomManager.JoinRoom(peerType).ContinueWithOnMainThread(success =>{
-            if(!success.Result){
-                AndroidUtils.ShowToast("¡Código de sala incorrecto!");
-            }
-        });
+        if(!await RoomManager.JoinRoom(peerType)){
+            AndroidUtils.ShowToast("¡Código de sala incorrecto!");
+        }
     }
 
     bool IsValidRoomCode(){

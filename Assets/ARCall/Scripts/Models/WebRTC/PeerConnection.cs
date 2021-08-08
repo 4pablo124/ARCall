@@ -2,9 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Firebase.Database;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using TMPro;
 using Unity.WebRTC;
 using UnityEngine;
@@ -25,7 +22,7 @@ public class PeerConnection : MonoBehaviour
     private ClientManager clientManager;    
     private ARToolManager arToolManager;  
 
-    private DatabaseReference database;
+    // private DatabaseReference database;
     private RTCDataChannel audioDataChannel, remoteAudioDataChannel, clientInputDataChannel,
     aspectRatioDataChannel, clientActionDataChannel, clientTextDataChannel;
     private RTCConfiguration RTCconfig;
@@ -46,34 +43,32 @@ public class PeerConnection : MonoBehaviour
         //Establecemos ID de la sala
         GameObject.Find("RoomBtn").GetComponentInChildren<TextMeshProUGUI>().text = RoomManager.RoomID;
 
-        // Obetemos referencia a la base de datos
-        database = FirebaseDatabase.DefaultInstance.GetReference("Rooms").Child(RoomManager.RoomID);
-        Debug.Log($"{myPeerType} - Obtenida referencia de database: {database}");
-
-
         // Inicializamos los callbacks
         SceneManager.sceneUnloaded += OnSceneUnloaded;
 
         // Host realiza llamada cuando llegue el cliente
-        if(ImHost()) database.Child("Client").ChildAdded += (sender, args) => { StartCoroutine(Call()); };
+        if(ImHost()) DatabaseManager.OnClientReady += OnClientReadyDelegate;
 
         // Cuando recibimos un mensaje invocamos de manera asincrona la lectura del mismo
-        database.Child("Messages").ChildAdded += (sender, args) => { StartCoroutine(ReadMessageDB(args)); };
+        DatabaseManager.OnMessageReceived += OnMessageReceivedDelegate;
 
         WebRTC.Initialize(type: EncoderType.Software, limitTextureSize: true);
     }
+
+    void OnClientReadyDelegate(){
+        StartCoroutine(Call());
+    }
+
+    void OnMessageReceivedDelegate(Message msg){
+        StartCoroutine(ReadMessageDB(msg));
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
         // Señalizamos que el peer esta listo
-        if(ImHost()){
-            database.Child("Host").Child("Ready").SetValueAsync(true);
-        }else{
-            database.Child("Client").Child("Ready").SetValueAsync(true);     
-        }
-        // Evitamos que la pantalla se apague
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        DatabaseManager.ReadyUser(RoomManager.RoomID,myPeerType);
 
         // Configuramos servidores ICE
         RTCconfig = ServersConfig();
@@ -86,7 +81,7 @@ public class PeerConnection : MonoBehaviour
 
         // Cuando se encuentre un Ice Candidate
         pc.OnIceCandidate = candidate => {
-            SendMessageDB(myPeerType,new Data{ ice = InitIceCandidate(candidate) });
+            DatabaseManager.SendMessage(RoomManager.RoomID, myPeerType,new Data{ ice = InitIceCandidate(candidate) });
             Debug.Log($"{myPeerType} - Ice Enviado: {candidate.Candidate}");
         };
 
@@ -274,7 +269,7 @@ public class PeerConnection : MonoBehaviour
         Debug.Log($"{myPeerType} - Guardada Offer (LocalDescription): {!op2.IsError}");
 
         Debug.Log($"{myPeerType} - Enviando Offer: {!op2.IsError}");
-        SendMessageDB(myPeerType, new Data{ sdp = pc.LocalDescription });
+        DatabaseManager.SendMessage(RoomManager.RoomID, myPeerType, new Data{ sdp = pc.LocalDescription });
     }
 
 
@@ -303,6 +298,9 @@ public class PeerConnection : MonoBehaviour
     }
 
     private void OnDestroy(){
+        if(ImHost()) DatabaseManager.OnClientReady -= OnClientReadyDelegate;
+        DatabaseManager.OnMessageReceived -= OnMessageReceivedDelegate;
+
         WebRTC.Dispose();
     }
 
@@ -332,19 +330,8 @@ public class PeerConnection : MonoBehaviour
     }
 
 
-
-    // DATABASE AUX 
-    private void SendMessageDB(PeerType peerType, Data data){
-        JObject messageJSON = JObject.FromObject(
-            new Message{ peerType = peerType, data = data }
-        );
-        var msg = database.Child("Messages").Push().SetRawJsonValueAsync(messageJSON.ToString());
-    }
-    
     // Lee un mensaje mediante la base de datos, se invoca cada vez que se envie un mensaje
-    private IEnumerator ReadMessageDB(ChildChangedEventArgs args){
-        var msg = JsonConvert.DeserializeObject<Message>(args.Snapshot.GetRawJsonValue());
-        args.Snapshot.Reference.RemoveValueAsync();
+    private IEnumerator ReadMessageDB(Message msg){
         //El mensaje es para mi
         if(myPeerType != msg.peerType){
 
@@ -375,7 +362,7 @@ public class PeerConnection : MonoBehaviour
                 Debug.Log($"{myPeerType} - Guardada Answer (LocalDescription): {!op3.IsError}");
 
                 // Y la enviamos
-                SendMessageDB(myPeerType, new Data{ sdp = pc.LocalDescription });
+                DatabaseManager.SendMessage(RoomManager.RoomID, myPeerType, new Data{ sdp = pc.LocalDescription });
             }
 
             // Me envia Sdp (Answer)
@@ -394,13 +381,13 @@ public class PeerConnection : MonoBehaviour
     }
     private void UnReadyUser(){
         // Quitamos al peer de la base de datos, se eliminara la sala automaticamente cuando no haya peers
-        database.Child(myPeerType.ToString()).RemoveValueAsync();
+        DatabaseManager.UnReadyUser(RoomManager.RoomID,myPeerType);
         // Devolvemos la pantalla a su estado original
-        Screen.sleepTimeout = SleepTimeout.SystemSetting;
+        Screen.sleepTimeout = SleepTimeout.SystemSetting; //RODO: poner tambien en record
     }
 
     private void ReadyUser(){
-        database.Child(myPeerType.ToString()).Child("Ready").SetValueAsync(true);
+        DatabaseManager.ReadyUser(RoomManager.RoomID,myPeerType);
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 

@@ -32,14 +32,12 @@ public class NameSetUp : MonoBehaviour
     }
 
     public void RegisterName(string name){
-        if(AuthManager.IsUserRegistered()){
-            AuthManager.ChangeUsername(name).ContinueWithOnMainThread(task => {
-                Debug.Log(AuthManager.Auth.CurrentUser.DisplayName);
+        if(UserManager.IsUserRegistered()){
+            UserManager.ChangeUsername(name).ContinueWithOnMainThread(task => {
                 UISceneNav.LoadScene("Main");
             });
         }else{
-            AuthManager.SignUp(name).ContinueWithOnMainThread(task => {
-                Debug.Log(AuthManager.Auth.CurrentUser.DisplayName);
+            UserManager.SignUp(name).ContinueWithOnMainThread(task => {
                 UISceneNav.LoadScene("Main");
             });
         }

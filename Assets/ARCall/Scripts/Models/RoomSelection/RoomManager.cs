@@ -1,24 +1,20 @@
 using System;
 using System.Threading.Tasks;
-using Firebase.Database;
 using UnityEngine;
 
 public static class RoomManager {
-    public static string RoomID = "0000"; //TODO: Temporal
-    
+    public static string RoomID = "0000";
     //Genera un codigo de sala
     public static async Task<String> GenerateRoomID(){
         int _min = 1000;
         int _max = 9999;
         var random = new System.Random();
-        DataSnapshot snapshot;
         string roomID;
 
         do{
             roomID = random.Next(_min, _max).ToString();
             Debug.Log($"Evaluando codigo de sala: {roomID}");
-            snapshot = await FirebaseDatabase.DefaultInstance.GetReference("Rooms").Child(roomID).GetValueAsync();
-        }while(snapshot.Exists);
+        }while(await DatabaseManager.RoomIDExists(roomID));
         
         Debug.Log($"Sala valida: {roomID}");
         
@@ -32,8 +28,7 @@ public static class RoomManager {
             UISceneNav.LoadScene("Host");
             return true;
         }else{
-            var snapshot = await FirebaseDatabase.DefaultInstance.GetReference("Rooms").Child(RoomID).GetValueAsync();
-            if(snapshot.Exists){
+            if(await DatabaseManager.RoomIDExists(RoomID)){
                 UISceneNav.LoadScene("Client");
                 return true;
             }else{

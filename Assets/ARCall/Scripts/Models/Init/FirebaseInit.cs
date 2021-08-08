@@ -19,9 +19,9 @@ public class FirebaseInit : MonoBehaviour
                 // where app is a Firebase.FirebaseApp property of your application class.
                 FirebaseApp = FirebaseApp.DefaultInstance;
                 DatabaseManager.Database = Firebase.Database.FirebaseDatabase.DefaultInstance;
-                AuthManager.Auth = Firebase.Auth.FirebaseAuth.GetAuth(FirebaseApp);
+                UserManager.LogIn(Firebase.Auth.FirebaseAuth.GetAuth(FirebaseApp));
                 #if UNITY_ANDROID || UNITY_EDITOR
-                    if(AuthManager.IsUserRegistered()){
+                    if(UserManager.IsUserRegistered()){
                         UISceneNav.LoadScene("Main");
                     }else{
                         UISceneNav.LoadScene("RegistroTlf");

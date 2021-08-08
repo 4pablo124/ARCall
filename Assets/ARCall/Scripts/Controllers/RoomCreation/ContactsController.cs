@@ -25,7 +25,7 @@ public class ContactsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(!AuthManager.Auth.CurrentUser.IsAnonymous){
+        if(UserManager.CurrentUser.phoneNumber != null){
             if(!Permission.HasUserAuthorizedPermission("android.permission.READ_CONTACTS")){
                 Permission.RequestUserPermission("android.permission.READ_CONTACTS", permissionCallback);
             }else{
@@ -38,7 +38,6 @@ public class ContactsController : MonoBehaviour
             transform.parent.gameObject.SetActive(false);
         }
     }
-
 
     void PermissionGranted(string permissionName){
         AddressBook.ReadContacts((result, error) => {
@@ -64,22 +63,17 @@ public class ContactsController : MonoBehaviour
             contactLine.Find("Nombre").GetComponent<TextMeshProUGUI>().text = contact.FirstName + " " + contact.LastName;
 
             // Enlazamos numero de telefono al boton
-            contactLine.Find("Llamar").GetComponent<Button>().onClick.AddListener(()=>{
+            contactLine.Find("Llamar").GetComponent<Button>().onClick.AddListener(async ()=>{
                 var phoneNumber = contact.PhoneNumbers[0].Replace(" ", string.Empty);
                 phoneNumber = phoneNumber[0] == '+' ? phoneNumber : "+34" + phoneNumber;
 
-                FirebaseDatabase.DefaultInstance.GetReference("UserIDs").Child(phoneNumber).GetValueAsync().ContinueWithOnMainThread(async task =>{
-                    if(task.Result.Exists){
-                        Sharing.SendNotification(userID: task.Result.Value.ToString());
-                    }else{
-                        await Sharing.ShareRoomWhatsappContact(phoneNumber);
-                    }
-
-                    await RoomManager.JoinRoom(PeerType.Host);
-                });
-
+                var userID = await DatabaseManager.GetUserID(phoneNumber);
+                if(userID != null){
+                    Sharing.SendNotification(userID);
+                }else{
+                    Sharing.ShareRoomWhatsappContact(phoneNumber);
+                }
             });
-
         }
     }
 }
