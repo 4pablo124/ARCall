@@ -1,0 +1,2 @@
+086277a2e13f4b3581331270e43812ae|C:\Proyectos\ARCall\Assets\ImageTracking\TrackedImages\one.png|0.2159
+2bff782a01e84d28a59a0bac90344fbc|C:\Proyectos\ARCall\Assets\ImageTracking\TrackedImages\two.png|0.2159
