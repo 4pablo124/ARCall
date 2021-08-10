@@ -25,20 +25,18 @@ public static class Colors {
         new Entry("yellow","#FFF64A"),
     };
 
-    public static Color GetColor(string name) 
-    { 
-         var entry = colors.Find(c => c.name == name);
-         if (entry != null) {
-              return entry.color;
-         }
-         return Color.white;
+    public static Color GetColor(string name) { 
+        var entry = colors.Find(c => c.name == name);
+        if (entry != null) {
+            return entry.color;
+        }
+        return Color.white;
     }
-    public static string GetHex(string name) 
-    { 
-         var entry = colors.Find(c => c.name == name);
-         if (entry != null) {
-              return entry.name;
-         }
-         return "#FFFFFF";
+    public static string GetHex(string name) { 
+        var entry = colors.Find(c => c.name == name);
+        if (entry != null) {
+            return entry.hex;
+        }
+        return "#FFFFFF";
     }
 }

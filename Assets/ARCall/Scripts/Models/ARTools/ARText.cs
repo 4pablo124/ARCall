@@ -43,7 +43,7 @@ public class ARText : MonoBehaviour
                 if(arRaycastManager.Raycast(cam.ScreenPointToRay(screenPoint),hitResults,TrackableType.All)){
                     Pose hitPose = hitResults[0].pose;
                     currentMarker = AddMarker(hitPose.position);   
-                    aRToolManager.placeGuide(myPeerType, currentMarker.transform);
+                    aRToolManager.PlaceGuide(myPeerType, currentMarker.transform);
                 }
             }
         }else if(currentMarker != null){

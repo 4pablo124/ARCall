@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Firebase.Extensions;
 
-public class NameRegisterUIController : MonoBehaviour
+public class RegisterNameUIController : MonoBehaviour
 {
 
     private TMP_InputField nameInput;

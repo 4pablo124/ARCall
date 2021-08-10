@@ -19,7 +19,7 @@ public class AppEntryPoint : MonoBehaviour
             if(UserManager.IsUserRegistered()){
                 MySceneManager.LoadScene("Main");
             }else{
-                MySceneManager.LoadScene("RegistroTlf");
+                MySceneManager.LoadScene("RegisterPhone");
             }
         #else
             UISceneNav.LoadScene("JoinRoom");

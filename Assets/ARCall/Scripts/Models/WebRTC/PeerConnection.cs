@@ -65,10 +65,10 @@ public class PeerConnection : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    async void Start()
     {
         // Señalizamos que el peer esta listo
-        DatabaseManager.ReadyUser(RoomManager.RoomID,myPeerType);
+        await DatabaseManager.ReadyUser(RoomManager.RoomID,myPeerType);
 
         // Configuramos servidores ICE
         RTCconfig = ServersConfig();
@@ -379,20 +379,17 @@ public class PeerConnection : MonoBehaviour
         }
 
     }
-    private void UnReadyUser(){
+    private async void UnReadyUser(){
         // Quitamos al peer de la base de datos, se eliminara la sala automaticamente cuando no haya peers
-        DatabaseManager.UnReadyUser(RoomManager.RoomID,myPeerType);
+        await DatabaseManager.UnReadyUser(RoomManager.RoomID,myPeerType);
         // Devolvemos la pantalla a su estado original
         Screen.sleepTimeout = SleepTimeout.SystemSetting; //RODO: poner tambien en record
     }
 
-    private void ReadyUser(){
-        DatabaseManager.ReadyUser(RoomManager.RoomID,myPeerType);
+    private async void ReadyUser(){
+        await DatabaseManager.ReadyUser(RoomManager.RoomID,myPeerType);
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
-
-
-
 
 
     // CONNECTION AUX
@@ -439,7 +436,7 @@ public class PeerConnection : MonoBehaviour
 
     // MISC AUX
 
-    public bool ImHost(){
+    private bool ImHost(){
         return myPeerType == PeerType.Host;
     }
 }

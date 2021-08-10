@@ -4,8 +4,8 @@ using UnityEngine;
 public class BackButtonController : MonoBehaviour {
 
     private string[] invalidScenes = new []{
-        "RegistroTlf",
-        "Registro"
+        "RegisterPhone",
+        "RegisterName"
     };
 
     private void Start() {

@@ -42,7 +42,6 @@ public class TopbarUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         muteMyAudioBtn.onClick.AddListener(() => {
             var icon = muteMyAudioBtn.transform.Find("Icon").GetComponent<Image>();
             if(audioInput.ToggleMute()){

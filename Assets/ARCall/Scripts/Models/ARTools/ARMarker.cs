@@ -40,7 +40,7 @@ public class ARMarker : MonoBehaviour
                 if(arRaycastManager.Raycast(cam.ScreenPointToRay(screenPoint),hitResults,TrackableType.All)){
                     Pose hitPose = hitResults[0].pose;
                     var marker = AddMarker(hitPose.position);
-                    aRToolManager.placeGuide(myPeerType, marker.transform);
+                    aRToolManager.PlaceGuide(myPeerType, marker.transform);
                 }
             }
         }else{

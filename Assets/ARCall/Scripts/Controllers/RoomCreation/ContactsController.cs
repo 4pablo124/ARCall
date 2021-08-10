@@ -25,8 +25,7 @@ public class ContactsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(UserManager.CurrentUser.phoneNumber);
-        if(UserManager.CurrentUser.phoneNumber != null){
+        if(UserManager.CurrentUser!=null && UserManager.CurrentUser.phoneNumber != null){
             if(!Permission.HasUserAuthorizedPermission("android.permission.READ_CONTACTS")){
                 Permission.RequestUserPermission("android.permission.READ_CONTACTS", permissionCallback);
             }else{
@@ -36,7 +35,7 @@ public class ContactsController : MonoBehaviour
             });
             }
         }else{
-            transform.parent.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
         }
     }
 

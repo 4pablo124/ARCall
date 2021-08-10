@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PhoneVerificationUIController : MonoBehaviour
+public class RegisterPhoneUIController : MonoBehaviour
 {
     private TMP_InputField phoneInput;
     private TMP_InputField codeInput;
@@ -36,7 +36,7 @@ public class PhoneVerificationUIController : MonoBehaviour
 
         skipBtn.onClick.AddListener(() => {
             Unsubscribe();
-            MySceneManager.LoadScene("Registro");
+            MySceneManager.LoadScene("RegisterName");
         });
 
     }
@@ -56,7 +56,7 @@ public class PhoneVerificationUIController : MonoBehaviour
     async void VerifyPhone(string code){        
         if( await UserManager.VerifyPhone(codeInput.text) ){
             Unsubscribe();
-            MySceneManager.LoadScene("Registro");
+            MySceneManager.LoadScene("RegisterName");
         }else{
             AndroidUtils.ShowToast("¡Código Incorrecto!");
         }
@@ -73,7 +73,7 @@ public class PhoneVerificationUIController : MonoBehaviour
         AndroidUtils.ShowToast("¡Verificación automatica completada!");
 
         Unsubscribe();
-        MySceneManager.LoadScene("Registro");
+        MySceneManager.LoadScene("RegisterName");
     }
 
     private void OnVerificationFailed(){

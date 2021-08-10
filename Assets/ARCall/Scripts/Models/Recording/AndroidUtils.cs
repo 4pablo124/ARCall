@@ -109,7 +109,7 @@ public class AndroidUtils : MonoBehaviour
 
     public void SetFilePath(string filename){
         fileName = filename;
-        filePath = Path.Combine("/storage/emulated/0/Movies/ARCall/",filename); //TODO: probar con Path.Combine en vez de +
+        filePath = Path.Combine("/storage/emulated/0/Movies/ARCall/",filename);
     }
 
     #endregion

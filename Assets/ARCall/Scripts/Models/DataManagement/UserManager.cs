@@ -25,7 +25,7 @@ public static class UserManager
     }
 
     public static async void SignOut(){
-        if(Auth.CurrentUser.IsAnonymous){
+        if(Auth.CurrentUser != null && Auth.CurrentUser.IsAnonymous){
             await Auth.CurrentUser.DeleteAsync();
         }
 

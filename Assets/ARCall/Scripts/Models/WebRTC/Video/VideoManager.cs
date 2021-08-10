@@ -39,30 +39,6 @@ public class VideoManager : MonoBehaviour {
         arToolTipsUI = GameObject.Find("ARToolTipsUI")?.GetComponentInChildren<Canvas>();
     }
 
-    // private void Start() {
-    //     width = Screen.width/2;
-    //     height = Screen.height/2;
-    // }
-
-    // TODO: implementar webcam para no ar
-
-    // private void changeCamera(ARSessionStateChangedEventArgs args) {
-    //     if(args.state == ARSessionState.Ready || args.state == ARSessionState.SessionTracking){
-    //         aspectRatio = arCam.aspect;
-    //         height = (int)Math.Round(width/aspectRatio);
-    //         mainCam = arCam;
-    //     }
-    //     if(args.state == ARSessionState.Unsupported){
-    //         arSession.enabled=false;
-    //         arToolTipsUI.gameObject.SetActive(false);
-    //         webcamTexture = new WebCamTexture();
-    //         webcamTexture.Play();
-    //         mainCam = webCam;
-    //     }
-    //     ARSession.stateChanged -= changeCamera;
-    //     RecordCamera();
-    // }
-
 
     private void Start() {
         if(isRecording) RecordCamera();
@@ -72,7 +48,7 @@ public class VideoManager : MonoBehaviour {
         aspectRatio = arCam.aspect;
         height = (int)Math.Round(width/aspectRatio);
         mainCam = arCam; 
-
+        Debug.Log(mainCam);
         if(!isRecording) videoStream = mainCam.CaptureStream(width, height, (int)bitrate);
 
         if(mainCam == arCam) videoRawImage.texture = arCam.targetTexture;
@@ -95,12 +71,12 @@ public class VideoManager : MonoBehaviour {
 
     public void ShowVideo(bool show){
         noVideoCanvas.enabled = !show;
-        ARToolManager.hostDrawings.gameObject.SetActive(show);
-        ARToolManager.hostGuides.gameObject.SetActive(show);
-        ARToolManager.clientDrawings.gameObject.SetActive(show);
-        ARToolManager.clientGuides.gameObject.SetActive(show);
-        arToolTipsUI.gameObject.SetActive(show);
-        arSession.enabled = show;
+        ARToolManager.hostDrawings.SetActive(show);
+        ARToolManager.hostGuides.SetActive(show);
+        ARToolManager.clientDrawings.SetActive(show);
+        ARToolManager.clientGuides.SetActive(show);
+        // arToolTipsUI.gameObject.SetActive(show);
+        if(arSession != null) arSession.enabled = show;
         videoDisabled = !show;
     }
 

@@ -31,6 +31,7 @@ public class AudioManager : MonoBehaviour
     public byte[] Encode(byte[] data, int length) {
         return data != null ? EncodeLength(data, length) : new byte[1];
     }
+    
     public void Decode(byte[] bytes){
         if(bytes.Length != 1){
             int size = sizeof(int);

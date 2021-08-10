@@ -77,6 +77,8 @@ public static class SharingManager{
         }
     }
 
+    // Private Methods
+
     private static Task<ShortDynamicLink> CreateDynamicRoomLink(){
         var components = new DynamicLinkComponents(
             new Uri("https://arcall.web.app/call/"+RoomManager.RoomID), "https://arcall.page.link"){

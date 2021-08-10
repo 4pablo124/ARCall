@@ -1,6 +1,5 @@
 public class User {
-
-    public User(string username = "", string phoneNumber = ""){
+    public User(string username = null, string phoneNumber = null){
         this.username = username;
         this.phoneNumber = phoneNumber;
     }

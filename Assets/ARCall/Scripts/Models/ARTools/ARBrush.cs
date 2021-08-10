@@ -47,7 +47,7 @@ public class ARBrush : MonoBehaviour
                                                                 ARToolManager.hostDrawings.transform :
                                                                 ARToolManager.clientDrawings.transform;
 
-            aRToolManager.placeGuide(myPeerType,lineClone.transform);
+            aRToolManager.PlaceGuide(myPeerType,lineClone.transform);
             Destroy(line.gameObject);
         }
     }

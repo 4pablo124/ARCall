@@ -19,7 +19,6 @@ public class ARToolManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
         hostDrawings = GameObject.Find("HostDrawings");
         clientDrawings = GameObject.Find("ClientDrawings");
 
@@ -110,7 +109,7 @@ public class ARToolManager : MonoBehaviour
         }
     }
 
-    public void placeGuide(PeerType peer, Transform target){
+    public GameObject PlaceGuide(PeerType peer, Transform target){
         var guide = GameObject.Instantiate(guidePrefab);
         var parent = peer == PeerType.Host ? hostGuides : clientGuides;
 
@@ -118,5 +117,7 @@ public class ARToolManager : MonoBehaviour
         guide.GetComponent<ARGuide>().target = target;
         guide.GetComponent<SpriteRenderer>().color = peer == PeerType.Host ?
             hostMaterial.color : clientMaterial.color;
+
+        return guide;
     }
 }
