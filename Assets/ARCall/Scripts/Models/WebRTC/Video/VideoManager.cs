@@ -42,6 +42,7 @@ public class VideoManager : MonoBehaviour {
 
 
     private void Start() {
+        StartCoroutine(ARSession.CheckAvailability());
         if(isRecording) RecordCamera();
     }
 

@@ -198,7 +198,7 @@ public class PeerConnection : MonoBehaviour
                                 case "ARBrush":case "ARPointer":case "ARMarker":case "ARText":
                                     arToolManager.SelectTool(PeerType.Client,msg);
                                 break;
-                                case "red":case "green":case "blue":case "yellow":
+                                case "DC6B6D":case "6BDC99":case "6BD4DC":case "FFF64A":
                                     arToolManager.SelectColor(PeerType.Client,msg);
                                 break;
                             }
@@ -325,7 +325,7 @@ public class PeerConnection : MonoBehaviour
         #if UNITY_ANDROID || UNITY_EDITOR
             MySceneManager.LoadScene("Main");
         #else
-            UISceneNav.LoadScene("JoinRoom");
+            MySceneManager.LoadScene("JoinRoom");
         #endif
     }
 

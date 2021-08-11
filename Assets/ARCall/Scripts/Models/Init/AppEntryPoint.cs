@@ -22,7 +22,7 @@ public class AppEntryPoint : MonoBehaviour
                 MySceneManager.LoadScene("RegisterPhone");
             }
         #else
-            UISceneNav.LoadScene("JoinRoom");
+            MySceneManager.LoadScene("JoinRoom");
         #endif
 
     }
