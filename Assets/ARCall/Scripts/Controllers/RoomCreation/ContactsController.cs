@@ -69,6 +69,7 @@ public class ContactsController : MonoBehaviour
 
                 var userID = await DatabaseManager.GetUserID(phoneNumber);
                 if(userID != null){
+                    Debug.Log(userID);
                     SharingManager.SendNotification(userID);
                 }else{
                     SharingManager.ShareRoomWhatsappContact(phoneNumber);

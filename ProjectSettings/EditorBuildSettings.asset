@@ -32,10 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ARCall/Scenes/SignIn/RegisterPhone.unity
     guid: a74b29d2f2975d04bbe5484e9be51430
-  - enabled: 1
+  - enabled: 0
     path: Assets/ARCall/Scenes/Tests/Test_ARTools.unity
     guid: 00d12e63ce899b74bb0ee6ab320d6cfe
-  - enabled: 1
+  - enabled: 0
     path: Assets/ARCall/Scenes/Tests/Test_VideoManager.unity
     guid: 60c9e27a703b46443a72e4eca8f29a70
   m_configObjects:

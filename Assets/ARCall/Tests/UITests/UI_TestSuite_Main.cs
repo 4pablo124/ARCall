@@ -68,7 +68,8 @@ public class UI_TestSuite_Main : TestDependenciesSetUp
 
         Assert.AreEqual(SceneManager.GetActiveScene().name, "RegisterPhone");
 
-        Assert.Null(UserManager.CurrentUser);
+        Assert.Null(UserManager.CurrentUser.username);
+        Assert.Null(UserManager.CurrentUser.phoneNumber);
         UserManager.LogIn(auth);
     }
 }

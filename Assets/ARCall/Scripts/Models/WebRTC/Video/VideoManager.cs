@@ -26,7 +26,7 @@ public class VideoManager : MonoBehaviour {
     private Camera arCam, webCam;
     private RawImage webCamRawImage;
     private WebCamTexture webcamTexture;
-    private Canvas noVideoCanvas;
+    private GameObject noVideoAR, noVideoUI;
     private Canvas arToolTipsUI;
 
 
@@ -35,7 +35,8 @@ public class VideoManager : MonoBehaviour {
         arSession = GameObject.Find("ARSession")?.GetComponent<ARSession>();
         arCam = GameObject.Find("ARCamera")?.GetComponent<Camera>();
         videoRawImage = GameObject.Find("VideoRawImage").GetComponent<RawImage>();
-        noVideoCanvas = GameObject.Find("NoVideo")?.GetComponent<Canvas>();
+        noVideoAR = transform.Find("NoVideoAR")?.gameObject;
+        noVideoUI = transform.Find("NoVideoUI")?.gameObject;
         arToolTipsUI = GameObject.Find("ARToolTipsUI")?.GetComponentInChildren<Canvas>();
     }
 
@@ -53,7 +54,7 @@ public class VideoManager : MonoBehaviour {
 
         if(mainCam == arCam) videoRawImage.texture = arCam.targetTexture;
 
-        noVideoCanvas.worldCamera = mainCam;
+        noVideoAR.GetComponent<Canvas>().worldCamera = mainCam;
 
         videoRawImage.GetComponent<AspectRatioFitter>().aspectRatio = aspectRatio;
         videoRawImage.color = Color.white;
@@ -70,7 +71,8 @@ public class VideoManager : MonoBehaviour {
     }
 
     public void ShowVideo(bool show){
-        noVideoCanvas.enabled = !show;
+        noVideoAR.SetActive(!show);
+        noVideoUI.SetActive(!show);
         ARToolManager.hostDrawings.SetActive(show);
         ARToolManager.hostGuides.SetActive(show);
         ARToolManager.clientDrawings.SetActive(show);

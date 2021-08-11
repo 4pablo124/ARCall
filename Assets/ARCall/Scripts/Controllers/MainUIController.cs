@@ -32,7 +32,7 @@ public class MainUIController : MonoBehaviour
         });
 
         signOffBtn.onClick.AddListener(()=>{
-            UserManager.SignOut();
+            UserManager.LogOut();
             MySceneManager.LoadScene("RegisterPhone");
         });
         

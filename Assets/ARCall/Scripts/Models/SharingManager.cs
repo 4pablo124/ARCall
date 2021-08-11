@@ -11,8 +11,8 @@ public static class SharingManager{
     public static void SendNotification(string userID){
         var notification = new Dictionary<string,object>();
         notification["headings"] = new Dictionary<string, string>() { 
-            {"en", "Incoming call from "+UserManager.CurrentUser.username},
-            {"es", "Llamada entrante de "+UserManager.CurrentUser.username}
+            {"en", "AR Call: Incoming call from "+UserManager.CurrentUser.username},
+            {"es", "AR Call: Llamada entrante de "+UserManager.CurrentUser.username}
         };
         
         notification["contents"] = new Dictionary<string, string>() {
@@ -31,12 +31,9 @@ public static class SharingManager{
             {"contents_color","ffffffff"}
         };
         notification["large_icon"] = "ic_phone_call";
-        notification["large_icon"] = "ic_phone_call";
 
-        notification["android_group"] = "ARCall";
-
-        var lines = notification.Select(kvp => kvp.Key + ": " + kvp.Value.ToString());
-        Debug.Log(string.Join(Environment.NewLine, lines));
+        // var lines = notification.Select(kvp => kvp.Key + ": " + kvp.Value.ToString());
+        // Debug.Log(string.Join(Environment.NewLine, lines));
 
         OneSignal.PostNotification(notification);
     }
@@ -47,7 +44,7 @@ public static class SharingManager{
         Debug.LogFormat("Generated short link {0}", dynamicLink.Url);
 
         string message = ShareMessage(dynamicLink);
-        new NativeShare().SetTitle("ARCall").SetText(message).Share();
+        new NativeShare().SetTitle("AR Call").SetText(message).Share();
     }
 
     public static async void ShareRoomWhatsappContact(string phoneNumber){
@@ -93,11 +90,11 @@ public static class SharingManager{
     }
 
     private static string ShareMessage(ShortDynamicLink dynamicLink){
-        return  "ARCall\n" +
+        return  "AR Call\n" +
                 "\n" +
                 "Unete a la videollamada con el siguiente enlace: \n" +
                 dynamicLink.Url.AbsoluteUri + "\n" +
                 "\n" +
-                "O introduciendo este código en la aplicación: " + RoomManager.RoomID;
+                "O introduce este código en la aplicación: " + RoomManager.RoomID;
     }
 }

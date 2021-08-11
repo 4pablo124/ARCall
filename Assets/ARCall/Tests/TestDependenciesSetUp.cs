@@ -18,7 +18,7 @@ public class TestDependenciesSetUp
     [OneTimeTearDown]
     public void OneTimeTearDown()
     {
-        UserManager.SignOut();
+        UserManager.LogOut();
     }
 
 }

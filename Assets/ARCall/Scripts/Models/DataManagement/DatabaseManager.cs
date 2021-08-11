@@ -47,11 +47,15 @@ public static class DatabaseManager {
 
     public static async Task<string> GetUserID(string phoneNumber){
         var snapshot = await Database.GetReference("UserIDs").Child(phoneNumber).GetValueAsync();
-        return snapshot.GetRawJsonValue();
+        return snapshot.GetRawJsonValue().Trim('"');
     }
 
     public static Task SetUserID(string phoneNumber, string userID){
         return Database.GetReference("UserIDs").Child(phoneNumber).SetValueAsync(userID);
+    }
+
+    public static Task RemoveUserID(string phoneNumber){
+        return Database.GetReference("UserIDs").Child(phoneNumber).RemoveValueAsync();
     }
 
     // Private Methods

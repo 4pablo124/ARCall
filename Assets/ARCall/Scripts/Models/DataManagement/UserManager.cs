@@ -24,19 +24,22 @@ public static class UserManager
         return ChangeUsername(username);
     }
 
-    public static async void SignOut(){
-        if(Auth.CurrentUser != null && Auth.CurrentUser.IsAnonymous){
+    public static async void LogOut(){
+        if(Auth.CurrentUser != null){
+            if(!String.IsNullOrEmpty(Auth.CurrentUser.PhoneNumber)){
+                await DatabaseManager.RemoveUserID(Auth.CurrentUser.PhoneNumber);
+            }
             await Auth.CurrentUser.DeleteAsync();
         }
-
-        CurrentUser = null;
+        CurrentUser = new User();
         Auth.SignOut();
+        OneSignal.SetSubscription(false);
     }
 
     public static void LogIn(FirebaseAuth auth){
         Auth = auth;
         if(IsUserRegistered()){
-            CurrentUser = new User(Auth.CurrentUser.DisplayName, Auth.CurrentUser.DisplayName);
+            CurrentUser = new User(Auth.CurrentUser.DisplayName, Auth.CurrentUser.PhoneNumber);
         }else{
             CurrentUser = new User();
         }
@@ -104,6 +107,7 @@ public static class UserManager
     }
     private static Task VerifyPhoneCredential(Credential credential){
         return Auth.SignInWithCredentialAsync(credential).ContinueWithOnMainThread(task => {
+            OneSignal.SetSubscription(true);
             var userID = OneSignal.GetPermissionSubscriptionState().subscriptionStatus.userId;
             return DatabaseManager.SetUserID(UserManager.Auth.CurrentUser.PhoneNumber,userID);
         });

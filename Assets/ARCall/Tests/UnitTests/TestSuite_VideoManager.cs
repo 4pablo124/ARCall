@@ -10,7 +10,8 @@ public class TestSuite_VideoManager
 {
     private RawImage videoRawImage;
     private VideoManager videoManager;
-    private Canvas noVideoCanvas;
+    private GameObject noVideoAR;
+    private GameObject noVideoUI;
 
     [UnityOneTimeSetUp]
     public IEnumerator UnityOneTimeSetup(){
@@ -19,7 +20,8 @@ public class TestSuite_VideoManager
         WebRTC.Initialize(type: EncoderType.Software, limitTextureSize: true);
         videoRawImage = GameObject.Find("VideoRawImage").GetComponent<RawImage>();
         videoManager = GameObject.Find("VideoManager").GetComponent<VideoManager>();
-        noVideoCanvas = GameObject.Find("NoVideo")?.GetComponent<Canvas>();
+        noVideoAR = videoManager.transform.Find("NoVideoAR")?.gameObject;
+        noVideoUI = videoManager.transform.Find("NoVideoUI")?.gameObject;
     }
 
     [UnityOneTimeTearDown]
@@ -40,7 +42,8 @@ public class TestSuite_VideoManager
 
     [UnityTest]
     public IEnumerator ShowVideo_DisablesCamera() {
-        Assert.False(noVideoCanvas.enabled);
+        Assert.False(noVideoAR.activeSelf);
+        Assert.False(noVideoUI.activeSelf);
         Assert.True(ARToolManager.hostDrawings.activeSelf);
         Assert.True(ARToolManager.hostGuides.activeSelf);
         Assert.True(ARToolManager.clientDrawings.activeSelf);
@@ -49,7 +52,8 @@ public class TestSuite_VideoManager
         videoManager.ShowVideo(false);
         yield return null;
 
-        Assert.True(noVideoCanvas.enabled);
+        Assert.True(noVideoAR.activeSelf);
+        Assert.True(noVideoUI.activeSelf);
         Assert.False(ARToolManager.hostDrawings.activeSelf);
         Assert.False(ARToolManager.hostGuides.activeSelf);
         Assert.False(ARToolManager.clientDrawings.activeSelf);

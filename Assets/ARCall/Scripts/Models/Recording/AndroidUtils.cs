@@ -42,7 +42,7 @@ public enum VideoEncoder
 }
 public class AndroidUtils : MonoBehaviour
 {
-    private const float SCREEN_WIDTH = 360f;
+    private const float SCREEN_WIDTH = 720f;
     private const string VIDEO_NAME = "Record", GALLERY_PATH = "/../../../../DCIM/VideoRecorders";
     public UnityAction onStartRecord, onStopRecord;
     public static UnityAction onAllowCallback, onDenyCallback, onDenyAndNeverAskAgainCallback;
@@ -61,7 +61,8 @@ public class AndroidUtils : MonoBehaviour
 			androidRecorder.Call("setUpSaveFolder","ARCall");//custom your save folder to Movies/Tee, by defaut it will use Movies/AndroidUtils
             int width = (int)(Screen.width > SCREEN_WIDTH ? SCREEN_WIDTH : Screen.width);
             int height = Screen.width > SCREEN_WIDTH ? (int)(Screen.height * SCREEN_WIDTH / Screen.width) : Screen.height;
-            int bitrate = (int)(1f * width * height / 100 * 240 * 7);
+            // int bitrate = (int)(1f * width * height / 100 * 240 * 7);
+            int bitrate = 100000;
             int fps = 30;
             bool audioEnable=true;
             androidRecorder.Call("setupVideo", width, height,bitrate, fps,audioEnable,VideoEncoder.H264.ToString());//this line manual sets the video record setting. You can use the defaut setting by comment this code block
