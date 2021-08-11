@@ -6,9 +6,9 @@
 <!-- <h4 align="center">A minimal Markdown Editor desktop app built on top of <a href="http://electron.atom.io" target="_blank">Electron</a>.</h4> -->
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-v0.5.beta-orange" alt="Version">
-  <img src="https://img.shields.io/badge/android-7.0+-green" alt="Version Android">
-  <img src="https://img.shields.io/badge/architecture-arm64.v8a-green" alt="Architecture">
+  <img src="https://img.shields.io/badge/version-v0.9.beta-green" alt="Version">
+  <img src="https://img.shields.io/badge/android-7.0+-yellow" alt="Version Android">
+  <img src="https://img.shields.io/badge/architecture-arm64.v8a-red" alt="Architecture">
 </p>
 
 <p align="center">
@@ -64,7 +64,8 @@ Una aplicación de asistencia remota que une las clásicas videollamadas con lo 
 | [`v0.3-alpha`](https://github.com/4pablo124/ARCall/releases/tag/v0.3-alpha) | [Registro y videollamadas a contactos](https://github.com/4pablo124/ARCall/milestone/3) | ✔ |**Julio 2021**
 | [`v0.4-beta`](https://github.com/4pablo124/ARCall/releases/tag/v0.4-beta) | [Grabación de tutoriales](https://github.com/4pablo124/ARCall/milestone/4) | ✔ | **Julio 2021**
 | [`v0.5-beta`](https://github.com/4pablo124/ARCall/releases/tag/v0.5-beta) | [Web y versiones de navegador y escritorio](https://github.com/4pablo124/ARCall/milestone/5) | ✔ | **Agosto 2021**
-| `v1.0-release` | [Pulido de interfaz y funcionalidad](https://github.com/4pablo124/ARCall/milestone/6) |  | **Agosto 2021**
+| [`v0.9-release`](https://github.com/4pablo124/ARCall/releases/tag/v0.9-beta) | [Pulido de interfaz y funcionalidad](https://github.com/4pablo124/ARCall/milestone/6) | ✔ | **Agosto 2021**
+| `v1.0-release` | [Release oficial](https://github.com/4pablo124/ARCall/milestone/7) |  | **Por definir**
 
 ## Descarga
 Descarga el apk de la última versión desde la pestaña de [releases](https://github.com/4pablo124/ARCall/releases)
