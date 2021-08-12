@@ -47,7 +47,11 @@ public static class DatabaseManager {
 
     public static async Task<string> GetUserID(string phoneNumber){
         var snapshot = await Database.GetReference("UserIDs").Child(phoneNumber).GetValueAsync();
-        return snapshot.GetRawJsonValue().Trim('"');
+        if(snapshot.Exists){
+            return snapshot.GetRawJsonValue().Trim('"');   
+        }else{
+            return null;
+        }
     }
 
     public static Task SetUserID(string phoneNumber, string userID){

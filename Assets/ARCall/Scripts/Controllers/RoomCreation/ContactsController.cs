@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Android;
@@ -25,7 +26,7 @@ public class ContactsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(UserManager.CurrentUser!=null && UserManager.CurrentUser.phoneNumber != null){
+        if(!String.IsNullOrEmpty(UserManager.CurrentUser.phoneNumber)){
             if(!Permission.HasUserAuthorizedPermission("android.permission.READ_CONTACTS")){
                 Permission.RequestUserPermission("android.permission.READ_CONTACTS", permissionCallback);
             }else{
@@ -68,12 +69,13 @@ public class ContactsController : MonoBehaviour
                 phoneNumber = phoneNumber[0] == '+' ? phoneNumber : "+34" + phoneNumber;
 
                 var userID = await DatabaseManager.GetUserID(phoneNumber);
-                if(userID != null){
-                    Debug.Log(userID);
+                if(!String.IsNullOrEmpty(userID)){
                     SharingManager.SendNotification(userID);
                 }else{
                     SharingManager.ShareRoomWhatsappContact(phoneNumber);
                 }
+
+                await RoomManager.JoinRoom(PeerType.Host);
             });
         }
     }

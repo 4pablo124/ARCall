@@ -3570,8 +3570,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1810385148}
     m_Modifications:
     - target: {fileID: 249903488, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a2b3845151fa61748ab803282eeae1e3, type: 2}
+    - target: {fileID: 249903488, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
       propertyPath: m_textAlignment
       value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 249903488, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 752954332788525072, guid: a2b3845151fa61748ab803282eeae1e3, type: 2}
+    - target: {fileID: 249903488, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
       objectReference: {fileID: 0}
     - target: {fileID: 249903488, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
       propertyPath: m_VerticalAlignment
@@ -3590,8 +3602,20 @@ PrefabInstance:
       value: Animation
       objectReference: {fileID: 0}
     - target: {fileID: 5977163236686653921, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a2b3845151fa61748ab803282eeae1e3, type: 2}
+    - target: {fileID: 5977163236686653921, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
       propertyPath: m_textAlignment
       value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977163236686653921, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 752954332788525072, guid: a2b3845151fa61748ab803282eeae1e3, type: 2}
+    - target: {fileID: 5977163236686653921, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
       objectReference: {fileID: 0}
     - target: {fileID: 5977163236686653921, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
       propertyPath: m_VerticalAlignment
@@ -3605,6 +3629,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 39
       objectReference: {fileID: 0}
+    - target: {fileID: 5977163237366113879, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
+      propertyPath: m_HindiFont
+      value: 
+      objectReference: {fileID: 11400000, guid: a2b3845151fa61748ab803282eeae1e3, type: 2}
+    - target: {fileID: 5977163237366113879, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
+      propertyPath: m_KoreanFont
+      value: 
+      objectReference: {fileID: 11400000, guid: a2b3845151fa61748ab803282eeae1e3, type: 2}
     - target: {fileID: 5977163237366113879, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
       propertyPath: localizedBody
       value: 
@@ -3630,6 +3662,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5977163237366113879, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
+      propertyPath: m_JapaneseFont
+      value: 
+      objectReference: {fileID: 11400000, guid: a2b3845151fa61748ab803282eeae1e3, type: 2}
+    - target: {fileID: 5977163237366113879, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
       propertyPath: localizedMotion
       value: 
       objectReference: {fileID: 0}
@@ -3653,6 +3689,10 @@ PrefabInstance:
       propertyPath: localizedUnsupported
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5977163237366113879, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
+      propertyPath: m_SimplifiedChineseFont
+      value: 
+      objectReference: {fileID: 11400000, guid: a2b3845151fa61748ab803282eeae1e3, type: 2}
     - target: {fileID: 5977163237366113879, guid: 29251f2f7c5044cce8e7eb862b4d93ef, type: 3}
       propertyPath: CurrentLocalizedLanguage
       value: 11

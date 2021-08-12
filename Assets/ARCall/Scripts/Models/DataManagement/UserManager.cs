@@ -29,8 +29,8 @@ public static class UserManager
             if(!String.IsNullOrEmpty(Auth.CurrentUser.PhoneNumber)){
                 await DatabaseManager.RemoveUserID(Auth.CurrentUser.PhoneNumber);
             }
-            await Auth.CurrentUser.DeleteAsync();
         }
+        await Auth.CurrentUser?.DeleteAsync();
         CurrentUser = new User();
         Auth.SignOut();
         OneSignal.SetSubscription(false);
