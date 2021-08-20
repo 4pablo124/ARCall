@@ -8,7 +8,7 @@ public class ARText : MonoBehaviour
 {
 
     [SerializeField] private PeerType myPeerType = PeerType.Host;
-    [SerializeField] private  GameObject prefab;
+    [SerializeField] private GameObject prefab;
 
     private Camera cam;
     private MyInputManager inputManager;
@@ -18,7 +18,7 @@ public class ARText : MonoBehaviour
 
     private TouchScreenKeyboard keyboard;
     private GameObject currentMarker;
-    
+
     private ARToolManager aRToolManager;
 
     // Start is called before the first frame update
@@ -34,35 +34,42 @@ public class ARText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(inputManager.IsHeldDown(myPeerType)){
-            if(!placingMarker){
+        if (inputManager.IsHeldDown(myPeerType))
+        {
+            if (!placingMarker)
+            {
                 List<ARRaycastHit> hitResults = new List<ARRaycastHit>();
                 Vector3 screenPoint = myPeerType == PeerType.Host ?
                                     inputManager.hostPosition :
                                     inputManager.clientPosition;
-                if(arRaycastManager.Raycast(cam.ScreenPointToRay(screenPoint),hitResults,TrackableType.All)){
+                if (arRaycastManager.Raycast(cam.ScreenPointToRay(screenPoint), hitResults, TrackableType.All))
+                {
                     Pose hitPose = hitResults[0].pose;
-                    currentMarker = AddMarker(hitPose.position);   
+                    currentMarker = AddMarker(hitPose.position);
                     aRToolManager.PlaceGuide(myPeerType, currentMarker.transform);
                 }
             }
-        }else if(currentMarker != null){
+        }
+        else if (currentMarker != null)
+        {
             currentMarker.GetComponentInChildren<TextMeshPro>().text = keyboard.text;
             placingMarker = false;
         }
 
     }
 
-    private GameObject AddMarker(Vector3 position){
-        var marker = GameObject.Instantiate(prefab,position,Quaternion.identity);
+    private GameObject AddMarker(Vector3 position)
+    {
+        var marker = GameObject.Instantiate(prefab, position, Quaternion.identity);
         placingMarker = true;
-        switch (myPeerType){
+        switch (myPeerType)
+        {
             case PeerType.Host:
                 marker.transform.GetChild(1).GetComponent<Renderer>().material = aRToolManager.hostMaterial;
                 marker.transform.parent = ARToolManager.hostDrawings.transform;
-                keyboard = TouchScreenKeyboard.Open("",TouchScreenKeyboardType.Default,true,true,false,false,
-                                            "Introduzca su texto",36);
-                
+                keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, true, true, false, false,
+                                            "Introduzca su texto", 36);
+
                 break;
 
             case PeerType.Client:
@@ -75,5 +82,5 @@ public class ARText : MonoBehaviour
         return marker;
     }
 
-    
+
 }

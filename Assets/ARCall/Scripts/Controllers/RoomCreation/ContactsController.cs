@@ -26,52 +26,69 @@ public class ContactsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(!String.IsNullOrEmpty(UserManager.CurrentUser.phoneNumber)){
-            if(!Permission.HasUserAuthorizedPermission("android.permission.READ_CONTACTS")){
+        if (!String.IsNullOrEmpty(UserManager.CurrentUser.phoneNumber))
+        {
+            if (!Permission.HasUserAuthorizedPermission("android.permission.READ_CONTACTS"))
+            {
                 Permission.RequestUserPermission("android.permission.READ_CONTACTS", permissionCallback);
-            }else{
-                AddressBook.ReadContacts((result, error) => {
-                if(error != null) Debug.LogError(error.Description);
-                ShowContacts(result.Contacts);
-            });
             }
-        }else{
+            else
+            {
+                AddressBook.ReadContacts((result, error) =>
+                {
+                    if (error != null) Debug.LogError(error.Description);
+                    ShowContacts(result.Contacts);
+                });
+            }
+        }
+        else
+        {
             this.gameObject.SetActive(false);
         }
     }
 
-    void PermissionGranted(string permissionName){
-        AddressBook.ReadContacts((result, error) => {
-            if(error != null) Debug.LogError(error.Description);
+    void PermissionGranted(string permissionName)
+    {
+        AddressBook.ReadContacts((result, error) =>
+        {
+            if (error != null) Debug.LogError(error.Description);
             ShowContacts(result.Contacts);
         });
     }
-    void PermissionDenied(string permissionName){
+    void PermissionDenied(string permissionName)
+    {
         Debug.LogWarning(permissionName + " permission denied");
     }
-    void PermissionDeniedAndDontAskAgain(string permissionName){
+    void PermissionDeniedAndDontAskAgain(string permissionName)
+    {
         Debug.LogWarning(permissionName + " permission denied");
     }
- 
 
-    void ShowContacts(IAddressBookContact[] contacts){
-        foreach (IAddressBookContact contact in contacts){
+
+    void ShowContacts(IAddressBookContact[] contacts)
+    {
+        foreach (IAddressBookContact contact in contacts)
+        {
             // Instanciamos prefab
-            var contactLine = GameObject.Instantiate(contactPrefab,scrollContent).transform;
+            var contactLine = GameObject.Instantiate(contactPrefab, scrollContent).transform;
             contactLine.localScale = Vector3.one;
 
             // Asignamos nombre
             contactLine.Find("Nombre").GetComponent<TextMeshProUGUI>().text = contact.FirstName + " " + contact.LastName;
 
             // Enlazamos numero de telefono al boton
-            contactLine.Find("Llamar").GetComponent<Button>().onClick.AddListener(async ()=>{
+            contactLine.Find("Llamar").GetComponent<Button>().onClick.AddListener(async () =>
+            {
                 var phoneNumber = contact.PhoneNumbers[0].Replace(" ", string.Empty);
                 phoneNumber = phoneNumber[0] == '+' ? phoneNumber : "+34" + phoneNumber;
 
                 var userID = await DatabaseManager.GetUserID(phoneNumber);
-                if(!String.IsNullOrEmpty(userID)){
+                if (!String.IsNullOrEmpty(userID))
+                {
                     SharingManager.SendNotification(userID);
-                }else{
+                }
+                else
+                {
                     SharingManager.ShareRoomWhatsappContact(phoneNumber);
                 }
 

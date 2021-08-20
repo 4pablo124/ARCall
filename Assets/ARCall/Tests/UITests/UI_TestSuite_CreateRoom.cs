@@ -1,27 +1,28 @@
-using System.Collections;
 using NUnit.Framework;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
 
-public class UI_TestSuite_CreateRoom: TestDependenciesSetUp
+public class UI_TestSuite_CreateRoom : TestDependenciesSetUp
 {
     [UnitySetUp]
     public IEnumerator SetUp()
-    {   
+    {
         SceneManager.LoadScene("CreateRoom");
         yield return null;
     }
 
     [UnityTearDown]
     public IEnumerator TearDown()
-    {   
+    {
         yield return null;
     }
 
     [UnityTest]
-    public IEnumerator Button_Join_LeadsTo_Host(){
+    public IEnumerator Button_Join_LeadsTo_Host()
+    {
         var joinBtn = GameObject.Find("JoinBtn").GetComponent<Button>();
         yield return new WaitUntil(() => joinBtn.interactable);
         joinBtn.onClick.Invoke();
@@ -31,14 +32,16 @@ public class UI_TestSuite_CreateRoom: TestDependenciesSetUp
     }
 
     [Test]
-    public void Button_Share_OpensShareMenu(){
+    public void Button_Share_OpensShareMenu()
+    {
         Assert.Ignore("[MANUAL TEST]");
     }
 
     [UnityTest]
-    public IEnumerator ShowsContactsIfPhoneRegistered(){
+    public IEnumerator ShowsContactsIfPhoneRegistered()
+    {
         var actualUser = UserManager.CurrentUser;
-        UserManager.CurrentUser = new User("Test","123456789");
+        UserManager.CurrentUser = new User("Test", "123456789");
         SceneManager.LoadScene("CreateRoom");
         yield return null;
 
@@ -48,7 +51,8 @@ public class UI_TestSuite_CreateRoom: TestDependenciesSetUp
     }
 
     [UnityTest]
-    public IEnumerator DoenstShowContactsIfPhoneNotRegistered(){
+    public IEnumerator DoenstShowContactsIfPhoneNotRegistered()
+    {
         var actualUser = UserManager.CurrentUser;
         UserManager.CurrentUser = new User("Test");
         SceneManager.LoadScene("CreateRoom");

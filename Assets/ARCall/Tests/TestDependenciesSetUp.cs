@@ -1,6 +1,6 @@
-using System.Threading.Tasks;
 using Firebase;
 using NUnit.Framework;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.TestTools;
 

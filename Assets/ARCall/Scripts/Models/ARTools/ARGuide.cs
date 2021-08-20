@@ -13,7 +13,8 @@ public class ARGuide : MonoBehaviour
     private VideoManager videoManager;
 
 
-    private void Awake() {
+    private void Awake()
+    {
         videoManager = GameObject.Find("VideoManager")?.GetComponent<VideoManager>();
         arCam = GameObject.Find("ARCamera").GetComponent<Camera>();
     }
@@ -29,7 +30,7 @@ public class ARGuide : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cursorWidth = (int)Math.Round(Screen.width*0.01f);
+        cursorWidth = (int)Math.Round(Screen.width * 0.01f);
         GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, cursorWidth);
         GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, cursorWidth);
 
@@ -38,18 +39,24 @@ public class ARGuide : MonoBehaviour
 
         int width;
         int height;
-        if(videoManager != null){
+        if (videoManager != null)
+        {
             width = videoManager.width;
             height = videoManager.height;
-        }else{
+        }
+        else
+        {
             width = Screen.width;
             height = Screen.height;
         }
 
-        if((targetScreenPos.x > 0 && targetScreenPos.x < width) &&
-            targetScreenPos.y > 0 && targetScreenPos.y < height){
-                GetComponent<Renderer>().enabled = false;
-        }else{
+        if ((targetScreenPos.x > 0 && targetScreenPos.x < width) &&
+            targetScreenPos.y > 0 && targetScreenPos.y < height)
+        {
+            GetComponent<Renderer>().enabled = false;
+        }
+        else
+        {
             GetComponent<Renderer>().enabled = true;
 
 

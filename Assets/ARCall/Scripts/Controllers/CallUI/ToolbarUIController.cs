@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Dynamic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,7 +28,8 @@ public class ToolbarUIController : MonoBehaviour
     private ClientManager clientManager;
     private RecorderManager recorderManager;
 
-    private void Awake() {
+    private void Awake()
+    {
         //toolbar
         undo = GameObject.Find("Undo").GetComponent<Button>();
         deleteBtn = GameObject.Find("DeleteBtn").GetComponent<Button>();
@@ -59,34 +57,50 @@ public class ToolbarUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        undo.onClick.AddListener(() => {
-            if(peer == PeerType.Host){
+        undo.onClick.AddListener(() =>
+        {
+            if (peer == PeerType.Host)
+            {
                 arToolManager.UndoDrawing(peer.ToString());
-            }else{
+            }
+            else
+            {
                 clientManager.UndoDrawing();
             }
-            
+
         });
 
-        deleteBtn.onClick.AddListener(() => { 
-            if(isRecording){
+        deleteBtn.onClick.AddListener(() =>
+        {
+            if (isRecording)
+            {
                 arToolManager.DeleteDrawings(peer.ToString());
-            }else{
-                ToggleBar(deleteBar);   
+            }
+            else
+            {
+                ToggleBar(deleteBar);
             }
         });
-        deleteMine.onClick.AddListener(() => { 
-            if(peer == PeerType.Host){
+        deleteMine.onClick.AddListener(() =>
+        {
+            if (peer == PeerType.Host)
+            {
                 arToolManager.DeleteDrawings(peer.ToString());
-            }else{
+            }
+            else
+            {
                 clientManager.DeleteDrawings(peer.ToString());
             }
             ToggleBar(deleteBar);
         });
-        deleteAll.onClick.AddListener(() => { 
-            if(peer == PeerType.Host){
+        deleteAll.onClick.AddListener(() =>
+        {
+            if (peer == PeerType.Host)
+            {
                 arToolManager.DeleteDrawings("Both");
-            }else{
+            }
+            else
+            {
                 clientManager.DeleteDrawings("Both");
             }
             ToggleBar(deleteBar);
@@ -94,54 +108,72 @@ public class ToolbarUIController : MonoBehaviour
 
 
         selectedTool.GetComponent<Button>().onClick.AddListener(() => { ToggleBar(arToolsBar); });
-        tool1.GetComponent<Button>().onClick.AddListener(() => {
-            SelectBarElement(arToolsBar,tool1);
+        tool1.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            SelectBarElement(arToolsBar, tool1);
             ToggleBar(arToolsBar);
         });
-        tool2.GetComponent<Button>().onClick.AddListener(() => {
-            SelectBarElement(arToolsBar,tool2);
+        tool2.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            SelectBarElement(arToolsBar, tool2);
             ToggleBar(arToolsBar);
         });
-        tool3.GetComponent<Button>().onClick.AddListener(() => {
-            SelectBarElement(arToolsBar,tool3);
+        tool3.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            SelectBarElement(arToolsBar, tool3);
             ToggleBar(arToolsBar);
         });
-        
+
         selectedColor.GetComponent<Button>().onClick.AddListener(() => { ToggleBar(colorsBar); });
-        color1.GetComponent<Button>().onClick.AddListener(() => {
-            SelectBarElement(colorsBar,color1);
+        color1.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            SelectBarElement(colorsBar, color1);
             ToggleBar(colorsBar);
         });
-        color2.GetComponent<Button>().onClick.AddListener(() => {
-            SelectBarElement(colorsBar,color2);
+        color2.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            SelectBarElement(colorsBar, color2);
             ToggleBar(colorsBar);
         });
-        color3.GetComponent<Button>().onClick.AddListener(() => {
-            SelectBarElement(colorsBar,color3);
+        color3.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            SelectBarElement(colorsBar, color3);
             ToggleBar(colorsBar);
         });
 
-        actionBtn.onClick.AddListener(() => {
+        actionBtn.onClick.AddListener(() =>
+        {
             var icon = actionBtn.transform.Find("Icon").GetComponent<Image>();
-            if(isRecording){
-                if(recorderManager.ToggleRecord()){
+            if (isRecording)
+            {
+                if (recorderManager.ToggleRecord())
+                {
                     icon.pixelsPerUnitMultiplier = 40;
-                }else{
+                }
+                else
+                {
                     icon.pixelsPerUnitMultiplier = 1;
                 };
-            }else{
-                peerConnection.HangUp(); 
             }
-                
+            else
+            {
+                peerConnection.HangUp();
+            }
+
         });
 
     }
 
-    void SelectBarElement(GameObject bar, GameObject clickedElement){
-        if(bar == arToolsBar){
-            if(peer == PeerType.Host){
-            arToolManager.SelectTool(peer, clickedElement.GetComponent<Image>().sprite.name);
-            }else{
+    void SelectBarElement(GameObject bar, GameObject clickedElement)
+    {
+        if (bar == arToolsBar)
+        {
+            if (peer == PeerType.Host)
+            {
+                arToolManager.SelectTool(peer, clickedElement.GetComponent<Image>().sprite.name);
+            }
+            else
+            {
                 clientManager.SelectTool(clickedElement.GetComponent<Image>().sprite.name);
             }
             // change sprite
@@ -149,10 +181,15 @@ public class ToolbarUIController : MonoBehaviour
             clickedElement.GetComponent<Image>().sprite = selectedTool.GetComponent<Image>().sprite;
             selectedTool.GetComponent<Image>().sprite = sprite;
 
-        }else if(bar == colorsBar){
-            if(peer == PeerType.Host){
+        }
+        else if (bar == colorsBar)
+        {
+            if (peer == PeerType.Host)
+            {
                 arToolManager.SelectColor(peer, ColorUtility.ToHtmlStringRGB(clickedElement.GetComponent<Image>().color));
-            }else{
+            }
+            else
+            {
                 clientManager.SelectColor(ColorUtility.ToHtmlStringRGB(clickedElement.GetComponent<Image>().color));
             }
             // change color
@@ -162,10 +199,11 @@ public class ToolbarUIController : MonoBehaviour
         }
     }
 
-    void ToggleBar(GameObject bar){
-        deleteBar.SetActive(bar == deleteBar ? !deleteBar.activeSelf : false);
-        arToolsBar.SetActive(bar == arToolsBar ? !arToolsBar.activeSelf : false);
-        colorsBar.SetActive(bar == colorsBar ? !colorsBar.activeSelf : false);
+    void ToggleBar(GameObject bar)
+    {
+        deleteBar.SetActive(bar == deleteBar && !deleteBar.activeSelf);
+        arToolsBar.SetActive(bar == arToolsBar && !arToolsBar.activeSelf);
+        colorsBar.SetActive(bar == colorsBar && !colorsBar.activeSelf);
     }
 
 }

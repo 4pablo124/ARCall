@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class ARToolManager : MonoBehaviour
-{    
+{
     public bool recording = false;
 
     [HideInInspector] public Material hostMaterial, clientMaterial;
@@ -13,7 +13,7 @@ public class ARToolManager : MonoBehaviour
     public static GameObject clientGuides;
 
 
-    private  GameObject hostTools, clientTools;
+    private GameObject hostTools, clientTools;
 
 
     // Start is called before the first frame update
@@ -27,60 +27,75 @@ public class ARToolManager : MonoBehaviour
 
         hostTools = GameObject.Find("HostTools");
         clientTools = GameObject.Find("ClientTools");
-        
-        SelectTool(PeerType.Host,"ARBrush");
-        if(!recording) SelectTool(PeerType.Client,"ARBrush");
+
+        SelectTool(PeerType.Host, "ARBrush");
+        if (!recording) SelectTool(PeerType.Client, "ARBrush");
     }
 
-    public void SelectTool(PeerType peer, string toolName){
-        switch(peer){
+    public void SelectTool(PeerType peer, string toolName)
+    {
+        switch (peer)
+        {
             case PeerType.Host:
-                foreach(Transform tool in hostTools.transform){
+                foreach (Transform tool in hostTools.transform)
+                {
                     tool.gameObject.SetActive(false);
                 }
                 hostTools.transform.Find(toolName).gameObject.SetActive(true);
-            break;
+                break;
             case PeerType.Client:
-                foreach(Transform tool in clientTools.transform){
+                foreach (Transform tool in clientTools.transform)
+                {
                     tool.gameObject.SetActive(false);
                 }
                 clientTools.transform.Find(toolName).gameObject.SetActive(true);
-            break;
+                break;
         }
 
     }
 
-    public void UndoDrawing(string peer){
-        switch (peer){
+    public void UndoDrawing(string peer)
+    {
+        switch (peer)
+        {
             case "Host":
-                if(hostDrawings.transform.childCount > 0){
-                    Destroy(hostDrawings.transform.GetChild(hostDrawings.transform.childCount-1).gameObject);
-                    Destroy(hostGuides.transform.GetChild(hostDrawings.transform.childCount-1).gameObject);
+                if (hostDrawings.transform.childCount > 0)
+                {
+                    Destroy(hostDrawings.transform.GetChild(hostDrawings.transform.childCount - 1).gameObject);
+                    Destroy(hostGuides.transform.GetChild(hostDrawings.transform.childCount - 1).gameObject);
                 }
-            break;
+                break;
             case "Client":
-                if(clientDrawings.transform.childCount > 0){
-                    Destroy(clientDrawings.transform.GetChild(clientDrawings.transform.childCount-1).gameObject);
-                    Destroy(clientGuides.transform.GetChild(hostDrawings.transform.childCount-1).gameObject);
+                if (clientDrawings.transform.childCount > 0)
+                {
+                    Destroy(clientDrawings.transform.GetChild(clientDrawings.transform.childCount - 1).gameObject);
+                    Destroy(clientGuides.transform.GetChild(hostDrawings.transform.childCount - 1).gameObject);
                 }
-            break;
+                break;
         }
     }
 
-    public void DeleteDrawings(string peer){
-        if(peer == "Host" || peer == "Both"){
-            foreach(Transform child in hostDrawings.transform){
+    public void DeleteDrawings(string peer)
+    {
+        if (peer == "Host" || peer == "Both")
+        {
+            foreach (Transform child in hostDrawings.transform)
+            {
                 Destroy(child.gameObject);
             }
-            foreach(Transform child in hostGuides.transform){
+            foreach (Transform child in hostGuides.transform)
+            {
                 Destroy(child.gameObject);
             }
         }
-        if(peer == "Client" || peer == "Both"){
-            foreach(Transform child in clientDrawings.transform){
+        if (peer == "Client" || peer == "Both")
+        {
+            foreach (Transform child in clientDrawings.transform)
+            {
                 Destroy(child.gameObject);
             }
-            foreach(Transform child in clientGuides.transform){
+            foreach (Transform child in clientGuides.transform)
+            {
                 Destroy(child.gameObject);
             }
         }
@@ -88,28 +103,33 @@ public class ARToolManager : MonoBehaviour
 
 
     //TODO: Quitar colores "hardcoded"   
-    public void SelectColor(PeerType peer, string color){
-        switch (peer){
+    public void SelectColor(PeerType peer, string color)
+    {
+        switch (peer)
+        {
             case PeerType.Host:
-                switch(color){
-                    case "DC6B6D" : hostMaterial = ColorRed; break;
-                    case "6BDC99" : hostMaterial = ColorGreen; break;
-                    case "6BD4DC" : hostMaterial = ColorBlue; break;
-                    case "FFF64A" : hostMaterial = ColorYellow; break;
+                switch (color)
+                {
+                    case "DC6B6D": hostMaterial = ColorRed; break;
+                    case "6BDC99": hostMaterial = ColorGreen; break;
+                    case "6BD4DC": hostMaterial = ColorBlue; break;
+                    case "FFF64A": hostMaterial = ColorYellow; break;
                 }
-            break;
+                break;
             case PeerType.Client:
-                switch(color){
-                    case "DC6B6D" : clientMaterial = ColorRed; break;
-                    case "6BDC99" : clientMaterial = ColorGreen; break;
-                    case "6BD4DC" : clientMaterial = ColorBlue; break;
-                    case "FFF64A" : clientMaterial = ColorYellow; break;
+                switch (color)
+                {
+                    case "DC6B6D": clientMaterial = ColorRed; break;
+                    case "6BDC99": clientMaterial = ColorGreen; break;
+                    case "6BD4DC": clientMaterial = ColorBlue; break;
+                    case "FFF64A": clientMaterial = ColorYellow; break;
                 }
-            break;
+                break;
         }
     }
 
-    public GameObject PlaceGuide(PeerType peer, Transform target){
+    public GameObject PlaceGuide(PeerType peer, Transform target)
+    {
         var guide = GameObject.Instantiate(guidePrefab);
         var parent = peer == PeerType.Host ? hostGuides : clientGuides;
 

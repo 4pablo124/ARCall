@@ -1,12 +1,12 @@
-using System.Collections;
 using NUnit.Framework;
+using System.Collections;
 using Unity.WebRTC;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
 
-public class TestSuite_VideoManager 
+public class TestSuite_VideoManager
 {
     private RawImage videoRawImage;
     private VideoManager videoManager;
@@ -14,7 +14,8 @@ public class TestSuite_VideoManager
     private GameObject noVideoUI;
 
     [UnityOneTimeSetUp]
-    public IEnumerator UnityOneTimeSetup(){
+    public IEnumerator UnityOneTimeSetup()
+    {
         SceneManager.LoadScene("Test_VideoManager");
         yield return null;
         WebRTC.Initialize(type: EncoderType.Software, limitTextureSize: true);
@@ -25,15 +26,17 @@ public class TestSuite_VideoManager
     }
 
     [UnityOneTimeTearDown]
-    public IEnumerator UnityOneTimeTearDown(){
+    public IEnumerator UnityOneTimeTearDown()
+    {
         WebRTC.Dispose();
         yield return null;
     }
 
     [UnityTest]
-    public IEnumerator RecordCamera_RecordsCamera() {
+    public IEnumerator RecordCamera_RecordsCamera()
+    {
         Assert.Null(videoRawImage.texture);
-        
+
         videoManager.RecordCamera();
         yield return null;
 
@@ -41,14 +44,15 @@ public class TestSuite_VideoManager
     }
 
     [UnityTest]
-    public IEnumerator ShowVideo_DisablesCamera() {
+    public IEnumerator ShowVideo_DisablesCamera()
+    {
         Assert.False(noVideoAR.activeSelf);
         Assert.False(noVideoUI.activeSelf);
         Assert.True(ARToolManager.hostDrawings.activeSelf);
         Assert.True(ARToolManager.hostGuides.activeSelf);
         Assert.True(ARToolManager.clientDrawings.activeSelf);
         Assert.True(ARToolManager.clientGuides.activeSelf);
-        
+
         videoManager.ShowVideo(false);
         yield return null;
 

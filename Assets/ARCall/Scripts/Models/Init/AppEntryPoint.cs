@@ -4,30 +4,35 @@ using UnityEngine;
 
 public class AppEntryPoint : MonoBehaviour
 {
-    void Awake(){
+    void Awake()
+    {
         Application.targetFrameRate = Screen.currentResolution.refreshRate;
-
         FirebaseInit.OnReady += OnFirebaseReady;
     }
 
-    void OnFirebaseReady(FirebaseDatabase database, FirebaseAuth auth){
+    void OnFirebaseReady(FirebaseDatabase database, FirebaseAuth auth)
+    {
 
         DatabaseManager.Database = database;
         UserManager.LogIn(auth);
 
-        #if UNITY_ANDROID || UNITY_EDITOR
-            if(UserManager.IsUserRegistered()){
-                MySceneManager.LoadScene("Main");
-            }else{
-                MySceneManager.LoadScene("RegisterPhone");
-            }
-        #else
+#if UNITY_ANDROID || UNITY_EDITOR
+        if (UserManager.IsUserRegistered())
+        {
+            MySceneManager.LoadScene("Main");
+        }
+        else
+        {
+            MySceneManager.LoadScene("RegisterPhone");
+        }
+#else
             MySceneManager.LoadScene("JoinRoom");
-        #endif
+#endif
 
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         FirebaseInit.OnReady -= OnFirebaseReady;
     }
 }

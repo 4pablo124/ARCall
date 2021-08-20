@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
@@ -62,7 +61,7 @@ public class AndroidUtils : MonoBehaviour
             int width = (int)(Screen.width > SCREEN_WIDTH ? SCREEN_WIDTH : Screen.width);
             int height = Screen.width > SCREEN_WIDTH ? (int)(Screen.height * SCREEN_WIDTH / Screen.width) : Screen.height;
             // int bitrate = (int)(1f * width * height / 100 * 240 * 7);
-            int bitrate = 100000;
+            int bitrate = 500000;
             int fps = 30;
             bool audioEnable=true;
             androidRecorder.Call("setupVideo", width, height,bitrate, fps,audioEnable,VideoEncoder.H264.ToString());//this line manual sets the video record setting. You can use the defaut setting by comment this code block
@@ -96,7 +95,8 @@ public class AndroidUtils : MonoBehaviour
     }
     public void VideoRecorderCallback(string message)//this function will be call when record status change
     {
-        switch (message) {
+        switch (message)
+        {
             case "init_record_error":
                 break;
             case "start_record":
@@ -108,9 +108,10 @@ public class AndroidUtils : MonoBehaviour
         }
     }
 
-    public void SetFilePath(string filename){
+    public void SetFilePath(string filename)
+    {
         fileName = filename;
-        filePath = Path.Combine("/storage/emulated/0/Movies/ARCall/",filename);
+        filePath = Path.Combine("/storage/emulated/0/Movies/ARCall/", filename);
     }
 
     #endregion

@@ -1,14 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class Colors {   
-    public class Entry {
-        public Entry(string name, string hex){
-            this.name=name;
-            this.hex=hex;
+public static class Colors
+{
+    public class Entry
+    {
+        public Entry(string name, string hex)
+        {
+            this.name = name;
+            this.hex = hex;
             Color color;
             ColorUtility.TryParseHtmlString(hex, out color);
-            this.color=color;
+            this.color = color;
         }
         public string name;
         public string hex;
@@ -25,16 +28,20 @@ public static class Colors {
         new Entry("yellow","#FFF64A"),
     };
 
-    public static Color GetColor(string name) { 
+    public static Color GetColor(string name)
+    {
         var entry = colors.Find(c => c.name == name);
-        if (entry != null) {
+        if (entry != null)
+        {
             return entry.color;
         }
         return Color.white;
     }
-    public static string GetHex(string name) { 
+    public static string GetHex(string name)
+    {
         var entry = colors.Find(c => c.name == name);
-        if (entry != null) {
+        if (entry != null)
+        {
             return entry.hex;
         }
         return "#FFFFFF";

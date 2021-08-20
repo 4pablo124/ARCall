@@ -1,5 +1,5 @@
-using System.Collections;
 using NUnit.Framework;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
@@ -10,14 +10,16 @@ public class TestSuite_ARToolManager
     ARToolManager aRToolManager;
 
     [UnityOneTimeSetUp]
-    public IEnumerator OnetimeSetup(){
+    public IEnumerator OnetimeSetup()
+    {
         SceneManager.LoadScene("Test_ARTools");
         yield return null;
         aRToolManager = GameObject.Find("ARToolManager").GetComponent<ARToolManager>();
     }
 
-    private GameObject getTool(PeerType peer, string toolName){
-        var tool = GameObject.Find(peer.ToString()+"Tools").transform.Find(toolName).gameObject;
+    private GameObject getTool(PeerType peer, string toolName)
+    {
+        var tool = GameObject.Find(peer.ToString() + "Tools").transform.Find(toolName).gameObject;
         tool.SetActive(false);
         return tool;
     }
@@ -26,101 +28,110 @@ public class TestSuite_ARToolManager
     // SelectTool()
 
     [Test]
-    public void SelectTool_HostSelectsARBrush(){
+    public void SelectTool_HostSelectsARBrush()
+    {
         var tool = getTool(PeerType.Host, "ARBrush");
         Assert.False(tool.activeSelf);
 
-        aRToolManager.SelectTool(PeerType.Host,"ARBrush");
+        aRToolManager.SelectTool(PeerType.Host, "ARBrush");
 
         Assert.True(tool.activeSelf);
         tool.SetActive(false);
     }
 
     [Test]
-    public void SelectTool_ClientSelectsARBrush(){
+    public void SelectTool_ClientSelectsARBrush()
+    {
         var tool = getTool(PeerType.Client, "ARBrush");
         Assert.False(tool.activeSelf);
 
-        aRToolManager.SelectTool(PeerType.Client,"ARBrush");
+        aRToolManager.SelectTool(PeerType.Client, "ARBrush");
 
         Assert.True(tool.activeSelf);
         tool.SetActive(false);
     }
 
     [Test]
-    public void SelectTool_HostSelectsARPointer(){
+    public void SelectTool_HostSelectsARPointer()
+    {
         var tool = getTool(PeerType.Host, "ARPointer");
         Assert.False(tool.activeSelf);
 
-        aRToolManager.SelectTool(PeerType.Host,"ARPointer");
+        aRToolManager.SelectTool(PeerType.Host, "ARPointer");
 
         Assert.True(tool.activeSelf);
         tool.SetActive(false);
     }
 
     [Test]
-    public void SelectTool_ClientSelectsARPointer(){
+    public void SelectTool_ClientSelectsARPointer()
+    {
         var tool = getTool(PeerType.Client, "ARPointer");
         Assert.False(tool.activeSelf);
 
-        aRToolManager.SelectTool(PeerType.Client,"ARPointer");
+        aRToolManager.SelectTool(PeerType.Client, "ARPointer");
 
         Assert.True(tool.activeSelf);
         tool.SetActive(false);
     }
 
     [Test]
-    public void SelectTool_HostSelectsARMarker(){
+    public void SelectTool_HostSelectsARMarker()
+    {
         var tool = getTool(PeerType.Host, "ARMarker");
         Assert.False(tool.activeSelf);
 
-        aRToolManager.SelectTool(PeerType.Host,"ARMarker");
+        aRToolManager.SelectTool(PeerType.Host, "ARMarker");
 
         Assert.True(tool.activeSelf);
         tool.SetActive(false);
     }
 
     [Test]
-    public void SelectTool_ClientSelectsARMarker(){
+    public void SelectTool_ClientSelectsARMarker()
+    {
         var tool = getTool(PeerType.Client, "ARMarker");
         Assert.False(tool.activeSelf);
 
-        aRToolManager.SelectTool(PeerType.Client,"ARMarker");
+        aRToolManager.SelectTool(PeerType.Client, "ARMarker");
 
         Assert.True(tool.activeSelf);
         tool.SetActive(false);
     }
 
     [Test]
-    public void SelectTool_HostSelectsARText(){
+    public void SelectTool_HostSelectsARText()
+    {
         var tool = getTool(PeerType.Host, "ARText");
         Assert.False(tool.activeSelf);
 
-        aRToolManager.SelectTool(PeerType.Host,"ARText");
+        aRToolManager.SelectTool(PeerType.Host, "ARText");
 
         Assert.True(tool.activeSelf);
         tool.SetActive(false);
     }
 
     [Test]
-    public void SelectTool_ClientSelectsARText(){
+    public void SelectTool_ClientSelectsARText()
+    {
         var tool = getTool(PeerType.Client, "ARText");
         Assert.False(tool.activeSelf);
 
-        aRToolManager.SelectTool(PeerType.Client,"ARText");
+        aRToolManager.SelectTool(PeerType.Client, "ARText");
 
         Assert.True(tool.activeSelf);
         tool.SetActive(false);
     }
 
-    
+
     // SelectColor
 
     [Test]
-    public void SelectColor_HostSelectsRed(){
+    public void SelectColor_HostSelectsRed()
+    {
         aRToolManager.hostMaterial = null;
 
-        aRToolManager.SelectColor(PeerType.Host,"DC6B6D");
+        aRToolManager.SelectColor(PeerType.Host, "DC6B6D");
 
         Assert.True(aRToolManager.hostMaterial == aRToolManager.ColorRed);
 
@@ -128,10 +139,11 @@ public class TestSuite_ARToolManager
     }
 
     [Test]
-    public void SelectColor_ClientSelectsRed(){
+    public void SelectColor_ClientSelectsRed()
+    {
         aRToolManager.clientMaterial = null;
 
-        aRToolManager.SelectColor(PeerType.Client,"DC6B6D");
+        aRToolManager.SelectColor(PeerType.Client, "DC6B6D");
 
         Assert.True(aRToolManager.clientMaterial == aRToolManager.ColorRed);
 
@@ -139,10 +151,11 @@ public class TestSuite_ARToolManager
     }
 
     [Test]
-    public void SelectColor_HostSelectsGreen(){
+    public void SelectColor_HostSelectsGreen()
+    {
         aRToolManager.hostMaterial = null;
 
-        aRToolManager.SelectColor(PeerType.Host,"6BDC99");
+        aRToolManager.SelectColor(PeerType.Host, "6BDC99");
 
         Assert.True(aRToolManager.hostMaterial == aRToolManager.ColorGreen);
 
@@ -150,10 +163,11 @@ public class TestSuite_ARToolManager
     }
 
     [Test]
-    public void SelectColor_ClientSelectsGreen(){
+    public void SelectColor_ClientSelectsGreen()
+    {
         aRToolManager.clientMaterial = null;
 
-        aRToolManager.SelectColor(PeerType.Client,"6BDC99");
+        aRToolManager.SelectColor(PeerType.Client, "6BDC99");
 
         Assert.True(aRToolManager.clientMaterial == aRToolManager.ColorGreen);
 
@@ -161,10 +175,11 @@ public class TestSuite_ARToolManager
     }
 
     [Test]
-    public void SelectColor_HostSelectsBlue(){
+    public void SelectColor_HostSelectsBlue()
+    {
         aRToolManager.hostMaterial = null;
 
-        aRToolManager.SelectColor(PeerType.Host,"6BD4DC");
+        aRToolManager.SelectColor(PeerType.Host, "6BD4DC");
 
         Assert.True(aRToolManager.hostMaterial == aRToolManager.ColorBlue);
 
@@ -172,10 +187,11 @@ public class TestSuite_ARToolManager
     }
 
     [Test]
-    public void SelectColor_ClientSelectsBlue(){
+    public void SelectColor_ClientSelectsBlue()
+    {
         aRToolManager.clientMaterial = null;
 
-        aRToolManager.SelectColor(PeerType.Client,"6BD4DC");
+        aRToolManager.SelectColor(PeerType.Client, "6BD4DC");
 
         Assert.True(aRToolManager.clientMaterial == aRToolManager.ColorBlue);
 
@@ -183,10 +199,11 @@ public class TestSuite_ARToolManager
     }
 
     [Test]
-    public void SelectColor_HostSelectsYellow(){
+    public void SelectColor_HostSelectsYellow()
+    {
         aRToolManager.hostMaterial = null;
 
-        aRToolManager.SelectColor(PeerType.Host,"FFF64A");
+        aRToolManager.SelectColor(PeerType.Host, "FFF64A");
 
         Assert.True(aRToolManager.hostMaterial == aRToolManager.ColorYellow);
 
@@ -194,10 +211,11 @@ public class TestSuite_ARToolManager
     }
 
     [Test]
-    public void SelectColor_ClientSelectsYellow(){
+    public void SelectColor_ClientSelectsYellow()
+    {
         aRToolManager.clientMaterial = null;
 
-        aRToolManager.SelectColor(PeerType.Client,"FFF64A");
+        aRToolManager.SelectColor(PeerType.Client, "FFF64A");
 
         Assert.True(aRToolManager.clientMaterial == aRToolManager.ColorYellow);
 
@@ -208,7 +226,8 @@ public class TestSuite_ARToolManager
     // UndoDrawing()
 
     [UnityTest]
-    public IEnumerator UndoDrawing_HostUndoesDrawing(){
+    public IEnumerator UndoDrawing_HostUndoesDrawing()
+    {
         var drawings = GameObject.Find("HostDrawings").transform;
         var guides = GameObject.Find("HostGuides").transform;
         Assert.True(drawings.childCount == 2);
@@ -225,7 +244,8 @@ public class TestSuite_ARToolManager
     }
 
     [UnityTest]
-    public IEnumerator UndoDrawing_ClientUndoesDrawing(){
+    public IEnumerator UndoDrawing_ClientUndoesDrawing()
+    {
         var drawings = GameObject.Find("ClientDrawings").transform;
         var guides = GameObject.Find("ClientGuides").transform;
         Assert.True(drawings.childCount == 2);
@@ -244,7 +264,8 @@ public class TestSuite_ARToolManager
     // DeleteDrawings()
 
     [UnityTest]
-    public IEnumerator DeleteDrawings_HostDeletesDrawings(){
+    public IEnumerator DeleteDrawings_HostDeletesDrawings()
+    {
         var drawings = GameObject.Find("HostDrawings").transform;
         var guides = GameObject.Find("HostGuides").transform;
         Assert.True(drawings.childCount == 2);
@@ -263,7 +284,8 @@ public class TestSuite_ARToolManager
     }
 
     [UnityTest]
-    public IEnumerator DeleteDrawings_ClientDeletesDrawings(){
+    public IEnumerator DeleteDrawings_ClientDeletesDrawings()
+    {
         var drawings = GameObject.Find("ClientDrawings").transform;
         var guides = GameObject.Find("ClientGuides").transform;
         Assert.True(drawings.childCount == 2);
@@ -282,7 +304,8 @@ public class TestSuite_ARToolManager
     }
 
     [UnityTest]
-    public IEnumerator DeleteDrawings_BothDeletesDrawings(){
+    public IEnumerator DeleteDrawings_BothDeletesDrawings()
+    {
         var hostDrawings = GameObject.Find("ClientDrawings").transform;
         var hostGuides = GameObject.Find("ClientGuides").transform;
         var clientDrawings = GameObject.Find("HostDrawings").transform;
@@ -314,11 +337,12 @@ public class TestSuite_ARToolManager
     // PlaceGuide()
 
     [UnityTest]
-    public IEnumerator PlaceGuide_HostPlacesGuide(){
+    public IEnumerator PlaceGuide_HostPlacesGuide()
+    {
         var guides = GameObject.Find("HostGuides").transform;
         Assert.True(guides.childCount == 2);
 
-        var guide = aRToolManager.PlaceGuide(PeerType.Host,new GameObject().transform);
+        var guide = aRToolManager.PlaceGuide(PeerType.Host, new GameObject().transform);
         yield return null;
 
         Assert.True(guides.childCount == 3);
@@ -327,11 +351,12 @@ public class TestSuite_ARToolManager
     }
 
     [UnityTest]
-    public IEnumerator PlaceGuide_ClientPlacesGuide(){
+    public IEnumerator PlaceGuide_ClientPlacesGuide()
+    {
         var guides = GameObject.Find("ClientGuides").transform;
         Assert.True(guides.childCount == 2);
 
-        var guide = aRToolManager.PlaceGuide(PeerType.Client,new GameObject().transform);
+        var guide = aRToolManager.PlaceGuide(PeerType.Client, new GameObject().transform);
         yield return null;
 
         Assert.True(guides.childCount == 3);
@@ -340,11 +365,12 @@ public class TestSuite_ARToolManager
     }
 
     [UnityTest]
-    public IEnumerator PlaceGuide_HostGuideHasSelectedColor(){
+    public IEnumerator PlaceGuide_HostGuideHasSelectedColor()
+    {
         var guides = GameObject.Find("HostGuides").transform;
         aRToolManager.hostMaterial = aRToolManager.ColorRed;
-        
-        var guide = aRToolManager.PlaceGuide(PeerType.Host,new GameObject().transform);
+
+        var guide = aRToolManager.PlaceGuide(PeerType.Host, new GameObject().transform);
         yield return null;
 
         Assert.True(guide.GetComponent<SpriteRenderer>().color == aRToolManager.hostMaterial.color);
@@ -353,11 +379,12 @@ public class TestSuite_ARToolManager
     }
 
     [UnityTest]
-    public IEnumerator PlaceGuide_ClientGuideHasSelectedColor(){
+    public IEnumerator PlaceGuide_ClientGuideHasSelectedColor()
+    {
         var guides = GameObject.Find("ClientGuides").transform;
         aRToolManager.clientMaterial = aRToolManager.ColorRed;
-        
-        var guide = aRToolManager.PlaceGuide(PeerType.Client,new GameObject().transform);
+
+        var guide = aRToolManager.PlaceGuide(PeerType.Client, new GameObject().transform);
         yield return null;
 
         Assert.True(guide.GetComponent<SpriteRenderer>().color == aRToolManager.clientMaterial.color);

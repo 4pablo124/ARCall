@@ -1,4 +1,5 @@
-public enum PeerType {
+public enum PeerType
+{
     Host,
     Client
 }

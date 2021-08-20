@@ -10,7 +10,8 @@
         "Unity.XR.ARSubsystems",
         "VoxelBusters.CoreLibrary",
         "VoxelBusters.EssentialKit",
-        "OneSignal"
+        "OneSignal",
+        "VoxelBusters.EssentialKit.AndroidModule"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

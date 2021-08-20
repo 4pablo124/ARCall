@@ -9,7 +9,8 @@ public class MainUIController : MonoBehaviour
     private Button recBtn;
     private Button signOffBtn;
 
-    private void Awake() {
+    private void Awake()
+    {
         createBtn = GameObject.Find("CreateBtn").GetComponent<Button>();
         joinBtn = GameObject.Find("JoinBtn").GetComponent<Button>();
         recBtn = GameObject.Find("RecBtn").GetComponent<Button>();
@@ -19,23 +20,27 @@ public class MainUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        createBtn.onClick.AddListener(()=>{
+        createBtn.onClick.AddListener(() =>
+        {
             MySceneManager.LoadScene("CreateRoom");
         });
-        
-        joinBtn.onClick.AddListener(()=>{
+
+        joinBtn.onClick.AddListener(() =>
+        {
             MySceneManager.LoadScene("JoinRoom");
         });
 
-        recBtn.onClick.AddListener(()=>{
+        recBtn.onClick.AddListener(() =>
+        {
             MySceneManager.LoadScene("Record");
         });
 
-        signOffBtn.onClick.AddListener(()=>{
+        signOffBtn.onClick.AddListener(() =>
+        {
             UserManager.LogOut();
             MySceneManager.LoadScene("RegisterPhone");
         });
-        
+
     }
 
 }

@@ -1,6 +1,6 @@
+using NUnit.Framework;
 using System.Collections;
 using System.Threading.Tasks;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -8,7 +8,8 @@ using UnityEngine.TestTools;
 public class TestSuite_RoomManager : TestDependenciesSetUp
 {
     [UnityOneTimeTearDown]
-    public IEnumerator UnityOneTimeTearDown(){
+    public IEnumerator UnityOneTimeTearDown()
+    {
         yield return new WaitForSecondsRealtime(1);
     }
 
@@ -17,30 +18,33 @@ public class TestSuite_RoomManager : TestDependenciesSetUp
     {
         var roomID1 = await RoomManager.GenerateRoomID();
         var roomID2 = await RoomManager.GenerateRoomID();
-        Assert.AreNotEqual(roomID1,roomID2);
+        Assert.AreNotEqual(roomID1, roomID2);
     }
 
     [AsyncTest]
-    public async Task JoinRoom_HostCreatesRoom(){
+    public async Task JoinRoom_HostCreatesRoom()
+    {
         RoomManager.RoomID = "0001";
         Assert.IsTrue(await RoomManager.JoinRoom(PeerType.Host));
 
         await Task.Delay(100);
 
-        await DatabaseManager.UnReadyUser("0001",PeerType.Host);
+        await DatabaseManager.UnReadyUser("0001", PeerType.Host);
     }
     [AsyncTest]
-    public async Task JoinRoom_ClientJoinsValidRoom(){
-        await DatabaseManager.ReadyUser("0002",PeerType.Host);
+    public async Task JoinRoom_ClientJoinsValidRoom()
+    {
+        await DatabaseManager.ReadyUser("0002", PeerType.Host);
 
         RoomManager.RoomID = "0002";
         Assert.IsTrue(await RoomManager.JoinRoom(PeerType.Client));
 
-        await DatabaseManager.UnReadyUser("0002",PeerType.Host);
-        await DatabaseManager.UnReadyUser("0002",PeerType.Client);
+        await DatabaseManager.UnReadyUser("0002", PeerType.Host);
+        await DatabaseManager.UnReadyUser("0002", PeerType.Client);
     }
     [AsyncTest]
-    public async Task JoinRoom_ClientDoesntJoinInvalidRoom(){
+    public async Task JoinRoom_ClientDoesntJoinInvalidRoom()
+    {
         RoomManager.RoomID = "0003";
         Assert.IsFalse(await RoomManager.JoinRoom(PeerType.Client));
     }

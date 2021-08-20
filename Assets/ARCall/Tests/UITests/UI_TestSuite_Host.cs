@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using NUnit.Framework;
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
@@ -12,20 +11,22 @@ public class UI_TestSuite_Host : TestDependenciesSetUp
     [UnitySetUp]
     public IEnumerator SetUp()
     {
-        RoomManager.RoomID="0110";
+        RoomManager.RoomID = "0110";
         SceneManager.LoadScene("Host");
         yield return null;
 
     }
-    
+
     [AsyncTearDown]
-    public async Task AsyncTearDown(){
+    public async Task AsyncTearDown()
+    {
         await DatabaseManager.UnReadyUser("0110", PeerType.Host);
         await Task.Delay(100);
     }
 
     [UnityTest]
-    public IEnumerator Button_SelectTool_ShowsToolBar(){
+    public IEnumerator Button_SelectTool_ShowsToolBar()
+    {
         var selectedTool = GameObject.Find("SelectedToolBtn").GetComponent<Button>();
 
         Assert.Null(GameObject.Find("ARToolsBar"));
@@ -37,7 +38,8 @@ public class UI_TestSuite_Host : TestDependenciesSetUp
     }
 
     [UnityTest]
-    public IEnumerator Button_SelectTool_ChangesSelectedTool(){
+    public IEnumerator Button_SelectTool_ChangesSelectedTool()
+    {
         var selectedTool = GameObject.Find("SelectedToolBtn");
         var arToolsBar = GameObject.Find("Toolbar").transform.Find("ARToolsBar");
         var tool = arToolsBar.transform.Find("Buttons").Find("Tool1").gameObject;
@@ -52,12 +54,13 @@ public class UI_TestSuite_Host : TestDependenciesSetUp
         var AfterToolSprite = tool.GetComponent<Image>().sprite.name;
         var AfterSelectedToolSprite = selectedTool.GetComponent<Image>().sprite.name;
 
-        Assert.AreEqual(BeforeSelectedToolSprite,AfterToolSprite);
-        Assert.AreEqual(BeforeToolSprite,AfterSelectedToolSprite);
+        Assert.AreEqual(BeforeSelectedToolSprite, AfterToolSprite);
+        Assert.AreEqual(BeforeToolSprite, AfterSelectedToolSprite);
     }
 
     [UnityTest]
-    public IEnumerator Button_SelectColor_ChangesSelectedColor(){
+    public IEnumerator Button_SelectColor_ChangesSelectedColor()
+    {
         var selectedColor = GameObject.Find("SelectedColorBtn");
         var arToolsBar = GameObject.Find("Toolbar").transform.Find("ColorsBar");
         var color = arToolsBar.transform.Find("Buttons").Find("Color1").gameObject;
@@ -72,8 +75,8 @@ public class UI_TestSuite_Host : TestDependenciesSetUp
         var AfterColorSprite = color.GetComponent<Image>().sprite.name;
         var AfterSelectedColorSprite = selectedColor.GetComponent<Image>().sprite.name;
 
-        Assert.AreEqual(BeforeSelectedColorSprite,AfterColorSprite);
-        Assert.AreEqual(BeforeColorSprite,AfterSelectedColorSprite);
+        Assert.AreEqual(BeforeSelectedColorSprite, AfterColorSprite);
+        Assert.AreEqual(BeforeColorSprite, AfterSelectedColorSprite);
     }
 
 }

@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Firebase.DynamicLinks;
+using System;
 using UnityEngine;
 
 public class DynamicLinksInit : MonoBehaviour
@@ -14,7 +12,8 @@ public class DynamicLinksInit : MonoBehaviour
     }
 
     // Display the dynamic link received by the application.
-    private async void OnDynamicLink(object sender, EventArgs args) {
+    private async void OnDynamicLink(object sender, EventArgs args)
+    {
 
         AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         var activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
@@ -25,10 +24,11 @@ public class DynamicLinksInit : MonoBehaviour
 
         var dynamicLinkEventArgs = args as ReceivedDynamicLinkEventArgs;
         string url = dynamicLinkEventArgs.ReceivedDynamicLink.Url.OriginalString;
-                        
-        Debug.LogFormat("Received dynamic link {0}",url);
+
+        Debug.LogFormat("Received dynamic link {0}", url);
         RoomManager.RoomID = url.Substring(url.LastIndexOf('/') + 1);
-        if(!await RoomManager.JoinRoom(PeerType.Client)){
+        if (!await RoomManager.JoinRoom(PeerType.Client))
+        {
             AndroidUtils.ShowToast("La sala no existe o el Host no esta activo en este momento");
         };
     }

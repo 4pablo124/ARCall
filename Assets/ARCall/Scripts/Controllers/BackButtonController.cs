@@ -1,20 +1,25 @@
 using System.Linq;
 using UnityEngine;
 
-public class BackButtonController : MonoBehaviour {
+public class BackButtonController : MonoBehaviour
+{
 
-    private string[] invalidScenes = new []{
+    private readonly string[] invalidScenes = new[]{
         "RegisterPhone",
         "RegisterName"
     };
 
-    private void Start() {
-        DontDestroyOnLoad(this.gameObject);    
+    private void Start()
+    {
+        DontDestroyOnLoad(this.gameObject);
     }
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            if(!invalidScenes.Contains(MySceneManager.CurrentScene().name)){
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!invalidScenes.Contains(MySceneManager.CurrentScene().name))
+            {
                 Debug.Log("Back key pressed");
                 MySceneManager.BackScene();
             }

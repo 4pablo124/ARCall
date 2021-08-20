@@ -12,7 +12,8 @@ public class RegisterPhoneUIController : MonoBehaviour
 
 
 
-    private void Awake() {
+    private void Awake()
+    {
         phoneInput = GameObject.Find("PhoneInput").GetComponent<TMP_InputField>();
         codeInput = GameObject.Find("CodeInput").GetComponent<TMP_InputField>();
         sendBtn = GameObject.Find("SendBtn").GetComponent<Button>();
@@ -29,12 +30,13 @@ public class RegisterPhoneUIController : MonoBehaviour
         UserManager.OnCodeAutoRetrievalTimeOut += OnCodeAutoRetrievalTimeOut;
 
         sendBtn.onClick.AddListener(() => SendCode(phoneInput.text));
-        phoneInput.onSubmit.AddListener((phone) => {if(IsValidPhoneInput()) SendCode(phone);});
+        phoneInput.onSubmit.AddListener((phone) => { if (IsValidPhoneInput()) SendCode(phone); });
 
         verifyBtn.onClick.AddListener(() => VerifyPhone(codeInput.text));
-        codeInput.onSubmit.AddListener((code) => {if(IsValidCodeInput()) VerifyPhone(code);});
+        codeInput.onSubmit.AddListener((code) => { if (IsValidCodeInput()) VerifyPhone(code); });
 
-        skipBtn.onClick.AddListener(() => {
+        skipBtn.onClick.AddListener(() =>
+        {
             Unsubscribe();
             MySceneManager.LoadScene("RegisterName");
         });
@@ -48,49 +50,61 @@ public class RegisterPhoneUIController : MonoBehaviour
         verifyBtn.interactable = IsValidCodeInput();
     }
 
-    void SendCode(string phone){
+    void SendCode(string phone)
+    {
         AndroidUtils.ShowToast("¡Enviando codigo!");
-        UserManager.SendVerificationCode(CountryCodes.SPAIN,phone);
+        UserManager.SendVerificationCode(CountryCodes.SPAIN, phone);
     }
 
-    async void VerifyPhone(string code){        
-        if( await UserManager.VerifyPhone(codeInput.text) ){
+    async void VerifyPhone(string code)
+    {
+        if (await UserManager.VerifyPhone(code))
+        {
             Unsubscribe();
             MySceneManager.LoadScene("RegisterName");
-        }else{
+        }
+        else
+        {
             AndroidUtils.ShowToast("¡Código Incorrecto!");
         }
     }
 
-    bool IsValidPhoneInput(){
+    bool IsValidPhoneInput()
+    {
         return phoneInput.text.Length == 9;
     }
-    bool IsValidCodeInput(){
+    bool IsValidCodeInput()
+    {
         return codeInput.text.Length == 6;
     }
 
-    private void OnVerificationCompleted(){
+    private void OnVerificationCompleted()
+    {
         AndroidUtils.ShowToast("¡Verificación automatica completada!");
 
         Unsubscribe();
         MySceneManager.LoadScene("RegisterName");
     }
 
-    private void OnVerificationFailed(){
+    private void OnVerificationFailed()
+    {
         AndroidUtils.ShowToast("¡Verificación fallida!");
 
     }
 
-    private void OnCodeSent(){
+    private void OnCodeSent()
+    {
         AndroidUtils.ShowToast("¡Codigo enviado!");
 
     }
 
-    private void OnCodeAutoRetrievalTimeOut(){
+    private void OnCodeAutoRetrievalTimeOut()
+    {
 
     }
 
-    private void Unsubscribe(){
+    private void Unsubscribe()
+    {
         UserManager.OnVerificationCompleted -= OnVerificationCompleted;
         UserManager.OnVerificationFailed -= OnVerificationFailed;
         UserManager.OnCodeSent -= OnCodeSent;

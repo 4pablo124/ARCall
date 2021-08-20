@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -49,8 +48,8 @@ public class UI_TestSuite_RegisterName : TestDependenciesSetUp
         registerBtn.onClick.Invoke();
         yield return new WaitForSecondsRealtime(1);
 
-        Assert.AreNotEqual(actualUsername,UserManager.CurrentUser.username);
-        Assert.AreEqual("_test12345",UserManager.CurrentUser.username);
+        Assert.AreNotEqual(actualUsername, UserManager.CurrentUser.username);
+        Assert.AreEqual("_test12345", UserManager.CurrentUser.username);
 
         UserManager.ChangeUsername(actualUsername);
     }

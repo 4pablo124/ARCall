@@ -7,7 +7,7 @@ using UnityEngine.XR.ARSubsystems;
 public class ARMarker : MonoBehaviour
 {
     [SerializeField] private PeerType myPeerType = PeerType.Host;
-    [SerializeField] private  GameObject prefab;
+    [SerializeField] private GameObject prefab;
 
 
     private Camera cam;
@@ -15,9 +15,8 @@ public class ARMarker : MonoBehaviour
     private ARRaycastManager arRaycastManager;
     private ARToolManager aRToolManager;
 
-    private LineRenderer hostMarker;
     private bool placingMarker = false;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,45 +30,56 @@ public class ARMarker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(inputManager.IsHeldDown(myPeerType)){
-            if(!placingMarker){
+        if (inputManager.IsHeldDown(myPeerType))
+        {
+            if (!placingMarker)
+            {
                 List<ARRaycastHit> hitResults = new List<ARRaycastHit>();
                 Vector3 screenPoint = myPeerType == PeerType.Host ?
                                     inputManager.hostPosition :
                                     inputManager.clientPosition;
-                if(arRaycastManager.Raycast(cam.ScreenPointToRay(screenPoint),hitResults,TrackableType.All)){
+                if (arRaycastManager.Raycast(cam.ScreenPointToRay(screenPoint), hitResults, TrackableType.All))
+                {
                     Pose hitPose = hitResults[0].pose;
                     var marker = AddMarker(hitPose.position);
                     aRToolManager.PlaceGuide(myPeerType, marker.transform);
                 }
             }
-        }else{
+        }
+        else
+        {
             placingMarker = false;
         }
 
     }
 
-    private GameObject AddMarker(Vector3 position){
-        var marker = GameObject.Instantiate(prefab,position,Quaternion.identity);
+    private GameObject AddMarker(Vector3 position)
+    {
+        var marker = GameObject.Instantiate(prefab, position, Quaternion.identity);
         int count = 0;
-        switch (myPeerType){
+        switch (myPeerType)
+        {
             case PeerType.Host:
                 placingMarker = true;
                 marker.tag = "HostMarker";
                 marker.transform.GetChild(1).GetComponent<Renderer>().material = aRToolManager.hostMaterial;
                 marker.transform.parent = ARToolManager.hostDrawings.transform;
-                foreach (Transform child in ARToolManager.hostDrawings.transform) {
-                    if(child.gameObject.tag == "HostMarker") count++;
-                } break;
+                foreach (Transform child in ARToolManager.hostDrawings.transform)
+                {
+                    if (child.gameObject.tag == "HostMarker") count++;
+                }
+                break;
 
             case PeerType.Client:
                 placingMarker = true;
                 marker.tag = "ClientMarker";
                 marker.transform.GetChild(1).GetComponent<Renderer>().material = aRToolManager.clientMaterial;
                 marker.transform.parent = ARToolManager.clientDrawings.transform;
-                foreach (Transform child in ARToolManager.clientDrawings.transform) {
-                    if(child.gameObject.tag == "ClientMarker") count++;
-                } break;
+                foreach (Transform child in ARToolManager.clientDrawings.transform)
+                {
+                    if (child.gameObject.tag == "ClientMarker") count++;
+                }
+                break;
         }
         marker.GetComponentInChildren<TextMeshPro>().text = count.ToString();
 

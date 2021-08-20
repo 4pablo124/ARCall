@@ -1,7 +1,7 @@
-using System;
-using System.Threading.Tasks;
 using Firebase.Auth;
 using Firebase.Extensions;
+using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public static class UserManager
@@ -15,18 +15,23 @@ public static class UserManager
     public static FirebaseAuth Auth;
     private static string verificationId;
 
-    public static bool IsUserRegistered(){
+    public static bool IsUserRegistered()
+    {
         return Auth.CurrentUser != null;
     }
 
-    public static async Task<Task> SignUp(string username){
+    public static async Task<Task> SignUp(string username)
+    {
         await Auth.SignInAnonymouslyAsync();
         return ChangeUsername(username);
     }
 
-    public static async void LogOut(){
-        if(Auth.CurrentUser != null){
-            if(!String.IsNullOrEmpty(Auth.CurrentUser.PhoneNumber)){
+    public static async void LogOut()
+    {
+        if (Auth.CurrentUser != null)
+        {
+            if (!String.IsNullOrEmpty(Auth.CurrentUser.PhoneNumber))
+            {
                 await DatabaseManager.RemoveUserID(Auth.CurrentUser.PhoneNumber);
             }
         }
@@ -36,36 +41,44 @@ public static class UserManager
         OneSignal.SetSubscription(false);
     }
 
-    public static void LogIn(FirebaseAuth auth){
+    public static void LogIn(FirebaseAuth auth)
+    {
         Auth = auth;
-        if(IsUserRegistered()){
+        if (IsUserRegistered())
+        {
             CurrentUser = new User(Auth.CurrentUser.DisplayName, Auth.CurrentUser.PhoneNumber);
-        }else{
+        }
+        else
+        {
             CurrentUser = new User();
         }
     }
-    
-    public static Task ChangeUsername(string username){
+
+    public static Task ChangeUsername(string username)
+    {
         UserProfile profile = new UserProfile();
         CurrentUser.username = profile.DisplayName = username;
         return Auth.CurrentUser.UpdateUserProfileAsync(profile);
     }
 
-    public static void SendVerificationCode(string countryCode, string phoneNumber){
+    public static void SendVerificationCode(string countryCode, string phoneNumber)
+    {
 
         CurrentUser.phoneNumber = phoneNumber;
 
-        PhoneAuthProvider.GetInstance(Auth).VerifyPhoneNumber(countryCode+phoneNumber, 120000, null,
-            verificationCompleted: async (credential) => {
+        PhoneAuthProvider.GetInstance(Auth).VerifyPhoneNumber(countryCode + phoneNumber, 120000, null,
+            verificationCompleted: async (credential) =>
+            {
                 // Auto-sms-retrieval or instant validation has succeeded (Android only).
                 // There is no need to input the verification code.
                 // `credential` can be used instead of calling GetCredential().
                 Debug.Log("Code retrieved");
-                
+
                 await VerifyPhoneCredential(credential);
                 OnVerificationCompleted?.Invoke();
             },
-            verificationFailed: (error) => {
+            verificationFailed: (error) =>
+            {
                 // The verification code was not sent.
                 // `error` contains a human readable explanation of the problem.
                 Debug.LogError(error);
@@ -74,7 +87,8 @@ public static class UserManager
 
                 OnVerificationFailed?.Invoke();
             },
-            codeSent: (id, token) => {
+            codeSent: (id, token) =>
+            {
                 // Verification code was successfully sent via SMS.
                 // `id` contains the verification id that will need to passed in with
                 // the code from the user when calling GetCredential().
@@ -85,31 +99,37 @@ public static class UserManager
                 Debug.Log("Code Sent");
                 OnCodeSent?.Invoke();
             },
-            codeAutoRetrievalTimeOut: (id) => {
+            codeAutoRetrievalTimeOut: (id) =>
+            {
                 // Called when the auto-sms-retrieval has timed out, based on the given
                 // timeout parameter.
                 // `id` contains the verification id of the request that timed out.
-                Debug.Log("Code retireval timed out: "+ id);
+                Debug.Log("Code retireval timed out: " + id);
                 OnCodeAutoRetrievalTimeOut?.Invoke();
-        });
+            });
     }
 
-    public static async Task<bool> VerifyPhone(string code){
-        try {
+    public static async Task<bool> VerifyPhone(string code)
+    {
+        try
+        {
             Credential credential = PhoneAuthProvider.GetInstance(Auth).GetCredential(verificationId, code);
             await VerifyPhoneCredential(credential);
             return true;
         }
-        catch (System.Exception e) {
+        catch (System.Exception e)
+        {
             Debug.LogException(e);
-            return false;   
+            return false;
         }
     }
-    private static Task VerifyPhoneCredential(Credential credential){
-        return Auth.SignInWithCredentialAsync(credential).ContinueWithOnMainThread(task => {
+    private static Task VerifyPhoneCredential(Credential credential)
+    {
+        return Auth.SignInWithCredentialAsync(credential).ContinueWithOnMainThread(task =>
+        {
             OneSignal.SetSubscription(true);
             var userID = OneSignal.GetPermissionSubscriptionState().subscriptionStatus.userId;
-            return DatabaseManager.SetUserID(UserManager.Auth.CurrentUser.PhoneNumber,userID);
+            return DatabaseManager.SetUserID(UserManager.Auth.CurrentUser.PhoneNumber, userID);
         });
     }
 }

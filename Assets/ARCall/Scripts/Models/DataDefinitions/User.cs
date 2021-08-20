@@ -1,5 +1,7 @@
-public class User {
-    public User(string username = null, string phoneNumber = null){
+public class User
+{
+    public User(string username = null, string phoneNumber = null)
+    {
         this.username = username;
         this.phoneNumber = phoneNumber;
     }

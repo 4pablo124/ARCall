@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Dynamic;
 using NUnit.Framework;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
@@ -17,7 +16,8 @@ public class UI_TestSuite_Main : TestDependenciesSetUp
     }
 
     [UnityTest]
-    public IEnumerator Button_Create_LeadsTo_CreateRoom(){
+    public IEnumerator Button_Create_LeadsTo_CreateRoom()
+    {
         var createBtn = GameObject.Find("CreateBtn").GetComponent<Button>();
         createBtn.onClick.Invoke();
         yield return null;
@@ -27,7 +27,8 @@ public class UI_TestSuite_Main : TestDependenciesSetUp
     }
 
     [UnityTest]
-    public IEnumerator Button_Join_LeadsTo_JoinRoom(){
+    public IEnumerator Button_Join_LeadsTo_JoinRoom()
+    {
         var joinBtn = GameObject.Find("JoinBtn").GetComponent<Button>();
         joinBtn.onClick.Invoke();
         yield return null;
@@ -36,7 +37,8 @@ public class UI_TestSuite_Main : TestDependenciesSetUp
     }
 
     [UnityTest]
-    public IEnumerator Button_Rec_LeadsTo_Record(){
+    public IEnumerator Button_Rec_LeadsTo_Record()
+    {
         var recBtn = GameObject.Find("RecBtn").GetComponent<Button>();
         recBtn.onClick.Invoke();
         yield return null;
@@ -45,7 +47,8 @@ public class UI_TestSuite_Main : TestDependenciesSetUp
     }
 
     [UnityTest]
-    public IEnumerator Button_Rec_LeadsTo_RegisterPhone(){
+    public IEnumerator Button_Rec_LeadsTo_RegisterPhone()
+    {
         var auth = UserManager.Auth;
 
         var signOffBtn = GameObject.Find("SignOffBtn").GetComponent<Button>();
@@ -58,7 +61,8 @@ public class UI_TestSuite_Main : TestDependenciesSetUp
     }
 
     [UnityTest]
-    public IEnumerator Button_Rec_SignsUserOff(){
+    public IEnumerator Button_Rec_SignsUserOff()
+    {
         var auth = UserManager.Auth;
         Assert.NotNull(UserManager.CurrentUser);
 
