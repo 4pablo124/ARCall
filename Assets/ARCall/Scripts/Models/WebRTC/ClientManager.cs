@@ -26,7 +26,6 @@ public class ClientManager : MonoBehaviour
 
     public void SelectColor(string color)
     {
-        Debug.Log("clientmanager " + color);
         OnColorSelected?.Invoke(color);
     }
 

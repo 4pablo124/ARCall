@@ -1003,6 +1003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contactPrefab: {fileID: 8115945159579032071, guid: 176104d8584f3e24f8aad429a995a762, type: 3}
+  whatsappIcon: {fileID: 21300000, guid: 1edd5d4c5a5d21f45a6603d413ea1392, type: 3}
 --- !u!1 &875395257
 GameObject:
   m_ObjectHideFlags: 0

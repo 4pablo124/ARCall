@@ -342,6 +342,8 @@ GameObject:
   - component: {fileID: 168595986}
   - component: {fileID: 168595985}
   - component: {fileID: 168595984}
+  - component: {fileID: 168595988}
+  - component: {fileID: 168595987}
   m_Layer: 0
   m_Name: AudioInput
   m_TagString: Untagged
@@ -378,7 +380,7 @@ MonoBehaviour:
   startMicOnStartup: 1
   stopMicrophoneListener: 0
   startMicrophoneListener: 0
-  disableOutputSound: 0
+  disableOutputSound: 1
   masterMixer: {fileID: 24100000, guid: c22ff9146378ed445ac7f18bd7210c49, type: 2}
 --- !u!82 &168595985
 AudioSource:
@@ -485,12 +487,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 168595982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7785ed3d8eed8ab4a985837d15a3cf5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 78fcbad1ea13d0c48959484250dd86af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: {fileID: 382075858}
+  volumeVisualizer: {fileID: 382075858}
   max: 1
-  min: 0.7
+  min: 0.6
+--- !u!169 &168595987
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168595982}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.15416098
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!165 &168595988
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168595982}
+  m_Enabled: 1
+  m_CutoffFrequency: 200
+  m_HighpassResonanceQ: 1
 --- !u!1 &193218839
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,7 +721,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 256315007}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bbeaed8f153bcf4f83ac749feeafe53, type: 3}
+  m_Script: {fileID: 11500000, guid: 694b26dfe3d3f7d449d29863d9d118d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &334134244
@@ -818,6 +855,8 @@ GameObject:
   - component: {fileID: 336289926}
   - component: {fileID: 336289924}
   - component: {fileID: 336289925}
+  - component: {fileID: 336289928}
+  - component: {fileID: 336289927}
   m_Layer: 5
   m_Name: UICamera
   m_TagString: MainCamera
@@ -890,6 +929,41 @@ Transform:
   m_Father: {fileID: 2096175057}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!169 &336289927
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336289923}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.09049568
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!165 &336289928
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336289923}
+  m_Enabled: 1
+  m_CutoffFrequency: 200
+  m_HighpassResonanceQ: 1
 --- !u!1 &382075858
 GameObject:
   m_ObjectHideFlags: 0
@@ -3789,7 +3863,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1540364916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d022b9bc56bd2e428341b0ddadde3a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 67750422395a58f498ef06877a4a6b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioReady: 0
@@ -4665,6 +4739,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1885280998}
+  - component: {fileID: 1885281002}
+  - component: {fileID: 1885281001}
   - component: {fileID: 1885281000}
   - component: {fileID: 1885280999}
   m_Layer: 0
@@ -4688,7 +4764,42 @@ Transform:
   m_Father: {fileID: 1540364917}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1885280999
+--- !u!165 &1885280999
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885280997}
+  m_Enabled: 1
+  m_CutoffFrequency: 200
+  m_HighpassResonanceQ: 1
+--- !u!169 &1885281000
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885280997}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.15416098
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1885281001
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4700,7 +4811,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: c4c25e7f51b8f454fb004894a4fe0af4, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.9
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4784,7 +4895,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1885281000
+--- !u!114 &1885281002
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4793,12 +4904,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1885280997}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7785ed3d8eed8ab4a985837d15a3cf5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 78fcbad1ea13d0c48959484250dd86af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: {fileID: 520027320}
+  volumeVisualizer: {fileID: 520027320}
   max: 1
-  min: 0.7
+  min: 0.6
 --- !u!1 &1918035066
 GameObject:
   m_ObjectHideFlags: 0
@@ -4904,7 +5015,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPeerType: 1
-  isRecording: 0
 --- !u!4 &1930372708
 Transform:
   m_ObjectHideFlags: 0
@@ -5063,14 +5173,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2038958313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783311efa3f7fe84f8771e8e1bfd9a30, type: 3}
+  m_Script: {fileID: 11500000, guid: 47e473b36694cf147bac0a4a1d836055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   width: 360
   height: 640
   aspectRatio: 0.5
-  bitrate: 1000000
-  framerate: 30
+  bitrate: 2500
+  framerate: 60
   isRecording: 0
   videoRawImage: {fileID: 0}
   videoDisabled: 0

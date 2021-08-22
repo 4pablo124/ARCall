@@ -83,7 +83,7 @@ public static class DatabaseManager
     private static void OnMessageReceivedDelegate(Object sender, ChildChangedEventArgs args)
     {
         var msg = JsonConvert.DeserializeObject<Message>(args.Snapshot.GetRawJsonValue());
-        // args.Snapshot.Reference.RemoveValueAsync();
+        args.Snapshot.Reference.RemoveValueAsync();
         OnMessageReceived?.Invoke(msg);
     }
 }

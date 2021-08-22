@@ -8,6 +8,7 @@ using VoxelBusters.EssentialKit;
 public class ContactsController : MonoBehaviour
 {
     public GameObject contactPrefab;
+    public Sprite whatsappIcon;
     Transform scrollContent;
     IAddressBookContact[] contacts;
 

@@ -24,6 +24,7 @@ public class ProbePlacement : MonoBehaviour
 
     List<ARRaycastHit> k_Hits = new List<ARRaycastHit>();
 
+    [System.Obsolete]
     void Update()
     {
         if (Input.touchCount > 0)

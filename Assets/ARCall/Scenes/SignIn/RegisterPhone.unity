@@ -594,7 +594,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "C\xF3digo"
+  m_text: "C\xF3digo SMS"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3d8624520e240a148bf8e92b17cc274b, type: 2}
   m_sharedMaterial: {fileID: -6488443603141517273, guid: 3d8624520e240a148bf8e92b17cc274b, type: 2}
@@ -621,7 +621,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.95
+  m_fontSize: 44.05
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1762,7 +1762,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Introduzca tu n\xFAmero..."
+  m_text: "Introduce tu n\xFAmero..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a2b3845151fa61748ab803282eeae1e3, type: 2}
   m_sharedMaterial: {fileID: 752954332788525072, guid: a2b3845151fa61748ab803282eeae1e3, type: 2}
@@ -1917,7 +1917,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Introduzca el c\xF3digo..."
+  m_text: "Introduce el c\xF3digo..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a2b3845151fa61748ab803282eeae1e3, type: 2}
   m_sharedMaterial: {fileID: 752954332788525072, guid: a2b3845151fa61748ab803282eeae1e3, type: 2}
@@ -2056,7 +2056,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Enviar c\xF3digo"
+  m_text: "Enviar c\xF3digo SMS"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a2b3845151fa61748ab803282eeae1e3, type: 2}
   m_sharedMaterial: {fileID: 752954332788525072, guid: a2b3845151fa61748ab803282eeae1e3, type: 2}

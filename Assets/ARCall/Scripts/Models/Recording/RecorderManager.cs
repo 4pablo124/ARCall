@@ -40,13 +40,7 @@ public class RecorderManager : MonoBehaviour
 
     void onStopRecord()
     {
-
-        // AndroidUtils.ShareAndroid(null,null,null,androidUtils.filePath,"video/mp4",false,null);
-
-        // string destPath = Path.Combine(Application.temporaryCachePath,androidUtils.fileName);
-        // File.Copy(androidUtils.filePath,destPath);
-        // Debug.Log(destPath);
-        // new NativeShare().AddFile(destPath).Share();
+       isRecording=false;
     }
 
     private void OnApplicationFocus(bool focused)

@@ -47,21 +47,19 @@ public class UI_TestSuite_Main : TestDependenciesSetUp
     }
 
     [UnityTest]
-    public IEnumerator Button_Rec_LeadsTo_RegisterPhone()
+    public IEnumerator Button_SignOff_LeadsTo_RegisterPhone()
     {
         var auth = UserManager.Auth;
-
         var signOffBtn = GameObject.Find("SignOffBtn").GetComponent<Button>();
         signOffBtn.onClick.Invoke();
         yield return null;
 
         Assert.AreEqual(SceneManager.GetActiveScene().name, "RegisterPhone");
-
         UserManager.LogIn(auth);
     }
 
     [UnityTest]
-    public IEnumerator Button_Rec_SignsUserOff()
+    public IEnumerator Button_SignOff_SignsUserOff()
     {
         var auth = UserManager.Auth;
         Assert.NotNull(UserManager.CurrentUser);

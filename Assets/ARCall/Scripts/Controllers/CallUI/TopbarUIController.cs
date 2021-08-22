@@ -38,7 +38,7 @@ public class TopbarUIController : MonoBehaviour
         muteMyAudioBtn.onClick.AddListener(() =>
         {
             var icon = muteMyAudioBtn.transform.Find("Icon").GetComponent<Image>();
-            if (audioManager.ToggleMute(audioManager.inputAudioSource))
+            if (audioManager.ToggleMuteInput())
             {
                 icon.sprite = muteAudioIcon;
                 icon.color = Colors.GetColor("red");
@@ -75,7 +75,7 @@ public class TopbarUIController : MonoBehaviour
             if (userReady)
             {
                 var icon = otherUserBubble.transform.Find("Icon").GetComponent<Image>();
-                if (audioManager.ToggleMute(audioManager.outputAudioSource))
+                if (audioManager.ToggleMuteOutput())
                 {
                     icon.sprite = muteAudioIcon;
                     icon.color = Colors.GetColor("red");

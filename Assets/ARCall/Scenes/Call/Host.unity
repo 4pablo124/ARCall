@@ -754,6 +754,8 @@ GameObject:
   - component: {fileID: 111132629}
   - component: {fileID: 111132628}
   - component: {fileID: 111132627}
+  - component: {fileID: 111132631}
+  - component: {fileID: 111132630}
   m_Layer: 5
   m_Name: UICamera
   m_TagString: MainCamera
@@ -826,6 +828,41 @@ Transform:
   m_Father: {fileID: 195227731}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!169 &111132630
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111132626}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.09049568
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!165 &111132631
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111132626}
+  m_Enabled: 1
+  m_CutoffFrequency: 200
+  m_HighpassResonanceQ: 1
 --- !u!1 &159481417
 GameObject:
   m_ObjectHideFlags: 0
@@ -3306,6 +3343,8 @@ GameObject:
   - component: {fileID: 1108040662}
   - component: {fileID: 1108040659}
   - component: {fileID: 1108040660}
+  - component: {fileID: 1108040664}
+  - component: {fileID: 1108040663}
   m_Layer: 0
   m_Name: AudioInput
   m_TagString: Untagged
@@ -3424,7 +3463,7 @@ MonoBehaviour:
   startMicOnStartup: 1
   stopMicrophoneListener: 0
   startMicrophoneListener: 0
-  disableOutputSound: 0
+  disableOutputSound: 1
   masterMixer: {fileID: 24100000, guid: c22ff9146378ed445ac7f18bd7210c49, type: 2}
 --- !u!4 &1108040661
 Transform:
@@ -3449,12 +3488,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 1108040658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7785ed3d8eed8ab4a985837d15a3cf5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 78fcbad1ea13d0c48959484250dd86af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: {fileID: 739653765}
+  volumeVisualizer: {fileID: 739653765}
   max: 1
-  min: 0.7
+  min: 0.6
+--- !u!169 &1108040663
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108040658}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.15416098
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!165 &1108040664
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108040658}
+  m_Enabled: 1
+  m_CutoffFrequency: 200
+  m_HighpassResonanceQ: 1
 --- !u!1 &1112920156
 GameObject:
   m_ObjectHideFlags: 0
@@ -4739,14 +4813,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1416628499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783311efa3f7fe84f8771e8e1bfd9a30, type: 3}
+  m_Script: {fileID: 11500000, guid: 47e473b36694cf147bac0a4a1d836055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   width: 360
   height: 640
   aspectRatio: 0.5
-  bitrate: 1000000
-  framerate: 30
+  bitrate: 2500
+  framerate: 60
   isRecording: 0
   videoRawImage: {fileID: 0}
   videoDisabled: 0
@@ -5773,6 +5847,8 @@ GameObject:
   - component: {fileID: 1848034149}
   - component: {fileID: 1848034150}
   - component: {fileID: 1848034146}
+  - component: {fileID: 1848034148}
+  - component: {fileID: 1848034147}
   m_Layer: 0
   m_Name: AudioOutput
   m_TagString: Untagged
@@ -5792,7 +5868,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: c4c25e7f51b8f454fb004894a4fe0af4, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.9
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5876,6 +5952,41 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!165 &1848034147
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848034145}
+  m_Enabled: 1
+  m_CutoffFrequency: 200
+  m_HighpassResonanceQ: 1
+--- !u!169 &1848034148
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848034145}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.15416098
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1848034149
 Transform:
   m_ObjectHideFlags: 0
@@ -5899,12 +6010,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1848034145}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7785ed3d8eed8ab4a985837d15a3cf5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 78fcbad1ea13d0c48959484250dd86af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: {fileID: 1228204684}
+  volumeVisualizer: {fileID: 1228204684}
   max: 1
-  min: 0.7
+  min: 0.6
 --- !u!1 &1850857492
 GameObject:
   m_ObjectHideFlags: 0
@@ -6093,7 +6204,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1864263937}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d022b9bc56bd2e428341b0ddadde3a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 67750422395a58f498ef06877a4a6b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioReady: 0
@@ -6487,7 +6598,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPeerType: 0
-  isRecording: 0
 --- !u!4 &1984143965
 Transform:
   m_ObjectHideFlags: 0

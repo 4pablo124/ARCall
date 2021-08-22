@@ -1108,17 +1108,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 832957494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783311efa3f7fe84f8771e8e1bfd9a30, type: 3}
+  m_Script: {fileID: 11500000, guid: 47e473b36694cf147bac0a4a1d836055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   width: 360
   height: 640
   aspectRatio: 0.5
-  bitrate: 1000000
+  bitrate: 16000
   framerate: 30
   isRecording: 0
   videoRawImage: {fileID: 0}
-  videoUpdateStarted: 0
   videoDisabled: 0
   mainCam: {fileID: 0}
   arSession: {fileID: 0}

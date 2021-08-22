@@ -20,7 +20,6 @@ public class BackButtonController : MonoBehaviour
         {
             if (!invalidScenes.Contains(MySceneManager.CurrentScene().name))
             {
-                Debug.Log("Back key pressed");
                 MySceneManager.BackScene();
             }
         }

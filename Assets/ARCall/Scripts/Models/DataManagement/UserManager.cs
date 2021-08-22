@@ -34,10 +34,10 @@ public static class UserManager
             {
                 await DatabaseManager.RemoveUserID(Auth.CurrentUser.PhoneNumber);
             }
+        await Auth.CurrentUser.DeleteAsync();
         }
-        await Auth.CurrentUser?.DeleteAsync();
-        CurrentUser = new User();
         Auth.SignOut();
+        CurrentUser = new User();
         OneSignal.SetSubscription(false);
     }
 

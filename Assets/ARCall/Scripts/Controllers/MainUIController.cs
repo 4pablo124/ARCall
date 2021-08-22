@@ -20,6 +20,10 @@ public class MainUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(!UserManager.IsUserRegistered()){
+            MySceneManager.LoadScene("RegisterPhone");
+        }
+
         createBtn.onClick.AddListener(() =>
         {
             MySceneManager.LoadScene("CreateRoom");

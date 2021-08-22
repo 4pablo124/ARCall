@@ -33,9 +33,6 @@ public static class SharingManager
         };
         notification["large_icon"] = "ic_phone_call";
 
-        // var lines = notification.Select(kvp => kvp.Key + ": " + kvp.Value.ToString());
-        // Debug.Log(string.Join(Environment.NewLine, lines));
-
         OneSignal.PostNotification(notification);
     }
 
