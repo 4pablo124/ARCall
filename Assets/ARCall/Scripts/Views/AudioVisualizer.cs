@@ -3,36 +3,26 @@ using UnityEngine;
 public class AudioVisualizer : MonoBehaviour
 {
 
-    public GameObject volume;
+    public GameObject volumeVisualizer;
     private float normalizedValue;
     private float scale;
     public float max = 1.0f;
-    public float min = 0.75f;
+    public float min = 0.6f;
     private AudioManager audioManager;
     private AudioSource audioSource;
-    private float[] spectrum;
-    private float spectrumValue;
+    private float volume;
 
 
     private void Start()
     {
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         audioSource = gameObject.GetComponent<AudioSource>();
-
-        spectrum = new float[128];
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        audioSource.GetSpectrumData(spectrum, 0, FFTWindow.Hamming);
-        float sum = 0.0f;
-        foreach (var sample in spectrum)
-        {
-            sum += sample * sample;
-        }
-        spectrumValue = Mathf.Sqrt(sum / spectrum.Length) * 1000;
-
-        scale = Mathf.Clamp(spectrumValue * (max - min) + min, min, max);
-        volume.transform.localScale = new Vector3(scale, scale, 1.0f);
+        volume = audioManager.GetVolume(audioSource);
+        scale = Mathf.Clamp(volume * (max - min) + min, min, max);
+        volumeVisualizer.transform.localScale = new Vector3(scale, scale, 1.0f);
     }
 }

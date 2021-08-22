@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using TMPro;
 using Unity.WebRTC;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -54,6 +55,8 @@ public class PeerConnection : MonoBehaviour
         // Cuando recibimos un mensaje invocamos de manera asincrona la lectura del mismo
         DatabaseManager.OnMessageReceived += OnMessageReceivedDelegate;
 
+        audioManager.OnAudioInputEnable += enabled => EnableAudioStream(enabled);
+
         // var encoderType = WebRTC.SupportHardwareEncoder ? EncoderType.Hardware : EncoderType.Software;
         var encoderType = EncoderType.Software;
         WebRTC.Initialize(type: encoderType, limitTextureSize: true);
@@ -71,6 +74,21 @@ public class PeerConnection : MonoBehaviour
         StartCoroutine(ReadMessageDB(msg));
     }
 
+
+    private void Update() {
+        if(audioSender.Track.Enabled && audioManager.GetVolume(audioManager.inputAudioSource) < 1){     
+            EnableAudioStream(false);
+        }else
+
+        if(!audioSender.Track.Enabled && audioManager.GetVolume(audioManager.inputAudioSource) >= 1){     
+            EnableAudioStream(true);
+        }
+    }
+ 
+ 
+    private void EnableAudioStream(bool enabled){
+        audioSender.Track.Enabled = enabled;
+    }
 
     // Start is called before the first frame update
     async void Start()
@@ -102,6 +120,8 @@ public class PeerConnection : MonoBehaviour
                         break;
                     case RTCIceConnectionState.Connected:
                         OnUserConnected?.Invoke();
+                        if(ImHost()) SetVideoParameters();
+                        SetAudioParameters();
                         break;
                     case RTCIceConnectionState.Failed:
                         if (myPeerType == PeerType.Host) StartCoroutine(Call());
@@ -115,34 +135,56 @@ public class PeerConnection : MonoBehaviour
 
     }
 
+    private bool SetVideoParameters(){
+        var videoParameters = videoSender.GetParameters();
+        foreach (var encoding in videoParameters.encodings)
+        {
+            encoding.minBitrate = videoManager.bitrate * 1000;
+            encoding.maxBitrate = videoManager.bitrate * 1000;
+            encoding.maxFramerate = videoManager.framerate;
+            encoding.scaleResolutionDownBy = 1.5;
+            encoding.active=true;
+        }
+        videoSender.SetParameters(videoParameters);
+        RTCErrorType videoError = videoSender.SetParameters(videoParameters);
+        if (videoError != RTCErrorType.None)
+        {
+            Debug.LogErrorFormat("RTCRtpSender.SetParameters failed {0}", videoError);
+        }
+
+        return videoParameters.encodings.Length > 0;
+    }
+
+    private bool SetAudioParameters(){
+        var audioParameters = audioSender.GetParameters();
+        foreach (var encoding in audioParameters.encodings)
+        {
+            encoding.minBitrate = audioManager.bitrate * 1000;
+            encoding.maxBitrate = audioManager.bitrate * 1000;
+        }
+        audioSender.SetParameters(audioParameters);
+        RTCErrorType audioError = audioSender.SetParameters(audioParameters);
+        if (audioError != RTCErrorType.None)
+        {
+            Debug.LogErrorFormat("RTCRtpSender.SetParameters failed {0}", audioError);
+        }
+
+        return audioParameters.encodings.Length > 0;
+    }
+
     // MAIN CONECCTION
     private void AddTracks()
     {
+        //ENVIAMOS
         mediaStream = new MediaStream();
 
-        // VIDEO
+        // video
         if (ImHost())
         {
-            // Enviamos
             videoSender = pc.AddTrack(videoManager.RecordCamera(), mediaStream);
-            var videoParameters = videoSender.GetParameters();
-
-            foreach (var encoding in videoParameters.encodings)
-            {
-                // encoding.minBitrate = videoManager.bitrate * 1000;
-                // encoding.maxBitrate = videoManager.bitrate * 1000;
-                // encoding.maxFramerate = videoManager.framerate;
-                // encoding.active = true;
-            }
-            videoSender.SetParameters(videoParameters);
-            RTCErrorType videoError = videoSender.SetParameters(videoParameters);
-            if (videoError != RTCErrorType.None)
-            {
-                Debug.LogErrorFormat("RTCRtpSender.SetParameters failed {0}", videoError);
-            }
         }
-        // AUDIO
 
+        // audio
         if (audioManager.audioReady)
         {
             audioSender = pc.AddTrack(audioManager.RecordAudio(), mediaStream);
@@ -154,32 +196,23 @@ public class PeerConnection : MonoBehaviour
                 audioSender = pc.AddTrack(audioManager.RecordAudio(), mediaStream);
             };
         }
-        var audioParameters = audioSender.GetParameters();
-        foreach (var encoding in audioParameters.encodings)
-        {
-            encoding.minBitrate = audioManager.bitrate * 1000;
-            encoding.maxBitrate = audioManager.bitrate * 1000;
-            encoding.scaleResolutionDownBy = 0.5;
-        }
-        audioSender.SetParameters(audioParameters);
-        RTCErrorType audioError = audioSender.SetParameters(audioParameters);
-        if (audioError != RTCErrorType.None)
-        {
-            Debug.LogErrorFormat("RTCRtpSender.SetParameters failed {0}", audioError);
-        }
+        
 
-        // Recibimos
+        //RECIBIMOS
         mediaStream.OnAddTrack = e =>
         {
+            // video
             if (e.Track is VideoStreamTrack videoTrack)
             {
                 videoManager.videoRawImage.texture = videoTrack.InitializeReceiver(videoManager.width, videoManager.height);
+                videoManager.videoRawImage.texture.filterMode = FilterMode.Trilinear;
                 videoManager.videoRawImage.color = Color.white;
             }
-            // else if (e.Track is AudioStreamTrack audioTrack)
-            // {
-            //     audioTrack.OnAudioReceived += clip => audioManager.PlayAudio(clip);
-            // }
+            // audio
+            else if (e.Track is AudioStreamTrack audioTrack)
+            {
+                audioTrack.OnAudioReceived += clip => audioManager.PlayAudio(clip);
+            }
         };
         pc.OnTrack = e => mediaStream.AddTrack(e.Track);
 
@@ -325,6 +358,7 @@ public class PeerConnection : MonoBehaviour
 
         Debug.Log($"{myPeerType} - Sending Offer");
         DatabaseManager.SendMessage(RoomManager.RoomID, myPeerType, new Data { sdp = pc.LocalDescription });
+
     }
 
 
@@ -334,23 +368,18 @@ public class PeerConnection : MonoBehaviour
     // CALLBACKS
     private void OnSceneUnloaded<Scene>(Scene scene)
     {
-        Debug.Log("OnSceneUnloaded");
         UnReadyUser();
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
 
     private void OnApplicationPause(bool paused)
     {
-        Debug.Log("OnApplicationPause");
-
         if (paused) { UnReadyUser(); }
         else { ReadyUser(); }
     }
 
     private void OnApplicationFocus(bool focused)
     {
-        Debug.Log("OnApplicationFocus");
-
         if (focused) { ReadyUser(); }
         else { UnReadyUser(); }
     }
@@ -367,15 +396,11 @@ public class PeerConnection : MonoBehaviour
 
     private void OnDisconnect()
     {
-        Debug.Log("OnDisconnect");
-
         HangUp();
     }
 
     public void HangUp()
     {
-        Debug.Log("HangUp");
-
         if (myPeerType == PeerType.Host)
         {
             videoManager.arSession.Reset();
@@ -411,7 +436,6 @@ public class PeerConnection : MonoBehaviour
             // Me envia Sdp (offer)
             else if (msg.data.sdp.type == RTCSdpType.Offer)
             {
-                Debug.Log(msg.data.sdp.sdp);
                 // Guardamos offer
                 var description = msg.data.sdp;
                 var op = pc.SetRemoteDescription(ref description);
@@ -438,7 +462,6 @@ public class PeerConnection : MonoBehaviour
             // Me envia Sdp (Answer)
             else if (msg.data.sdp.type == RTCSdpType.Answer)
             {
-                Debug.Log(msg.data.sdp.sdp);
                 var answer = msg.data.sdp;
                 var op4 = pc.SetRemoteDescription(ref answer);
                 yield return op4;

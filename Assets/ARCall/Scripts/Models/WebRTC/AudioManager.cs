@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Unity.WebRTC;
 using UnityEngine;
 using UnityEngine.Android;
@@ -10,10 +11,10 @@ public class AudioManager : MonoBehaviour
     [HideInInspector] public AudioSource outputAudioSource;
     [HideInInspector] public AudioSource inputAudioSource;
     [HideInInspector] public int bufferSize = 1024;
-    [HideInInspector] public ulong? bitrate = 40;
+    [HideInInspector] public ulong? bitrate = 20;
     private AudioStreamTrack audioStreamTrack;
     private int lengthSeconds = 1;
-    private int samplingFreq = 48000;
+    private int samplingFreq = 16000;
     private AndroidJavaObject context;
     private AndroidJavaObject androidAudioManager;
     private int defaultMode;
@@ -25,6 +26,12 @@ public class AudioManager : MonoBehaviour
     private int originalMediaVol;
     private PermissionCallbacks microphoneCallbacks;
     private bool muted;
+    private string communicationDevice;
+    private float[] spectrum;
+    private int voiceVolume;
+    private int lastCallVolume;
+
+    public event Action<bool> OnAudioInputEnable;
 
     void Awake()
     {
@@ -49,17 +56,19 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    public bool ToggleMute(AudioSource audioSource)
+    public bool ToggleMuteInput()
     {
-        if (muted)
-        {
-            audioSource.Play();
-        }
-        else
-        {
-            audioSource.Stop();
-        }
-        return muted = !muted;
+        muted = !muted;
+        inputAudioSource.mute = muted;
+        OnAudioInputEnable?.Invoke(muted);
+        return muted;
+    }
+
+    public bool ToggleMuteOutput()
+    {
+        muted = !muted;
+        outputAudioSource.mute = muted;
+        return muted;
     }
 
     private void Start()
@@ -78,29 +87,27 @@ public class AudioManager : MonoBehaviour
             Permission.RequestUserPermission(Permission.Microphone);
         }
 
-        var audioConf = AudioSettings.GetConfiguration();
-        audioConf.dspBufferSize = bufferSize;
+        spectrum = new float[128];
     }
 
     private void Update()
     {
         if (Application.platform == RuntimePlatform.Android)
         {
-            androidAudioManager.Call("setStreamVolume",
-                3, // STREAM_MUSIC
-                (int)Math.Round(scaleValueToRange(androidAudioManager.Call<int>("getStreamVolume", 0), voiceMinVol, voiceMaxVol, mediaMinVol, mediaMaxVol)), // Usar el volumen de STREAM_VOICE_CALL
-                0 // no flags
-            );
+            voiceVolume = androidAudioManager.Call<int>("getStreamVolume", 0);
+            if(voiceVolume != lastCallVolume){
+                androidAudioManager.Call("setStreamVolume",
+                    3, // STREAM_MUSIC
+                    (int)Math.Round(scaleValueToRange(voiceVolume, voiceMinVol, voiceMaxVol, mediaMinVol, mediaMaxVol)), // Usar el volumen de STREAM_VOICE_CALL
+                    0 // no flags
+                );
+                lastCallVolume = voiceVolume;
+            }
         }
     }
 
     public AudioStreamTrack RecordAudio()
     {
-        foreach (string device in Microphone.devices)
-        {
-            Debug.Log(device);
-        }
-
         if (Application.platform == RuntimePlatform.Android)
         {
             // 0: MODE_NORMAL
@@ -111,9 +118,14 @@ public class AudioManager : MonoBehaviour
 
         int minFreq;
         int maxFreq;
-        Microphone.GetDeviceCaps(null, out minFreq, out maxFreq);
 
-        var inputClip = Microphone.Start(null, true, lengthSeconds, (int)Mathf.Clamp(samplingFreq, minFreq, maxFreq));
+        // foreach (var device in Microphone.devices)
+        // {
+        //     Debug.Log(device);
+        // }
+        var device = Microphone.devices.SingleOrDefault(d => d == "Android audio input");
+        Microphone.GetDeviceCaps(device, out minFreq, out maxFreq);
+        var inputClip = Microphone.Start(device, true, lengthSeconds, (int)Mathf.Clamp(samplingFreq, minFreq, maxFreq));
         // set the latency to “0” samples before the audio starts to play.
         while (!(Microphone.GetPosition(null) > 0)) { }
         inputAudioSource.loop = true;
@@ -126,7 +138,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlayAudio(AudioClip clip)
     {
-        Debug.Log("Playing audio");
         outputAudioSource.clip = clip;
         outputAudioSource.loop = true;
         outputAudioSource.Play();
@@ -134,6 +145,7 @@ public class AudioManager : MonoBehaviour
 
     private void SetVideocallAudio(int mode, bool isSpeakerphoneOn)
     {
+        // androidAudioManager.Call()
         androidAudioManager.Call("setMode", mode);
         androidAudioManager.Call("setSpeakerphoneOn", isSpeakerphoneOn);
     }
@@ -166,5 +178,15 @@ public class AudioManager : MonoBehaviour
             androidAudioManager.Call("setStreamVolume", 3, originalMediaVol, 0);
         }
 
+    }
+
+    public float GetVolume(AudioSource audioSource){
+        audioSource.GetSpectrumData(spectrum, 0, FFTWindow.Hamming);
+        float sum = 0.0f;
+        foreach (var sample in spectrum)
+        {
+            sum += sample * sample;
+        }
+        return Mathf.Sqrt(sum / spectrum.Length) * 1000;
     }
 }

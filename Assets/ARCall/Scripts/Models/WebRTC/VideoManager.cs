@@ -11,8 +11,8 @@ public class VideoManager : MonoBehaviour
     public int width = 360;
     public int height = 640;
     public float aspectRatio = 0.5f;
-    public ulong bitrate = 2500;
-    public uint framerate = 60;
+    public ulong bitrate = 800;
+    public uint framerate = 30;
 
     public bool isRecording = false;
 
@@ -44,7 +44,6 @@ public class VideoManager : MonoBehaviour
 
     private void Start()
     {
-        framerate = (uint)Screen.currentResolution.refreshRate;
         StartCoroutine(ARSession.CheckAvailability());
         if (isRecording) RecordCamera();
     }
@@ -54,9 +53,8 @@ public class VideoManager : MonoBehaviour
         mainCam = arCam;
         aspectRatio = mainCam.aspect;
         height = (int)Math.Round(width / aspectRatio);
-        Debug.Log(aspectRatio);
 
-        if (!isRecording) videoStreamTrack = mainCam.CaptureStreamTrack(width, height, (int)bitrate * 1000);
+        if (!isRecording) videoStreamTrack = mainCam.CaptureStreamTrack(width, height, (int)bitrate * 1000, RenderTextureDepth.DEPTH_16);
 
         if (mainCam == arCam) videoRawImage.texture = arCam.targetTexture;
 
