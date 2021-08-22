@@ -6,7 +6,7 @@
 <!-- <h4 align="center">A minimal Markdown Editor desktop app built on top of <a href="http://electron.atom.io" target="_blank">Electron</a>.</h4> -->
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-v0.9.beta-green" alt="Version">
+  <img src="https://img.shields.io/badge/version-v1.0-green" alt="Version">
   <img src="https://img.shields.io/badge/android-7.0+-yellow" alt="Version Android">
   <img src="https://img.shields.io/badge/architecture-arm64.v8a-red" alt="Architecture">
 </p>
@@ -17,7 +17,6 @@ Una aplicación de asistencia remota que une las clásicas videollamadas con lo 
 
 <p align="center">
   <a href="#desarrollado-usando">Desarrollado usando</a> •
-  <a href="#gracias-a">Gracias a</a> •
   <a href="#requisitos">Requisitos</a> •
   <a href="#funcionalidad">Funcionalidad</a> •
   <a href="#roadmap">Roadmap</a> •
@@ -25,15 +24,10 @@ Una aplicación de asistencia remota que une las clásicas videollamadas con lo 
 </p>
 
 ## Desarrollado usando
-* [Unity](https://unity.com/)
+* [Unity3d](https://unity.com/)
 * [WebRTC for Unity](https://github.com/Unity-Technologies/com.unity.webrtc)
 * [Firebase](https://firebase.google.com/)
 * [OneSignal](https://onesignal.com/)
-
-## Gracias a
-* [Viagénie](http://numb.viagenie.ca/)
-* [UnityOpus](https://github.com/TyounanMOTI/UnityOpus)
-* [unity-webrtc-opus-audio](https://github.com/EphTron/unity-webrtc-opus-audio)
 
 ## Requisitos
 * **Android 7.0+ arm64-v8a** (_armeabi-v7a no esta soportado por ahora_)
@@ -65,9 +59,9 @@ Una aplicación de asistencia remota que une las clásicas videollamadas con lo 
 | [`v0.4-beta`](https://github.com/4pablo124/ARCall/releases/tag/v0.4-beta) | [Grabación de tutoriales](https://github.com/4pablo124/ARCall/milestone/4) | ✔ | **Julio 2021**
 | [`v0.5-beta`](https://github.com/4pablo124/ARCall/releases/tag/v0.5-beta) | [Web y versiones de navegador y escritorio](https://github.com/4pablo124/ARCall/milestone/5) | ✔ | **Agosto 2021**
 | [`v0.9-release`](https://github.com/4pablo124/ARCall/releases/tag/v0.9-beta) | [Pulido de interfaz y funcionalidad](https://github.com/4pablo124/ARCall/milestone/6) | ✔ | **Agosto 2021**
-| `v1.0-release` | [Release oficial](https://github.com/4pablo124/ARCall/milestone/7) |  | **Por definir**
+| [`v1.0-release`](https://github.com/4pablo124/ARCall/releases/tag/v1.0) | [Release oficial](https://github.com/4pablo124/ARCall/milestone/7) | ✔ | **Agosto 2021**
 
 ## Descarga
 Descarga el apk de la última versión desde la pestaña de [releases](https://github.com/4pablo124/ARCall/releases)
 
-_Proximamente en Google Play..._
+O desde [Google Play](https://play.google.com/store/apps/details?id=com.skrl.ARCall)
