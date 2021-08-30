@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
+/// <summary>
+/// Modela el comportamiento de la herramienta ARMarker
+/// </summary>
 public class ARMarker : MonoBehaviour
 {
     [SerializeField] private PeerType myPeerType = PeerType.Host;
@@ -17,8 +20,11 @@ public class ARMarker : MonoBehaviour
 
     private bool placingMarker = false;
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Llamada justo antes del primer fotograma
+    /// <para>Inicializa los modelos referenciados</para>
+    /// </summary>
+    private void Start()
     {
         cam = GameObject.Find("ARCamera").GetComponent<Camera>();
         inputManager = GameObject.Find("InputManager").GetComponent<MyInputManager>();
@@ -27,8 +33,11 @@ public class ARMarker : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Llamada al comienzo de cada fotograma
+    /// <para>Comprueba si se selecciona un elemento reconocido del entorno y coloca el marcador</para>
+    /// </summary>
+    private void Update()
     {
         if (inputManager.IsHeldDown(myPeerType))
         {
@@ -53,6 +62,11 @@ public class ARMarker : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Coloca el marcador en la posicion seleccionada
+    /// </summary>
+    /// <param name="position">Posición tridimensional donde colocar el marcador</param>
+    /// <returns>Marcador</returns>
     private GameObject AddMarker(Vector3 position)
     {
         var marker = GameObject.Instantiate(prefab, position, Quaternion.identity);

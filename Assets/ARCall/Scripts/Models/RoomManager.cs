@@ -2,10 +2,20 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// Maneja la lógica de la creación de salas
+/// </summary>
 public static class RoomManager
 {
+    /// <summary>
+    /// Código actual de la sala
+    /// </summary>
     public static string RoomID = "0000";
-    //Genera un codigo de sala
+
+    /// <summary>
+    /// Genera un codigo de sala aleatorio
+    /// </summary>
+    /// <returns>Código de sala generado</returns>
     public static async Task<String> GenerateRoomID()
     {
         int _min = 1000;
@@ -25,6 +35,11 @@ public static class RoomManager
         return roomID;
     }
 
+    /// <summary>
+    /// Mueve un par a una sala
+    /// </summary>
+    /// <param name="peer">Par</param>
+    /// <returns>Exito de la unión a la sala</returns>
     public static async Task<bool> JoinRoom(PeerType peer)
     {
         if (peer == PeerType.Host)

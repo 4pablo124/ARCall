@@ -5,9 +5,15 @@ using System.Net;
 using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// Maneja la lógica de notifiaciónes y compartir salas
+/// </summary>
 public static class SharingManager
 {
-
+    /// <summary>
+    /// Envia una notifiación
+    /// </summary>
+    /// <param name="userID">codigo de usuario para la notifiación</param>
     public static void SendNotification(string userID)
     {
         var notification = new Dictionary<string, object>();
@@ -36,6 +42,9 @@ public static class SharingManager
         OneSignal.PostNotification(notification);
     }
 
+    /// <summary>
+    /// Comparte un código de sala
+    /// </summary>
     public static async void ShareRoom()
     {
         var dynamicLink = await CreateDynamicRoomLink();
@@ -46,6 +55,10 @@ public static class SharingManager
         new NativeShare().SetTitle("AR Call").SetText(message).Share();
     }
 
+    /// <summary>
+    /// Comparte un código de sala con un contacto de whatsapp
+    /// </summary>
+    /// <param name="phoneNumber"></param>
     public static async void ShareRoomWhatsappContact(string phoneNumber)
     {
         var dynamicLink = await CreateDynamicRoomLink();
@@ -77,6 +90,10 @@ public static class SharingManager
 
     // Private Methods
 
+    /// <summary>
+    /// Crea un enlace dinámico a una sala
+    /// </summary>
+    /// <returns>Enlace dinámico</returns>
     private static Task<ShortDynamicLink> CreateDynamicRoomLink()
     {
         var components = new DynamicLinkComponents(
@@ -93,6 +110,11 @@ public static class SharingManager
         return Firebase.DynamicLinks.DynamicLinks.GetShortLinkAsync(components, options);
     }
 
+    /// <summary>
+    /// Crea el mensaje a compartir
+    /// </summary>
+    /// <param name="dynamicLink">Enlace dinámico</param>
+    /// <returns>Mensaje a compartir</returns>
     private static string ShareMessage(ShortDynamicLink dynamicLink)
     {
         return "AR Call\n" +

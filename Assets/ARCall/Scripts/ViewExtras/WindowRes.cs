@@ -2,7 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-public class WindowResView : MonoBehaviour
+/// <summary>
+/// Redimendiona la ventana de la aplicación de escritorio para que mantenga la relación de aspecto
+/// </summary>
+public class WindowRes : MonoBehaviour
 {
     int lastWidth;
     int lastHeight;
@@ -12,6 +15,10 @@ public class WindowResView : MonoBehaviour
     float aspect;
     float currentAspect;
 
+    /// <summary>
+    /// Llamada al crear el <see cref="GameObject"/> asociado
+    /// <para>Inicializa los parametros iniciales</para>
+    /// </summary>
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -20,6 +27,10 @@ public class WindowResView : MonoBehaviour
         aspect = (float)Screen.width / Screen.height;
     }
 
+    /// <summary>
+    /// Llamada al final de cada fotograma
+    /// <para>Comprueba si cambia la relación de aspecto
+    /// </summary>
     void LateUpdate()
     {
         currentAspect = (float)Screen.width / Screen.height;
@@ -30,6 +41,10 @@ public class WindowResView : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Cambia la resolución de la ventana
+    /// </summary>
+    /// <returns>Corutina de Unity</returns>
     IEnumerator ChangeResolution()
     {
         isReseting = true;

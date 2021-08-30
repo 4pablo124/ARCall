@@ -4,16 +4,37 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 
+/// <summary>
+/// Maneja la lógica de la grabación y visualización de video
+/// </summary>
 public class VideoManager : MonoBehaviour
 {
 
     // public PeerType myPeerType = PeerType.Host;
-    public int width = 360;
-    public int height = 640;
-    public float aspectRatio = 0.5f;
-    public ulong bitrate = 800;
-    public uint framerate = 30;
 
+    /// <summary>
+    /// Anchura del video
+    /// </summary>
+    public int width = 360;
+    /// <summary>
+    /// Altura del video
+    /// </summary>
+    public int height = 640;
+    /// <summary>
+    /// Relación de aspecto del video
+    /// </summary>
+    public float aspectRatio = 0.5f;
+    /// <summary>
+    /// Bitrate
+    /// </summary>
+    public ulong bitrate = 800;
+    /// <summary>
+    /// Fotogramas por segundo
+    /// </summary>
+    public uint framerate = 30;
+    /// <summary>
+    /// Indica si la sesión actual es una grabación
+    /// </summary>
     public bool isRecording = false;
 
 
@@ -31,6 +52,10 @@ public class VideoManager : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Llamada al crear el <see cref="GameObject"/> asociado
+    /// <para>Inicializa los modelos y elementos de la interfaz</para>
+    /// </summary>
     private void Awake()
     {
         arSession = GameObject.Find("ARSession")?.GetComponent<ARSession>();
@@ -42,12 +67,19 @@ public class VideoManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Llamada justo antes del primer fotograma
+    /// </summary>
     private void Start()
     {
         StartCoroutine(ARSession.CheckAvailability());
         if (isRecording) RecordCamera();
     }
 
+    /// <summary>
+    /// Graba la cámara de RA
+    /// </summary>
+    /// <returns></returns>
     public VideoStreamTrack RecordCamera()
     {
         mainCam = arCam;
@@ -66,7 +98,11 @@ public class VideoManager : MonoBehaviour
         return videoStreamTrack;
     }
 
-
+    /// <summary>
+    /// Llamada cuando el estado de pausa de la aplicación cambia
+    /// <para>Alterna la visivilidad del video</para>
+    /// </summary>
+    /// <param name="paused">Estado de pausa</param>
     private void OnApplicationPause(bool paused)
     {
         if (paused)
@@ -79,6 +115,10 @@ public class VideoManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Establece la visibilidad del video
+    /// </summary>
+    /// <param name="show">Visibilidad del video</param>
     public void ShowVideo(bool show)
     {
         // videoStreamTrack.Enabled = show;
@@ -94,6 +134,11 @@ public class VideoManager : MonoBehaviour
     }
 
     // TODO: Enviar mensaje al cliente 
+
+    /// <summary>
+    /// Alterna la visibilidad del video
+    /// </summary>
+    /// <returns>Visibilidad actual del video</returns>
     public bool ToggleVideo()
     {
 

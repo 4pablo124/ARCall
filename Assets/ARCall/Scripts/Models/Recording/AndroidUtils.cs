@@ -39,6 +39,10 @@ public enum VideoEncoder
     MPEG_4_SP,
     VP8
 }
+
+/// <summary>
+/// Clase de utilidades para android
+/// </summary>
 public class AndroidUtils : MonoBehaviour
 {
     private const float SCREEN_WIDTH = 720f;

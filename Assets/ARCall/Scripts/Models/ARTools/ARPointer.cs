@@ -1,9 +1,11 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Modela el comportamiento de la herramienta ARPointer
+/// </summary>
 public class ARPointer : MonoBehaviour
 {
-
     [SerializeField] private PeerType myPeerType = PeerType.Host;
 
     private MyInputManager inputManager;
@@ -14,6 +16,10 @@ public class ARPointer : MonoBehaviour
     private ARToolManager aRToolManager;
 
 
+    /// <summary>
+    /// Llamada al crear el <see cref="GameObject"/> asociado
+    /// <para>Inicializa los modelos y elementos de la interfaz</para>
+    /// </summary>
     private void Awake()
     {
         inputManager = GameObject.Find("InputManager")?.GetComponent<MyInputManager>();
@@ -25,11 +31,19 @@ public class ARPointer : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Llamada justo antes del primer fotograma
+    /// <para>Establece los valores iniciales</para>
+    /// </summary>
     private void Start()
     {
         pointer.GetComponent<SpriteRenderer>().enabled = false;
     }
 
+    /// <summary>
+    /// Llamada al comienzo de cada fotograma
+    /// Comprueba la posición del puntero y lo muestra
+    /// </summary>
     private void Update()
     {
         pointer.GetComponent<SpriteRenderer>().color = myPeerType == PeerType.Host ?
@@ -47,8 +61,8 @@ public class ARPointer : MonoBehaviour
         pointer.GetComponent<SpriteRenderer>().enabled = inputManager.IsHeldDown(myPeerType);
     }
 
-    void setUpCam()
-    {
-        GetComponent<Canvas>().worldCamera = videoManager.mainCam;
-    }
+    // void setUpCam()
+    // {
+    //     GetComponent<Canvas>().worldCamera = videoManager.mainCam;
+    // }
 }

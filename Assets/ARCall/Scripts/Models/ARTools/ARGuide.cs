@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Modela el comportamiento de la herramienta ARGuide
+/// </summary>
 public class ARGuide : MonoBehaviour
 {
     [HideInInspector] public Transform target;
@@ -13,22 +16,31 @@ public class ARGuide : MonoBehaviour
     private VideoManager videoManager;
 
 
+    /// <summary>
+    /// Llamada al crear el <see cref="GameObject"/> asociado
+    /// <para>Inicializa los modelos referenciados</para>
+    /// </summary>
     private void Awake()
     {
         videoManager = GameObject.Find("VideoManager")?.GetComponent<VideoManager>();
         arCam = GameObject.Find("ARCamera").GetComponent<Camera>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Llamada justo antes del primer fotograma
+    /// <para>Establece los valores iniciales</para>
+    /// </summary>
+    private void Start()
     {
         GetComponent<Renderer>().enabled = false;
         guideScreenPos.z = 19;
         transform.rotation = Quaternion.identity;
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Llamada al comienzo de cada fotograma
+    /// </summary>
+    private void Update()
     {
         cursorWidth = (int)Math.Round(Screen.width * 0.01f);
         GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, cursorWidth);

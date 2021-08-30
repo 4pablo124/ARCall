@@ -3,9 +3,11 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
+/// <summary>
+/// Modela el comportamiento de la herramienta ARBrush
+/// </summary>
 public class ARBrush : MonoBehaviour
 {
-
     [SerializeField] private PeerType myPeerType = PeerType.Host;
 
     [SerializeField] private GameObject linePrefab;
@@ -16,6 +18,10 @@ public class ARBrush : MonoBehaviour
     private ARToolManager aRToolManager;
     private LineRenderer line;
 
+    /// <summary>
+    /// Llamada justo antes del primer fotograma
+    /// <para>Inicializa los modelos referenciados</para>
+    /// </summary>
     private void Start()
     {
         arCam = GameObject.Find("ARCamera").GetComponent<Camera>();
@@ -24,8 +30,11 @@ public class ARBrush : MonoBehaviour
         aRToolManager = GameObject.Find("ARToolManager").GetComponent<ARToolManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Llamada al comienzo de cada fotograma
+    /// <para>Comprueba si se selecciona un elemento reconocido del entorno y dibuja la linea</para>
+    /// </summary>
+    private void Update()
     {
         if (inputManager.IsHeldDown(myPeerType))
         {
@@ -60,7 +69,12 @@ public class ARBrush : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// Coloca el siguiente punto en la linea que se esta dibujando actualmente
+    /// </summary>
+    /// <param name="line">Linea actual</param>
+    /// <param name="point">Punto tridimensional que añadir</param>
+    /// <returns></returns>
     private LineRenderer drawNextPointInLine(LineRenderer line, UnityEngine.Vector3 point)
     {
         line.SetPosition(line.positionCount++, point);
@@ -68,6 +82,11 @@ public class ARBrush : MonoBehaviour
         return line;
     }
 
+    /// <summary>
+    /// Crea el comienzo de la linea a dibujar
+    /// </summary>
+    /// <param name="start">Punto tridimensional donde comenzar la linea</param>
+    /// <returns></returns>
     private LineRenderer createLineStart(UnityEngine.Vector3 start)
     {
         LineRenderer line = GameObject.Instantiate(linePrefab, start, UnityEngine.Quaternion.identity).GetComponent<LineRenderer>();

@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Controla la interfaz de la barra de opciones superior en una videollamada
+/// </summary>
 public class TopbarUIController : MonoBehaviour
 {
 
@@ -15,10 +18,15 @@ public class TopbarUIController : MonoBehaviour
     private Button roomBtn;
     private AudioManager audioManager;
     private VideoManager videoManager;
-    private PeerConnection peerConnection;
+    private PeerConnectionManager peerConnection;
 
     private bool userReady = false;
 
+ 
+    /// <summary>
+    /// Llamada al crear el <see cref="GameObject"/> asociado
+    /// <para>Inicializa los modelos y elementos de la interfaz</para>
+    /// </summary>
     private void Awake()
     {
         muteMyAudioBtn = GameObject.Find("MuteMyAudio").GetComponent<Button>();
@@ -29,11 +37,14 @@ public class TopbarUIController : MonoBehaviour
 
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         videoManager = GameObject.Find("VideoManager").GetComponent<VideoManager>();
-        peerConnection = GameObject.Find("PeerConnection").GetComponent<PeerConnection>();
+        peerConnection = GameObject.Find("PeerConnection").GetComponent<PeerConnectionManager>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Llamada justo antes del primer fotograma
+    /// <para>Asigna las acciones a los botones de la interfaz</para>
+    /// </summary>
+    private void Start()
     {
         muteMyAudioBtn.onClick.AddListener(() =>
         {
@@ -99,6 +110,10 @@ public class TopbarUIController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Llamada cada fotograma, asegurandose de que no se salta ningun fotograma aunque se reduzca el rendimiento del sistema
+    /// <para>Hace girar al icono de espera de conexión</para>
+    /// </summary>
     void FixedUpdate()
     {
         if (!userReady) otherUserBubble.transform.Find("Icon").Rotate(Vector3.forward * 6);

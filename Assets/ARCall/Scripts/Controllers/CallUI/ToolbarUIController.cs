@@ -1,10 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Controla la interfaz de la barra de heramientas en una videollamada o grabación
+/// </summary>
 public class ToolbarUIController : MonoBehaviour
 {
+    /// <summary>
+    /// Identifica el rol actual del par
+    /// </summary>
     public PeerType peer = PeerType.Host;
 
+    /// <summary>
+    /// Indica si la sesión actual es una grabación
+    /// </summary>
     public bool isRecording = false;
 
     private Button undo;
@@ -23,11 +32,15 @@ public class ToolbarUIController : MonoBehaviour
     private GameObject color2;
     private GameObject color3;
     private Button actionBtn;
-    private PeerConnection peerConnection;
+    private PeerConnectionManager peerConnection;
     private ARToolManager arToolManager;
     private ClientManager clientManager;
     private RecorderManager recorderManager;
 
+    /// <summary>
+    /// Llamada al crear el <see cref="GameObject"/> asociado
+    /// <para>Inicializa los modelos y elementos de la interfaz</para>
+    /// </summary>
     private void Awake()
     {
         //toolbar
@@ -48,13 +61,16 @@ public class ToolbarUIController : MonoBehaviour
 
         actionBtn = GameObject.Find("ActionBtn")?.GetComponent<Button>();
 
-        peerConnection = GameObject.Find("PeerConnection")?.GetComponent<PeerConnection>();
+        peerConnection = GameObject.Find("PeerConnection")?.GetComponent<PeerConnectionManager>();
         arToolManager = GameObject.Find("ARToolManager")?.GetComponent<ARToolManager>();
         clientManager = GameObject.Find("ClientManager")?.GetComponent<ClientManager>();
         recorderManager = GameObject.Find("AndroidUtils")?.GetComponent<RecorderManager>();
     }
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Llamada justo antes del primer fotograma
+    /// <para>Asigna las acciones a los botones de la interfaz</para>
+    /// </summary>
     void Start()
     {
         undo.onClick.AddListener(() =>
@@ -164,6 +180,11 @@ public class ToolbarUIController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Intercambia el elemento actualmente seleccionado de una barra (herramienta o color) por el elemento que eliga el usuario
+    /// </summary>
+    /// <param name="bar">Barra seleccionada (barra de herramientas o colores)</param>
+    /// <param name="clickedElement">Elemento de la barra que el usuario ha seleccionado</param>
     void SelectBarElement(GameObject bar, GameObject clickedElement)
     {
         if (bar == arToolsBar)
@@ -199,6 +220,10 @@ public class ToolbarUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Alterna la visibilidad de la barra seleccionada
+    /// </summary>
+    /// <param name="bar">Barra seleccionada</param>
     void ToggleBar(GameObject bar)
     {
         deleteBar.SetActive(bar == deleteBar && !deleteBar.activeSelf);

@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Controla la interfaz principal de la aplicación
+/// </summary>
 public class MainUIController : MonoBehaviour
 {
 
@@ -9,6 +12,10 @@ public class MainUIController : MonoBehaviour
     private Button recBtn;
     private Button signOffBtn;
 
+    /// <summary>
+    /// Llamada al crear el <see cref="GameObject"/> asociado
+    /// <para>Inicializa los modelos y elementos de la interfaz</para>
+    /// </summary>
     private void Awake()
     {
         createBtn = GameObject.Find("CreateBtn").GetComponent<Button>();
@@ -17,8 +24,11 @@ public class MainUIController : MonoBehaviour
         signOffBtn = GameObject.Find("SignOffBtn").GetComponent<Button>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Llamada justo antes del primer fotograma
+    /// <para>Asigna acciones a los botones de la interfaz</para>
+    /// </summary>
+    private void Start()
     {
         if(!UserManager.IsUserRegistered()){
             MySceneManager.LoadScene("RegisterPhone");

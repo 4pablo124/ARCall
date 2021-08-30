@@ -18,19 +18,27 @@ public class MyInputManager : MonoBehaviour
     [HideInInspector] public TouchScreenKeyboard clientKeyboard;
 
 
+    /// <summary>
+    /// Llamada al crear el <see cref="GameObject"/> asociado
+    /// <para>Inicializa los modelos y elementos de la interfaz</para>
+    /// </summary>
     private void Awake()
     {
         videoManager = GameObject.Find("VideoManager")?.GetComponent<VideoManager>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Llamada justo antes del primer fotograma
+    /// </summary>
+    private void Start()
     {
         hostPosition.z = clientPosition.z = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Llamada al comienzo de cada fotograma
+    /// </summary>
+    private void Update()
     {
         if (Input.GetMouseButton(0) && EventSystem.current.currentSelectedGameObject == null)
         {

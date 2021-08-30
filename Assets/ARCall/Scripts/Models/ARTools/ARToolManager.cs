@@ -1,23 +1,77 @@
 using UnityEngine;
 
+/// <summary>
+/// Maneja la lógica de las herramientas de RA
+/// </summary>
 public class ARToolManager : MonoBehaviour
 {
+    /// <summary>
+    /// Indica si la sesión actual es una grabación
+    /// </summary>
     public bool recording = false;
+    
+    /// <summary>
+    /// Material usado para las herramientas del host
+    /// </summary>
+    [HideInInspector] public Material hostMaterial;
 
-    [HideInInspector] public Material hostMaterial, clientMaterial;
-    public Material ColorRed, ColorBlue, ColorGreen, ColorYellow;
+    /// <summary>
+    /// Material usado para las herramientas del cliente
+    /// </summary>
+    [HideInInspector] public Material clientMaterial;
+
+    /// <summary>
+    /// Material predeterminado rojo
+    /// </summary>
+    public Material ColorRed;
+    /// <summary>
+    /// Material predeterminado azul
+    /// </summary>
+    public Material ColorBlue;
+    /// <summary>
+    /// Material predeterminado verde
+    /// </summary>
+    public Material ColorGreen;
+    /// <summary>
+    /// Material predeterminado amarillo
+    /// </summary>
+    public Material ColorYellow;
+    /// <summary>
+    /// Prefab usado para las guias
+    /// </summary>
     public GameObject guidePrefab;
+    /// <summary>
+    /// <see cref="GameObject"/> donde se guardan los trazos o marcadores del host
+    /// </summary>
     public static GameObject hostDrawings;
+    /// <summary>
+    /// <see cref="GameObject"/> donde se guardan los trazos o marcadores del cliente
+    /// </summary>
     public static GameObject clientDrawings;
+    /// <summary>
+    /// <see cref="GameObject"/> donde se guardan las guías del host
+    /// </summary>
     public static GameObject hostGuides;
+    /// <summary>
+    /// <see cref="GameObject"/> donde se guardan guías del cliente
+    /// </summary>
     public static GameObject clientGuides;
 
+    /// <summary>
+    /// <see cref="GameObject"/> donde se guardan guías del cliente
+    /// </summary>
+    private GameObject hostTools;
+    /// <summary>
+    /// <see cref="GameObject"/> donde se guardan guías del cliente
+    /// </summary>
+    private GameObject clientTools;
 
-    private GameObject hostTools, clientTools;
 
-
-    // Start is called before the first frame update
-    void Awake()
+    /// <summary>
+    /// Llamada al crear el <see cref="GameObject"/> asociado
+    /// <para>Inicializa los modelos referenciados</para>
+    /// </summary>
+    private void Awake()
     {
         hostDrawings = GameObject.Find("HostDrawings");
         clientDrawings = GameObject.Find("ClientDrawings");
@@ -32,6 +86,11 @@ public class ARToolManager : MonoBehaviour
         if (!recording) SelectTool(PeerType.Client, "ARBrush");
     }
 
+    /// <summary>
+    /// Selecciona la heramienta elegida para el par seleccionado
+    /// </summary>
+    /// <param name="peer">Par seleccionado</param>
+    /// <param name="toolName">Nombre de la herramienta seleccionada</param>
     public void SelectTool(PeerType peer, string toolName)
     {
         switch (peer)
@@ -54,6 +113,10 @@ public class ARToolManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Elimina el último trazo o marcador colocado por el par seleccionado
+    /// </summary>
+    /// <param name="peer">Par seleccionado</param>
     public void UndoDrawing(string peer)
     {
         switch (peer)
@@ -75,6 +138,10 @@ public class ARToolManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Elimina todos los trazos o marcadores del par seleccionado
+    /// </summary>
+    /// <param name="peer">Par seleccionado</param>
     public void DeleteDrawings(string peer)
     {
         if (peer == "Host" || peer == "Both")
@@ -100,9 +167,12 @@ public class ARToolManager : MonoBehaviour
             }
         }
     }
-
-
-    //TODO: Quitar colores "hardcoded"   
+  
+    /// <summary>
+    /// Selecciona el color actual para el par seleccionado
+    /// </summary>
+    /// <param name="peer">Par seleccionado</param>
+    /// <param name="color">Color seleccionado</param>
     public void SelectColor(PeerType peer, string color)
     {
         switch (peer)
@@ -128,6 +198,12 @@ public class ARToolManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coloca una guía en un trazo o marcador del par selecionado
+    /// </summary>
+    /// <param name="peer">Par seleccionado</param>
+    /// <param name="target">Posición del trazo o marcador selecionado</param>
+    /// <returns></returns>
     public GameObject PlaceGuide(PeerType peer, Transform target)
     {
         var guide = GameObject.Instantiate(guidePrefab);

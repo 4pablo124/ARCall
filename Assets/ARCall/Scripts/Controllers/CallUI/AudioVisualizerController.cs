@@ -1,8 +1,13 @@
 using UnityEngine;
 
-public class AudioVisualizer : MonoBehaviour
+/// <summary>
+/// Controla el visualizador de audio
+/// </summary>
+public class AudioVisualizerController : MonoBehaviour
 {
-
+    /// <summary>
+    /// Visualizador de audio
+    /// </summary>
     public GameObject volumeVisualizer;
     private float normalizedValue;
     private float scale;
@@ -13,13 +18,21 @@ public class AudioVisualizer : MonoBehaviour
     private float volume;
 
 
+    /// <summary>
+    /// Llamada justo antes del primer fotograma
+    /// <para>Inicializa los objetos necesarios</para>
+    /// </summary>
     private void Start()
     {
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         audioSource = gameObject.GetComponent<AudioSource>();
     }
 
-    void Update()
+    /// <summary>
+    /// Llamada al comienzo de cada fotograma
+    /// <para>Modifica la escala del visualizador en función del volumen</para>
+    /// </summary>
+    private void Update()
     {
         volume = audioManager.GetVolume(audioSource);
         scale = Mathf.Clamp(volume * (max - min) + min, min, max);

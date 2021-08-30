@@ -4,13 +4,38 @@ using Unity.WebRTC;
 using UnityEngine;
 using UnityEngine.Android;
 
+/// <summary>
+/// Maneja la lógica de la captura y reproducción de audio
+/// </summary>
 public class AudioManager : MonoBehaviour
 {
+    /// <summary>
+    /// Evento lanzado cuando se el estado de la entrada de audio cambia (activo o inactivo)
+    /// </summary>
+    public event Action<bool> OnAudioInputEnable;
+    /// <summary>
+    /// Evento lanzado cuando la pista de audio esta lista
+    /// </summary>
     public event Action OnAudioTrackReady;
+    /// <summary>
+    /// Indica si el audio esta listo
+    /// </summary>
     [HideInInspector] public bool audioReady = false;
+    /// <summary>
+    /// Fuente de audio saliente (altavoz)
+    /// </summary>
     [HideInInspector] public AudioSource outputAudioSource;
+    /// <summary>
+    /// Fuente de audio entrante (Micrófono)
+    /// </summary>
     [HideInInspector] public AudioSource inputAudioSource;
+    /// <summary>
+    /// Tamaño del buffer
+    /// </summary>
     [HideInInspector] public int bufferSize = 1024;
+    /// <summary>
+    /// Bitrate
+    /// </summary>
     [HideInInspector] public ulong? bitrate = 20;
     private AudioStreamTrack audioStreamTrack;
     private int lengthSeconds = 1;
@@ -31,8 +56,10 @@ public class AudioManager : MonoBehaviour
     private int voiceVolume;
     private int lastCallVolume;
 
-    public event Action<bool> OnAudioInputEnable;
-
+    /// <summary>
+    /// Llamada al crear el <see cref="GameObject"/> asociado
+    /// <para>Inicializa los modelos referenciados y configura el audio de android</para>
+    /// </summary>
     void Awake()
     {
         outputAudioSource = GameObject.Find("AudioOutput")?.GetComponent<AudioSource>();
@@ -56,6 +83,10 @@ public class AudioManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Alterna la entrada de audio
+    /// </summary>
+    /// <returns>El estado actual de la entrada de audio</returns>
     public bool ToggleMuteInput()
     {
         muted = !muted;
@@ -64,6 +95,11 @@ public class AudioManager : MonoBehaviour
         return muted;
     }
 
+
+    /// <summary>
+    /// Alterna la salida de audio
+    /// </summary>
+    /// <returns>Estado actual de la salida de audio</returns>
     public bool ToggleMuteOutput()
     {
         muted = !muted;
@@ -71,6 +107,10 @@ public class AudioManager : MonoBehaviour
         return muted;
     }
 
+    /// <summary>
+    /// Llamada justo antes del primer fotograma
+    /// <para>Gestiona permisos de audio</para>
+    /// </summary>
     private void Start()
     {
         if (Permission.HasUserAuthorizedPermission(Permission.Microphone))
@@ -90,6 +130,10 @@ public class AudioManager : MonoBehaviour
         spectrum = new float[128];
     }
 
+    /// <summary>
+    /// Llamada al comienzo de cada fotograma
+    /// <para>Gestiona volumen de la llamada</para>
+    /// </summary>
     private void Update()
     {
         if (Application.platform == RuntimePlatform.Android)
@@ -106,6 +150,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Comienza a grabar el audio
+    /// </summary>
+    /// <returns>Pista de audio</returns>
     public AudioStreamTrack RecordAudio()
     {
         if (Application.platform == RuntimePlatform.Android)
@@ -136,6 +184,10 @@ public class AudioManager : MonoBehaviour
         return audioStreamTrack;
     }
 
+    /// <summary>
+    /// Reproduce la salida de audio
+    /// </summary>
+    /// <param name="clip">Clip con el audio a reproducir</param>
     public void PlayAudio(AudioClip clip)
     {
         outputAudioSource.clip = clip;
@@ -143,6 +195,11 @@ public class AudioManager : MonoBehaviour
         outputAudioSource.Play();
     }
 
+    /// <summary>
+    /// Configura los ajustes de Android para videollamada
+    /// </summary>
+    /// <param name="mode">Modo de la llamdada</param>
+    /// <param name="isSpeakerphoneOn">Si usar altavoces</param>
     private void SetVideocallAudio(int mode, bool isSpeakerphoneOn)
     {
         // androidAudioManager.Call()
@@ -150,26 +207,52 @@ public class AudioManager : MonoBehaviour
         androidAudioManager.Call("setSpeakerphoneOn", isSpeakerphoneOn);
     }
 
+    /// <summary>
+    /// Escala el valor dado a un rango
+    /// </summary>
+    /// <param name="value">Valor de entrada</param>
+    /// <param name="valueMin">Valor mínimo de la escala de entrada</param>
+    /// <param name="valueMax">Valor máximo de la escala de entrada</param>
+    /// <param name="rangeMin">Valor mínimo de la escala de salida</param>
+    /// <param name="rangeMax">Valor máximo de la escala de salida</param>
+    /// <returns></returns>
     private float scaleValueToRange(float value, float valueMin, float valueMax, float rangeMin, float rangeMax)
     {
         return ((value - valueMin) / (valueMax - valueMin)) * (rangeMax - rangeMin) + rangeMin;
     }
 
     //Permissions Callbacks
+
+    /// <summary>
+    /// Lanzada cuando se aceptan los permisos de audio
+    /// </summary>
+    /// <param name="permissionName">Nombre de los permisos aceptados</param>
     private void MicrophonePermissionGranted(string permissionName)
     {
         audioReady = true;
         OnAudioTrackReady?.Invoke();
     }
+    /// <summary>
+    /// Lanzada cuando se deniegan los permisos de audio
+    /// </summary>
+    /// <param name="permissionName">Nombre de los permisos denegados</param>    
     private void MicrophonePermissionDenied(string permissionName)
     {
         Permission.RequestUserPermission(Permission.Microphone);
     }
+    /// <summary>
+    /// Lanzada cuando se deniegan los permisos de audio y se indica que no se soliciten otra vez
+    /// </summary>
+    /// <param name="permissionName">Nombre de los permisos denegados</param>    
     private void MicrophonePermissionDeniedAndDontAskAgain(string permissionName)
     {
         MySceneManager.LoadScene("Main");
     }
 
+    /// <summary>
+    /// Llamada cuando el <see cref="GameObject"/> asociado de destruye
+    /// <para>Devuelve la configuración a su estado anterior</para>
+    /// </summary>
     private void OnDestroy()
     {
         if (Application.platform == RuntimePlatform.Android)
@@ -180,6 +263,11 @@ public class AudioManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Devuelve el valor del volumen de una fuente de audio
+    /// </summary>
+    /// <param name="audioSource">Fuente de audio</param>
+    /// <returns>Volumen</returns>
     public float GetVolume(AudioSource audioSource){
         audioSource.GetSpectrumData(spectrum, 0, FFTWindow.Hamming);
         float sum = 0.0f;

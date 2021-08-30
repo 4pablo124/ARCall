@@ -5,14 +5,29 @@ using Firebase.Extensions;
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Inicializa Firebase
+/// </summary>
 public class FirebaseInit : MonoBehaviour
 {
+    /// <summary>
+    /// Referencia a la aplicación de Firebase
+    /// </summary>
     public static Firebase.FirebaseApp FirebaseApp;
+    /// <summary>
+    /// Evento lanzado cuando Firebase esta inicializado
+    /// </summary>
     public static event Action<FirebaseDatabase, FirebaseAuth> OnReady;
+    /// <summary>
+    /// Indica si Firebase esta inicializado
+    /// </summary>
     public static bool Ready;
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Llamada justo antes del primer fotograma
+    /// <para>Inicializa Firebase</para>
+    /// </summary>
+    private void Start()
     {
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {

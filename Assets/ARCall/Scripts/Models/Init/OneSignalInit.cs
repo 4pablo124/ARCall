@@ -1,9 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Inicializa OneSignal
+/// </summary>
 public class OneSignalInit : MonoBehaviour
 {
-    void Start()
+    /// <summary>
+    /// Llamada justo antes del primer fotograma
+    /// <para> inicializa OneSignal</para>
+    /// </summary>
+    private void Start()
     {
         // Uncomment this method to enable OneSignal Debugging log output 
         OneSignal.SetLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
@@ -25,6 +32,10 @@ public class OneSignalInit : MonoBehaviour
     }
 
     // Gets called when the player opens a OneSignal notification.
+    /// <summary>
+    /// Llamada cuando un usuario abre una notificación
+    /// </summary>
+    /// <param name="result">Resultado de la notificación</param>
     private static void OneSignalHandleNotificationOpened(OSNotificationOpenedResult result)
     {
         if (FirebaseInit.Ready)
@@ -37,6 +48,10 @@ public class OneSignalInit : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Lee notificación y redirige a la videollamada correspondiente
+    /// </summary>
+    /// <param name="result"></param>
     private static async void HandleNotification(OSNotificationOpenedResult result)
     {
         string body = result.notification.payload.body;

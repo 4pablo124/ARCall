@@ -1,19 +1,25 @@
 using System;
 using System.Collections;
-using System.Linq;
 using System.Threading.Tasks;
 using TMPro;
 using Unity.WebRTC;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PeerConnection : MonoBehaviour
+/// <summary>
+/// Maneja la lógica de una conexión entre dos pares
+/// </summary>
+public class PeerConnectionManager : MonoBehaviour
 {
-
+    /// <summary>
+    /// Evento lanzado cuando un usuario se conecta
+    /// </summary>
     public event Action OnUserConnected;
 
+    /// <summary>
+    /// Rol del par actual
+    /// </summary>
     public PeerType myPeerType = PeerType.Host;
 
     private MyInputManager inputManager;
@@ -32,6 +38,10 @@ public class PeerConnection : MonoBehaviour
     // private readonly string[] excludeCodecMimeType = { "video/red", "video/ulpfec", "video/rtx" };
 
 
+    /// <summary>
+    /// Llamada al crear el <see cref="GameObject"/> asociado
+    /// <para>Inicializa los modelos referenciados y la configuración inicial de la conexión</para>
+    /// </summary>
     private void Awake()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -63,18 +73,31 @@ public class PeerConnection : MonoBehaviour
         StartCoroutine(WebRTC.Update());
     }
 
+    /// <summary>
+    /// Llamada cuando el cliente se conecta
+    /// <para>Realiza la llamada</para>
+    /// </summary>
     void OnClientReadyDelegate()
     {
         StartCoroutine(Call());
         pc.OnNegotiationNeeded = () => StartCoroutine(Call());
     }
 
+    /// <summary>
+    /// Llamada cuando se recibe un mensaje de base de datos
+    /// <para>Delega la lectura del mensaje</para>
+    /// </summary>
+    /// <param name="msg">Mensaje</param>
     void OnMessageReceivedDelegate(Message msg)
     {
         StartCoroutine(ReadMessageDB(msg));
     }
 
 
+    /// <summary>
+    /// Llamada al comienzo de cada fotograma
+    /// <para>Cierra el canal de audio cuando este no tiene actividad o esta deshabilitado
+    /// </summary>
     private void Update() {
         if(audioSender.Track.Enabled && audioManager.GetVolume(audioManager.inputAudioSource) < 1){     
             EnableAudioStream(false);
@@ -85,13 +108,19 @@ public class PeerConnection : MonoBehaviour
         }
     }
  
- 
+    /// <summary>
+    /// Cambia el estado del canal de audio
+    /// </summary>
+    /// <param name="enabled">Estado</param>
     private void EnableAudioStream(bool enabled){
         audioSender.Track.Enabled = enabled;
     }
 
-    // Start is called before the first frame update
-    async void Start()
+    /// <summary>
+    /// Llamada justo antes del primer fotograma
+    /// <para>Comienza el proceso de conexión</para>
+    /// </summary>
+    private async void Start()
     {
         // Señalizamos que el peer esta listo
         await DatabaseManager.ReadyUser(RoomManager.RoomID, myPeerType);
@@ -135,6 +164,10 @@ public class PeerConnection : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Establece los paramentros de la trasnmisión de video
+    /// </summary>
+    /// <returns>Si se han establecido los parametros correctamente</returns>
     private bool SetVideoParameters(){
         var videoParameters = videoSender.GetParameters();
         foreach (var encoding in videoParameters.encodings)
@@ -155,6 +188,10 @@ public class PeerConnection : MonoBehaviour
         return videoParameters.encodings.Length > 0;
     }
 
+    /// <summary>
+    /// Establece los paramentros de la trasnmisión de audio
+    /// </summary>
+    /// <returns>Si se han establecido los parametros correctamente</returns>
     private bool SetAudioParameters(){
         var audioParameters = audioSender.GetParameters();
         foreach (var encoding in audioParameters.encodings)
@@ -173,6 +210,9 @@ public class PeerConnection : MonoBehaviour
     }
 
     // MAIN CONECCTION
+    /// <summary>
+    /// Crea los canales de video y audio
+    /// </summary>
     private void AddTracks()
     {
         //ENVIAMOS
@@ -218,6 +258,9 @@ public class PeerConnection : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Crea los canales de datos
+    /// </summary>
     private void AddDataChannels()
     {
 
@@ -340,6 +383,10 @@ public class PeerConnection : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Realiza la llamada para establecer la conexión
+    /// </summary>
+    /// <returns>Corutina de Unity</returns>
     private IEnumerator Call()
     {
 
@@ -366,24 +413,44 @@ public class PeerConnection : MonoBehaviour
 
 
     // CALLBACKS
+    /// <summary>
+    /// Llamada cuando se abandona la escena
+    /// <para>Indica que el par no esta disponible en base de datos</para>
+    /// </summary>
+    /// <typeparam name="Scene">Escena de Unity</typeparam>
+    /// <param name="scene">Escena que se ha abandonado</param>
     private void OnSceneUnloaded<Scene>(Scene scene)
     {
         UnReadyUser();
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
 
+    /// <summary>
+    /// Llamada cuando el estado de pausa de la aplicación cambia
+    /// <para>Alterna el estado de listo del par en la conexión</para>
+    /// </summary>
+    /// <param name="paused">Estado de pausa</param>
     private void OnApplicationPause(bool paused)
     {
         if (paused) { UnReadyUser(); }
         else { ReadyUser(); }
     }
 
+    /// <summary>
+    /// Llamada cuando el estado de efonque de la aplicación cambia
+    /// <para>Alterna el estado de listo del par en la conexión</para>
+    /// </summary>
+    /// <param name="focused">Estado de enfoque</param>
     private void OnApplicationFocus(bool focused)
     {
         if (focused) { ReadyUser(); }
         else { UnReadyUser(); }
     }
 
+    /// <summary>
+    /// Llamada cuando el <see cref="GameObject"/> asociado se destruye
+    /// <para>Finaliza la conexión</para>
+    /// </summary>
     private void OnDestroy()
     {
         if (ImHost()) DatabaseManager.OnClientReady -= OnClientReadyDelegate;
@@ -394,11 +461,18 @@ public class PeerConnection : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Llamada cuando la conexión se pierde
+    /// <para>Se cuelga la videollamda</para>
+    /// </summary>
     private void OnDisconnect()
     {
         HangUp();
     }
 
+    /// <summary>
+    /// Cuelga la videollamada
+    /// </summary>
     public void HangUp()
     {
         if (myPeerType == PeerType.Host)
@@ -419,7 +493,11 @@ public class PeerConnection : MonoBehaviour
     }
 
 
-    // Lee un mensaje mediante la base de datos, se invoca cada vez que se envie un mensaje
+    /// <summary>
+    /// Lee un mensaje mediante la base de datos, se invoca cada vez que se envie un mensaje
+    /// </summary>
+    /// <param name="msg">Mensaje</param>
+    /// <returns>Corutina de Unity</returns>
     private IEnumerator ReadMessageDB(Message msg)
     {
         //El mensaje es para mi
@@ -475,6 +553,10 @@ public class PeerConnection : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// Señaliza que el par no listo para la conexión
+    /// </summary>
     private async void UnReadyUser()
     {
         // Quitamos al peer de la base de datos, se eliminara la sala automaticamente cuando no haya peers
@@ -482,6 +564,9 @@ public class PeerConnection : MonoBehaviour
         // Devolvemos la pantalla a su estado original
     }
 
+    /// <summary>
+    /// Señaliza que el par esta listo para la conexión
+    /// </summary>
     private async void ReadyUser()
     {
         await DatabaseManager.ReadyUser(RoomManager.RoomID, myPeerType);
@@ -490,7 +575,10 @@ public class PeerConnection : MonoBehaviour
 
     // CONNECTION AUX
 
-    // Devuelve la configuracion de Servidores ICE y protocolos de transmision
+    /// <summary>
+    /// Genera la configuracion de servidores ICE y protocolos de transmisión
+    /// </summary>
+    /// <returns>Configuración de servidores</returns>
     private static RTCConfiguration ServersConfig()
     {
         RTCConfiguration config = default;
@@ -521,7 +609,11 @@ public class PeerConnection : MonoBehaviour
         return config;
     }
 
-    // Genera la informacion necesaria para inicializar un IceCandidate
+    /// <summary>
+    /// Genera la informacion necesaria para inicializar un <see cref="RTCIceCandidate"/>
+    /// </summary>
+    /// <param name="candidate">ICE candidate</param>
+    /// <returns></returns>
     private RTCIceCandidateInit InitIceCandidate(RTCIceCandidate candidate)
     {
         RTCIceCandidateInit iceCandidate = new RTCIceCandidateInit()
@@ -535,7 +627,10 @@ public class PeerConnection : MonoBehaviour
 
 
     // MISC AUX
-
+    /// <summary>
+    /// Evalua si el par actual es host
+    /// </summary>
+    /// <returns>Si el par actual es host</returns>
     private bool ImHost()
     {
         return myPeerType == PeerType.Host;

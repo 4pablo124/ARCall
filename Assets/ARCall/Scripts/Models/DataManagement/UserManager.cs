@@ -4,28 +4,61 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// Maneja la lógica de registro y autenticación de usuarios
+/// </summary>
 public static class UserManager
 {
+    /// <summary>
+    /// Evento lanzado cuando se completa la verificación de teléfono
+    /// </summary>
     public static event Action OnVerificationCompleted;
+    /// <summary>
+    /// Evento lanzado cuando falla la verificación de teléfono
+    /// </summary>
     public static event Action OnVerificationFailed;
+    /// <summary>
+    /// Evento lanzado cuando se envia el código SMS de verificación
+    /// </summary>
     public static event Action OnCodeSent;
+    /// <summary>
+    /// Evento lanzado cuando falla la captación automática del código SMS de verificación
+    /// </summary>
     public static event Action OnCodeAutoRetrievalTimeOut;
+    /// <summary>
+    /// Usuario actualmente logueado
+    /// </summary>
     public static User CurrentUser;
-
+    /// <summary>
+    /// Referencia al objeto de Autenticación
+    /// </summary>
     public static FirebaseAuth Auth;
     private static string verificationId;
 
+
+    /// <summary>
+    /// Evalua si el usuario actual esta registrado
+    /// </summary>
+    /// <returns>Si el usuario esta registrado</returns>
     public static bool IsUserRegistered()
     {
         return Auth.CurrentUser != null;
     }
 
+    /// <summary>
+    /// Registra el nombre de usuario
+    /// </summary>
+    /// <param name="username">Nombre de usuario</param>
+    /// <returns>Tarea asincrona esperable</returns>
     public static async Task<Task> SignUp(string username)
     {
         await Auth.SignInAnonymouslyAsync();
         return ChangeUsername(username);
     }
 
+    /// <summary>
+    /// Cierra la sesion del usario actualmente logueado
+    /// </summary>
     public static async void LogOut()
     {
         if (Auth.CurrentUser != null)
@@ -41,6 +74,10 @@ public static class UserManager
         OneSignal.SetSubscription(false);
     }
 
+    /// <summary>
+    /// Loguea al usuario actual
+    /// </summary>
+    /// <param name="auth">Objeto de autorización</param>
     public static void LogIn(FirebaseAuth auth)
     {
         Auth = auth;
@@ -54,6 +91,11 @@ public static class UserManager
         }
     }
 
+    /// <summary>
+    /// Cambia el nombre del usuario actual
+    /// </summary>
+    /// <param name="username">Nombre de usuario</param>
+    /// <returns>Tarea asíncrona esperable</returns>
     public static Task ChangeUsername(string username)
     {
         UserProfile profile = new UserProfile();
@@ -61,6 +103,11 @@ public static class UserManager
         return Auth.CurrentUser.UpdateUserProfileAsync(profile);
     }
 
+    /// <summary>
+    /// Envia el código SMS de verificación y lanza los posibles eventos
+    /// </summary>
+    /// <param name="countryCode">Código de país del teléfono</param>
+    /// <param name="phoneNumber">Número de teléfono</param>
     public static void SendVerificationCode(string countryCode, string phoneNumber)
     {
 
@@ -109,6 +156,11 @@ public static class UserManager
             });
     }
 
+    /// <summary>
+    /// Verifica el número de teléfono con el código SMS de verificación
+    /// </summary>
+    /// <param name="code">Código SMS de verificación</param>
+    /// <returns>Exito de la verificación</returns>
     public static async Task<bool> VerifyPhone(string code)
     {
         try
@@ -123,6 +175,12 @@ public static class UserManager
             return false;
         }
     }
+
+    /// <summary>
+    /// Verifica el número de teléfono con un objeto de credenciales
+    /// </summary>
+    /// <param name="credential">Objeto de credenciales</param>
+    /// <returns>Tarea asíncrona esperable</returns>
     private static Task VerifyPhoneCredential(Credential credential)
     {
         return Auth.SignInWithCredentialAsync(credential).ContinueWithOnMainThread(task =>

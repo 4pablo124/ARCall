@@ -2,16 +2,28 @@ using Firebase.DynamicLinks;
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Inicializa los links dinámicos
+/// </summary>
 public class DynamicLinksInit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Llamada justo antes del primer fotograma
+    /// <para>Marca el <see cref="GameObject"/> asociado para que no sea destruido al cambiar de escena</para>
+    /// </summary>
+    private void Start()
     {
         DynamicLinks.DynamicLinkReceived += OnDynamicLink;
         DontDestroyOnLoad(this.gameObject);
     }
 
     // Display the dynamic link received by the application.
+    /// <summary>
+    /// Lanzada cuando se recibe un enlace dinámico
+    /// <para>Redirige a la videollamda correspondiente</para>
+    /// </summary>
+    /// <param name="sender">Identifica el envio</param>
+    /// <param name="args">argumentos del envio</param>
     private async void OnDynamicLink(object sender, EventArgs args)
     {
 
