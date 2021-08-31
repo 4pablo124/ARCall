@@ -1,0 +1,7 @@
+<map id="SharingManager.ShareRoomWhatsappContact" name="SharingManager.ShareRoomWhatsappContact">
+<area shape="rect" id="node1" title="Comparte un código de sala con un contacto de whatsapp" alt="" coords="783,31,1075,57"/>
+<area shape="rect" id="node2" href="$class_contacts_controller.html#a82e0a0a5ae1fc7cbef3e4cb49d74dc31" title="Inicializa todos los elementos necesarios de la lista de contactos y la muestra en la interfaz" alt="" coords="517,31,735,57"/>
+<area shape="rect" id="node3" href="$class_contacts_controller.html#a5523eae0297ff38bd1ee5cdaa2ead925" title="LLamada cuando se aceptan los permisos de lectura de contactos" alt="" coords="225,5,469,32"/>
+<area shape="rect" id="node5" href="$class_contacts_controller.html#a18ddb1f465c9a56f0f080f9ce9cb0011" title="Llamada justo antes del primer fotograma" alt="" coords="267,56,428,83"/>
+<area shape="rect" id="node4" href="$class_contacts_controller.html#a55e6be8eaa668f93e23c09e491c644c8" title="Llamada al crear el GameObject asociado" alt="" coords="5,5,177,32"/>
+</map>

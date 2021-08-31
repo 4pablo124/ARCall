@@ -1,0 +1,5 @@
+<map id="AudioManager.GetVolume" name="AudioManager.GetVolume">
+<area shape="rect" id="node1" title="Devuelve el valor del volumen de una fuente de audio" alt="" coords="265,31,440,57"/>
+<area shape="rect" id="node2" href="$class_audio_visualizer_controller.html#a75319823a4ca8aab8a850d2bbb72c618" title="Llamada al comienzo de cada fotograma" alt="" coords="5,5,217,32"/>
+<area shape="rect" id="node3" href="$class_peer_connection_manager.html#a8b9c44eaef490cea9d4ecb3c6c1ff7af" title="Llamada al comienzo de cada fotograma" alt="" coords="7,56,216,83"/>
+</map>

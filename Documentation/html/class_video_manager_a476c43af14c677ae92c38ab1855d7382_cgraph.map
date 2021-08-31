@@ -1,0 +1,4 @@
+<map id="VideoManager.ToggleVideo" name="VideoManager.ToggleVideo">
+<area shape="rect" id="node1" title="Alterna la visibilidad del video" alt="" coords="5,5,185,32"/>
+<area shape="rect" id="node2" href="$class_video_manager.html#aebd4ede14b753cd764ea946c9d335949" title="Establece la visibilidad del video" alt="" coords="233,5,408,32"/>
+</map>

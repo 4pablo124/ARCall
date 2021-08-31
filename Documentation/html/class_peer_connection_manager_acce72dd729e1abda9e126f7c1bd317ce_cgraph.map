@@ -1,0 +1,8 @@
+<map id="PeerConnectionManager.AddDataChannels" name="PeerConnectionManager.AddDataChannels">
+<area shape="rect" id="node1" title="Crea los canales de datos" alt="" coords="5,107,277,133"/>
+<area shape="rect" id="node2" href="$class_a_r_tool_manager.html#ab3ba41799d1887d36ba5d36f4960afbc" title="Elimina todos los trazos o marcadores del par seleccionado" alt="" coords="326,5,534,32"/>
+<area shape="rect" id="node3" href="$class_peer_connection_manager.html#a9cc97416c36f76d17771f7d61613cfc0" title="Evalua si el par actual es host" alt="" coords="325,56,535,83"/>
+<area shape="rect" id="node4" href="$class_a_r_tool_manager.html#af9a83789810f1f49396d859e950a994d" title="Selecciona el color actual para el par seleccionado" alt="" coords="337,107,523,133"/>
+<area shape="rect" id="node5" href="$class_a_r_tool_manager.html#a4ba91608a57b3aa14fa66857c5b5d337" title="Selecciona la heramienta elegida para el par seleccionado" alt="" coords="341,157,519,184"/>
+<area shape="rect" id="node6" href="$class_a_r_tool_manager.html#afcccae8eba6e44495ff68863fc67c380" title="Elimina el último trazo o marcador colocado por el par seleccionado" alt="" coords="333,208,527,235"/>
+</map>

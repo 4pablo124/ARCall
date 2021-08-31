@@ -1,0 +1,11 @@
+<map id="SharingManager.CreateDynamicRoomLink" name="SharingManager.CreateDynamicRoomLink">
+<area shape="rect" id="node1" title="Crea un enlace dinámico a una sala" alt="" coords="1123,81,1389,108"/>
+<area shape="rect" id="node2" href="$class_sharing_manager.html#a2ef248638c066a17876bf444b0bc3861" title="Comparte un código de sala" alt="" coords="835,56,1023,83"/>
+<area shape="rect" id="node5" href="$class_sharing_manager.html#aae88ccb9e92ceeed9c6e6281a192f698" title="Comparte un código de sala con un contacto de whatsapp" alt="" coords="783,107,1075,133"/>
+<area shape="rect" id="node3" href="$class_topbar_u_i_controller.html#a3a7804eb204105f4ceb9c87762adf09d" title="Llamada justo antes del primer fotograma" alt="" coords="546,5,706,32"/>
+<area shape="rect" id="node4" href="$class_rooms_controller.html#a38b3caf6336da28667fb457361f04193" title="Llamada justo antes del primer fotograma" alt="" coords="551,56,701,83"/>
+<area shape="rect" id="node6" href="$class_contacts_controller.html#a82e0a0a5ae1fc7cbef3e4cb49d74dc31" title="Inicializa todos los elementos necesarios de la lista de contactos y la muestra en la interfaz" alt="" coords="517,107,735,133"/>
+<area shape="rect" id="node7" href="$class_contacts_controller.html#a5523eae0297ff38bd1ee5cdaa2ead925" title="LLamada cuando se aceptan los permisos de lectura de contactos" alt="" coords="225,81,469,108"/>
+<area shape="rect" id="node9" href="$class_contacts_controller.html#a18ddb1f465c9a56f0f080f9ce9cb0011" title="Llamada justo antes del primer fotograma" alt="" coords="267,132,428,159"/>
+<area shape="rect" id="node8" href="$class_contacts_controller.html#a55e6be8eaa668f93e23c09e491c644c8" title="Llamada al crear el GameObject asociado" alt="" coords="5,81,177,108"/>
+</map>

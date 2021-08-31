@@ -1,0 +1,9 @@
+<map id="RegisterPhoneUIController.OnVerificationCompleted" name="RegisterPhoneUIController.OnVerificationCompleted">
+<area shape="rect" id="node1" title="Llamada cuando se completa la verificación" alt="" coords="5,81,327,108"/>
+<area shape="rect" id="node2" href="$class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="402,5,598,32"/>
+<area shape="rect" id="node3" href="$class_android_utils.html#af3ddee265b4dfc672eddae5699c8fb2b" title=" " alt="" coords="1072,157,1232,184"/>
+<area shape="rect" id="node4" href="$class_register_phone_u_i_controller.html#a5cd62efcd8f1e816c759ac0ede78aaaf" title="Se desuscribe de los eventos de clases estáticas" alt="" coords="375,107,625,133"/>
+<area shape="rect" id="node5" href="$class_register_phone_u_i_controller.html#a5ebb5fa37ace52b830ee425ab69376e8" title="Llamada cuando se captura automáticamente el código" alt="" coords="673,107,1024,133"/>
+<area shape="rect" id="node6" href="$class_register_phone_u_i_controller.html#a1f99826db3bbc1b5bc00fe21b5241f5e" title="Llamada cuando se envíaa el código de verificación SMS" alt="" coords="723,157,975,184"/>
+<area shape="rect" id="node7" href="$class_register_phone_u_i_controller.html#a7838bc038a08379b5f1f50af435ac6d7" title="Llamada cuando falla la verificación" alt="" coords="701,208,996,235"/>
+</map>

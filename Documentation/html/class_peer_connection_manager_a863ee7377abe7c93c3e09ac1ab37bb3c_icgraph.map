@@ -1,0 +1,4 @@
+<map id="PeerConnectionManager.SetVideoParameters" name="PeerConnectionManager.SetVideoParameters">
+<area shape="rect" id="node1" title="Establece los paramentros de la trasnmisión de video" alt="" coords="249,5,537,32"/>
+<area shape="rect" id="node2" href="$class_peer_connection_manager.html#a058148001392c4d6106cc784ec477256" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,201,32"/>
+</map>

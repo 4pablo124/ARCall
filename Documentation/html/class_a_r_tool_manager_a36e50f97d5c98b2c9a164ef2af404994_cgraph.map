@@ -1,0 +1,4 @@
+<map id="ARToolManager.Awake" name="ARToolManager.Awake">
+<area shape="rect" id="node1" title="Llamada al crear el GameObject asociado" alt="" coords="5,5,163,32"/>
+<area shape="rect" id="node2" href="$class_a_r_tool_manager.html#a4ba91608a57b3aa14fa66857c5b5d337" title="Selecciona la heramienta elegida para el par seleccionado" alt="" coords="211,5,389,32"/>
+</map>

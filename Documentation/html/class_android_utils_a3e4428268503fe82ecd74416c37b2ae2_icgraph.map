@@ -1,0 +1,7 @@
+<map id="AndroidUtils.RequestPermission" name="AndroidUtils.RequestPermission">
+<area shape="rect" id="node1" title=" " alt="" coords="964,5,1173,32"/>
+<area shape="rect" id="node2" href="$class_android_utils.html#af53d417f93c9f33d0ba4943af3cc86ae" title=" " alt="" coords="733,5,916,32"/>
+<area shape="rect" id="node3" href="$class_recorder_manager.html#a12a78c0fd95f2c5040913c84003b27a4" title="Comienza la grabación" alt="" coords="471,5,685,32"/>
+<area shape="rect" id="node4" href="$class_recorder_manager.html#af4f6bc58b8be4b847c30c57d1fe6a730" title="Alterna entre comenzar la grabación o pararla" alt="" coords="216,5,423,32"/>
+<area shape="rect" id="node5" href="$class_toolbar_u_i_controller.html#a7c36bd2332e575e710320a80023b93de" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,168,32"/>
+</map>

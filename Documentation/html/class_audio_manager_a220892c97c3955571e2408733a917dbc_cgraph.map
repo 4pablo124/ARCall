@@ -1,0 +1,4 @@
+<map id="AudioManager.Update" name="AudioManager.Update">
+<area shape="rect" id="node1" title="Llamada al comienzo de cada fotograma" alt="" coords="5,5,156,32"/>
+<area shape="rect" id="node2" href="$class_audio_manager.html#a32ee5fdda1ca259acae1246b9d42e26f" title="Escala el valor dado a un rango" alt="" coords="204,5,428,32"/>
+</map>

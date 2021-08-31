@@ -1,0 +1,4 @@
+<map id="PeerConnectionManager.ServersConfig" name="PeerConnectionManager.ServersConfig">
+<area shape="rect" id="node1" title="Genera la configuracion de servidores ICE y protocolos de transmisión" alt="" coords="249,5,496,32"/>
+<area shape="rect" id="node2" href="$class_peer_connection_manager.html#a058148001392c4d6106cc784ec477256" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,201,32"/>
+</map>

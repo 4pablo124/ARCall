@@ -1,0 +1,10 @@
+<map id="DatabaseManager.SendMessage" name="DatabaseManager.SendMessage">
+<area shape="rect" id="node1" title="Envia un mensaje de conexión a base de datos" alt="" coords="991,56,1205,83"/>
+<area shape="rect" id="node2" href="$class_peer_connection_manager.html#a37051871d1e21f16a1e4ff5409a58f8c" title="Realiza la llamada para establecer la conexión" alt="" coords="713,107,903,133"/>
+<area shape="rect" id="node6" href="$class_peer_connection_manager.html#a058148001392c4d6106cc784ec477256" title="Llamada justo antes del primer fotograma" alt="" coords="357,56,553,83"/>
+<area shape="rect" id="node7" href="$class_peer_connection_manager.html#a55cfe5d454913d9aa216cba1e9e11b84" title="Lee un mensaje mediante la base de datos, se invoca cada vez que se envie un mensaje" alt="" coords="673,5,943,32"/>
+<area shape="rect" id="node3" href="$class_peer_connection_manager.html#a9167cfeb3f97d6c07ae8abd9b48ac597" title="Llamada cuando el cliente se conecta" alt="" coords="301,107,608,133"/>
+<area shape="rect" id="node4" href="$class_peer_connection_manager.html#a82bd9ac926952fe7f22bef718cca64cb" title="Llamada al crear el GameObject asociado" alt="" coords="17,19,224,45"/>
+<area shape="rect" id="node5" href="$class_peer_connection_manager.html#a267f5ad1bb8760b277d6754418b5a4f1" title="Llamada cuando el GameObject asociado se destruye" alt="" coords="5,81,236,108"/>
+<area shape="rect" id="node8" href="$class_peer_connection_manager.html#a0a284ceb0c5a0f89563f4c2515b98e2b" title="Llamada cuando se recibe un mensaje de base de datos" alt="" coords="284,5,625,32"/>
+</map>

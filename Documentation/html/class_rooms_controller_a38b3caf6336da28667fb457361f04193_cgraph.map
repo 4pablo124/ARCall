@@ -1,0 +1,12 @@
+<map id="RoomsController.Start" name="RoomsController.Start">
+<area shape="rect" id="node1" title="Llamada justo antes del primer fotograma" alt="" coords="5,81,156,108"/>
+<area shape="rect" id="node2" href="$class_room_manager.html#a7cdb384db8d15a58bc46b46c7bd57c9b" title="Genera un codigo de sala aleatorio" alt="" coords="204,19,413,45"/>
+<area shape="rect" id="node4" href="$class_rooms_controller.html#adceb5742932fc91d4d08576ee98af251" title="Lleva al usuario actual a la sala seleccionada" alt="" coords="219,81,398,108"/>
+<area shape="rect" id="node8" href="$class_sharing_manager.html#a2ef248638c066a17876bf444b0bc3861" title="Comparte un código de sala" alt="" coords="215,157,403,184"/>
+<area shape="rect" id="node3" href="$class_database_manager.html#a26b78f4ef7989b67f825194863df0357" title="Evalua si un código de sala existe en base de datos" alt="" coords="776,5,991,32"/>
+<area shape="rect" id="node5" href="$class_room_manager.html#a022ae9cafc8dedb55ca839e0d99c5b44" title="Mueve un par a una sala" alt="" coords="511,56,678,83"/>
+<area shape="rect" id="node7" href="$class_android_utils.html#af3ddee265b4dfc672eddae5699c8fb2b" title=" " alt="" coords="515,107,675,133"/>
+<area shape="rect" id="node6" href="$class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="785,56,981,83"/>
+<area shape="rect" id="node9" href="$class_sharing_manager.html#a039a42cca85530f5e71e396bda0bc95b" title="Crea un enlace dinámico a una sala" alt="" coords="461,157,728,184"/>
+<area shape="rect" id="node10" href="$class_sharing_manager.html#a1297b7c8e2a23a2f1b179717015405a7" title="Crea el mensaje a compartir" alt="" coords="491,208,698,235"/>
+</map>

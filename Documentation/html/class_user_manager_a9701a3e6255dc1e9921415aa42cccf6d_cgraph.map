@@ -1,0 +1,5 @@
+<map id="UserManager.SendVerificationCode" name="UserManager.SendVerificationCode">
+<area shape="rect" id="node1" title="Envia el código SMS de verificación y lanza los posibles eventos" alt="" coords="5,5,232,32"/>
+<area shape="rect" id="node2" href="$class_user_manager.html#a8473c8b09bc25b4ee3ccc8ad934f1a4d" title="Verifica el número de teléfono con un objeto de credenciales" alt="" coords="280,5,511,32"/>
+<area shape="rect" id="node3" href="$class_database_manager.html#ae84a345ac51bb80ebf7fda88043ef499" title="Establece el userID de un usuario" alt="" coords="559,5,749,32"/>
+</map>

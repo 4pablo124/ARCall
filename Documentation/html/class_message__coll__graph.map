@@ -1,0 +1,4 @@
+<map id="Message" name="Message">
+<area shape="rect" id="node1" title="Representa un mensaje enviado para realizar una conexión WebRTC" alt="" coords="30,160,177,237"/>
+<area shape="rect" id="node2" href="$class_data.html" title="Representa los datos necesarios para poder realizar una conexión WebRTC" alt="" coords="5,5,201,97"/>
+</map>

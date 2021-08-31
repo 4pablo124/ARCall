@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ARCall: Fichero Fuente C:/Proyectos/ARCall/Assets/ARCall/Scripts/Controllers/CallUI/MicrophoneListener.cs</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">ARCall
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.9.2 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Buscar');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_84bbf7b3c7f28a5a18725745e1505219.html">Assets</a></li><li class="navelem"><a class="el" href="dir_b65df5491c32a1d8b7805d88957a1325.html">ARCall</a></li><li class="navelem"><a class="el" href="dir_fc12c737c1334bd69ac032ce53d04692.html">Scripts</a></li><li class="navelem"><a class="el" href="dir_215a308a2b64fcceb5acbe1e268b33c7.html">Controllers</a></li><li class="navelem"><a class="el" href="dir_a366015ea543dc675ff9ce43a0fce017.html">CallUI</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">MicrophoneListener.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_microphone_listener_8cs.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using</span> UnityEngine;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using</span> UnityEngine.Audio; <span class="comment">// required for dealing with audiomixers</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>[RequireComponent(typeof(AudioSource))]</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="class_microphone_listener.html">    5</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_microphone_listener.html">MicrophoneListener</a> : MonoBehaviour</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>{</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="comment">//Written in part by Benjamin Outram</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="comment">//option to toggle the microphone listenter on startup or not</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_microphone_listener.html#aaa72bd4d83d9b4ca3a4932439506fcb9">   11</a></span>    <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_microphone_listener.html#aaa72bd4d83d9b4ca3a4932439506fcb9">startMicOnStartup</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="comment">//allows start and stop of listener at run time within the unity editor</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_microphone_listener.html#a5cdaf3431a624114cd2087ba9dd5ee69">   14</a></span>    <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_microphone_listener.html#a5cdaf3431a624114cd2087ba9dd5ee69">stopMicrophoneListener</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_microphone_listener.html#a35bea23cbec35c0d73cd4a753e476579">   15</a></span>    <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_microphone_listener.html#a35bea23cbec35c0d73cd4a753e476579">startMicrophoneListener</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_microphone_listener.html#acdb845c3574e99b98cd5a3f627534bc7">   17</a></span>    <span class="keyword">private</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_microphone_listener.html#acdb845c3574e99b98cd5a3f627534bc7">microphoneListenerOn</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="comment">//public to allow temporary listening over the speakers if you want of the mic output</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="comment">//but internally it toggles the output sound to the speakers of the audiosource depending</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">//on if the microphone listener is on or off</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="class_microphone_listener.html#aeaf314613d20f820da8e38f55e645b8c">   22</a></span>    <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_microphone_listener.html#aeaf314613d20f820da8e38f55e645b8c">disableOutputSound</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="comment">//an audio source also attached to the same object as this script is</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_microphone_listener.html#a66a8cfbf8e8fc13a687d09c856f5672e">   25</a></span>    AudioSource <a class="code hl_variable" href="class_microphone_listener.html#a66a8cfbf8e8fc13a687d09c856f5672e">src</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="comment">//make an audio mixer from the &quot;create&quot; menu, then drag it into the public field on this script.</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">//double click the audio mixer and next to the &quot;groups&quot; section, click the &quot;+&quot; icon to add a </span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">//child to the master group, rename it to &quot;microphone&quot;.  Then in the audio source, in the &quot;output&quot; option, </span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">//select this child of the master you have just created.</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">//go back to the audiomixer inspector window, and click the &quot;microphone&quot; you just created, then in the </span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="comment">//inspector window, right click &quot;Volume&quot; and select &quot;Expose Volume (of Microphone)&quot; to script,</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">//then back in the audiomixer window, in the corner click &quot;Exposed Parameters&quot;, click on the &quot;MyExposedParameter&quot;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">//and rename it to &quot;Volume&quot;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_microphone_listener.html#a7cbb89d77ca15d398313c16dd236f45c">   35</a></span>    <span class="keyword">public</span> AudioMixer <a class="code hl_variable" href="class_microphone_listener.html#a7cbb89d77ca15d398313c16dd236f45c">masterMixer</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="class_microphone_listener.html#ae203abd2b78d6e36360bb2a5f19b832b">   38</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_microphone_listener.html#ae203abd2b78d6e36360bb2a5f19b832b">timeSinceRestart</a> = 0;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="class_microphone_listener.html#a633ca7ce84b11f6ea06e2dfec39c0a53">   45</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_microphone_listener.html#a633ca7ce84b11f6ea06e2dfec39c0a53">Start</a>()</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="comment">//start the microphone listener</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_microphone_listener.html#aaa72bd4d83d9b4ca3a4932439506fcb9">startMicOnStartup</a>)</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            <a class="code hl_function" href="class_microphone_listener.html#aa333000bbeba3c0ddd4d010057f570a3">RestartMicrophoneListener</a>();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            <a class="code hl_function" href="class_microphone_listener.html#a5cf4eb3958db2ea278c862836d37fdbb">StartMicrophoneListener</a>();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="class_microphone_listener.html#a3956f9f56442b31ac803da567300816e">   55</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_microphone_listener.html#a3956f9f56442b31ac803da567300816e">Update</a>()</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="comment">//can use these variables that appear in the inspector, or can call the public functions directly from other scripts</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_microphone_listener.html#a5cdaf3431a624114cd2087ba9dd5ee69">stopMicrophoneListener</a>)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <a class="code hl_function" href="class_microphone_listener.html#a1234b5e0175837a77a6fdb2140d7766d">StopMicrophoneListener</a>();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_microphone_listener.html#a35bea23cbec35c0d73cd4a753e476579">startMicrophoneListener</a>)</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <a class="code hl_function" href="class_microphone_listener.html#a5cf4eb3958db2ea278c862836d37fdbb">StartMicrophoneListener</a>();</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="comment">//reset paramters to false because only want to execute once</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <a class="code hl_variable" href="class_microphone_listener.html#a5cdaf3431a624114cd2087ba9dd5ee69">stopMicrophoneListener</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <a class="code hl_variable" href="class_microphone_listener.html#a35bea23cbec35c0d73cd4a753e476579">startMicrophoneListener</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="comment">//must run in update otherwise it doesnt seem to work</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <a class="code hl_function" href="class_microphone_listener.html#ae8287ee5dca8b1d320f547451a116171">MicrophoneIntoAudioSource</a>(<a class="code hl_variable" href="class_microphone_listener.html#acdb845c3574e99b98cd5a3f627534bc7">microphoneListenerOn</a>);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="comment">//can choose to unmute sound from inspector if desired</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <a class="code hl_function" href="class_microphone_listener.html#a4a8d3eaffa2525eb170ad14f80d2fb6b">DisableSound</a>(!<a class="code hl_variable" href="class_microphone_listener.html#aeaf314613d20f820da8e38f55e645b8c">disableOutputSound</a>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="comment">//stops everything and returns audioclip to null</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="class_microphone_listener.html#a1234b5e0175837a77a6fdb2140d7766d">   82</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_microphone_listener.html#a1234b5e0175837a77a6fdb2140d7766d">StopMicrophoneListener</a>()</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="comment">//stop the microphone listener</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <a class="code hl_variable" href="class_microphone_listener.html#acdb845c3574e99b98cd5a3f627534bc7">microphoneListenerOn</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="comment">//reenable the master sound in mixer</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <a class="code hl_variable" href="class_microphone_listener.html#aeaf314613d20f820da8e38f55e645b8c">disableOutputSound</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="comment">//remove mic from audiosource clip</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <a class="code hl_variable" href="class_microphone_listener.html#a66a8cfbf8e8fc13a687d09c856f5672e">src</a>.Stop();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <a class="code hl_variable" href="class_microphone_listener.html#a66a8cfbf8e8fc13a687d09c856f5672e">src</a>.clip = <span class="keyword">null</span>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        Microphone.End(<span class="keyword">null</span>);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="class_microphone_listener.html#a5cf4eb3958db2ea278c862836d37fdbb">   96</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_microphone_listener.html#a5cf4eb3958db2ea278c862836d37fdbb">StartMicrophoneListener</a>()</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="comment">//start the microphone listener</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <a class="code hl_variable" href="class_microphone_listener.html#acdb845c3574e99b98cd5a3f627534bc7">microphoneListenerOn</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="comment">//disable sound output (dont want to hear mic input on the output!)</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <a class="code hl_variable" href="class_microphone_listener.html#aeaf314613d20f820da8e38f55e645b8c">disableOutputSound</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="comment">//reset the audiosource</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <a class="code hl_function" href="class_microphone_listener.html#aa333000bbeba3c0ddd4d010057f570a3">RestartMicrophoneListener</a>();</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="comment">//controls whether the volume is on or off, use &quot;off&quot; for mic input (dont want to hear your own voice input!) </span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">//and &quot;on&quot; for music input</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="class_microphone_listener.html#a4a8d3eaffa2525eb170ad14f80d2fb6b">  109</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_microphone_listener.html#a4a8d3eaffa2525eb170ad14f80d2fb6b">DisableSound</a>(<span class="keywordtype">bool</span> SoundOn)</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordtype">float</span> volume = 0;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordflow">if</span> (SoundOn)</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        {</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            volume = 0.0f;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        }</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            volume = -80.0f;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <a class="code hl_variable" href="class_microphone_listener.html#a7cbb89d77ca15d398313c16dd236f45c">masterMixer</a>.SetFloat(<span class="stringliteral">&quot;Volume&quot;</span>, volume);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    }</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// restart microphone removes the clip from the audiosource</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="class_microphone_listener.html#aa333000bbeba3c0ddd4d010057f570a3">  129</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_microphone_listener.html#aa333000bbeba3c0ddd4d010057f570a3">RestartMicrophoneListener</a>()</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    {</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <a class="code hl_variable" href="class_microphone_listener.html#a66a8cfbf8e8fc13a687d09c856f5672e">src</a> = GetComponent&lt;AudioSource&gt;();</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="comment">//remove any soundfile in the audiosource</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <a class="code hl_variable" href="class_microphone_listener.html#a66a8cfbf8e8fc13a687d09c856f5672e">src</a>.clip = <span class="keyword">null</span>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        <a class="code hl_variable" href="class_microphone_listener.html#ae203abd2b78d6e36360bb2a5f19b832b">timeSinceRestart</a> = Time.time;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    }</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="comment">//puts the mic into the audiosource</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="class_microphone_listener.html#ae8287ee5dca8b1d320f547451a116171">  142</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_microphone_listener.html#ae8287ee5dca8b1d320f547451a116171">MicrophoneIntoAudioSource</a>(<span class="keywordtype">bool</span> MicrophoneListenerOn)</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    {</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        <span class="keywordflow">if</span> (MicrophoneListenerOn)</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        {</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            <span class="comment">//pause a little before setting clip to avoid lag and bugginess</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            <span class="keywordflow">if</span> (Time.time - <a class="code hl_variable" href="class_microphone_listener.html#ae203abd2b78d6e36360bb2a5f19b832b">timeSinceRestart</a> &gt; 0.5f &amp;&amp; !Microphone.IsRecording(<span class="keyword">null</span>))</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            {</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                <a class="code hl_variable" href="class_microphone_listener.html#a66a8cfbf8e8fc13a687d09c856f5672e">src</a>.clip = Microphone.Start(<span class="keyword">null</span>, <span class="keyword">true</span>, 10, 44100);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                <span class="comment">//wait until microphone position is found (?)</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                <span class="keywordflow">while</span> (!(Microphone.GetPosition(<span class="keyword">null</span>) &gt; 0))</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                {</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>                }</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                <a class="code hl_variable" href="class_microphone_listener.html#a66a8cfbf8e8fc13a687d09c856f5672e">src</a>.Play(); <span class="comment">// Play the audio source</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            }</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        }</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    }</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>}</div>
+<div class="ttc" id="aclass_microphone_listener_html"><div class="ttname"><a href="class_microphone_listener.html">MicrophoneListener</a></div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00005">MicrophoneListener.cs:6</a></div></div>
+<div class="ttc" id="aclass_microphone_listener_html_a1234b5e0175837a77a6fdb2140d7766d"><div class="ttname"><a href="class_microphone_listener.html#a1234b5e0175837a77a6fdb2140d7766d">MicrophoneListener.StopMicrophoneListener</a></div><div class="ttdeci">void StopMicrophoneListener()</div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00082">MicrophoneListener.cs:82</a></div></div>
+<div class="ttc" id="aclass_microphone_listener_html_a35bea23cbec35c0d73cd4a753e476579"><div class="ttname"><a href="class_microphone_listener.html#a35bea23cbec35c0d73cd4a753e476579">MicrophoneListener.startMicrophoneListener</a></div><div class="ttdeci">bool startMicrophoneListener</div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00015">MicrophoneListener.cs:15</a></div></div>
+<div class="ttc" id="aclass_microphone_listener_html_a3956f9f56442b31ac803da567300816e"><div class="ttname"><a href="class_microphone_listener.html#a3956f9f56442b31ac803da567300816e">MicrophoneListener.Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00055">MicrophoneListener.cs:55</a></div></div>
+<div class="ttc" id="aclass_microphone_listener_html_a4a8d3eaffa2525eb170ad14f80d2fb6b"><div class="ttname"><a href="class_microphone_listener.html#a4a8d3eaffa2525eb170ad14f80d2fb6b">MicrophoneListener.DisableSound</a></div><div class="ttdeci">void DisableSound(bool SoundOn)</div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00109">MicrophoneListener.cs:109</a></div></div>
+<div class="ttc" id="aclass_microphone_listener_html_a5cdaf3431a624114cd2087ba9dd5ee69"><div class="ttname"><a href="class_microphone_listener.html#a5cdaf3431a624114cd2087ba9dd5ee69">MicrophoneListener.stopMicrophoneListener</a></div><div class="ttdeci">bool stopMicrophoneListener</div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00014">MicrophoneListener.cs:14</a></div></div>
+<div class="ttc" id="aclass_microphone_listener_html_a5cf4eb3958db2ea278c862836d37fdbb"><div class="ttname"><a href="class_microphone_listener.html#a5cf4eb3958db2ea278c862836d37fdbb">MicrophoneListener.StartMicrophoneListener</a></div><div class="ttdeci">void StartMicrophoneListener()</div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00096">MicrophoneListener.cs:96</a></div></div>
+<div class="ttc" id="aclass_microphone_listener_html_a633ca7ce84b11f6ea06e2dfec39c0a53"><div class="ttname"><a href="class_microphone_listener.html#a633ca7ce84b11f6ea06e2dfec39c0a53">MicrophoneListener.Start</a></div><div class="ttdeci">void Start()</div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00045">MicrophoneListener.cs:45</a></div></div>
+<div class="ttc" id="aclass_microphone_listener_html_a66a8cfbf8e8fc13a687d09c856f5672e"><div class="ttname"><a href="class_microphone_listener.html#a66a8cfbf8e8fc13a687d09c856f5672e">MicrophoneListener.src</a></div><div class="ttdeci">AudioSource src</div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00025">MicrophoneListener.cs:25</a></div></div>
+<div class="ttc" id="aclass_microphone_listener_html_a7cbb89d77ca15d398313c16dd236f45c"><div class="ttname"><a href="class_microphone_listener.html#a7cbb89d77ca15d398313c16dd236f45c">MicrophoneListener.masterMixer</a></div><div class="ttdeci">AudioMixer masterMixer</div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00035">MicrophoneListener.cs:35</a></div></div>
+<div class="ttc" id="aclass_microphone_listener_html_aa333000bbeba3c0ddd4d010057f570a3"><div class="ttname"><a href="class_microphone_listener.html#aa333000bbeba3c0ddd4d010057f570a3">MicrophoneListener.RestartMicrophoneListener</a></div><div class="ttdeci">void RestartMicrophoneListener()</div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00129">MicrophoneListener.cs:129</a></div></div>
+<div class="ttc" id="aclass_microphone_listener_html_aaa72bd4d83d9b4ca3a4932439506fcb9"><div class="ttname"><a href="class_microphone_listener.html#aaa72bd4d83d9b4ca3a4932439506fcb9">MicrophoneListener.startMicOnStartup</a></div><div class="ttdeci">bool startMicOnStartup</div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00011">MicrophoneListener.cs:11</a></div></div>
+<div class="ttc" id="aclass_microphone_listener_html_acdb845c3574e99b98cd5a3f627534bc7"><div class="ttname"><a href="class_microphone_listener.html#acdb845c3574e99b98cd5a3f627534bc7">MicrophoneListener.microphoneListenerOn</a></div><div class="ttdeci">bool microphoneListenerOn</div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00017">MicrophoneListener.cs:17</a></div></div>
+<div class="ttc" id="aclass_microphone_listener_html_ae203abd2b78d6e36360bb2a5f19b832b"><div class="ttname"><a href="class_microphone_listener.html#ae203abd2b78d6e36360bb2a5f19b832b">MicrophoneListener.timeSinceRestart</a></div><div class="ttdeci">float timeSinceRestart</div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00038">MicrophoneListener.cs:38</a></div></div>
+<div class="ttc" id="aclass_microphone_listener_html_ae8287ee5dca8b1d320f547451a116171"><div class="ttname"><a href="class_microphone_listener.html#ae8287ee5dca8b1d320f547451a116171">MicrophoneListener.MicrophoneIntoAudioSource</a></div><div class="ttdeci">void MicrophoneIntoAudioSource(bool MicrophoneListenerOn)</div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00142">MicrophoneListener.cs:142</a></div></div>
+<div class="ttc" id="aclass_microphone_listener_html_aeaf314613d20f820da8e38f55e645b8c"><div class="ttname"><a href="class_microphone_listener.html#aeaf314613d20f820da8e38f55e645b8c">MicrophoneListener.disableOutputSound</a></div><div class="ttdeci">bool disableOutputSound</div><div class="ttdef"><b>Definition:</b> <a href="_microphone_listener_8cs_source.html#l00022">MicrophoneListener.cs:22</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+</small></address>
+</body>
+</html>

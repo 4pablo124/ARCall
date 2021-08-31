@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['pc_0',['pc',['../class_peer_connection_manager.html#af06f3b1d869d8886ad10ce8e8e65ed16',1,'PeerConnectionManager']]],
+  ['peer_1',['peer',['../class_toolbar_u_i_controller.html#a994aa5e64f6e69306ff6a766f1b4087c',1,'ToolbarUIController']]],
+  ['peerconnection_2',['peerConnection',['../class_toolbar_u_i_controller.html#a790c8d2261580e9707fef7c5a25c7e5a',1,'ToolbarUIController.peerConnection()'],['../class_topbar_u_i_controller.html#a48f517a4e84e8c9d1b7f4e8831a472e1',1,'TopbarUIController.peerConnection()']]],
+  ['peerconnectionmanager_3',['PeerConnectionManager',['../class_peer_connection_manager.html',1,'']]],
+  ['peerconnectionmanager_2ecs_4',['PeerConnectionManager.cs',['../_peer_connection_manager_8cs.html',1,'']]],
+  ['peertype_5',['peerType',['../class_rooms_controller.html#ae43af8913fcac09d1a98fb698f44002f',1,'RoomsController.peerType()'],['../class_message.html#a5e3e6f52eb6bed6a29cdc6a90f29770f',1,'Message.peerType()']]],
+  ['peertype_6',['PeerType',['../_peer_type_8cs.html#a0fc68ed97adff8eb7d1d96c0a06a6687',1,'PeerType.cs']]],
+  ['peertype_2ecs_7',['PeerType.cs',['../_peer_type_8cs.html',1,'']]],
+  ['permissioncallback_8',['permissionCallback',['../class_contacts_controller.html#a0c0ef8a4f47180f1154637f8902c3e9b',1,'ContactsController']]],
+  ['permissiondenied_9',['PermissionDenied',['../class_contacts_controller.html#aec18327c46aa4e4a17b297ed675e5c44',1,'ContactsController']]],
+  ['permissiondeniedanddontaskagain_10',['PermissionDeniedAndDontAskAgain',['../class_contacts_controller.html#ac6213489083a627d928225564fc6aafb',1,'ContactsController']]],
+  ['permissiongranted_11',['PermissionGranted',['../class_contacts_controller.html#a5523eae0297ff38bd1ee5cdaa2ead925',1,'ContactsController']]],
+  ['phoneinput_12',['phoneInput',['../class_register_phone_u_i_controller.html#a3e62a2f489d48a0a24b1beb4e41dfc65',1,'RegisterPhoneUIController']]],
+  ['phonenumber_13',['phoneNumber',['../class_user.html#a139bb8f2d152bd718aac4c7ef3645b9a',1,'User']]],
+  ['placeguide_14',['PlaceGuide',['../class_a_r_tool_manager.html#a86782ee29e1327a2f4ab387d8438c6a7',1,'ARToolManager']]],
+  ['placingmarker_15',['placingMarker',['../class_a_r_marker.html#ab7987250c230f4cdc6db689e4510f82f',1,'ARMarker.placingMarker()'],['../class_a_r_text.html#a980310faaf6d404880d669d95b032aea',1,'ARText.placingMarker()']]],
+  ['playaudio_16',['PlayAudio',['../class_audio_manager.html#a8e74acd2130715991ee1d3295be1bfaa',1,'AudioManager']]],
+  ['pointer_17',['pointer',['../class_a_r_pointer.html#a1a70aec7b105c9bc8890158c73383ce0',1,'ARPointer']]],
+  ['prefab_18',['prefab',['../class_a_r_marker.html#af6778fef347de2277e059fc4257b97c2',1,'ARMarker.prefab()'],['../class_a_r_text.html#ae316330699623c266047fc7e1740881b',1,'ARText.prefab()']]],
+  ['process_5foutgoing_5fcalls_19',['PROCESS_OUTGOING_CALLS',['../_android_utils_8cs.html#a509c7354f7e8a21bc305ad48bf77b1cfa45709861ed1880db230a7c61ed65f05d',1,'AndroidUtils.cs']]]
+];

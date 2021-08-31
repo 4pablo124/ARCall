@@ -1,0 +1,4 @@
+<map id="Colors.GetColor" name="Colors.GetColor">
+<area shape="rect" id="node1" title="Devuelve el color dado el nombre" alt="" coords="213,5,328,32"/>
+<area shape="rect" id="node2" href="$class_topbar_u_i_controller.html#a3a7804eb204105f4ceb9c87762adf09d" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,165,32"/>
+</map>

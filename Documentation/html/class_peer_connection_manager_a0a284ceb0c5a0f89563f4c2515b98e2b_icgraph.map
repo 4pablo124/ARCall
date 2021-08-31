@@ -1,0 +1,5 @@
+<map id="PeerConnectionManager.OnMessageReceivedDelegate" name="PeerConnectionManager.OnMessageReceivedDelegate">
+<area shape="rect" id="node1" title="Llamada cuando se recibe un mensaje de base de datos" alt="" coords="284,31,625,57"/>
+<area shape="rect" id="node2" href="$class_peer_connection_manager.html#a82bd9ac926952fe7f22bef718cca64cb" title="Llamada al crear el GameObject asociado" alt="" coords="17,5,224,32"/>
+<area shape="rect" id="node3" href="$class_peer_connection_manager.html#a267f5ad1bb8760b277d6754418b5a4f1" title="Llamada cuando el GameObject asociado se destruye" alt="" coords="5,56,236,83"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="VideoManager.RecordCamera" name="VideoManager.RecordCamera">
+<area shape="rect" id="node1" title="Graba la cámara de RA" alt="" coords="528,31,723,57"/>
+<area shape="rect" id="node2" href="$class_peer_connection_manager.html#a5e4d5b8cfb094cae7a3d200a78a2a7b3" title="Crea los canales de video y audio" alt="" coords="249,5,480,32"/>
+<area shape="rect" id="node4" href="$class_video_manager.html#a96ae7748b09920fd6d6a9b4017bf9769" title="Llamada justo antes del primer fotograma" alt="" coords="296,56,433,83"/>
+<area shape="rect" id="node3" href="$class_peer_connection_manager.html#a058148001392c4d6106cc784ec477256" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,201,32"/>
+</map>

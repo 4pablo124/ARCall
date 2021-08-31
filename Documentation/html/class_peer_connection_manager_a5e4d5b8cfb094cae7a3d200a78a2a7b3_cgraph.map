@@ -1,0 +1,8 @@
+<map id="PeerConnectionManager.AddTracks" name="PeerConnectionManager.AddTracks">
+<area shape="rect" id="node1" title="Crea los canales de video y audio" alt="" coords="5,81,236,108"/>
+<area shape="rect" id="node2" href="$class_peer_connection_manager.html#a9cc97416c36f76d17771f7d61613cfc0" title="Evalua si el par actual es host" alt="" coords="284,5,493,32"/>
+<area shape="rect" id="node3" href="$class_audio_manager.html#a8e74acd2130715991ee1d3295be1bfaa" title="Reproduce la salida de audio" alt="" coords="305,56,473,83"/>
+<area shape="rect" id="node4" href="$class_audio_manager.html#aa60c57f6236c42f573fcfa0d28c88d9d" title="Comienza a grabar el audio" alt="" coords="297,107,480,133"/>
+<area shape="rect" id="node6" href="$class_video_manager.html#a3183746966d99fd4df0bdde303479919" title="Graba la cámara de RA" alt="" coords="291,157,486,184"/>
+<area shape="rect" id="node5" href="$class_audio_manager.html#a69c0d3b1c0d91a2972f2b5200b9e3ec5" title="Configura los ajustes de Android para videollamada" alt="" coords="541,107,756,133"/>
+</map>

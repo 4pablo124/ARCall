@@ -1,0 +1,5 @@
+<map id="UserManager.VerifyPhone" name="UserManager.VerifyPhone">
+<area shape="rect" id="node1" title="Verifica el número de teléfono con el código SMS de verificación" alt="" coords="5,5,179,32"/>
+<area shape="rect" id="node2" href="$class_user_manager.html#a8473c8b09bc25b4ee3ccc8ad934f1a4d" title="Verifica el número de teléfono con un objeto de credenciales" alt="" coords="227,5,457,32"/>
+<area shape="rect" id="node3" href="$class_database_manager.html#ae84a345ac51bb80ebf7fda88043ef499" title="Establece el userID de un usuario" alt="" coords="505,5,696,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="RegisterPhoneUIController.Update" name="RegisterPhoneUIController.Update">
+<area shape="rect" id="node1" title="Llamada al comienzo de cada fotograma" alt="" coords="5,31,224,57"/>
+<area shape="rect" id="node2" href="$class_register_phone_u_i_controller.html#aa53b9e247360a0829d2c06b01356a770" title="Evalua si el código SMS introducido es válido" alt="" coords="276,5,551,32"/>
+<area shape="rect" id="node3" href="$class_register_phone_u_i_controller.html#a910690f5b527bbd969fbf8fa3ea8547e" title="Evalua si el teléfono introducido es válido" alt="" coords="272,56,555,83"/>
+</map>

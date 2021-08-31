@@ -1,0 +1,5 @@
+<map id="ClientManager.SelectColor" name="ClientManager.SelectColor">
+<area shape="rect" id="node1" title="Selecciona un color" alt="" coords="504,5,680,32"/>
+<area shape="rect" id="node2" href="$class_toolbar_u_i_controller.html#a3ceadb76355e7695d534a76d7ec700de" title="Intercambia el elemento actualmente seleccionado de una barra (herramienta o color) por el elemento q..." alt="" coords="216,5,456,32"/>
+<area shape="rect" id="node3" href="$class_toolbar_u_i_controller.html#a7c36bd2332e575e710320a80023b93de" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,168,32"/>
+</map>

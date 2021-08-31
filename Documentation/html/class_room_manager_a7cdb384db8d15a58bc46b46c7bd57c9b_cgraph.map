@@ -1,0 +1,4 @@
+<map id="RoomManager.GenerateRoomID" name="RoomManager.GenerateRoomID">
+<area shape="rect" id="node1" title="Genera un codigo de sala aleatorio" alt="" coords="5,5,215,32"/>
+<area shape="rect" id="node2" href="$class_database_manager.html#a26b78f4ef7989b67f825194863df0357" title="Evalua si un código de sala existe en base de datos" alt="" coords="263,5,477,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="VideoManager.OnApplicationPause" name="VideoManager.OnApplicationPause">
+<area shape="rect" id="node1" title="Llamada cuando el estado de pausa de la aplicación cambia" alt="" coords="5,5,232,32"/>
+<area shape="rect" id="node2" href="$class_video_manager.html#aebd4ede14b753cd764ea946c9d335949" title="Establece la visibilidad del video" alt="" coords="280,5,455,32"/>
+</map>

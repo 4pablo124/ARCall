@@ -1,0 +1,11 @@
+<map id="ContactsController.ShowContacts" name="ContactsController.ShowContacts">
+<area shape="rect" id="node1" title="Inicializa todos los elementos necesarios de la lista de contactos y la muestra en la interfaz" alt="" coords="5,81,223,108"/>
+<area shape="rect" id="node2" href="$class_database_manager.html#a322c76e999c83719f38cf419cf9f800a" title="Obtiene el userID de un usuario a partir de su número de teléfono" alt="" coords="321,5,512,32"/>
+<area shape="rect" id="node3" href="$class_room_manager.html#a022ae9cafc8dedb55ca839e0d99c5b44" title="Mueve un par a una sala" alt="" coords="333,56,500,83"/>
+<area shape="rect" id="node6" href="$class_sharing_manager.html#a6b0c8c96f7f5624110bcf03a1c3dad3b" title="Envia una notifiación" alt="" coords="309,107,524,133"/>
+<area shape="rect" id="node7" href="$class_sharing_manager.html#aae88ccb9e92ceeed9c6e6281a192f698" title="Comparte un código de sala con un contacto de whatsapp" alt="" coords="271,157,563,184"/>
+<area shape="rect" id="node4" href="$class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="646,19,842,45"/>
+<area shape="rect" id="node5" href="$class_database_manager.html#a26b78f4ef7989b67f825194863df0357" title="Evalua si un código de sala existe en base de datos" alt="" coords="637,69,851,96"/>
+<area shape="rect" id="node8" href="$class_sharing_manager.html#a039a42cca85530f5e71e396bda0bc95b" title="Crea un enlace dinámico a una sala" alt="" coords="611,132,877,159"/>
+<area shape="rect" id="node9" href="$class_sharing_manager.html#a1297b7c8e2a23a2f1b179717015405a7" title="Crea el mensaje a compartir" alt="" coords="641,183,847,209"/>
+</map>

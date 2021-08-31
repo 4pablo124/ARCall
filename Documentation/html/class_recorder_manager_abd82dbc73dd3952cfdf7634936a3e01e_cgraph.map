@@ -1,0 +1,5 @@
+<map id="RecorderManager.OnApplicationFocus" name="RecorderManager.OnApplicationFocus">
+<area shape="rect" id="node1" title="Llamada cuando el foco de la aplicación cambia" alt="" coords="5,5,251,32"/>
+<area shape="rect" id="node2" href="$class_recorder_manager.html#a41f98e5ff08f958dce6d9d957682a7aa" title="Para la grabación" alt="" coords="299,5,512,32"/>
+<area shape="rect" id="node3" href="$class_android_utils.html#a3a6673af4346ebfe0019549914a3aeb9" title=" " alt="" coords="560,5,741,32"/>
+</map>

@@ -1,0 +1,31 @@
+<map id="MySceneManager.LoadScene" name="MySceneManager.LoadScene">
+<area shape="rect" id="node1" title="Carga la escena seleccionada" alt="" coords="1353,485,1549,512"/>
+<area shape="rect" id="node2" href="$class_peer_connection_manager.html#ac4577b58d566fb35458448f45920978f" title="Cuelga la videollamada" alt="" coords="1005,56,1219,83"/>
+<area shape="rect" id="node6" href="$class_room_manager.html#a022ae9cafc8dedb55ca839e0d99c5b44" title="Mueve un par a una sala" alt="" coords="1029,232,1195,259"/>
+<area shape="rect" id="node18" href="$class_audio_manager.html#a04d68ba5cdcccb8add793ae79563c2bf" title="Lanzada cuando se deniegan los permisos de audio y se indica que no se soliciten otra vez" alt="" coords="919,359,1305,385"/>
+<area shape="rect" id="node20" href="$class_app_entry_point.html#a31fdab16b3f5f842587ae877d564b041" title="Lanzado cuando Firebase esta inicializado" alt="" coords="1005,435,1219,461"/>
+<area shape="rect" id="node23" href="$class_register_phone_u_i_controller.html#aa85933669dcb72558a71039eba32d88d" title="Llamada cuando se completa la verificación" alt="" coords="951,587,1273,613"/>
+<area shape="rect" id="node24" href="$class_register_phone_u_i_controller.html#abecd41c11aa752bec550978e4a58d2a1" title="Llamada justo antes del primer fotograma" alt="" coords="5,561,212,588"/>
+<area shape="rect" id="node26" href="$class_register_phone_u_i_controller.html#a55f0c364a3d7f1920df9790b7c63da7c" title="Verifica el teléfono introducido con el código SMS introducido" alt="" coords="292,536,540,563"/>
+<area shape="rect" id="node27" href="$class_register_name_u_i_controller.html#afc29ac5c585c83664552ce4d7e228e04" title="Registra el nombre introducido del usuario actual" alt="" coords="983,637,1241,664"/>
+<area shape="rect" id="node29" href="$class_main_u_i_controller.html#a0a5859a3d2f7c6ae487469bdbe76a7b2" title="Llamada justo antes del primer fotograma" alt="" coords="1037,688,1187,715"/>
+<area shape="rect" id="node3" href="$class_peer_connection_manager.html#a2b43b97a9280f9d5dd6dd4634009e566" title="Llamada cuando la conexión se pierde" alt="" coords="620,5,871,32"/>
+<area shape="rect" id="node5" href="$class_toolbar_u_i_controller.html#a7c36bd2332e575e710320a80023b93de" title="Llamada justo antes del primer fotograma" alt="" coords="664,56,827,83"/>
+<area shape="rect" id="node4" href="$class_peer_connection_manager.html#a058148001392c4d6106cc784ec477256" title="Llamada justo antes del primer fotograma" alt="" coords="318,5,514,32"/>
+<area shape="rect" id="node7" href="$class_one_signal_init.html#afac945779fdf4efc92743adb600c2862" title="Lee notificación y redirige a la videollamada correspondiente" alt="" coords="642,232,849,259"/>
+<area shape="rect" id="node10" href="$class_rooms_controller.html#adceb5742932fc91d4d08576ee98af251" title="Lleva al usuario actual a la sala seleccionada" alt="" coords="656,283,835,309"/>
+<area shape="rect" id="node12" href="$class_dynamic_links_init.html#a53989c4e1c0a81ca03fefc118b7191f2" title="Lanzada cuando se recibe un enlace dinámico" alt="" coords="637,107,854,133"/>
+<area shape="rect" id="node14" href="$class_contacts_controller.html#a82e0a0a5ae1fc7cbef3e4cb49d74dc31" title="Inicializa todos los elementos necesarios de la lista de contactos y la muestra en la interfaz" alt="" coords="637,157,854,184"/>
+<area shape="rect" id="node8" href="$class_one_signal_init.html#a60c9495cb3e70bfdef56251b55c09420" title="Llamada cuando un usuario abre una notificación" alt="" coords="260,232,572,259"/>
+<area shape="rect" id="node9" href="$class_one_signal_init.html#a71d28b5a62bca248554c5e5d89d20a41" title="Llamada justo antes del primer fotograma" alt="" coords="43,232,174,259"/>
+<area shape="rect" id="node11" href="$class_rooms_controller.html#a38b3caf6336da28667fb457361f04193" title="Llamada justo antes del primer fotograma" alt="" coords="341,283,491,309"/>
+<area shape="rect" id="node13" href="$class_dynamic_links_init.html#a92aa11c79f26c2d5d1637e094eaa3530" title="Llamada justo antes del primer fotograma" alt="" coords="339,80,493,107"/>
+<area shape="rect" id="node15" href="$class_contacts_controller.html#a5523eae0297ff38bd1ee5cdaa2ead925" title="LLamada cuando se aceptan los permisos de lectura de contactos" alt="" coords="294,131,538,157"/>
+<area shape="rect" id="node17" href="$class_contacts_controller.html#a18ddb1f465c9a56f0f080f9ce9cb0011" title="Llamada justo antes del primer fotograma" alt="" coords="335,181,497,208"/>
+<area shape="rect" id="node16" href="$class_contacts_controller.html#a55e6be8eaa668f93e23c09e491c644c8" title="Llamada al crear el GameObject asociado" alt="" coords="23,131,195,157"/>
+<area shape="rect" id="node19" href="$class_audio_manager.html#ab333270dca5bf5c039de3d70ca111ba9" title="Llamada justo antes del primer fotograma" alt="" coords="677,333,814,360"/>
+<area shape="rect" id="node21" href="$class_app_entry_point.html#ac431add7aa1c5d78adfed6782eedd949" title="Llamada al crear el GameObject asociado" alt="" coords="671,384,820,411"/>
+<area shape="rect" id="node22" href="$class_app_entry_point.html#afc6b25a70732c6bcf06409f22a586861" title="Llamadada cuando se destruye el GameObject asociado" alt="" coords="659,435,831,461"/>
+<area shape="rect" id="node25" href="$class_register_phone_u_i_controller.html#a5cd62efcd8f1e816c759ac0ede78aaaf" title="Se desuscribe de los eventos de clases estáticas" alt="" coords="620,587,871,613"/>
+<area shape="rect" id="node28" href="$class_register_name_u_i_controller.html#a5c7e76753bc91e585403685a869aaa96" title="Llamada justo antes del primer fotograma" alt="" coords="644,688,847,715"/>
+</map>

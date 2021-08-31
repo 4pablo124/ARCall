@@ -1,0 +1,4 @@
+<map id="RoomsController.IsValidRoomCode" name="RoomsController.IsValidRoomCode">
+<area shape="rect" id="node1" title="Evalua si el código de la sala introducido es correcto" alt="" coords="216,5,441,32"/>
+<area shape="rect" id="node2" href="$class_rooms_controller.html#ad307df9fde69ef01efa844d6b5d517be" title="Llamada al comienzo de cada fotograma" alt="" coords="5,5,168,32"/>
+</map>

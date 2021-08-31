@@ -1,0 +1,4 @@
+<map id="BackButtonController" name="BackButtonController">
+<area shape="rect" id="node1" title="Controla la pulsación del botón de retroceso" alt="" coords="5,131,212,223"/>
+<area shape="rect" id="node2" title=" " alt="" coords="53,5,164,83"/>
+</map>

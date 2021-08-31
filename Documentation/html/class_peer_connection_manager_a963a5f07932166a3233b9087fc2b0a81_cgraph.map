@@ -1,0 +1,9 @@
+<map id="PeerConnectionManager.OnApplicationPause" name="PeerConnectionManager.OnApplicationPause">
+<area shape="rect" id="node1" title="Llamada cuando el estado de pausa de la aplicación cambia" alt="" coords="5,31,292,57"/>
+<area shape="rect" id="node2" href="$class_peer_connection_manager.html#a77481735fed0e6e7c602e8a2bea821d4" title="Señaliza que el par esta listo para la conexión" alt="" coords="348,5,580,32"/>
+<area shape="rect" id="node6" href="$class_peer_connection_manager.html#ad792df6efa61aa9a558aab9b76604a87" title="Señaliza que el par no listo para la conexión" alt="" coords="340,56,588,83"/>
+<area shape="rect" id="node3" href="$class_database_manager.html#a7373a5a3ba0f6b44b5c7a96587b7afa1" title="Señaliza en base de datos que un par esta listo para la conexión" alt="" coords="644,5,839,32"/>
+<area shape="rect" id="node4" href="$class_database_manager.html#a1854ec336517d562b14ec72287f986cb" title="Lanza el evento OnClientReady" alt="" coords="912,5,1181,32"/>
+<area shape="rect" id="node5" href="$class_database_manager.html#a195ea9d14ebff0203ccdf30de9801069" title="Lanza el evento OnMessageReceived" alt="" coords="895,56,1199,83"/>
+<area shape="rect" id="node7" href="$class_database_manager.html#a178acb8bd938e615aa34330e64f715ea" title="Señaliza en base de datos que un par no listo para la conexión" alt="" coords="636,56,847,83"/>
+</map>

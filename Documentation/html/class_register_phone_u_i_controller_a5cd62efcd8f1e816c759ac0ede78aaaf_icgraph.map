@@ -1,0 +1,6 @@
+<map id="RegisterPhoneUIController.Unsubscribe" name="RegisterPhoneUIController.Unsubscribe">
+<area shape="rect" id="node1" title="Se desuscribe de los eventos de clases estáticas" alt="" coords="629,31,880,57"/>
+<area shape="rect" id="node2" href="$class_register_phone_u_i_controller.html#aa85933669dcb72558a71039eba32d88d" title="Llamada cuando se completa la verificación" alt="" coords="260,5,581,32"/>
+<area shape="rect" id="node3" href="$class_register_phone_u_i_controller.html#abecd41c11aa752bec550978e4a58d2a1" title="Llamada justo antes del primer fotograma" alt="" coords="5,56,212,83"/>
+<area shape="rect" id="node4" href="$class_register_phone_u_i_controller.html#a55f0c364a3d7f1920df9790b7c63da7c" title="Verifica el teléfono introducido con el código SMS introducido" alt="" coords="297,107,545,133"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="UserManager.LogOut" name="UserManager.LogOut">
+<area shape="rect" id="node1" title="Cierra la sesion del usario actualmente logueado" alt="" coords="5,5,151,32"/>
+<area shape="rect" id="node2" href="$class_database_manager.html#ad451c9f92dbd5668a0d8198ffdb055e7" title="Elimina el userID de un usuario" alt="" coords="199,5,415,32"/>
+</map>

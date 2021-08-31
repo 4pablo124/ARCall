@@ -1,0 +1,7 @@
+<map id="RegisterPhoneUIController.SendCode" name="RegisterPhoneUIController.SendCode">
+<area shape="rect" id="node1" title="Envia el código SMS al teléfono introducido" alt="" coords="5,31,244,57"/>
+<area shape="rect" id="node2" href="$class_user_manager.html#a9701a3e6255dc1e9921415aa42cccf6d" title="Envia el código SMS de verificación y lanza los posibles eventos" alt="" coords="292,5,519,32"/>
+<area shape="rect" id="node5" href="$class_android_utils.html#af3ddee265b4dfc672eddae5699c8fb2b" title=" " alt="" coords="325,56,485,83"/>
+<area shape="rect" id="node3" href="$class_user_manager.html#a8473c8b09bc25b4ee3ccc8ad934f1a4d" title="Verifica el número de teléfono con un objeto de credenciales" alt="" coords="567,5,797,32"/>
+<area shape="rect" id="node4" href="$class_database_manager.html#ae84a345ac51bb80ebf7fda88043ef499" title="Establece el userID de un usuario" alt="" coords="845,5,1036,32"/>
+</map>

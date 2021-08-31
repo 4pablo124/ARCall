@@ -1,0 +1,5 @@
+<map id="PeerConnectionManager.OnMessageReceivedDelegate" name="PeerConnectionManager.OnMessageReceivedDelegate">
+<area shape="rect" id="node1" title="Llamada cuando se recibe un mensaje de base de datos" alt="" coords="5,5,347,32"/>
+<area shape="rect" id="node2" href="$class_peer_connection_manager.html#a55cfe5d454913d9aa216cba1e9e11b84" title="Lee un mensaje mediante la base de datos, se invoca cada vez que se envie un mensaje" alt="" coords="395,5,664,32"/>
+<area shape="rect" id="node3" href="$class_database_manager.html#a31c16c7d1ec71b33cbf574d4e8810d71" title="Envia un mensaje de conexión a base de datos" alt="" coords="712,5,927,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="MySceneManager.BackScene" name="MySceneManager.BackScene">
+<area shape="rect" id="node1" title="Navega a la escena anterior" alt="" coords="244,5,443,32"/>
+<area shape="rect" id="node2" href="$class_back_button_controller.html#a780b8f97cd6f67bf239b7c720085d5e3" title="Llamada al comienzo de cada fotograma Comprueba si se ha pulsado el botón de retroceso en Android o l..." alt="" coords="5,5,196,32"/>
+</map>

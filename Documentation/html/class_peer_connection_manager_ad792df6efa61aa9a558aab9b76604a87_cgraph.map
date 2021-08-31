@@ -1,0 +1,6 @@
+<map id="PeerConnectionManager.UnReadyUser" name="PeerConnectionManager.UnReadyUser">
+<area shape="rect" id="node1" title="Señaliza que el par no listo para la conexión" alt="" coords="5,31,253,57"/>
+<area shape="rect" id="node2" href="$class_database_manager.html#a178acb8bd938e615aa34330e64f715ea" title="Señaliza en base de datos que un par no listo para la conexión" alt="" coords="301,31,512,57"/>
+<area shape="rect" id="node3" href="$class_database_manager.html#a1854ec336517d562b14ec72287f986cb" title="Lanza el evento OnClientReady" alt="" coords="577,5,847,32"/>
+<area shape="rect" id="node4" href="$class_database_manager.html#a195ea9d14ebff0203ccdf30de9801069" title="Lanza el evento OnMessageReceived" alt="" coords="560,56,864,83"/>
+</map>

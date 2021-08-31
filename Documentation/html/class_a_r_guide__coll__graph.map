@@ -1,0 +1,5 @@
+<map id="ARGuide" name="ARGuide">
+<area shape="rect" id="node1" title="Modela el comportamiento de la herramienta ARGuide" alt="" coords="5,595,181,760"/>
+<area shape="rect" id="node2" title=" " alt="" coords="33,5,143,83"/>
+<area shape="rect" id="node3" href="$class_video_manager.html" title="Maneja la lógica de la grabación y visualización de video" alt="" coords="110,132,362,532"/>
+</map>

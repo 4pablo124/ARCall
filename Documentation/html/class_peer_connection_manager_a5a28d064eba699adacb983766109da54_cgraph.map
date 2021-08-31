@@ -1,0 +1,7 @@
+<map id="PeerConnectionManager.OnSceneUnloaded&lt; Scene &gt;" name="PeerConnectionManager.OnSceneUnloaded&lt; Scene &gt;">
+<area shape="rect" id="node1" title="Llamada cuando se abandona la escena" alt="" coords="5,31,343,57"/>
+<area shape="rect" id="node2" href="$class_peer_connection_manager.html#ad792df6efa61aa9a558aab9b76604a87" title="Señaliza que el par no listo para la conexión" alt="" coords="391,31,639,57"/>
+<area shape="rect" id="node3" href="$class_database_manager.html#a178acb8bd938e615aa34330e64f715ea" title="Señaliza en base de datos que un par no listo para la conexión" alt="" coords="687,31,897,57"/>
+<area shape="rect" id="node4" href="$class_database_manager.html#a1854ec336517d562b14ec72287f986cb" title="Lanza el evento OnClientReady" alt="" coords="963,5,1232,32"/>
+<area shape="rect" id="node5" href="$class_database_manager.html#a195ea9d14ebff0203ccdf30de9801069" title="Lanza el evento OnMessageReceived" alt="" coords="945,56,1249,83"/>
+</map>

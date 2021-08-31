@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ARCall: Fichero Fuente C:/Proyectos/ARCall/Assets/ARCall/Scripts/Models/ARTools/ARMarker.cs</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">ARCall
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.9.2 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Buscar');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_84bbf7b3c7f28a5a18725745e1505219.html">Assets</a></li><li class="navelem"><a class="el" href="dir_b65df5491c32a1d8b7805d88957a1325.html">ARCall</a></li><li class="navelem"><a class="el" href="dir_fc12c737c1334bd69ac032ce53d04692.html">Scripts</a></li><li class="navelem"><a class="el" href="dir_8e264716874a5ae3fc1e61d1b6eae38b.html">Models</a></li><li class="navelem"><a class="el" href="dir_4e15a58fac100acfc5944ae2f9e1bdff.html">ARTools</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ARMarker.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_a_r_marker_8cs.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using</span> System.Collections.Generic;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using</span> TMPro;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using</span> UnityEngine;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using</span> UnityEngine.XR.ARFoundation;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">using</span> UnityEngine.XR.ARSubsystems;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_a_r_marker.html">   10</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_a_r_marker.html">ARMarker</a> : MonoBehaviour</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_a_r_marker.html#a21def37d40b4cc1ded7384c1403316f9">   12</a></span>    [SerializeField] <span class="keyword">private</span> <a class="code hl_enumeration" href="_peer_type_8cs.html#a0fc68ed97adff8eb7d1d96c0a06a6687">PeerType</a> <a class="code hl_variable" href="class_a_r_marker.html#a21def37d40b4cc1ded7384c1403316f9">myPeerType</a> = <a class="code hl_enumeration" href="_peer_type_8cs.html#a0fc68ed97adff8eb7d1d96c0a06a6687">PeerType</a>.Host;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_a_r_marker.html#af6778fef347de2277e059fc4257b97c2">   13</a></span>    [SerializeField] <span class="keyword">private</span> GameObject <a class="code hl_variable" href="class_a_r_marker.html#af6778fef347de2277e059fc4257b97c2">prefab</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_a_r_marker.html#a80ee8c2ba52a74911216caba4c038387">   16</a></span>    <span class="keyword">private</span> Camera <a class="code hl_variable" href="class_a_r_marker.html#a80ee8c2ba52a74911216caba4c038387">cam</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_a_r_marker.html#aaa4bed42e49e66de507791fc1c8e8c9a">   17</a></span>    <span class="keyword">private</span> <a class="code hl_class" href="class_my_input_manager.html">MyInputManager</a> <a class="code hl_variable" href="class_a_r_marker.html#aaa4bed42e49e66de507791fc1c8e8c9a">inputManager</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_a_r_marker.html#aae17e87326573c1deaceaab54b673a86">   18</a></span>    <span class="keyword">private</span> ARRaycastManager <a class="code hl_variable" href="class_a_r_marker.html#aae17e87326573c1deaceaab54b673a86">arRaycastManager</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="class_a_r_marker.html#ab696079ec3d35a77c188cfcbe04e2a4b">   19</a></span>    <span class="keyword">private</span> <a class="code hl_class" href="class_a_r_tool_manager.html">ARToolManager</a> <a class="code hl_variable" href="class_a_r_marker.html#ab696079ec3d35a77c188cfcbe04e2a4b">aRToolManager</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="class_a_r_marker.html#ab7987250c230f4cdc6db689e4510f82f">   21</a></span>    <span class="keyword">private</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_a_r_marker.html#ab7987250c230f4cdc6db689e4510f82f">placingMarker</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_a_r_marker.html#aa30226dcbc0d3c087ed61fbfd3c9e1cd">   27</a></span>    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_a_r_marker.html#aa30226dcbc0d3c087ed61fbfd3c9e1cd">Start</a>()</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <a class="code hl_variable" href="class_a_r_marker.html#a80ee8c2ba52a74911216caba4c038387">cam</a> = GameObject.Find(<span class="stringliteral">&quot;ARCamera&quot;</span>).GetComponent&lt;Camera&gt;();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <a class="code hl_variable" href="class_a_r_marker.html#aaa4bed42e49e66de507791fc1c8e8c9a">inputManager</a> = GameObject.Find(<span class="stringliteral">&quot;InputManager&quot;</span>).GetComponent&lt;<a class="code hl_class" href="class_my_input_manager.html">MyInputManager</a>&gt;();</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <a class="code hl_variable" href="class_a_r_marker.html#aae17e87326573c1deaceaab54b673a86">arRaycastManager</a> = GameObject.Find(<span class="stringliteral">&quot;ARSessionOrigin&quot;</span>).GetComponent&lt;ARRaycastManager&gt;();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <a class="code hl_variable" href="class_a_r_marker.html#ab696079ec3d35a77c188cfcbe04e2a4b">aRToolManager</a> = GameObject.Find(<span class="stringliteral">&quot;ARToolManager&quot;</span>).GetComponent&lt;<a class="code hl_class" href="class_a_r_tool_manager.html">ARToolManager</a>&gt;();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_a_r_marker.html#a37bcfc2d540eed2ffd496d758dd9ad6d">   40</a></span>    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_a_r_marker.html#a37bcfc2d540eed2ffd496d758dd9ad6d">Update</a>()</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_a_r_marker.html#aaa4bed42e49e66de507791fc1c8e8c9a">inputManager</a>.<a class="code hl_function" href="class_my_input_manager.html#a491307ed67b25b941ef431d5bdbdad6c">IsHeldDown</a>(<a class="code hl_variable" href="class_a_r_marker.html#a21def37d40b4cc1ded7384c1403316f9">myPeerType</a>))</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="keywordflow">if</span> (!<a class="code hl_variable" href="class_a_r_marker.html#ab7987250c230f4cdc6db689e4510f82f">placingMarker</a>)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                List&lt;ARRaycastHit&gt; hitResults = <span class="keyword">new</span> List&lt;ARRaycastHit&gt;();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                Vector3 screenPoint = <a class="code hl_variable" href="class_a_r_marker.html#a21def37d40b4cc1ded7384c1403316f9">myPeerType</a> == <a class="code hl_enumeration" href="_peer_type_8cs.html#a0fc68ed97adff8eb7d1d96c0a06a6687">PeerType</a>.Host ?</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                                    <a class="code hl_variable" href="class_a_r_marker.html#aaa4bed42e49e66de507791fc1c8e8c9a">inputManager</a>.<a class="code hl_variable" href="class_my_input_manager.html#aa6d288604a07feef777c774f4e1920f5">hostPosition</a> :</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                                    <a class="code hl_variable" href="class_a_r_marker.html#aaa4bed42e49e66de507791fc1c8e8c9a">inputManager</a>.<a class="code hl_variable" href="class_my_input_manager.html#a28fc3dff762d52aade97f0329f6972a1">clientPosition</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_a_r_marker.html#aae17e87326573c1deaceaab54b673a86">arRaycastManager</a>.Raycast(<a class="code hl_variable" href="class_a_r_marker.html#a80ee8c2ba52a74911216caba4c038387">cam</a>.ScreenPointToRay(screenPoint), hitResults, TrackableType.All))</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                    Pose hitPose = hitResults[0].pose;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                    var marker = <a class="code hl_function" href="class_a_r_marker.html#a27ea41b1429123de21b990b94555b95d">AddMarker</a>(hitPose.position);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                    <a class="code hl_variable" href="class_a_r_marker.html#ab696079ec3d35a77c188cfcbe04e2a4b">aRToolManager</a>.<a class="code hl_function" href="class_a_r_tool_manager.html#a86782ee29e1327a2f4ab387d8438c6a7">PlaceGuide</a>(<a class="code hl_variable" href="class_a_r_marker.html#a21def37d40b4cc1ded7384c1403316f9">myPeerType</a>, marker.transform);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <a class="code hl_variable" href="class_a_r_marker.html#ab7987250c230f4cdc6db689e4510f82f">placingMarker</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="class_a_r_marker.html#a27ea41b1429123de21b990b94555b95d">   70</a></span>    <span class="keyword">private</span> GameObject <a class="code hl_function" href="class_a_r_marker.html#a27ea41b1429123de21b990b94555b95d">AddMarker</a>(Vector3 position)</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        var marker = GameObject.Instantiate(<a class="code hl_variable" href="class_a_r_marker.html#af6778fef347de2277e059fc4257b97c2">prefab</a>, position, Quaternion.identity);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordtype">int</span> count = 0;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordflow">switch</span> (<a class="code hl_variable" href="class_a_r_marker.html#a21def37d40b4cc1ded7384c1403316f9">myPeerType</a>)</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            <span class="keywordflow">case</span> <a class="code hl_enumeration" href="_peer_type_8cs.html#a0fc68ed97adff8eb7d1d96c0a06a6687">PeerType</a>.Host:</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                <a class="code hl_variable" href="class_a_r_marker.html#ab7987250c230f4cdc6db689e4510f82f">placingMarker</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                marker.tag = <span class="stringliteral">&quot;HostMarker&quot;</span>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                marker.transform.GetChild(1).GetComponent&lt;Renderer&gt;().material = <a class="code hl_variable" href="class_a_r_marker.html#ab696079ec3d35a77c188cfcbe04e2a4b">aRToolManager</a>.<a class="code hl_variable" href="class_a_r_tool_manager.html#a9578a03c4bb84243b5e637721ee97f81">hostMaterial</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                marker.transform.parent = <a class="code hl_class" href="class_a_r_tool_manager.html">ARToolManager</a>.<a class="code hl_variable" href="class_a_r_tool_manager.html#a0cde2eee729bed3a88e35d6a3069feae">hostDrawings</a>.transform;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                foreach (Transform child in <a class="code hl_class" href="class_a_r_tool_manager.html">ARToolManager</a>.<a class="code hl_variable" href="class_a_r_tool_manager.html#a0cde2eee729bed3a88e35d6a3069feae">hostDrawings</a>.transform)</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                    <span class="keywordflow">if</span> (child.gameObject.tag == <span class="stringliteral">&quot;HostMarker&quot;</span>) count++;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            <span class="keywordflow">case</span> <a class="code hl_enumeration" href="_peer_type_8cs.html#a0fc68ed97adff8eb7d1d96c0a06a6687">PeerType</a>.Client:</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                <a class="code hl_variable" href="class_a_r_marker.html#ab7987250c230f4cdc6db689e4510f82f">placingMarker</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                marker.tag = <span class="stringliteral">&quot;ClientMarker&quot;</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                marker.transform.GetChild(1).GetComponent&lt;Renderer&gt;().material = <a class="code hl_variable" href="class_a_r_marker.html#ab696079ec3d35a77c188cfcbe04e2a4b">aRToolManager</a>.<a class="code hl_variable" href="class_a_r_tool_manager.html#afae482535f6780da348a257c7c250cd5">clientMaterial</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                marker.transform.parent = <a class="code hl_class" href="class_a_r_tool_manager.html">ARToolManager</a>.<a class="code hl_variable" href="class_a_r_tool_manager.html#ac09cacb1c06eddc4e9fb31d8080b1662">clientDrawings</a>.transform;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                foreach (Transform child in <a class="code hl_class" href="class_a_r_tool_manager.html">ARToolManager</a>.<a class="code hl_variable" href="class_a_r_tool_manager.html#ac09cacb1c06eddc4e9fb31d8080b1662">clientDrawings</a>.transform)</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                    <span class="keywordflow">if</span> (child.gameObject.tag == <span class="stringliteral">&quot;ClientMarker&quot;</span>) count++;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                }</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        marker.GetComponentInChildren&lt;TextMeshPro&gt;().text = count.ToString();</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keywordflow">return</span> marker;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>}</div>
+<div class="ttc" id="a_peer_type_8cs_html_a0fc68ed97adff8eb7d1d96c0a06a6687"><div class="ttname"><a href="_peer_type_8cs.html#a0fc68ed97adff8eb7d1d96c0a06a6687">PeerType</a></div><div class="ttdeci">PeerType</div><div class="ttdoc">Representa los posibles roles que puede tener un usuario</div><div class="ttdef"><b>Definition:</b> <a href="_peer_type_8cs_source.html#l00004">PeerType.cs:5</a></div></div>
+<div class="ttc" id="aclass_a_r_marker_html"><div class="ttname"><a href="class_a_r_marker.html">ARMarker</a></div><div class="ttdoc">Modela el comportamiento de la herramienta ARMarker</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_marker_8cs_source.html#l00010">ARMarker.cs:11</a></div></div>
+<div class="ttc" id="aclass_a_r_marker_html_a21def37d40b4cc1ded7384c1403316f9"><div class="ttname"><a href="class_a_r_marker.html#a21def37d40b4cc1ded7384c1403316f9">ARMarker.myPeerType</a></div><div class="ttdeci">PeerType myPeerType</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_marker_8cs_source.html#l00012">ARMarker.cs:12</a></div></div>
+<div class="ttc" id="aclass_a_r_marker_html_a27ea41b1429123de21b990b94555b95d"><div class="ttname"><a href="class_a_r_marker.html#a27ea41b1429123de21b990b94555b95d">ARMarker.AddMarker</a></div><div class="ttdeci">GameObject AddMarker(Vector3 position)</div><div class="ttdoc">Coloca el marcador en la posicion seleccionada</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_marker_8cs_source.html#l00070">ARMarker.cs:70</a></div></div>
+<div class="ttc" id="aclass_a_r_marker_html_a37bcfc2d540eed2ffd496d758dd9ad6d"><div class="ttname"><a href="class_a_r_marker.html#a37bcfc2d540eed2ffd496d758dd9ad6d">ARMarker.Update</a></div><div class="ttdeci">void Update()</div><div class="ttdoc">Llamada al comienzo de cada fotograma</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_marker_8cs_source.html#l00040">ARMarker.cs:40</a></div></div>
+<div class="ttc" id="aclass_a_r_marker_html_a80ee8c2ba52a74911216caba4c038387"><div class="ttname"><a href="class_a_r_marker.html#a80ee8c2ba52a74911216caba4c038387">ARMarker.cam</a></div><div class="ttdeci">Camera cam</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_marker_8cs_source.html#l00016">ARMarker.cs:16</a></div></div>
+<div class="ttc" id="aclass_a_r_marker_html_aa30226dcbc0d3c087ed61fbfd3c9e1cd"><div class="ttname"><a href="class_a_r_marker.html#aa30226dcbc0d3c087ed61fbfd3c9e1cd">ARMarker.Start</a></div><div class="ttdeci">void Start()</div><div class="ttdoc">Llamada justo antes del primer fotograma</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_marker_8cs_source.html#l00027">ARMarker.cs:27</a></div></div>
+<div class="ttc" id="aclass_a_r_marker_html_aaa4bed42e49e66de507791fc1c8e8c9a"><div class="ttname"><a href="class_a_r_marker.html#aaa4bed42e49e66de507791fc1c8e8c9a">ARMarker.inputManager</a></div><div class="ttdeci">MyInputManager inputManager</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_marker_8cs_source.html#l00017">ARMarker.cs:17</a></div></div>
+<div class="ttc" id="aclass_a_r_marker_html_aae17e87326573c1deaceaab54b673a86"><div class="ttname"><a href="class_a_r_marker.html#aae17e87326573c1deaceaab54b673a86">ARMarker.arRaycastManager</a></div><div class="ttdeci">ARRaycastManager arRaycastManager</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_marker_8cs_source.html#l00018">ARMarker.cs:18</a></div></div>
+<div class="ttc" id="aclass_a_r_marker_html_ab696079ec3d35a77c188cfcbe04e2a4b"><div class="ttname"><a href="class_a_r_marker.html#ab696079ec3d35a77c188cfcbe04e2a4b">ARMarker.aRToolManager</a></div><div class="ttdeci">ARToolManager aRToolManager</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_marker_8cs_source.html#l00019">ARMarker.cs:19</a></div></div>
+<div class="ttc" id="aclass_a_r_marker_html_ab7987250c230f4cdc6db689e4510f82f"><div class="ttname"><a href="class_a_r_marker.html#ab7987250c230f4cdc6db689e4510f82f">ARMarker.placingMarker</a></div><div class="ttdeci">bool placingMarker</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_marker_8cs_source.html#l00021">ARMarker.cs:21</a></div></div>
+<div class="ttc" id="aclass_a_r_marker_html_af6778fef347de2277e059fc4257b97c2"><div class="ttname"><a href="class_a_r_marker.html#af6778fef347de2277e059fc4257b97c2">ARMarker.prefab</a></div><div class="ttdeci">GameObject prefab</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_marker_8cs_source.html#l00013">ARMarker.cs:13</a></div></div>
+<div class="ttc" id="aclass_a_r_tool_manager_html"><div class="ttname"><a href="class_a_r_tool_manager.html">ARToolManager</a></div><div class="ttdoc">Maneja la lógica de las herramientas de RA</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_tool_manager_8cs_source.html#l00006">ARToolManager.cs:7</a></div></div>
+<div class="ttc" id="aclass_a_r_tool_manager_html_a0cde2eee729bed3a88e35d6a3069feae"><div class="ttname"><a href="class_a_r_tool_manager.html#a0cde2eee729bed3a88e35d6a3069feae">ARToolManager.hostDrawings</a></div><div class="ttdeci">static GameObject hostDrawings</div><div class="ttdoc">GameObject donde se guardan los trazos o marcadores del host</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_tool_manager_8cs_source.html#l00046">ARToolManager.cs:46</a></div></div>
+<div class="ttc" id="aclass_a_r_tool_manager_html_a86782ee29e1327a2f4ab387d8438c6a7"><div class="ttname"><a href="class_a_r_tool_manager.html#a86782ee29e1327a2f4ab387d8438c6a7">ARToolManager.PlaceGuide</a></div><div class="ttdeci">GameObject PlaceGuide(PeerType peer, Transform target)</div><div class="ttdoc">Coloca una guía en un trazo o marcador del par selecionado</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_tool_manager_8cs_source.html#l00207">ARToolManager.cs:207</a></div></div>
+<div class="ttc" id="aclass_a_r_tool_manager_html_a9578a03c4bb84243b5e637721ee97f81"><div class="ttname"><a href="class_a_r_tool_manager.html#a9578a03c4bb84243b5e637721ee97f81">ARToolManager.hostMaterial</a></div><div class="ttdeci">Material hostMaterial</div><div class="ttdoc">Material usado para las herramientas del host</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_tool_manager_8cs_source.html#l00016">ARToolManager.cs:16</a></div></div>
+<div class="ttc" id="aclass_a_r_tool_manager_html_ac09cacb1c06eddc4e9fb31d8080b1662"><div class="ttname"><a href="class_a_r_tool_manager.html#ac09cacb1c06eddc4e9fb31d8080b1662">ARToolManager.clientDrawings</a></div><div class="ttdeci">static GameObject clientDrawings</div><div class="ttdoc">GameObject donde se guardan los trazos o marcadores del cliente</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_tool_manager_8cs_source.html#l00050">ARToolManager.cs:50</a></div></div>
+<div class="ttc" id="aclass_a_r_tool_manager_html_afae482535f6780da348a257c7c250cd5"><div class="ttname"><a href="class_a_r_tool_manager.html#afae482535f6780da348a257c7c250cd5">ARToolManager.clientMaterial</a></div><div class="ttdeci">Material clientMaterial</div><div class="ttdoc">Material usado para las herramientas del cliente</div><div class="ttdef"><b>Definition:</b> <a href="_a_r_tool_manager_8cs_source.html#l00021">ARToolManager.cs:21</a></div></div>
+<div class="ttc" id="aclass_my_input_manager_html"><div class="ttname"><a href="class_my_input_manager.html">MyInputManager</a></div><div class="ttdef"><b>Definition:</b> <a href="_my_input_manager_8cs_source.html#l00005">MyInputManager.cs:6</a></div></div>
+<div class="ttc" id="aclass_my_input_manager_html_a28fc3dff762d52aade97f0329f6972a1"><div class="ttname"><a href="class_my_input_manager.html#a28fc3dff762d52aade97f0329f6972a1">MyInputManager.clientPosition</a></div><div class="ttdeci">Vector3 clientPosition</div><div class="ttdef"><b>Definition:</b> <a href="_my_input_manager_8cs_source.html#l00011">MyInputManager.cs:11</a></div></div>
+<div class="ttc" id="aclass_my_input_manager_html_a491307ed67b25b941ef431d5bdbdad6c"><div class="ttname"><a href="class_my_input_manager.html#a491307ed67b25b941ef431d5bdbdad6c">MyInputManager.IsHeldDown</a></div><div class="ttdeci">bool IsHeldDown(PeerType peer)</div><div class="ttdef"><b>Definition:</b> <a href="_my_input_manager_8cs_source.html#l00101">MyInputManager.cs:101</a></div></div>
+<div class="ttc" id="aclass_my_input_manager_html_aa6d288604a07feef777c774f4e1920f5"><div class="ttname"><a href="class_my_input_manager.html#aa6d288604a07feef777c774f4e1920f5">MyInputManager.hostPosition</a></div><div class="ttdeci">Vector3 hostPosition</div><div class="ttdef"><b>Definition:</b> <a href="_my_input_manager_8cs_source.html#l00011">MyInputManager.cs:11</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+</small></address>
+</body>
+</html>

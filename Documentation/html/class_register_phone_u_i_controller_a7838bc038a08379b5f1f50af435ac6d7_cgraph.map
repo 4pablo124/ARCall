@@ -1,0 +1,4 @@
+<map id="RegisterPhoneUIController.OnVerificationFailed" name="RegisterPhoneUIController.OnVerificationFailed">
+<area shape="rect" id="node1" title="Llamada cuando falla la verificación" alt="" coords="5,5,300,32"/>
+<area shape="rect" id="node2" href="$class_android_utils.html#af3ddee265b4dfc672eddae5699c8fb2b" title=" " alt="" coords="348,5,508,32"/>
+</map>
