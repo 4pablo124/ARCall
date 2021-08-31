@@ -42,7 +42,7 @@ public static class UserManager
     /// <returns>Si el usuario esta registrado</returns>
     public static bool IsUserRegistered()
     {
-        return Auth.CurrentUser != null;
+        return Auth.CurrentUser != null || !String.IsNullOrEmpty(Auth.CurrentUser?.DisplayName);
     }
 
     /// <summary>

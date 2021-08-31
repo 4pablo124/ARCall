@@ -13,6 +13,7 @@ public class TestDependenciesSetUp
         await Firebase.FirebaseApp.CheckAndFixDependenciesAsync();
         DatabaseManager.Database = Firebase.Database.FirebaseDatabase.DefaultInstance;
         UserManager.LogIn(Firebase.Auth.FirebaseAuth.GetAuth(FirebaseApp.DefaultInstance));
+        await UserManager.ChangeUsername("test");
     }
 
     [OneTimeTearDown]

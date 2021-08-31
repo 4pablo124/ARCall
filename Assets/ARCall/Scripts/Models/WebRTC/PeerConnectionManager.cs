@@ -99,12 +99,14 @@ public class PeerConnectionManager : MonoBehaviour
     /// <para>Cierra el canal de audio cuando este no tiene actividad o esta deshabilitado
     /// </summary>
     private void Update() {
-        if(audioSender.Track.Enabled && audioManager.GetVolume(audioManager.inputAudioSource) < 1){     
-            EnableAudioStream(false);
-        }else
+        if(audioSender !=null && audioManager != null){
+            if(audioSender.Track.Enabled && audioManager.GetVolume(audioManager.inputAudioSource) < 1){     
+                EnableAudioStream(false);
+            }else
 
-        if(!audioSender.Track.Enabled && audioManager.GetVolume(audioManager.inputAudioSource) >= 1){     
-            EnableAudioStream(true);
+            if(!audioSender.Track.Enabled && audioManager.GetVolume(audioManager.inputAudioSource) >= 1){     
+                EnableAudioStream(true);
+            }
         }
     }
  
