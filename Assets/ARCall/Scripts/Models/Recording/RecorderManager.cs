@@ -33,7 +33,8 @@ public class RecorderManager : MonoBehaviour
     /// <returns>Si esta actualmente grabando</returns>
     public bool ToggleRecord()
     {
-        if (!isRecording)
+        isRecording = !isRecording;
+        if (isRecording)
         {
             StartRecording();
         }
@@ -41,7 +42,7 @@ public class RecorderManager : MonoBehaviour
         {
             StopRecording();
         }
-        return isRecording = !isRecording;
+        return isRecording;
     }
 
     /// <summary>
@@ -65,7 +66,7 @@ public class RecorderManager : MonoBehaviour
     /// </summary>
     void onStopRecord()
     {
-       isRecording=false;
+    //    isRecording=false;
     }
 
     /// <summary>
