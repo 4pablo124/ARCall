@@ -96,4 +96,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Extra
 user.keystore
+Assets/StreamingAssets/build_info
