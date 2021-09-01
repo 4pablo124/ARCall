@@ -28,7 +28,7 @@ public class TestSuite_ARToolManager
     // SelectTool()
 
     [Test]
-    public void SelectTool_HostSelectsARBrush()
+    public void SelectTool_HostSelectsTool()
     {
         var tool = getTool(PeerType.Host, "ARBrush");
         Assert.False(tool.activeSelf);
@@ -40,7 +40,7 @@ public class TestSuite_ARToolManager
     }
 
     [Test]
-    public void SelectTool_ClientSelectsARBrush()
+    public void SelectTool_ClientSelectsTool()
     {
         var tool = getTool(PeerType.Client, "ARBrush");
         Assert.False(tool.activeSelf);
@@ -51,83 +51,83 @@ public class TestSuite_ARToolManager
         tool.SetActive(false);
     }
 
-    [Test]
-    public void SelectTool_HostSelectsARPointer()
-    {
-        var tool = getTool(PeerType.Host, "ARPointer");
-        Assert.False(tool.activeSelf);
+    // [Test]
+    // public void SelectTool_HostSelectsARPointer()
+    // {
+    //     var tool = getTool(PeerType.Host, "ARPointer");
+    //     Assert.False(tool.activeSelf);
 
-        aRToolManager.SelectTool(PeerType.Host, "ARPointer");
+    //     aRToolManager.SelectTool(PeerType.Host, "ARPointer");
 
-        Assert.True(tool.activeSelf);
-        tool.SetActive(false);
-    }
+    //     Assert.True(tool.activeSelf);
+    //     tool.SetActive(false);
+    // }
 
-    [Test]
-    public void SelectTool_ClientSelectsARPointer()
-    {
-        var tool = getTool(PeerType.Client, "ARPointer");
-        Assert.False(tool.activeSelf);
+    // [Test]
+    // public void SelectTool_ClientSelectsARPointer()
+    // {
+    //     var tool = getTool(PeerType.Client, "ARPointer");
+    //     Assert.False(tool.activeSelf);
 
-        aRToolManager.SelectTool(PeerType.Client, "ARPointer");
+    //     aRToolManager.SelectTool(PeerType.Client, "ARPointer");
 
-        Assert.True(tool.activeSelf);
-        tool.SetActive(false);
-    }
+    //     Assert.True(tool.activeSelf);
+    //     tool.SetActive(false);
+    // }
 
-    [Test]
-    public void SelectTool_HostSelectsARMarker()
-    {
-        var tool = getTool(PeerType.Host, "ARMarker");
-        Assert.False(tool.activeSelf);
+    // [Test]
+    // public void SelectTool_HostSelectsARMarker()
+    // {
+    //     var tool = getTool(PeerType.Host, "ARMarker");
+    //     Assert.False(tool.activeSelf);
 
-        aRToolManager.SelectTool(PeerType.Host, "ARMarker");
+    //     aRToolManager.SelectTool(PeerType.Host, "ARMarker");
 
-        Assert.True(tool.activeSelf);
-        tool.SetActive(false);
-    }
+    //     Assert.True(tool.activeSelf);
+    //     tool.SetActive(false);
+    // }
 
-    [Test]
-    public void SelectTool_ClientSelectsARMarker()
-    {
-        var tool = getTool(PeerType.Client, "ARMarker");
-        Assert.False(tool.activeSelf);
+    // [Test]
+    // public void SelectTool_ClientSelectsARMarker()
+    // {
+    //     var tool = getTool(PeerType.Client, "ARMarker");
+    //     Assert.False(tool.activeSelf);
 
-        aRToolManager.SelectTool(PeerType.Client, "ARMarker");
+    //     aRToolManager.SelectTool(PeerType.Client, "ARMarker");
 
-        Assert.True(tool.activeSelf);
-        tool.SetActive(false);
-    }
+    //     Assert.True(tool.activeSelf);
+    //     tool.SetActive(false);
+    // }
 
-    [Test]
-    public void SelectTool_HostSelectsARText()
-    {
-        var tool = getTool(PeerType.Host, "ARText");
-        Assert.False(tool.activeSelf);
+    // [Test]
+    // public void SelectTool_HostSelectsARText()
+    // {
+    //     var tool = getTool(PeerType.Host, "ARText");
+    //     Assert.False(tool.activeSelf);
 
-        aRToolManager.SelectTool(PeerType.Host, "ARText");
+    //     aRToolManager.SelectTool(PeerType.Host, "ARText");
 
-        Assert.True(tool.activeSelf);
-        tool.SetActive(false);
-    }
+    //     Assert.True(tool.activeSelf);
+    //     tool.SetActive(false);
+    // }
 
-    [Test]
-    public void SelectTool_ClientSelectsARText()
-    {
-        var tool = getTool(PeerType.Client, "ARText");
-        Assert.False(tool.activeSelf);
+    // [Test]
+    // public void SelectTool_ClientSelectsARText()
+    // {
+    //     var tool = getTool(PeerType.Client, "ARText");
+    //     Assert.False(tool.activeSelf);
 
-        aRToolManager.SelectTool(PeerType.Client, "ARText");
+    //     aRToolManager.SelectTool(PeerType.Client, "ARText");
 
-        Assert.True(tool.activeSelf);
-        tool.SetActive(false);
-    }
+    //     Assert.True(tool.activeSelf);
+    //     tool.SetActive(false);
+    // }
 
 
     // SelectColor
 
     [Test]
-    public void SelectColor_HostSelectsRed()
+    public void SelectColor_HostSelectsColor()
     {
         aRToolManager.hostMaterial = null;
 
@@ -139,7 +139,7 @@ public class TestSuite_ARToolManager
     }
 
     [Test]
-    public void SelectColor_ClientSelectsRed()
+    public void SelectColor_ClientSelectsColor()
     {
         aRToolManager.clientMaterial = null;
 
@@ -150,77 +150,77 @@ public class TestSuite_ARToolManager
         aRToolManager.clientMaterial = null;
     }
 
-    [Test]
-    public void SelectColor_HostSelectsGreen()
-    {
-        aRToolManager.hostMaterial = null;
+    // [Test]
+    // public void SelectColor_HostSelectsGreen()
+    // {
+    //     aRToolManager.hostMaterial = null;
 
-        aRToolManager.SelectColor(PeerType.Host, "6BDC99");
+    //     aRToolManager.SelectColor(PeerType.Host, "6BDC99");
 
-        Assert.True(aRToolManager.hostMaterial == aRToolManager.ColorGreen);
+    //     Assert.True(aRToolManager.hostMaterial == aRToolManager.ColorGreen);
 
-        aRToolManager.hostMaterial = null;
-    }
+    //     aRToolManager.hostMaterial = null;
+    // }
 
-    [Test]
-    public void SelectColor_ClientSelectsGreen()
-    {
-        aRToolManager.clientMaterial = null;
+    // [Test]
+    // public void SelectColor_ClientSelectsGreen()
+    // {
+    //     aRToolManager.clientMaterial = null;
 
-        aRToolManager.SelectColor(PeerType.Client, "6BDC99");
+    //     aRToolManager.SelectColor(PeerType.Client, "6BDC99");
 
-        Assert.True(aRToolManager.clientMaterial == aRToolManager.ColorGreen);
+    //     Assert.True(aRToolManager.clientMaterial == aRToolManager.ColorGreen);
 
-        aRToolManager.clientMaterial = null;
-    }
+    //     aRToolManager.clientMaterial = null;
+    // }
 
-    [Test]
-    public void SelectColor_HostSelectsBlue()
-    {
-        aRToolManager.hostMaterial = null;
+    // [Test]
+    // public void SelectColor_HostSelectsBlue()
+    // {
+    //     aRToolManager.hostMaterial = null;
 
-        aRToolManager.SelectColor(PeerType.Host, "6BD4DC");
+    //     aRToolManager.SelectColor(PeerType.Host, "6BD4DC");
 
-        Assert.True(aRToolManager.hostMaterial == aRToolManager.ColorBlue);
+    //     Assert.True(aRToolManager.hostMaterial == aRToolManager.ColorBlue);
 
-        aRToolManager.hostMaterial = null;
-    }
+    //     aRToolManager.hostMaterial = null;
+    // }
 
-    [Test]
-    public void SelectColor_ClientSelectsBlue()
-    {
-        aRToolManager.clientMaterial = null;
+    // [Test]
+    // public void SelectColor_ClientSelectsBlue()
+    // {
+    //     aRToolManager.clientMaterial = null;
 
-        aRToolManager.SelectColor(PeerType.Client, "6BD4DC");
+    //     aRToolManager.SelectColor(PeerType.Client, "6BD4DC");
 
-        Assert.True(aRToolManager.clientMaterial == aRToolManager.ColorBlue);
+    //     Assert.True(aRToolManager.clientMaterial == aRToolManager.ColorBlue);
 
-        aRToolManager.clientMaterial = null;
-    }
+    //     aRToolManager.clientMaterial = null;
+    // }
 
-    [Test]
-    public void SelectColor_HostSelectsYellow()
-    {
-        aRToolManager.hostMaterial = null;
+    // [Test]
+    // public void SelectColor_HostSelectsYellow()
+    // {
+    //     aRToolManager.hostMaterial = null;
 
-        aRToolManager.SelectColor(PeerType.Host, "FFF64A");
+    //     aRToolManager.SelectColor(PeerType.Host, "FFF64A");
 
-        Assert.True(aRToolManager.hostMaterial == aRToolManager.ColorYellow);
+    //     Assert.True(aRToolManager.hostMaterial == aRToolManager.ColorYellow);
 
-        aRToolManager.hostMaterial = null;
-    }
+    //     aRToolManager.hostMaterial = null;
+    // }
 
-    [Test]
-    public void SelectColor_ClientSelectsYellow()
-    {
-        aRToolManager.clientMaterial = null;
+    // [Test]
+    // public void SelectColor_ClientSelectsYellow()
+    // {
+    //     aRToolManager.clientMaterial = null;
 
-        aRToolManager.SelectColor(PeerType.Client, "FFF64A");
+    //     aRToolManager.SelectColor(PeerType.Client, "FFF64A");
 
-        Assert.True(aRToolManager.clientMaterial == aRToolManager.ColorYellow);
+    //     Assert.True(aRToolManager.clientMaterial == aRToolManager.ColorYellow);
 
-        aRToolManager.clientMaterial = null;
-    }
+    //     aRToolManager.clientMaterial = null;
+    // }
 
 
     // UndoDrawing()

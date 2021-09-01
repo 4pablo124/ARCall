@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-public class TestSuite_PeerConnection
+public class TestSuite_PeerConnectionManager
 {
     [Test]
     public void Call_EstablishesConnection()
