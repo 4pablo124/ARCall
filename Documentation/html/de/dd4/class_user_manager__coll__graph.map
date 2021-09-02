@@ -1,0 +1,4 @@
+<map id="UserManager" name="UserManager">
+<area shape="rect" id="node1" title="Maneja la lógica de registro y autenticación de usuarios" alt="" coords="5,160,357,369"/>
+<area shape="rect" id="node2" href="$d7/d23/class_user.html" title="Representa un usuario en el sistema" alt="" coords="10,5,353,97"/>
+</map>

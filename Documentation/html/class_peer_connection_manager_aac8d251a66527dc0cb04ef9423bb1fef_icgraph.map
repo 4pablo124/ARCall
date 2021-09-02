@@ -1,5 +1,0 @@
-<map id="PeerConnectionManager.EnableAudioStream" name="PeerConnectionManager.EnableAudioStream">
-<area shape="rect" id="node1" title="Cambia el estado del canal de audio" alt="" coords="263,31,545,57"/>
-<area shape="rect" id="node2" href="$class_peer_connection_manager.html#a82bd9ac926952fe7f22bef718cca64cb" title="Llamada al crear el GameObject asociado" alt="" coords="7,5,213,32"/>
-<area shape="rect" id="node3" href="$class_peer_connection_manager.html#a8b9c44eaef490cea9d4ecb3c6c1ff7af" title="Llamada al comienzo de cada fotograma" alt="" coords="5,56,215,83"/>
-</map>

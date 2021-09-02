@@ -1,5 +1,0 @@
-<map id="BackButtonController.Update" name="BackButtonController.Update">
-<area shape="rect" id="node1" title="Llamada al comienzo de cada fotograma Comprueba si se ha pulsado el botón de retroceso en Android o l..." alt="" coords="5,31,196,57"/>
-<area shape="rect" id="node2" href="$class_my_scene_manager.html#a49105404c209d6777b272c9574f8ac56" title="Navega a la escena anterior" alt="" coords="250,5,449,32"/>
-<area shape="rect" id="node3" href="$class_my_scene_manager.html#a209f9cda1c9a72071bae2ef6864492ba" title="Devuelve la escena actual" alt="" coords="244,56,455,83"/>
-</map>

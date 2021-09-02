@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sharingmanager_0',['SharingManager',['../class_sharing_manager.html',1,'']]]
+  ['sharingmanager_0',['SharingManager',['../dd/dcc/class_sharing_manager.html',1,'']]]
 ];

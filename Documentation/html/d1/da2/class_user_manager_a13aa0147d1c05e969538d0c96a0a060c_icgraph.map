@@ -1,0 +1,6 @@
+<map id="UserManager.LogIn" name="UserManager.LogIn">
+<area shape="rect" id="node1" title="Loguea al usuario actual" alt="" coords="488,31,623,57"/>
+<area shape="rect" id="node2" href="$d0/dda/class_app_entry_point.html#a31fdab16b3f5f842587ae877d564b041" title="Lanzado cuando Firebase esta inicializado" alt="" coords="225,31,440,57"/>
+<area shape="rect" id="node3" href="$d0/dda/class_app_entry_point.html#ac431add7aa1c5d78adfed6782eedd949" title="Llamada al crear el GameObject asociado" alt="" coords="17,5,166,32"/>
+<area shape="rect" id="node4" href="$d0/dda/class_app_entry_point.html#afc6b25a70732c6bcf06409f22a586861" title="Llamadada cuando se destruye el GameObject asociado" alt="" coords="5,56,177,83"/>
+</map>

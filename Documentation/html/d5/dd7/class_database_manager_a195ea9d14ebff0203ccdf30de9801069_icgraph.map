@@ -1,0 +1,14 @@
+<map id="DatabaseManager.OnMessageReceivedDelegate" name="DatabaseManager.OnMessageReceivedDelegate">
+<area shape="rect" id="node1" title="Lanza el evento OnMessageReceived" alt="" coords="1488,132,1792,159"/>
+<area shape="rect" id="node2" href="$d5/dd7/class_database_manager.html#a7373a5a3ba0f6b44b5c7a96587b7afa1" title="Señaliza en base de datos que un par esta listo para la conexión" alt="" coords="1237,157,1432,184"/>
+<area shape="rect" id="node7" href="$d5/dd7/class_database_manager.html#a178acb8bd938e615aa34330e64f715ea" title="Señaliza en base de datos que un par no listo para la conexión" alt="" coords="1229,107,1440,133"/>
+<area shape="rect" id="node3" href="$d2/d48/class_peer_connection_manager.html#a77481735fed0e6e7c602e8a2bea821d4" title="Señaliza que el par esta listo para la conexión" alt="" coords="941,157,1173,184"/>
+<area shape="rect" id="node6" href="$d2/d48/class_peer_connection_manager.html#a058148001392c4d6106cc784ec477256" title="Llamada justo antes del primer fotograma" alt="" coords="5,157,201,184"/>
+<area shape="rect" id="node4" href="$d2/d48/class_peer_connection_manager.html#a32e1f598ed2e0f51ded5bdee39c8c18c" title="Llamada cuando el estado de efonque de la aplicación cambia" alt="" coords="574,107,859,133"/>
+<area shape="rect" id="node5" href="$d2/d48/class_peer_connection_manager.html#a963a5f07932166a3233b9087fc2b0a81" title="Llamada cuando el estado de pausa de la aplicación cambia" alt="" coords="573,157,860,184"/>
+<area shape="rect" id="node8" href="$d2/d48/class_peer_connection_manager.html#ad792df6efa61aa9a558aab9b76604a87" title="Señaliza que el par no listo para la conexión" alt="" coords="933,107,1181,133"/>
+<area shape="rect" id="node9" href="$d2/d48/class_peer_connection_manager.html#ac4577b58d566fb35458448f45920978f" title="Cuelga la videollamada" alt="" coords="609,56,824,83"/>
+<area shape="rect" id="node12" href="$d2/d48/class_peer_connection_manager.html#a5a28d064eba699adacb983766109da54" title="Llamada cuando se abandona la escena" alt="" coords="548,5,885,32"/>
+<area shape="rect" id="node10" href="$d2/d48/class_peer_connection_manager.html#a2b43b97a9280f9d5dd6dd4634009e566" title="Llamada cuando la conexión se pierde" alt="" coords="249,132,500,159"/>
+<area shape="rect" id="node11" href="$d0/d5f/class_toolbar_u_i_controller.html#a7c36bd2332e575e710320a80023b93de" title="Llamada justo antes del primer fotograma" alt="" coords="293,56,456,83"/>
+</map>

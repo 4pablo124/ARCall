@@ -1,5 +1,0 @@
-<map id="ARToolManager.UndoDrawing" name="ARToolManager.UndoDrawing">
-<area shape="rect" id="node1" title="Elimina el último trazo o marcador colocado por el par seleccionado" alt="" coords="569,5,764,32"/>
-<area shape="rect" id="node2" href="$class_peer_connection_manager.html#acce72dd729e1abda9e126f7c1bd317ce" title="Crea los canales de datos" alt="" coords="249,5,521,32"/>
-<area shape="rect" id="node3" href="$class_peer_connection_manager.html#a058148001392c4d6106cc784ec477256" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,201,32"/>
-</map>

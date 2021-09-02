@@ -1,7 +1,0 @@
-<map id="MainUIController.Start" name="MainUIController.Start">
-<area shape="rect" id="node1" title="Llamada justo antes del primer fotograma" alt="" coords="5,56,155,83"/>
-<area shape="rect" id="node2" href="$class_user_manager.html#a7c046e0a03e5802e7b1936f6ecdefe9e" title="Evalua si el usuario actual esta registrado" alt="" coords="203,5,405,32"/>
-<area shape="rect" id="node3" href="$class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="206,56,402,83"/>
-<area shape="rect" id="node4" href="$class_user_manager.html#abc0325360c77d2c099e7807a3c1ff0fa" title="Cierra la sesion del usario actualmente logueado" alt="" coords="231,107,377,133"/>
-<area shape="rect" id="node5" href="$class_database_manager.html#ad451c9f92dbd5668a0d8198ffdb055e7" title="Elimina el userID de un usuario" alt="" coords="453,107,669,133"/>
-</map>

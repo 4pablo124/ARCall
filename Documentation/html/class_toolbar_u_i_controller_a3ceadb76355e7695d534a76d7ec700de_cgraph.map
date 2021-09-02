@@ -1,7 +1,0 @@
-<map id="ToolbarUIController.SelectBarElement" name="ToolbarUIController.SelectBarElement">
-<area shape="rect" id="node1" title="Intercambia el elemento actualmente seleccionado de una barra (herramienta o color) por el elemento q..." alt="" coords="5,81,245,108"/>
-<area shape="rect" id="node2" href="$class_a_r_tool_manager.html#af9a83789810f1f49396d859e950a994d" title="Selecciona el color actual para el par seleccionado" alt="" coords="293,5,479,32"/>
-<area shape="rect" id="node3" href="$class_client_manager.html#adf223624713fef035e346e07ccec906a" title="Selecciona un color" alt="" coords="298,56,474,83"/>
-<area shape="rect" id="node4" href="$class_a_r_tool_manager.html#a4ba91608a57b3aa14fa66857c5b5d337" title="Selecciona la heramienta elegida para el par seleccionado" alt="" coords="297,107,475,133"/>
-<area shape="rect" id="node5" href="$class_client_manager.html#aa2ae5a54ff9b27bf90044a97033f9104" title="Selecciona una herramienta" alt="" coords="301,157,471,184"/>
-</map>

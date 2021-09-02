@@ -1,0 +1,7 @@
+<map id="DynamicLinksInit.Start" name="DynamicLinksInit.Start">
+<area shape="rect" id="node1" title="Llamada justo antes del primer fotograma" alt="" coords="5,31,159,57"/>
+<area shape="rect" id="node2" href="$d8/d78/class_dynamic_links_init.html#a53989c4e1c0a81ca03fefc118b7191f2" title="Lanzada cuando se recibe un enlace dinámico" alt="" coords="207,31,424,57"/>
+<area shape="rect" id="node3" href="$d2/d43/class_room_manager.html#a022ae9cafc8dedb55ca839e0d99c5b44" title="Mueve un par a una sala" alt="" coords="472,31,639,57"/>
+<area shape="rect" id="node4" href="$d3/dda/class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="696,5,892,32"/>
+<area shape="rect" id="node5" href="$d5/dd7/class_database_manager.html#a26b78f4ef7989b67f825194863df0357" title="Evalua si un código de sala existe en base de datos" alt="" coords="687,56,901,83"/>
+</map>

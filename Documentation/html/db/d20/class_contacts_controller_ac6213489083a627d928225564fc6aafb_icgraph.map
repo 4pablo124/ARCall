@@ -1,0 +1,4 @@
+<map id="ContactsController.PermissionDeniedAndDontAskAgain" name="ContactsController.PermissionDeniedAndDontAskAgain">
+<area shape="rect" id="node1" title="LLamada cuando se deniegan los permisos de lectura de contactos y se solicita que no se vuelvan a ped..." alt="" coords="225,5,569,32"/>
+<area shape="rect" id="node2" href="$db/d20/class_contacts_controller.html#a55e6be8eaa668f93e23c09e491c644c8" title="Llamada al crear el GameObject asociado" alt="" coords="5,5,177,32"/>
+</map>

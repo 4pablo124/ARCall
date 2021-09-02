@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -27,83 +34,120 @@
 </div>
 <!-- end header part -->
 <!-- Generado por Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Buscar','.html');
+/* @license-end */
+</script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',false,false,'search.php','Buscar');
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('files.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
 <div class="header">
   <div class="headertitle"><div class="title">Lista de archivos</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">Lista de todos los archivos con descripciones breves:</div><div class="directory">
+<div class="textblock">Lista de todos los archivos documentados y con descripciones breves:</div><div class="directory">
 <div class="levels">[detalle nivel <span onclick="javascript:toggleLevel(1);">1</span><span onclick="javascript:toggleLevel(2);">2</span><span onclick="javascript:toggleLevel(3);">3</span><span onclick="javascript:toggleLevel(4);">4</span><span onclick="javascript:toggleLevel(5);">5</span><span onclick="javascript:toggleLevel(6);">6</span>]</div><table class="directory">
 <tr id="row_0_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_0_" class="arrow" onclick="toggleFolder('0_')">&#9660;</span><span id="img_0_" class="iconfopen" onclick="toggleFolder('0_')">&#160;</span><a class="el" href="dir_84bbf7b3c7f28a5a18725745e1505219.html" target="_self">Assets</a></td><td class="desc"></td></tr>
 <tr id="row_0_0_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span id="arr_0_0_" class="arrow" onclick="toggleFolder('0_0_')">&#9660;</span><span id="img_0_0_" class="iconfopen" onclick="toggleFolder('0_0_')">&#160;</span><a class="el" href="dir_b65df5491c32a1d8b7805d88957a1325.html" target="_self">ARCall</a></td><td class="desc"></td></tr>
 <tr id="row_0_0_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span id="arr_0_0_0_" class="arrow" onclick="toggleFolder('0_0_0_')">&#9660;</span><span id="img_0_0_0_" class="iconfopen" onclick="toggleFolder('0_0_0_')">&#160;</span><a class="el" href="dir_fc12c737c1334bd69ac032ce53d04692.html" target="_self">Scripts</a></td><td class="desc"></td></tr>
 <tr id="row_0_0_0_0_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_0_0_0_" class="arrow" onclick="toggleFolder('0_0_0_0_')">&#9660;</span><span id="img_0_0_0_0_" class="iconfopen" onclick="toggleFolder('0_0_0_0_')">&#160;</span><a class="el" href="dir_215a308a2b64fcceb5acbe1e268b33c7.html" target="_self">Controllers</a></td><td class="desc"></td></tr>
 <tr id="row_0_0_0_0_0_" class="even"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_0_0_" class="arrow" onclick="toggleFolder('0_0_0_0_0_')">&#9660;</span><span id="img_0_0_0_0_0_" class="iconfopen" onclick="toggleFolder('0_0_0_0_0_')">&#160;</span><a class="el" href="dir_a366015ea543dc675ff9ce43a0fce017.html" target="_self">CallUI</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_0_0_0_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_audio_visualizer_controller_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_audio_visualizer_controller_8cs.html" target="_self">AudioVisualizerController.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_0_0_1_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_microphone_listener_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_microphone_listener_8cs.html" target="_self">MicrophoneListener.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_0_0_2_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_toolbar_u_i_controller_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_toolbar_u_i_controller_8cs.html" target="_self">ToolbarUIController.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_0_0_3_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_topbar_u_i_controller_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_topbar_u_i_controller_8cs.html" target="_self">TopbarUIController.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_0_1_"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_0_1_" class="arrow" onclick="toggleFolder('0_0_0_0_1_')">&#9660;</span><span id="img_0_0_0_0_1_" class="iconfopen" onclick="toggleFolder('0_0_0_0_1_')">&#160;</span><a class="el" href="dir_9794dbb4a8456344b7d1e5b7593ba0b4.html" target="_self">Registration</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_0_1_0_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_register_name_u_i_controller_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_register_name_u_i_controller_8cs.html" target="_self">RegisterNameUIController.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_0_1_1_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_register_phone_u_i_controller_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_register_phone_u_i_controller_8cs.html" target="_self">RegisterPhoneUIController.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_0_2_" class="even"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_0_2_" class="arrow" onclick="toggleFolder('0_0_0_0_2_')">&#9660;</span><span id="img_0_0_0_0_2_" class="iconfopen" onclick="toggleFolder('0_0_0_0_2_')">&#160;</span><a class="el" href="dir_5067ecfb84b2bc7345f82be9122a2d0d.html" target="_self">RoomCreation</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_0_2_0_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_contacts_controller_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_contacts_controller_8cs.html" target="_self">ContactsController.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_0_2_1_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_rooms_controller_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_rooms_controller_8cs.html" target="_self">RoomsController.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_0_3_"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="_back_button_controller_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_back_button_controller_8cs.html" target="_self">BackButtonController.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_0_4_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="_main_u_i_controller_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_main_u_i_controller_8cs.html" target="_self">MainUIController.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_0_0_1_" class="arrow" onclick="toggleFolder('0_0_0_1_')">&#9660;</span><span id="img_0_0_0_1_" class="iconfopen" onclick="toggleFolder('0_0_0_1_')">&#160;</span><a class="el" href="dir_8e264716874a5ae3fc1e61d1b6eae38b.html" target="_self">Models</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_0_" class="even"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_1_0_" class="arrow" onclick="toggleFolder('0_0_0_1_0_')">&#9660;</span><span id="img_0_0_0_1_0_" class="iconfopen" onclick="toggleFolder('0_0_0_1_0_')">&#160;</span><a class="el" href="dir_4e15a58fac100acfc5944ae2f9e1bdff.html" target="_self">ARTools</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_0_0_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_a_r_brush_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_a_r_brush_8cs.html" target="_self">ARBrush.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_0_1_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_a_r_guide_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_a_r_guide_8cs.html" target="_self">ARGuide.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_0_2_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_a_r_marker_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_a_r_marker_8cs.html" target="_self">ARMarker.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_0_3_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_a_r_pointer_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_a_r_pointer_8cs.html" target="_self">ARPointer.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_0_4_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_a_r_text_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_a_r_text_8cs.html" target="_self">ARText.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_0_5_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_a_r_tool_manager_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_a_r_tool_manager_8cs.html" target="_self">ARToolManager.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_1_"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_1_1_" class="arrow" onclick="toggleFolder('0_0_0_1_1_')">&#9660;</span><span id="img_0_0_0_1_1_" class="iconfopen" onclick="toggleFolder('0_0_0_1_1_')">&#160;</span><a class="el" href="dir_cd3d91439f4cb30a4b3962e951fe755c.html" target="_self">DataDefinitions</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_1_0_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_colors_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_colors_8cs.html" target="_self">Colors.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_1_1_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_country_codes_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_country_codes_8cs.html" target="_self">CountryCodes.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_1_2_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_message_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_message_8cs.html" target="_self">Message.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_1_3_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_peer_type_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_peer_type_8cs.html" target="_self">PeerType.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_1_4_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_user_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_user_8cs.html" target="_self">User.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_2_"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_1_2_" class="arrow" onclick="toggleFolder('0_0_0_1_2_')">&#9660;</span><span id="img_0_0_0_1_2_" class="iconfopen" onclick="toggleFolder('0_0_0_1_2_')">&#160;</span><a class="el" href="dir_f3172361e889d7fd23f0ebc3bfd04606.html" target="_self">DataManagement</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_2_0_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_database_manager_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_database_manager_8cs.html" target="_self">DatabaseManager.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_2_1_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_user_manager_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_user_manager_8cs.html" target="_self">UserManager.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_3_" class="even"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_1_3_" class="arrow" onclick="toggleFolder('0_0_0_1_3_')">&#9660;</span><span id="img_0_0_0_1_3_" class="iconfopen" onclick="toggleFolder('0_0_0_1_3_')">&#160;</span><a class="el" href="dir_7ce7a3147b0a690f25c00e5c3ffb53e2.html" target="_self">Init</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_3_0_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_app_entry_point_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_app_entry_point_8cs.html" target="_self">AppEntryPoint.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_3_1_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_dynamic_links_init_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_dynamic_links_init_8cs.html" target="_self">DynamicLinksInit.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_3_2_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_firebase_init_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_firebase_init_8cs.html" target="_self">FirebaseInit.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_3_3_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_one_signal_init_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_one_signal_init_8cs.html" target="_self">OneSignalInit.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_4_"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_1_4_" class="arrow" onclick="toggleFolder('0_0_0_1_4_')">&#9660;</span><span id="img_0_0_0_1_4_" class="iconfopen" onclick="toggleFolder('0_0_0_1_4_')">&#160;</span><a class="el" href="dir_7c40788ef477a2818e56a8b8c6045c66.html" target="_self">Recording</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_4_0_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_android_utils_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_android_utils_8cs.html" target="_self">AndroidUtils.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_4_1_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_recorder_manager_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_recorder_manager_8cs.html" target="_self">RecorderManager.cs</a></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_0_0_0_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="dc/d3f/_audio_visualizer_controller_8cs_source.html"><span class="icondoc"></span></a><b>AudioVisualizerController.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_0_0_1_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d7/d24/_toolbar_u_i_controller_8cs_source.html"><span class="icondoc"></span></a><b>ToolbarUIController.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_0_0_2_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d9/d17/_topbar_u_i_controller_8cs_source.html"><span class="icondoc"></span></a><b>TopbarUIController.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_0_1_" class="even"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_0_1_" class="arrow" onclick="toggleFolder('0_0_0_0_1_')">&#9660;</span><span id="img_0_0_0_0_1_" class="iconfopen" onclick="toggleFolder('0_0_0_0_1_')">&#160;</span><a class="el" href="dir_9794dbb4a8456344b7d1e5b7593ba0b4.html" target="_self">Registration</a></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_0_1_0_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d2/d5b/_register_name_u_i_controller_8cs_source.html"><span class="icondoc"></span></a><b>RegisterNameUIController.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_0_1_1_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="da/ddb/_register_phone_u_i_controller_8cs_source.html"><span class="icondoc"></span></a><b>RegisterPhoneUIController.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_0_2_"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_0_2_" class="arrow" onclick="toggleFolder('0_0_0_0_2_')">&#9660;</span><span id="img_0_0_0_0_2_" class="iconfopen" onclick="toggleFolder('0_0_0_0_2_')">&#160;</span><a class="el" href="dir_5067ecfb84b2bc7345f82be9122a2d0d.html" target="_self">RoomCreation</a></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_0_2_0_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d0/db5/_contacts_controller_8cs_source.html"><span class="icondoc"></span></a><b>ContactsController.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_0_2_1_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="db/dac/_rooms_controller_8cs_source.html"><span class="icondoc"></span></a><b>RoomsController.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_0_3_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="d6/d18/_back_button_controller_8cs_source.html"><span class="icondoc"></span></a><b>BackButtonController.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_0_4_"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="dd/df1/_main_u_i_controller_8cs_source.html"><span class="icondoc"></span></a><b>MainUIController.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_0_0_1_" class="arrow" onclick="toggleFolder('0_0_0_1_')">&#9660;</span><span id="img_0_0_0_1_" class="iconfopen" onclick="toggleFolder('0_0_0_1_')">&#160;</span><a class="el" href="dir_8e264716874a5ae3fc1e61d1b6eae38b.html" target="_self">Models</a></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_0_"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_1_0_" class="arrow" onclick="toggleFolder('0_0_0_1_0_')">&#9660;</span><span id="img_0_0_0_1_0_" class="iconfopen" onclick="toggleFolder('0_0_0_1_0_')">&#160;</span><a class="el" href="dir_4e15a58fac100acfc5944ae2f9e1bdff.html" target="_self">ARTools</a></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_0_0_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d3/d7f/_a_r_brush_8cs_source.html"><span class="icondoc"></span></a><b>ARBrush.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_0_1_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d3/da6/_a_r_guide_8cs_source.html"><span class="icondoc"></span></a><b>ARGuide.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_0_2_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="dd/da2/_a_r_marker_8cs_source.html"><span class="icondoc"></span></a><b>ARMarker.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_0_3_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d8/d12/_a_r_pointer_8cs_source.html"><span class="icondoc"></span></a><b>ARPointer.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_0_4_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d2/d52/_a_r_text_8cs_source.html"><span class="icondoc"></span></a><b>ARText.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_0_5_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d0/d3e/_a_r_tool_manager_8cs_source.html"><span class="icondoc"></span></a><b>ARToolManager.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_1_" class="even"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_1_1_" class="arrow" onclick="toggleFolder('0_0_0_1_1_')">&#9660;</span><span id="img_0_0_0_1_1_" class="iconfopen" onclick="toggleFolder('0_0_0_1_1_')">&#160;</span><a class="el" href="dir_cd3d91439f4cb30a4b3962e951fe755c.html" target="_self">DataDefinitions</a></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_1_0_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d9/da4/_colors_8cs_source.html"><span class="icondoc"></span></a><b>Colors.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_1_1_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="db/dda/_country_codes_8cs_source.html"><span class="icondoc"></span></a><b>CountryCodes.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_1_2_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="db/d0f/_message_8cs_source.html"><span class="icondoc"></span></a><b>Message.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_1_3_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d6/dd8/_peer_type_8cs_source.html"><span class="icondoc"></span></a><b>PeerType.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_1_4_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="dc/da5/_user_8cs_source.html"><span class="icondoc"></span></a><b>User.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_2_" class="even"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_1_2_" class="arrow" onclick="toggleFolder('0_0_0_1_2_')">&#9660;</span><span id="img_0_0_0_1_2_" class="iconfopen" onclick="toggleFolder('0_0_0_1_2_')">&#160;</span><a class="el" href="dir_f3172361e889d7fd23f0ebc3bfd04606.html" target="_self">DataManagement</a></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_2_0_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="dd/d9f/_database_manager_8cs_source.html"><span class="icondoc"></span></a><b>DatabaseManager.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_2_1_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d0/d59/_user_manager_8cs_source.html"><span class="icondoc"></span></a><b>UserManager.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_3_"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_1_3_" class="arrow" onclick="toggleFolder('0_0_0_1_3_')">&#9660;</span><span id="img_0_0_0_1_3_" class="iconfopen" onclick="toggleFolder('0_0_0_1_3_')">&#160;</span><a class="el" href="dir_7ce7a3147b0a690f25c00e5c3ffb53e2.html" target="_self">Init</a></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_3_0_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="db/d73/_app_entry_point_8cs_source.html"><span class="icondoc"></span></a><b>AppEntryPoint.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_3_1_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d6/d75/_dynamic_links_init_8cs_source.html"><span class="icondoc"></span></a><b>DynamicLinksInit.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_3_2_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d6/d41/_firebase_init_8cs_source.html"><span class="icondoc"></span></a><b>FirebaseInit.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_3_3_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d7/d4b/_one_signal_init_8cs_source.html"><span class="icondoc"></span></a><b>OneSignalInit.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_4_" class="even"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_1_4_" class="arrow" onclick="toggleFolder('0_0_0_1_4_')">&#9660;</span><span id="img_0_0_0_1_4_" class="iconfopen" onclick="toggleFolder('0_0_0_1_4_')">&#160;</span><a class="el" href="dir_7c40788ef477a2818e56a8b8c6045c66.html" target="_self">Recording</a></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_4_0_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d6/d73/_recorder_manager_8cs_source.html"><span class="icondoc"></span></a><b>RecorderManager.cs</b></td><td class="desc"></td></tr>
 <tr id="row_0_0_0_1_5_" class="even"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span id="arr_0_0_0_1_5_" class="arrow" onclick="toggleFolder('0_0_0_1_5_')">&#9660;</span><span id="img_0_0_0_1_5_" class="iconfopen" onclick="toggleFolder('0_0_0_1_5_')">&#160;</span><a class="el" href="dir_042f36f3924de668dbf1f71a1d20fb1c.html" target="_self">WebRTC</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_5_0_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_audio_manager_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_audio_manager_8cs.html" target="_self">AudioManager.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_5_1_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_client_manager_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_client_manager_8cs.html" target="_self">ClientManager.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_5_2_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_peer_connection_manager_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_peer_connection_manager_8cs.html" target="_self">PeerConnectionManager.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_5_3_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="_video_manager_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_video_manager_8cs.html" target="_self">VideoManager.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_6_"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="_my_input_manager_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_my_input_manager_8cs.html" target="_self">MyInputManager.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_7_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="_my_scene_manager_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_my_scene_manager_8cs.html" target="_self">MySceneManager.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_8_"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="_room_manager_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_room_manager_8cs.html" target="_self">RoomManager.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_1_9_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="_sharing_manager_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_sharing_manager_8cs.html" target="_self">SharingManager.cs</a></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_5_0_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="dd/dd3/_audio_manager_8cs_source.html"><span class="icondoc"></span></a><b>AudioManager.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_5_1_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d2/def/_client_manager_8cs_source.html"><span class="icondoc"></span></a><b>ClientManager.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_5_2_"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="d5/de9/_peer_connection_manager_8cs_source.html"><span class="icondoc"></span></a><b>PeerConnectionManager.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_5_3_" class="even"><td class="entry"><span style="width:96px;display:inline-block;">&#160;</span><a href="db/d4c/_video_manager_8cs_source.html"><span class="icondoc"></span></a><b>VideoManager.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_6_"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="d6/daf/_my_input_manager_8cs_source.html"><span class="icondoc"></span></a><b>MyInputManager.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_7_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="df/d3e/_my_scene_manager_8cs_source.html"><span class="icondoc"></span></a><b>MySceneManager.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_8_"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="dc/de4/_room_manager_8cs_source.html"><span class="icondoc"></span></a><b>RoomManager.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_1_9_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="da/d90/_sharing_manager_8cs_source.html"><span class="icondoc"></span></a><b>SharingManager.cs</b></td><td class="desc"></td></tr>
 <tr id="row_0_0_0_2_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_0_0_2_" class="arrow" onclick="toggleFolder('0_0_0_2_')">&#9660;</span><span id="img_0_0_0_2_" class="iconfopen" onclick="toggleFolder('0_0_0_2_')">&#160;</span><a class="el" href="dir_81d87b3a9ca43eab59c7c37b373a5207.html" target="_self">ViewExtras</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_2_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="_look_at_camera_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_look_at_camera_8cs.html" target="_self">LookAtCamera.cs</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_2_1_"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="_window_res_8cs_source.html"><span class="icondoc"></span></a><a class="el" href="_window_res_8cs.html" target="_self">WindowRes.cs</a></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_2_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="dc/d16/_look_at_camera_8cs_source.html"><span class="icondoc"></span></a><b>LookAtCamera.cs</b></td><td class="desc"></td></tr>
+<tr id="row_0_0_0_2_1_"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a href="d2/dbd/_window_res_8cs_source.html"><span class="icondoc"></span></a><b>WindowRes.cs</b></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+  </ul>
+</div>
 </body>
 </html>

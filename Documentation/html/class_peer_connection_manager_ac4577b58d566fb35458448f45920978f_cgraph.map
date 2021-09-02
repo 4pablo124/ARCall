@@ -1,8 +1,0 @@
-<map id="PeerConnectionManager.HangUp" name="PeerConnectionManager.HangUp">
-<area shape="rect" id="node1" title="Cuelga la videollamada" alt="" coords="5,31,220,57"/>
-<area shape="rect" id="node2" href="$class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="294,5,490,32"/>
-<area shape="rect" id="node3" href="$class_peer_connection_manager.html#ad792df6efa61aa9a558aab9b76604a87" title="Señaliza que el par no listo para la conexión" alt="" coords="268,56,516,83"/>
-<area shape="rect" id="node4" href="$class_database_manager.html#a178acb8bd938e615aa34330e64f715ea" title="Señaliza en base de datos que un par no listo para la conexión" alt="" coords="564,56,775,83"/>
-<area shape="rect" id="node5" href="$class_database_manager.html#a1854ec336517d562b14ec72287f986cb" title="Lanza el evento OnClientReady" alt="" coords="840,31,1109,57"/>
-<area shape="rect" id="node6" href="$class_database_manager.html#a195ea9d14ebff0203ccdf30de9801069" title="Lanza el evento OnMessageReceived" alt="" coords="823,81,1127,108"/>
-</map>

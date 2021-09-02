@@ -1,0 +1,4 @@
+<map id="WindowRes.LateUpdate" name="WindowRes.LateUpdate">
+<area shape="rect" id="node1" title="Llamada al final de cada fotograma" alt="" coords="5,5,167,32"/>
+<area shape="rect" id="node2" href="$dc/df2/class_window_res.html#ab5f6e4d371f9a83cb64c46270d308678" title="Cambia la resolución de la ventana" alt="" coords="215,5,415,32"/>
+</map>

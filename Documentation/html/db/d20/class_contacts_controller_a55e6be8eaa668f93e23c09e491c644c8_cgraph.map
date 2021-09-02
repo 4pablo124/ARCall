@@ -1,0 +1,15 @@
+<map id="ContactsController.Awake" name="ContactsController.Awake">
+<area shape="rect" id="node1" title="Llamada al crear el GameObject asociado" alt="" coords="5,56,177,83"/>
+<area shape="rect" id="node2" href="$db/d20/class_contacts_controller.html#aec18327c46aa4e4a17b297ed675e5c44" title="LLamada cuando se deniegan los permisos de lectura de contactos" alt="" coords="278,5,517,32"/>
+<area shape="rect" id="node3" href="$db/d20/class_contacts_controller.html#ac6213489083a627d928225564fc6aafb" title="LLamada cuando se deniegan los permisos de lectura de contactos y se solicita que no se vuelvan a ped..." alt="" coords="225,56,569,83"/>
+<area shape="rect" id="node4" href="$db/d20/class_contacts_controller.html#a5523eae0297ff38bd1ee5cdaa2ead925" title="LLamada cuando se aceptan los permisos de lectura de contactos" alt="" coords="275,107,519,133"/>
+<area shape="rect" id="node5" href="$db/d20/class_contacts_controller.html#a82e0a0a5ae1fc7cbef3e4cb49d74dc31" title="Inicializa todos los elementos necesarios de la lista de contactos y la muestra en la interfaz" alt="" coords="617,107,835,133"/>
+<area shape="rect" id="node6" href="$d5/dd7/class_database_manager.html#a322c76e999c83719f38cf419cf9f800a" title="Obtiene el userID de un usuario a partir de su número de teléfono" alt="" coords="933,31,1124,57"/>
+<area shape="rect" id="node7" href="$d2/d43/class_room_manager.html#a022ae9cafc8dedb55ca839e0d99c5b44" title="Mueve un par a una sala" alt="" coords="945,81,1112,108"/>
+<area shape="rect" id="node10" href="$dd/dcc/class_sharing_manager.html#a6b0c8c96f7f5624110bcf03a1c3dad3b" title="Envia una notifiación" alt="" coords="921,132,1136,159"/>
+<area shape="rect" id="node11" href="$dd/dcc/class_sharing_manager.html#aae88ccb9e92ceeed9c6e6281a192f698" title="Comparte un código de sala con un contacto de whatsapp" alt="" coords="883,183,1175,209"/>
+<area shape="rect" id="node8" href="$d3/dda/class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="1258,44,1454,71"/>
+<area shape="rect" id="node9" href="$d5/dd7/class_database_manager.html#a26b78f4ef7989b67f825194863df0357" title="Evalua si un código de sala existe en base de datos" alt="" coords="1249,95,1463,121"/>
+<area shape="rect" id="node12" href="$dd/dcc/class_sharing_manager.html#a039a42cca85530f5e71e396bda0bc95b" title="Crea un enlace dinámico a una sala" alt="" coords="1223,157,1489,184"/>
+<area shape="rect" id="node13" href="$dd/dcc/class_sharing_manager.html#a1297b7c8e2a23a2f1b179717015405a7" title="Crea el mensaje a compartir" alt="" coords="1253,208,1459,235"/>
+</map>

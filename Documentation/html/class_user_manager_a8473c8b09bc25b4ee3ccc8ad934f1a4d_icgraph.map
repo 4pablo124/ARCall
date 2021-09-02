@@ -1,8 +1,0 @@
-<map id="UserManager.VerifyPhoneCredential" name="UserManager.VerifyPhoneCredential">
-<area shape="rect" id="node1" title="Verifica el número de teléfono con un objeto de credenciales" alt="" coords="831,31,1061,57"/>
-<area shape="rect" id="node2" href="$class_user_manager.html#a9701a3e6255dc1e9921415aa42cccf6d" title="Envia el código SMS de verificación y lanza los posibles eventos" alt="" coords="556,5,783,32"/>
-<area shape="rect" id="node5" href="$class_user_manager.html#ac1d99d0f5e70010dee110ba670f659b6" title="Verifica el número de teléfono con el código SMS de verificación" alt="" coords="583,56,756,83"/>
-<area shape="rect" id="node3" href="$class_register_phone_u_i_controller.html#a41d4c768e35a4edf1db44a1807e179b5" title="Envia el código SMS al teléfono introducido" alt="" coords="265,5,503,32"/>
-<area shape="rect" id="node4" href="$class_register_phone_u_i_controller.html#abecd41c11aa752bec550978e4a58d2a1" title="Llamada justo antes del primer fotograma" alt="" coords="5,31,212,57"/>
-<area shape="rect" id="node6" href="$class_register_phone_u_i_controller.html#a55f0c364a3d7f1920df9790b7c63da7c" title="Verifica el teléfono introducido con el código SMS introducido" alt="" coords="260,56,508,83"/>
-</map>

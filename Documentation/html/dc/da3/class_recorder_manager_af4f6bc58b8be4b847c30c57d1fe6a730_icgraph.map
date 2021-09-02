@@ -1,0 +1,4 @@
+<map id="RecorderManager.ToggleRecord" name="RecorderManager.ToggleRecord">
+<area shape="rect" id="node1" title="Alterna entre comenzar la grabación o pararla" alt="" coords="216,5,423,32"/>
+<area shape="rect" id="node2" href="$d0/d5f/class_toolbar_u_i_controller.html#a7c36bd2332e575e710320a80023b93de" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,168,32"/>
+</map>

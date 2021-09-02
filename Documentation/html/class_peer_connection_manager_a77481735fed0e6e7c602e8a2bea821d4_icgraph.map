@@ -1,5 +1,0 @@
-<map id="PeerConnectionManager.ReadyUser" name="PeerConnectionManager.ReadyUser">
-<area shape="rect" id="node1" title="Señaliza que el par esta listo para la conexión" alt="" coords="340,31,572,57"/>
-<area shape="rect" id="node2" href="$class_peer_connection_manager.html#a32e1f598ed2e0f51ded5bdee39c8c18c" title="Llamada cuando el estado de efonque de la aplicación cambia" alt="" coords="6,5,291,32"/>
-<area shape="rect" id="node3" href="$class_peer_connection_manager.html#a963a5f07932166a3233b9087fc2b0a81" title="Llamada cuando el estado de pausa de la aplicación cambia" alt="" coords="5,56,292,83"/>
-</map>

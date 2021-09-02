@@ -1,4 +1,0 @@
-<map id="RecorderManager.Start" name="RecorderManager.Start">
-<area shape="rect" id="node1" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,161,32"/>
-<area shape="rect" id="node2" href="$class_recorder_manager.html#afa41f45409e57d56ace557ce02bffa6f" title="Llamada cuando se para la grabación" alt="" coords="209,5,420,32"/>
-</map>

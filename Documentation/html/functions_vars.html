@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -27,46 +34,173 @@
 </div>
 <!-- end header part -->
 <!-- Generado por Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Buscar','.html');
+/* @license-end */
+</script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',false,false,'search.php','Buscar');
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('functions_vars.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
 <div class="contents">
 &#160;
 
 <h3><a id="index_a" name="index_a"></a>- a -</h3><ul>
-<li>actionBtn&#160;:&#160;<a class="el" href="class_toolbar_u_i_controller.html#ab8ce64afa54db7c69a24f7cccb3b9f18">ToolbarUIController</a></li>
-<li>androidAudioManager&#160;:&#160;<a class="el" href="class_audio_manager.html#ac5494f4a848cf57ca556ac0d2bb61fd4">AudioManager</a></li>
-<li>androidUtils&#160;:&#160;<a class="el" href="class_recorder_manager.html#a62eb6151492e1b03ebe2a03918de96f3">RecorderManager</a></li>
-<li>arCam&#160;:&#160;<a class="el" href="class_a_r_brush.html#ad633efb0bdddab3ec21640e3508158d7">ARBrush</a>, <a class="el" href="class_a_r_guide.html#a3f4ce4e309c98de26efc51fc44ed9499">ARGuide</a>, <a class="el" href="class_video_manager.html#a0a673a090b8649d92f9d7f752571eae9">VideoManager</a></li>
-<li>arRaycastManager&#160;:&#160;<a class="el" href="class_a_r_brush.html#a844eb750aba193e0eadbd545060dc859">ARBrush</a>, <a class="el" href="class_a_r_marker.html#aae17e87326573c1deaceaab54b673a86">ARMarker</a>, <a class="el" href="class_a_r_text.html#a8addf97d141e9f410d5725dc1d7fc4e7">ARText</a></li>
-<li>arSession&#160;:&#160;<a class="el" href="class_video_manager.html#ad4a9e4d53c95698d0d8c693a91f26f13">VideoManager</a></li>
-<li>aRToolManager&#160;:&#160;<a class="el" href="class_a_r_brush.html#a090803699df07b9b12dea7bfba7c7b8e">ARBrush</a>, <a class="el" href="class_a_r_marker.html#ab696079ec3d35a77c188cfcbe04e2a4b">ARMarker</a>, <a class="el" href="class_a_r_pointer.html#a3c44e2e72568f42d7b3ae117b22485ed">ARPointer</a>, <a class="el" href="class_a_r_text.html#a3e33e213c48c00ac5d640b3a2005b945">ARText</a></li>
-<li>arToolManager&#160;:&#160;<a class="el" href="class_peer_connection_manager.html#afc8bc60d43ab98041615212646a712a2">PeerConnectionManager</a>, <a class="el" href="class_toolbar_u_i_controller.html#a26fbdcf56398c50edcbec41e903f6caa">ToolbarUIController</a></li>
-<li>arToolsBar&#160;:&#160;<a class="el" href="class_toolbar_u_i_controller.html#a92d107711132d3fd2c9c6e387c4915fa">ToolbarUIController</a></li>
-<li>arToolTipsUI&#160;:&#160;<a class="el" href="class_video_manager.html#a67129cc677b2ab38bb0a46dcdd251160">VideoManager</a></li>
-<li>aspect&#160;:&#160;<a class="el" href="class_window_res.html#a217b9ca5e6f86ca931e34432bcd0b43d">WindowRes</a></li>
-<li>aspectRatio&#160;:&#160;<a class="el" href="class_video_manager.html#aacfd2aec4d6778535758ee0a03b98e2c">VideoManager</a></li>
-<li>aspectRatioDataChannel&#160;:&#160;<a class="el" href="class_peer_connection_manager.html#a073537fd40e2169e746e219763a6a41d">PeerConnectionManager</a></li>
-<li>audioIcon&#160;:&#160;<a class="el" href="class_topbar_u_i_controller.html#a747c6c58edb61bd3d062b632ba05c168">TopbarUIController</a></li>
-<li>audioManager&#160;:&#160;<a class="el" href="class_audio_visualizer_controller.html#a7c914da53211f2abdcfaa6381cc24e42">AudioVisualizerController</a>, <a class="el" href="class_peer_connection_manager.html#aa0d8fa7b74e95ec1c5ff12faf1892d41">PeerConnectionManager</a>, <a class="el" href="class_topbar_u_i_controller.html#afed6fd3510c2288de8f8547c084884e6">TopbarUIController</a></li>
-<li>audioReady&#160;:&#160;<a class="el" href="class_audio_manager.html#a4630ecd1ff0ca008c6b5f6424105b694">AudioManager</a></li>
-<li>audioSender&#160;:&#160;<a class="el" href="class_peer_connection_manager.html#a0762eb34ce6482251bbbf4528f17259e">PeerConnectionManager</a></li>
-<li>audioSource&#160;:&#160;<a class="el" href="class_audio_visualizer_controller.html#a919a79808f9270747b98e45c126a3fdb">AudioVisualizerController</a></li>
-<li>audioStreamTrack&#160;:&#160;<a class="el" href="class_audio_manager.html#a0771c8247df566c1b52e9ce9e850f449">AudioManager</a></li>
-<li>Auth&#160;:&#160;<a class="el" href="class_user_manager.html#a9051c0e179e9783f56c727008723be7d">UserManager</a></li>
+<li>aspectRatio&#160;:&#160;<a class="el" href="d2/dba/class_video_manager.html#aacfd2aec4d6778535758ee0a03b98e2c">VideoManager</a></li>
+<li>audioReady&#160;:&#160;<a class="el" href="d7/d31/class_audio_manager.html#a4630ecd1ff0ca008c6b5f6424105b694">AudioManager</a></li>
+<li>Auth&#160;:&#160;<a class="el" href="d1/da2/class_user_manager.html#a9051c0e179e9783f56c727008723be7d">UserManager</a></li>
+</ul>
+
+
+<h3><a id="index_b" name="index_b"></a>- b -</h3><ul>
+<li>bitrate&#160;:&#160;<a class="el" href="d7/d31/class_audio_manager.html#a032d6867ebff0ae0eecebda7ef176709">AudioManager</a>, <a class="el" href="d2/dba/class_video_manager.html#aac0f1144b9642e37d725e9b3b95b836e">VideoManager</a></li>
+<li>bufferSize&#160;:&#160;<a class="el" href="d7/d31/class_audio_manager.html#afe30e438ece2130a3b65eb90fdecd59a">AudioManager</a></li>
+</ul>
+
+
+<h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
+<li>clientDrawings&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#ac09cacb1c06eddc4e9fb31d8080b1662">ARToolManager</a></li>
+<li>clientGuides&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#a9d6bf18268a81f461013384745aa121a">ARToolManager</a></li>
+<li>clientMaterial&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#afae482535f6780da348a257c7c250cd5">ARToolManager</a></li>
+<li>clientTools&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#a253c90c0b371f6f74d3609a19356e3bf">ARToolManager</a></li>
+<li>color&#160;:&#160;<a class="el" href="d7/d0e/class_colors_1_1_entry.html#a70bd43d6c228fd2a8ecd062b531a5a7e">Colors.Entry</a></li>
+<li>ColorBlue&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#ab287e392e01eed5bb27ea45bc8ca9b7f">ARToolManager</a></li>
+<li>ColorGreen&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#a9728a0ba5a418254649385a64a551f33">ARToolManager</a></li>
+<li>ColorRed&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#a6289b378e52c71338f53fd224c13c7e4">ARToolManager</a></li>
+<li>colors&#160;:&#160;<a class="el" href="d9/d36/class_colors.html#a5bd231b3aad76f51d397281a95e148fb">Colors</a></li>
+<li>ColorYellow&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#a7ee5be8efc1daf82e3ce53911b1d0e29">ARToolManager</a></li>
+<li>CurrentUser&#160;:&#160;<a class="el" href="d1/da2/class_user_manager.html#a4f47693feb0c6e45d8222193bd23fca2">UserManager</a></li>
+</ul>
+
+
+<h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
+<li>data&#160;:&#160;<a class="el" href="d4/d7f/class_message.html#a2fb66d0e4748b34f3477b66c65608cf9">Message</a></li>
+<li>Database&#160;:&#160;<a class="el" href="d5/dd7/class_database_manager.html#a8df5ccffcc5fb45b5287ddcfc4d8d269">DatabaseManager</a></li>
+</ul>
+
+
+<h3><a id="index_f" name="index_f"></a>- f -</h3><ul>
+<li>FirebaseApp&#160;:&#160;<a class="el" href="d9/da2/class_firebase_init.html#aabe8c8b30746d84e7637f9a76e5d2b31">FirebaseInit</a></li>
+<li>framerate&#160;:&#160;<a class="el" href="d2/dba/class_video_manager.html#a813bfb0455142d4e5cf55225e1d195e6">VideoManager</a></li>
+</ul>
+
+
+<h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
+<li>guidePrefab&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#aa5ee8686b7aa6979c6d1c871dc828499">ARToolManager</a></li>
+</ul>
+
+
+<h3><a id="index_h" name="index_h"></a>- h -</h3><ul>
+<li>height&#160;:&#160;<a class="el" href="d2/dba/class_video_manager.html#abb7aefaf4a10caf64334ccb49b15d933">VideoManager</a></li>
+<li>hex&#160;:&#160;<a class="el" href="d7/d0e/class_colors_1_1_entry.html#aff1bca5e8d077ff9ef2bea3aabff9821">Colors.Entry</a></li>
+<li>hostDrawings&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#a0cde2eee729bed3a88e35d6a3069feae">ARToolManager</a></li>
+<li>hostGuides&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#a136b32e317756a4073ac20364c57251d">ARToolManager</a></li>
+<li>hostMaterial&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#a9578a03c4bb84243b5e637721ee97f81">ARToolManager</a></li>
+<li>hostTools&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#a1661154b9bdd3450d3f3b5a457ad6b7b">ARToolManager</a></li>
+</ul>
+
+
+<h3><a id="index_i" name="index_i"></a>- i -</h3><ul>
+<li>ice&#160;:&#160;<a class="el" href="dc/d07/class_data.html#a40a37353bcfb79d1c666c12b5f2998dc">Data</a></li>
+<li>inputAudioSource&#160;:&#160;<a class="el" href="d7/d31/class_audio_manager.html#a7ceee143355224651ae57d982ae2f867">AudioManager</a></li>
+<li>isRecording&#160;:&#160;<a class="el" href="d0/d5f/class_toolbar_u_i_controller.html#a4e5d6faecf06980fa14972168d74c797">ToolbarUIController</a>, <a class="el" href="d2/dba/class_video_manager.html#ad106538d1000627659ca0b6b4243e67c">VideoManager</a></li>
+</ul>
+
+
+<h3><a id="index_m" name="index_m"></a>- m -</h3><ul>
+<li>myPeerType&#160;:&#160;<a class="el" href="d2/d48/class_peer_connection_manager.html#a600be590415b9f5cf4197f27380c2e00">PeerConnectionManager</a></li>
+</ul>
+
+
+<h3><a id="index_n" name="index_n"></a>- n -</h3><ul>
+<li>name&#160;:&#160;<a class="el" href="d7/d0e/class_colors_1_1_entry.html#a5eeb9cbf12a4d85463a37f04e2bc2b00">Colors.Entry</a></li>
+</ul>
+
+
+<h3><a id="index_o" name="index_o"></a>- o -</h3><ul>
+<li>outputAudioSource&#160;:&#160;<a class="el" href="d7/d31/class_audio_manager.html#af32ee346cc3055dd2f88fdac0ac7dce0">AudioManager</a></li>
+</ul>
+
+
+<h3><a id="index_p" name="index_p"></a>- p -</h3><ul>
+<li>peer&#160;:&#160;<a class="el" href="d0/d5f/class_toolbar_u_i_controller.html#a994aa5e64f6e69306ff6a766f1b4087c">ToolbarUIController</a></li>
+<li>peerType&#160;:&#160;<a class="el" href="d4/d7f/class_message.html#a5e3e6f52eb6bed6a29cdc6a90f29770f">Message</a></li>
+<li>phoneNumber&#160;:&#160;<a class="el" href="d7/d23/class_user.html#a139bb8f2d152bd718aac4c7ef3645b9a">User</a></li>
+</ul>
+
+
+<h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
+<li>Ready&#160;:&#160;<a class="el" href="d9/da2/class_firebase_init.html#aacef0025311c05cfe4c18a0acb33a60b">FirebaseInit</a></li>
+<li>recording&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#ac239527556ca849ef3ddbfc2ebd24828">ARToolManager</a></li>
+<li>RoomID&#160;:&#160;<a class="el" href="d2/d43/class_room_manager.html#a2fbf7a7a44a13f3e355533cec569e410">RoomManager</a></li>
+</ul>
+
+
+<h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
+<li>SceneStack&#160;:&#160;<a class="el" href="d3/dda/class_my_scene_manager.html#a173605bff0a0c193b846b88e35084154">MySceneManager</a></li>
+<li>sdp&#160;:&#160;<a class="el" href="dc/d07/class_data.html#ad3a4a1ea679d764959278df27095bc01">Data</a></li>
+</ul>
+
+
+<h3><a id="index_u" name="index_u"></a>- u -</h3><ul>
+<li>username&#160;:&#160;<a class="el" href="d7/d23/class_user.html#a31bab5f53b917b7253a3210123eacf7b">User</a></li>
+</ul>
+
+
+<h3><a id="index_v" name="index_v"></a>- v -</h3><ul>
+<li>volumeVisualizer&#160;:&#160;<a class="el" href="d6/d16/class_audio_visualizer_controller.html#a891505e1df3fc09adf61fb295bc5481a">AudioVisualizerController</a></li>
+</ul>
+
+
+<h3><a id="index_w" name="index_w"></a>- w -</h3><ul>
+<li>width&#160;:&#160;<a class="el" href="d2/dba/class_video_manager.html#aac72b8111557982a7731b1128716aab5">VideoManager</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+  </ul>
+</div>
 </body>
 </html>

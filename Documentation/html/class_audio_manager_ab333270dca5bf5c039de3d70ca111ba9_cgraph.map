@@ -1,7 +1,0 @@
-<map id="AudioManager.Start" name="AudioManager.Start">
-<area shape="rect" id="node1" title="Llamada justo antes del primer fotograma" alt="" coords="5,56,143,83"/>
-<area shape="rect" id="node2" href="$class_audio_manager.html#aa96d0af05232c7d2babfb0364271b9b6" title="Lanzada cuando se deniegan los permisos de audio" alt="" coords="243,5,525,32"/>
-<area shape="rect" id="node3" href="$class_audio_manager.html#a04d68ba5cdcccb8add793ae79563c2bf" title="Lanzada cuando se deniegan los permisos de audio y se indica que no se soliciten otra vez" alt="" coords="191,56,577,83"/>
-<area shape="rect" id="node5" href="$class_audio_manager.html#a4a895a6f17e3ccbb780c62acc7c15155" title="Lanzada cuando se aceptan los permisos de audio" alt="" coords="241,107,527,133"/>
-<area shape="rect" id="node4" href="$class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="625,56,821,83"/>
-</map>

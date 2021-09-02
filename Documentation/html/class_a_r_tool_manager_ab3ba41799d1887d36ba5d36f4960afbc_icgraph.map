@@ -1,6 +1,0 @@
-<map id="ARToolManager.DeleteDrawings" name="ARToolManager.DeleteDrawings">
-<area shape="rect" id="node1" title="Elimina todos los trazos o marcadores del par seleccionado" alt="" coords="569,31,777,57"/>
-<area shape="rect" id="node2" href="$class_peer_connection_manager.html#acce72dd729e1abda9e126f7c1bd317ce" title="Crea los canales de datos" alt="" coords="249,5,521,32"/>
-<area shape="rect" id="node4" href="$class_toolbar_u_i_controller.html#a7c36bd2332e575e710320a80023b93de" title="Llamada justo antes del primer fotograma" alt="" coords="304,56,467,83"/>
-<area shape="rect" id="node3" href="$class_peer_connection_manager.html#a058148001392c4d6106cc784ec477256" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,201,32"/>
-</map>

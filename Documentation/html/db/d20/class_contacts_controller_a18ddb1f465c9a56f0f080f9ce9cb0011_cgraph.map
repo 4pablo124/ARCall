@@ -1,0 +1,12 @@
+<map id="ContactsController.Start" name="ContactsController.Start">
+<area shape="rect" id="node1" title="Llamada justo antes del primer fotograma" alt="" coords="5,81,167,108"/>
+<area shape="rect" id="node2" href="$db/d20/class_contacts_controller.html#a82e0a0a5ae1fc7cbef3e4cb49d74dc31" title="Inicializa todos los elementos necesarios de la lista de contactos y la muestra en la interfaz" alt="" coords="215,81,432,108"/>
+<area shape="rect" id="node3" href="$d5/dd7/class_database_manager.html#a322c76e999c83719f38cf419cf9f800a" title="Obtiene el userID de un usuario a partir de su número de teléfono" alt="" coords="531,5,721,32"/>
+<area shape="rect" id="node4" href="$d2/d43/class_room_manager.html#a022ae9cafc8dedb55ca839e0d99c5b44" title="Mueve un par a una sala" alt="" coords="543,56,709,83"/>
+<area shape="rect" id="node7" href="$dd/dcc/class_sharing_manager.html#a6b0c8c96f7f5624110bcf03a1c3dad3b" title="Envia una notifiación" alt="" coords="519,107,733,133"/>
+<area shape="rect" id="node8" href="$dd/dcc/class_sharing_manager.html#aae88ccb9e92ceeed9c6e6281a192f698" title="Comparte un código de sala con un contacto de whatsapp" alt="" coords="480,157,772,184"/>
+<area shape="rect" id="node5" href="$d3/dda/class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="855,19,1051,45"/>
+<area shape="rect" id="node6" href="$d5/dd7/class_database_manager.html#a26b78f4ef7989b67f825194863df0357" title="Evalua si un código de sala existe en base de datos" alt="" coords="846,69,1061,96"/>
+<area shape="rect" id="node9" href="$dd/dcc/class_sharing_manager.html#a039a42cca85530f5e71e396bda0bc95b" title="Crea un enlace dinámico a una sala" alt="" coords="820,132,1087,159"/>
+<area shape="rect" id="node10" href="$dd/dcc/class_sharing_manager.html#a1297b7c8e2a23a2f1b179717015405a7" title="Crea el mensaje a compartir" alt="" coords="850,183,1057,209"/>
+</map>

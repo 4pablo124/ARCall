@@ -1,5 +1,0 @@
-<map id="SharingManager.ShareRoom" name="SharingManager.ShareRoom">
-<area shape="rect" id="node1" title="Comparte un código de sala" alt="" coords="5,31,193,57"/>
-<area shape="rect" id="node2" href="$class_sharing_manager.html#a039a42cca85530f5e71e396bda0bc95b" title="Crea un enlace dinámico a una sala" alt="" coords="241,5,508,32"/>
-<area shape="rect" id="node3" href="$class_sharing_manager.html#a1297b7c8e2a23a2f1b179717015405a7" title="Crea el mensaje a compartir" alt="" coords="271,56,478,83"/>
-</map>

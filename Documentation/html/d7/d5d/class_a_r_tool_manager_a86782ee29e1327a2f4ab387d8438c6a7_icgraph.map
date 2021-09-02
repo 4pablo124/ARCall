@@ -1,0 +1,6 @@
+<map id="ARToolManager.PlaceGuide" name="ARToolManager.PlaceGuide">
+<area shape="rect" id="node1" title="Coloca una guía en un trazo o marcador del par selecionado" alt="" coords="179,56,364,83"/>
+<area shape="rect" id="node2" href="$da/d70/class_a_r_brush.html#a392f602774d613460f213cd58b4a26e9" title="Llamada al comienzo de cada fotograma" alt="" coords="9,5,127,32"/>
+<area shape="rect" id="node3" href="$d6/d6a/class_a_r_marker.html#a37bcfc2d540eed2ffd496d758dd9ad6d" title="Llamada al comienzo de cada fotograma" alt="" coords="5,56,131,83"/>
+<area shape="rect" id="node4" href="$d0/dac/class_a_r_text.html#ab65632ec31750b406ebb205454ad492a" title="Llamada al comienzo de cada fotograma" alt="" coords="13,107,123,133"/>
+</map>

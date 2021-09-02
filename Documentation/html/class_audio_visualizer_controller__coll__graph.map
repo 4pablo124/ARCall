@@ -1,5 +1,0 @@
-<map id="AudioVisualizerController" name="AudioVisualizerController">
-<area shape="rect" id="node1" title="Controla el visualizador de audio" alt="" coords="5,829,213,1009"/>
-<area shape="rect" id="node2" title=" " alt="" coords="49,5,159,83"/>
-<area shape="rect" id="node3" href="$class_audio_manager.html" title="Maneja la lógica de la captura y reproducción de audio" alt="" coords="126,132,501,767"/>
-</map>

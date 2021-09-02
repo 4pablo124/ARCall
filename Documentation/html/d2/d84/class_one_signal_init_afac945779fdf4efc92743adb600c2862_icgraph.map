@@ -1,0 +1,5 @@
+<map id="OneSignalInit.HandleNotification" name="OneSignalInit.HandleNotification">
+<area shape="rect" id="node1" title="Lee notificación y redirige a la videollamada correspondiente" alt="" coords="544,29,751,56"/>
+<area shape="rect" id="node2" href="$d2/d84/class_one_signal_init.html#a60c9495cb3e70bfdef56251b55c09420" title="Llamada cuando un usuario abre una notificación" alt="" coords="184,29,496,56"/>
+<area shape="rect" id="node3" href="$d2/d84/class_one_signal_init.html#a71d28b5a62bca248554c5e5d89d20a41" title="Llamada justo antes del primer fotograma" alt="" coords="5,29,136,56"/>
+</map>

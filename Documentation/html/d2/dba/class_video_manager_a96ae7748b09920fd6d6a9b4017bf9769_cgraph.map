@@ -1,0 +1,4 @@
+<map id="VideoManager.Start" name="VideoManager.Start">
+<area shape="rect" id="node1" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,143,32"/>
+<area shape="rect" id="node2" href="$d2/dba/class_video_manager.html#a3183746966d99fd4df0bdde303479919" title="Graba la cámara de RA" alt="" coords="191,5,385,32"/>
+</map>

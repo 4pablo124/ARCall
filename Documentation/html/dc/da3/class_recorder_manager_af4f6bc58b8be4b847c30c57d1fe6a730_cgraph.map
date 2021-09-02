@@ -1,0 +1,5 @@
+<map id="RecorderManager.ToggleRecord" name="RecorderManager.ToggleRecord">
+<area shape="rect" id="node1" title="Alterna entre comenzar la grabación o pararla" alt="" coords="5,31,212,57"/>
+<area shape="rect" id="node2" href="$dc/da3/class_recorder_manager.html#a12a78c0fd95f2c5040913c84003b27a4" title="Comienza la grabación" alt="" coords="260,5,475,32"/>
+<area shape="rect" id="node3" href="$dc/da3/class_recorder_manager.html#a41f98e5ff08f958dce6d9d957682a7aa" title="Para la grabación" alt="" coords="261,56,474,83"/>
+</map>

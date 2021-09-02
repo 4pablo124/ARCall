@@ -1,8 +1,0 @@
-<map id="RecorderManager.StartRecording" name="RecorderManager.StartRecording">
-<area shape="rect" id="node1" title="Comienza la grabación" alt="" coords="5,56,220,83"/>
-<area shape="rect" id="node2" href="$class_android_utils.html#af53d417f93c9f33d0ba4943af3cc86ae" title=" " alt="" coords="268,56,451,83"/>
-<area shape="rect" id="node3" href="$class_android_utils.html#a5ea9e5ec637706a8bc9c508e88fdeabb" title=" " alt="" coords="522,5,685,32"/>
-<area shape="rect" id="node5" href="$class_android_utils.html#a3e4428268503fe82ecd74416c37b2ae2" title=" " alt="" coords="499,56,708,83"/>
-<area shape="rect" id="node6" href="$class_android_utils.html#af3ddee265b4dfc672eddae5699c8fb2b" title=" " alt="" coords="523,107,683,133"/>
-<area shape="rect" id="node4" href="$class_android_utils.html#af4c6dc91c5c610c75c6685a19bf61abe" title=" " alt="" coords="756,31,959,57"/>
-</map>

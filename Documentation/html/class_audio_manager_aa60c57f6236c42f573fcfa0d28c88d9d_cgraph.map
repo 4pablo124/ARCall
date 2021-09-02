@@ -1,4 +1,0 @@
-<map id="AudioManager.RecordAudio" name="AudioManager.RecordAudio">
-<area shape="rect" id="node1" title="Comienza a grabar el audio" alt="" coords="5,5,188,32"/>
-<area shape="rect" id="node2" href="$class_audio_manager.html#a69c0d3b1c0d91a2972f2b5200b9e3ec5" title="Configura los ajustes de Android para videollamada" alt="" coords="236,5,451,32"/>
-</map>

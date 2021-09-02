@@ -1,0 +1,4 @@
+<map id="RecorderManager.onStopRecord" name="RecorderManager.onStopRecord">
+<area shape="rect" id="node1" title="Llamada cuando se para la grabación" alt="" coords="209,5,420,32"/>
+<area shape="rect" id="node2" href="$dc/da3/class_recorder_manager.html#a208a498793f255f47bcb2d94366a84ff" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,161,32"/>
+</map>

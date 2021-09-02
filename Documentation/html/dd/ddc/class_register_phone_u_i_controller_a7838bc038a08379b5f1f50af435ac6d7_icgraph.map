@@ -1,0 +1,7 @@
+<map id="RegisterPhoneUIController.OnVerificationFailed" name="RegisterPhoneUIController.OnVerificationFailed">
+<area shape="rect" id="node1" title="Llamada cuando falla la verificación" alt="" coords="928,5,1223,32"/>
+<area shape="rect" id="node2" href="$dd/ddc/class_register_phone_u_i_controller.html#abecd41c11aa752bec550978e4a58d2a1" title="Llamada justo antes del primer fotograma" alt="" coords="5,31,212,57"/>
+<area shape="rect" id="node3" href="$dd/ddc/class_register_phone_u_i_controller.html#a5cd62efcd8f1e816c759ac0ede78aaaf" title="Se desuscribe de los eventos de clases estáticas" alt="" coords="629,56,880,83"/>
+<area shape="rect" id="node4" href="$dd/ddc/class_register_phone_u_i_controller.html#aa85933669dcb72558a71039eba32d88d" title="Llamada cuando se completa la verificación" alt="" coords="260,56,581,83"/>
+<area shape="rect" id="node5" href="$dd/ddc/class_register_phone_u_i_controller.html#a55f0c364a3d7f1920df9790b7c63da7c" title="Verifica el teléfono introducido con el código SMS introducido" alt="" coords="297,107,545,133"/>
+</map>

@@ -1,18 +1,10 @@
 var searchData=
 [
-  ['target_0',['target',['../class_a_r_guide.html#a67c23688d78d40f22f51a420e5c9baac',1,'ARGuide']]],
-  ['targetscreenpos_1',['targetScreenPos',['../class_a_r_guide.html#af4bc7748ff4330654376786e0deea7dc',1,'ARGuide']]],
-  ['timesincerestart_2',['timeSinceRestart',['../class_microphone_listener.html#ae203abd2b78d6e36360bb2a5f19b832b',1,'MicrophoneListener']]],
-  ['togglebar_3',['ToggleBar',['../class_toolbar_u_i_controller.html#abbae46a87cd3123069fb7cbca4cc2198',1,'ToolbarUIController']]],
-  ['togglemuteinput_4',['ToggleMuteInput',['../class_audio_manager.html#a4caaf15cce1acf8cec94e1bc0abf47ce',1,'AudioManager']]],
-  ['togglemuteoutput_5',['ToggleMuteOutput',['../class_audio_manager.html#a857093f3621d4513ad357772dd97d42d',1,'AudioManager']]],
-  ['togglerecord_6',['ToggleRecord',['../class_recorder_manager.html#af4f6bc58b8be4b847c30c57d1fe6a730',1,'RecorderManager']]],
-  ['togglevideo_7',['ToggleVideo',['../class_video_manager.html#a476c43af14c677ae92c38ab1855d7382',1,'VideoManager']]],
-  ['tool1_8',['tool1',['../class_toolbar_u_i_controller.html#aa0201be5c0cc6994c988f361c8d1237f',1,'ToolbarUIController']]],
-  ['tool2_9',['tool2',['../class_toolbar_u_i_controller.html#a95197e6076eaa4afe178de1fa62bbae5',1,'ToolbarUIController']]],
-  ['tool3_10',['tool3',['../class_toolbar_u_i_controller.html#a49c2d2c0714baa1623513c704d3b4f5d',1,'ToolbarUIController']]],
-  ['toolbaruicontroller_11',['ToolbarUIController',['../class_toolbar_u_i_controller.html',1,'']]],
-  ['toolbaruicontroller_2ecs_12',['ToolbarUIController.cs',['../_toolbar_u_i_controller_8cs.html',1,'']]],
-  ['topbaruicontroller_13',['TopbarUIController',['../class_topbar_u_i_controller.html',1,'']]],
-  ['topbaruicontroller_2ecs_14',['TopbarUIController.cs',['../_topbar_u_i_controller_8cs.html',1,'']]]
+  ['undodrawing_0',['UndoDrawing',['../d7/d5d/class_a_r_tool_manager.html#afcccae8eba6e44495ff68863fc67c380',1,'ARToolManager.UndoDrawing()'],['../db/d71/class_client_manager.html#a0f0bf650f6f25459ebb0d57486ecea46',1,'ClientManager.UndoDrawing()']]],
+  ['unreadyuser_1',['UnReadyUser',['../d5/dd7/class_database_manager.html#a178acb8bd938e615aa34330e64f715ea',1,'DatabaseManager.UnReadyUser()'],['../d2/d48/class_peer_connection_manager.html#ad792df6efa61aa9a558aab9b76604a87',1,'PeerConnectionManager.UnReadyUser()']]],
+  ['unsubscribe_2',['Unsubscribe',['../dd/ddc/class_register_phone_u_i_controller.html#a5cd62efcd8f1e816c759ac0ede78aaaf',1,'RegisterPhoneUIController']]],
+  ['update_3',['Update',['../d9/de1/class_back_button_controller.html#a780b8f97cd6f67bf239b7c720085d5e3',1,'BackButtonController.Update()'],['../d6/d16/class_audio_visualizer_controller.html#a75319823a4ca8aab8a850d2bbb72c618',1,'AudioVisualizerController.Update()'],['../d8/d7d/class_register_name_u_i_controller.html#af662c2e9793399d1d8c6f37378d57ee6',1,'RegisterNameUIController.Update()'],['../dd/ddc/class_register_phone_u_i_controller.html#ab499207a8d2931f64b431941aec540c2',1,'RegisterPhoneUIController.Update()'],['../d9/da4/class_rooms_controller.html#ad307df9fde69ef01efa844d6b5d517be',1,'RoomsController.Update()'],['../da/d70/class_a_r_brush.html#a392f602774d613460f213cd58b4a26e9',1,'ARBrush.Update()'],['../d4/d25/class_a_r_guide.html#a296500310f6853da2818623da7a42fde',1,'ARGuide.Update()'],['../d6/d6a/class_a_r_marker.html#a37bcfc2d540eed2ffd496d758dd9ad6d',1,'ARMarker.Update()'],['../d1/d71/class_a_r_pointer.html#ab87d275a866cc346c44076caf4138ebf',1,'ARPointer.Update()'],['../d0/dac/class_a_r_text.html#ab65632ec31750b406ebb205454ad492a',1,'ARText.Update()'],['../dc/d59/class_my_input_manager.html#a25ecfe8d7fc9ed43cac98e0dd3b82386',1,'MyInputManager.Update()'],['../d7/d31/class_audio_manager.html#a220892c97c3955571e2408733a917dbc',1,'AudioManager.Update()'],['../d2/d48/class_peer_connection_manager.html#a8b9c44eaef490cea9d4ecb3c6c1ff7af',1,'PeerConnectionManager.Update()'],['../d1/d57/class_look_at_camera.html#a27f3d7f5fd6fdf6d2c5e06593df87a1f',1,'LookAtCamera.Update()']]],
+  ['user_4',['User',['../d7/d23/class_user.html',1,'User'],['../d7/d23/class_user.html#a36bdcf0e6abc03e46dfdfee2f744b158',1,'User.User()']]],
+  ['usermanager_5',['UserManager',['../d1/da2/class_user_manager.html',1,'']]],
+  ['username_6',['username',['../d7/d23/class_user.html#a31bab5f53b917b7253a3210123eacf7b',1,'User']]]
 ];

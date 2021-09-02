@@ -32,25 +32,20 @@ var NAVTREE =
       [ "Miembros de las clases", "functions.html", [
         [ "Todo", "functions.html", "functions_dup" ],
         [ "Funciones", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", "functions_vars" ],
+        [ "Variables", "functions_vars.html", null ],
         [ "Eventos", "functions_evnt.html", null ]
       ] ]
     ] ],
     [ "Archivos", "files.html", [
-      [ "Lista de archivos", "files.html", "files_dup" ],
-      [ "Miembros de los ficheros", "globals.html", [
-        [ "Todo", "globals.html", null ],
-        [ "Enumeraciones", "globals_enum.html", null ]
-      ] ]
+      [ "Lista de archivos", "files.html", "files_dup" ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"_a_r_brush_8cs.html",
-"class_audio_manager.html#aa60c57f6236c42f573fcfa0d28c88d9d",
-"class_toolbar_u_i_controller.html#a95197e6076eaa4afe178de1fa62bbae5"
+"annotated.html",
+"db/dac/_rooms_controller_8cs_source.html"
 ];
 
 var SYNCONMSG = 'click en deshabilitar sincronización';

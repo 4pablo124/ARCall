@@ -1,4 +1,0 @@
-<map id="AudioVisualizerController.Update" name="AudioVisualizerController.Update">
-<area shape="rect" id="node1" title="Llamada al comienzo de cada fotograma" alt="" coords="5,5,217,32"/>
-<area shape="rect" id="node2" href="$class_audio_manager.html#a44b66db58ed0aef3f75a43d2446efc77" title="Devuelve el valor del volumen de una fuente de audio" alt="" coords="265,5,440,32"/>
-</map>

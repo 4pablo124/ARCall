@@ -1,0 +1,5 @@
+<map id="RoomManager.JoinRoom" name="RoomManager.JoinRoom">
+<area shape="rect" id="node1" title="Mueve un par a una sala" alt="" coords="5,31,172,57"/>
+<area shape="rect" id="node2" href="$d3/dda/class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="229,5,425,32"/>
+<area shape="rect" id="node3" href="$d5/dd7/class_database_manager.html#a26b78f4ef7989b67f825194863df0357" title="Evalua si un código de sala existe en base de datos" alt="" coords="220,56,435,83"/>
+</map>

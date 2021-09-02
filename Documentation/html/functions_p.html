@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -27,41 +34,73 @@
 </div>
 <!-- end header part -->
 <!-- Generado por Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Buscar','.html');
+/* @license-end */
+</script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',false,false,'search.php','Buscar');
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('functions_p.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
 <div class="contents">
-<div class="textblock">Lista de todos los campos de clases con enlaces a las classes a que pertenecen:</div>
+<div class="textblock">Lista de todos los campos de clases documentados con enlaces a la documentación de la clase para cada miembro:</div>
 
 <h3><a id="index_p" name="index_p"></a>- p -</h3><ul>
-<li>pc&#160;:&#160;<a class="el" href="class_peer_connection_manager.html#af06f3b1d869d8886ad10ce8e8e65ed16">PeerConnectionManager</a></li>
-<li>peer&#160;:&#160;<a class="el" href="class_toolbar_u_i_controller.html#a994aa5e64f6e69306ff6a766f1b4087c">ToolbarUIController</a></li>
-<li>peerConnection&#160;:&#160;<a class="el" href="class_toolbar_u_i_controller.html#a790c8d2261580e9707fef7c5a25c7e5a">ToolbarUIController</a>, <a class="el" href="class_topbar_u_i_controller.html#a48f517a4e84e8c9d1b7f4e8831a472e1">TopbarUIController</a></li>
-<li>peerType&#160;:&#160;<a class="el" href="class_message.html#a5e3e6f52eb6bed6a29cdc6a90f29770f">Message</a>, <a class="el" href="class_rooms_controller.html#ae43af8913fcac09d1a98fb698f44002f">RoomsController</a></li>
-<li>permissionCallback&#160;:&#160;<a class="el" href="class_contacts_controller.html#a0c0ef8a4f47180f1154637f8902c3e9b">ContactsController</a></li>
-<li>PermissionDenied()&#160;:&#160;<a class="el" href="class_contacts_controller.html#aec18327c46aa4e4a17b297ed675e5c44">ContactsController</a></li>
-<li>PermissionDeniedAndDontAskAgain()&#160;:&#160;<a class="el" href="class_contacts_controller.html#ac6213489083a627d928225564fc6aafb">ContactsController</a></li>
-<li>PermissionGranted()&#160;:&#160;<a class="el" href="class_contacts_controller.html#a5523eae0297ff38bd1ee5cdaa2ead925">ContactsController</a></li>
-<li>phoneInput&#160;:&#160;<a class="el" href="class_register_phone_u_i_controller.html#a3e62a2f489d48a0a24b1beb4e41dfc65">RegisterPhoneUIController</a></li>
-<li>phoneNumber&#160;:&#160;<a class="el" href="class_user.html#a139bb8f2d152bd718aac4c7ef3645b9a">User</a></li>
-<li>PlaceGuide()&#160;:&#160;<a class="el" href="class_a_r_tool_manager.html#a86782ee29e1327a2f4ab387d8438c6a7">ARToolManager</a></li>
-<li>placingMarker&#160;:&#160;<a class="el" href="class_a_r_marker.html#ab7987250c230f4cdc6db689e4510f82f">ARMarker</a>, <a class="el" href="class_a_r_text.html#a980310faaf6d404880d669d95b032aea">ARText</a></li>
-<li>PlayAudio()&#160;:&#160;<a class="el" href="class_audio_manager.html#a8e74acd2130715991ee1d3295be1bfaa">AudioManager</a></li>
-<li>pointer&#160;:&#160;<a class="el" href="class_a_r_pointer.html#a1a70aec7b105c9bc8890158c73383ce0">ARPointer</a></li>
-<li>prefab&#160;:&#160;<a class="el" href="class_a_r_marker.html#af6778fef347de2277e059fc4257b97c2">ARMarker</a>, <a class="el" href="class_a_r_text.html#ae316330699623c266047fc7e1740881b">ARText</a></li>
+<li>peer&#160;:&#160;<a class="el" href="d0/d5f/class_toolbar_u_i_controller.html#a994aa5e64f6e69306ff6a766f1b4087c">ToolbarUIController</a></li>
+<li>peerType&#160;:&#160;<a class="el" href="d4/d7f/class_message.html#a5e3e6f52eb6bed6a29cdc6a90f29770f">Message</a></li>
+<li>PermissionDenied()&#160;:&#160;<a class="el" href="db/d20/class_contacts_controller.html#aec18327c46aa4e4a17b297ed675e5c44">ContactsController</a></li>
+<li>PermissionDeniedAndDontAskAgain()&#160;:&#160;<a class="el" href="db/d20/class_contacts_controller.html#ac6213489083a627d928225564fc6aafb">ContactsController</a></li>
+<li>PermissionGranted()&#160;:&#160;<a class="el" href="db/d20/class_contacts_controller.html#a5523eae0297ff38bd1ee5cdaa2ead925">ContactsController</a></li>
+<li>phoneNumber&#160;:&#160;<a class="el" href="d7/d23/class_user.html#a139bb8f2d152bd718aac4c7ef3645b9a">User</a></li>
+<li>PlaceGuide()&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#a86782ee29e1327a2f4ab387d8438c6a7">ARToolManager</a></li>
+<li>PlayAudio()&#160;:&#160;<a class="el" href="d7/d31/class_audio_manager.html#a8e74acd2130715991ee1d3295be1bfaa">AudioManager</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+  </ul>
+</div>
 </body>
 </html>

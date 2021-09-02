@@ -1,15 +1,7 @@
 var searchData=
 [
-  ['undo_0',['undo',['../class_toolbar_u_i_controller.html#afa9d9eda1038dfcca3745d7f7c8d78c7',1,'ToolbarUIController']]],
-  ['undodrawing_1',['UndoDrawing',['../class_a_r_tool_manager.html#afcccae8eba6e44495ff68863fc67c380',1,'ARToolManager.UndoDrawing()'],['../class_client_manager.html#a0f0bf650f6f25459ebb0d57486ecea46',1,'ClientManager.UndoDrawing()']]],
-  ['unreadyuser_2',['UnReadyUser',['../class_database_manager.html#a178acb8bd938e615aa34330e64f715ea',1,'DatabaseManager.UnReadyUser()'],['../class_peer_connection_manager.html#ad792df6efa61aa9a558aab9b76604a87',1,'PeerConnectionManager.UnReadyUser()']]],
-  ['unsubscribe_3',['Unsubscribe',['../class_register_phone_u_i_controller.html#a5cd62efcd8f1e816c759ac0ede78aaaf',1,'RegisterPhoneUIController']]],
-  ['update_4',['Update',['../class_back_button_controller.html#a780b8f97cd6f67bf239b7c720085d5e3',1,'BackButtonController.Update()'],['../class_audio_visualizer_controller.html#a75319823a4ca8aab8a850d2bbb72c618',1,'AudioVisualizerController.Update()'],['../class_microphone_listener.html#a3956f9f56442b31ac803da567300816e',1,'MicrophoneListener.Update()'],['../class_register_name_u_i_controller.html#af662c2e9793399d1d8c6f37378d57ee6',1,'RegisterNameUIController.Update()'],['../class_register_phone_u_i_controller.html#ab499207a8d2931f64b431941aec540c2',1,'RegisterPhoneUIController.Update()'],['../class_rooms_controller.html#ad307df9fde69ef01efa844d6b5d517be',1,'RoomsController.Update()'],['../class_a_r_brush.html#a392f602774d613460f213cd58b4a26e9',1,'ARBrush.Update()'],['../class_a_r_guide.html#a296500310f6853da2818623da7a42fde',1,'ARGuide.Update()'],['../class_a_r_marker.html#a37bcfc2d540eed2ffd496d758dd9ad6d',1,'ARMarker.Update()'],['../class_a_r_pointer.html#ab87d275a866cc346c44076caf4138ebf',1,'ARPointer.Update()'],['../class_a_r_text.html#ab65632ec31750b406ebb205454ad492a',1,'ARText.Update()'],['../class_my_input_manager.html#a25ecfe8d7fc9ed43cac98e0dd3b82386',1,'MyInputManager.Update()'],['../class_audio_manager.html#a220892c97c3955571e2408733a917dbc',1,'AudioManager.Update()'],['../class_peer_connection_manager.html#a8b9c44eaef490cea9d4ecb3c6c1ff7af',1,'PeerConnectionManager.Update()'],['../class_look_at_camera.html#a27f3d7f5fd6fdf6d2c5e06593df87a1f',1,'LookAtCamera.Update()']]],
-  ['use_5fsip_5',['USE_SIP',['../_android_utils_8cs.html#a509c7354f7e8a21bc305ad48bf77b1cfa77e7834af9d15e73861574be917c3380',1,'AndroidUtils.cs']]],
-  ['user_6',['User',['../class_user.html',1,'User'],['../class_user.html#a36bdcf0e6abc03e46dfdfee2f744b158',1,'User.User()']]],
-  ['user_2ecs_7',['User.cs',['../_user_8cs.html',1,'']]],
-  ['usermanager_8',['UserManager',['../class_user_manager.html',1,'']]],
-  ['usermanager_2ecs_9',['UserManager.cs',['../_user_manager_8cs.html',1,'']]],
-  ['username_10',['username',['../class_user.html#a31bab5f53b917b7253a3210123eacf7b',1,'User']]],
-  ['userready_11',['userReady',['../class_topbar_u_i_controller.html#a778207d68ab1c6eb2dd5dc9f35a9ec89',1,'TopbarUIController']]]
+  ['verifyphone_0',['VerifyPhone',['../dd/ddc/class_register_phone_u_i_controller.html#a55f0c364a3d7f1920df9790b7c63da7c',1,'RegisterPhoneUIController.VerifyPhone()'],['../d1/da2/class_user_manager.html#ac1d99d0f5e70010dee110ba670f659b6',1,'UserManager.VerifyPhone(string code)']]],
+  ['verifyphonecredential_1',['VerifyPhoneCredential',['../d1/da2/class_user_manager.html#a8473c8b09bc25b4ee3ccc8ad934f1a4d',1,'UserManager']]],
+  ['videomanager_2',['VideoManager',['../d2/dba/class_video_manager.html',1,'']]],
+  ['volumevisualizer_3',['volumeVisualizer',['../d6/d16/class_audio_visualizer_controller.html#a891505e1df3fc09adf61fb295bc5481a',1,'AudioVisualizerController']]]
 ];

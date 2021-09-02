@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -27,39 +34,77 @@
 </div>
 <!-- end header part -->
 <!-- Generado por Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Buscar','.html');
+/* @license-end */
+</script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',false,false,'search.php','Buscar');
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('functions_evnt.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
 <div class="contents">
 &#160;<ul>
-<li>OnAudioInputEnable&#160;:&#160;<a class="el" href="class_audio_manager.html#aa21274995f5b4dd00f0d75e62fbc167b">AudioManager</a></li>
-<li>OnAudioTrackReady&#160;:&#160;<a class="el" href="class_audio_manager.html#ac2708da51018d04df1f13b45dca2c722">AudioManager</a></li>
-<li>OnClientInput&#160;:&#160;<a class="el" href="class_my_input_manager.html#af3a77bb62567a5caf58430687de52f7a">MyInputManager</a></li>
-<li>OnClientReady&#160;:&#160;<a class="el" href="class_database_manager.html#abdc77d4f2571244e1eda1faa0d4dc7ea">DatabaseManager</a></li>
-<li>OnCodeAutoRetrievalTimeOut&#160;:&#160;<a class="el" href="class_user_manager.html#ac4fa5028b65eb45e2b3651f1fd51ebaa">UserManager</a></li>
-<li>OnCodeSent&#160;:&#160;<a class="el" href="class_user_manager.html#a53715711cf9a8d945b6b16cc6e1a2280">UserManager</a></li>
-<li>OnColorSelected&#160;:&#160;<a class="el" href="class_client_manager.html#a5ae7c0f89e5e1ca1891240acc6b1d019">ClientManager</a></li>
-<li>OnDelete&#160;:&#160;<a class="el" href="class_client_manager.html#a2bfb2c8a53a183f626d52c1d3e20317a">ClientManager</a></li>
-<li>OnMessageReceived&#160;:&#160;<a class="el" href="class_database_manager.html#a052508c26949fa92fd16f1200a64e0cf">DatabaseManager</a></li>
-<li>OnReady&#160;:&#160;<a class="el" href="class_firebase_init.html#a7ee1359c312f62d84866b2730c820c33">FirebaseInit</a></li>
-<li>OnToolSelected&#160;:&#160;<a class="el" href="class_client_manager.html#a31eace350ecc5a9a781811627e44091d">ClientManager</a></li>
-<li>OnUndo&#160;:&#160;<a class="el" href="class_client_manager.html#a9f54826a1a2f477caab3f32f0189c4a6">ClientManager</a></li>
-<li>OnUserConnected&#160;:&#160;<a class="el" href="class_peer_connection_manager.html#a5e5c7f7ceaf86800eb1dc6cb97067901">PeerConnectionManager</a></li>
-<li>OnVerificationCompleted&#160;:&#160;<a class="el" href="class_user_manager.html#a6cbb82c5c91063da06816066b907e1c0">UserManager</a></li>
-<li>OnVerificationFailed&#160;:&#160;<a class="el" href="class_user_manager.html#a3c1496ca852178010d3e12ec8ba338c7">UserManager</a></li>
+<li>OnAudioInputEnable&#160;:&#160;<a class="el" href="d7/d31/class_audio_manager.html#aa21274995f5b4dd00f0d75e62fbc167b">AudioManager</a></li>
+<li>OnAudioTrackReady&#160;:&#160;<a class="el" href="d7/d31/class_audio_manager.html#ac2708da51018d04df1f13b45dca2c722">AudioManager</a></li>
+<li>OnClientReady&#160;:&#160;<a class="el" href="d5/dd7/class_database_manager.html#abdc77d4f2571244e1eda1faa0d4dc7ea">DatabaseManager</a></li>
+<li>OnCodeAutoRetrievalTimeOut&#160;:&#160;<a class="el" href="d1/da2/class_user_manager.html#ac4fa5028b65eb45e2b3651f1fd51ebaa">UserManager</a></li>
+<li>OnCodeSent&#160;:&#160;<a class="el" href="d1/da2/class_user_manager.html#a53715711cf9a8d945b6b16cc6e1a2280">UserManager</a></li>
+<li>OnColorSelected&#160;:&#160;<a class="el" href="db/d71/class_client_manager.html#a5ae7c0f89e5e1ca1891240acc6b1d019">ClientManager</a></li>
+<li>OnDelete&#160;:&#160;<a class="el" href="db/d71/class_client_manager.html#a2bfb2c8a53a183f626d52c1d3e20317a">ClientManager</a></li>
+<li>OnMessageReceived&#160;:&#160;<a class="el" href="d5/dd7/class_database_manager.html#a052508c26949fa92fd16f1200a64e0cf">DatabaseManager</a></li>
+<li>OnReady&#160;:&#160;<a class="el" href="d9/da2/class_firebase_init.html#a7ee1359c312f62d84866b2730c820c33">FirebaseInit</a></li>
+<li>OnToolSelected&#160;:&#160;<a class="el" href="db/d71/class_client_manager.html#a31eace350ecc5a9a781811627e44091d">ClientManager</a></li>
+<li>OnUndo&#160;:&#160;<a class="el" href="db/d71/class_client_manager.html#a9f54826a1a2f477caab3f32f0189c4a6">ClientManager</a></li>
+<li>OnUserConnected&#160;:&#160;<a class="el" href="d2/d48/class_peer_connection_manager.html#a5e5c7f7ceaf86800eb1dc6cb97067901">PeerConnectionManager</a></li>
+<li>OnVerificationCompleted&#160;:&#160;<a class="el" href="d1/da2/class_user_manager.html#a6cbb82c5c91063da06816066b907e1c0">UserManager</a></li>
+<li>OnVerificationFailed&#160;:&#160;<a class="el" href="d1/da2/class_user_manager.html#a3c1496ca852178010d3e12ec8ba338c7">UserManager</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+  </ul>
+</div>
 </body>
 </html>

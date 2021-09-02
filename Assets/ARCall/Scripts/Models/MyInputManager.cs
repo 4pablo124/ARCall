@@ -2,6 +2,9 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Mapea la entrada de usuario real con la que debería indicada para el contenido actual
+/// </summary>
 public class MyInputManager : MonoBehaviour
 {
     public event Action<string> OnClientInput;

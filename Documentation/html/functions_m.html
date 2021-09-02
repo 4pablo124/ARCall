@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -27,43 +34,69 @@
 </div>
 <!-- end header part -->
 <!-- Generado por Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Buscar','.html');
+/* @license-end */
+</script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',false,false,'search.php','Buscar');
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('functions_m.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
 <div class="contents">
-<div class="textblock">Lista de todos los campos de clases con enlaces a las classes a que pertenecen:</div>
+<div class="textblock">Lista de todos los campos de clases documentados con enlaces a la documentación de la clase para cada miembro:</div>
 
 <h3><a id="index_m" name="index_m"></a>- m -</h3><ul>
-<li>mainCam&#160;:&#160;<a class="el" href="class_video_manager.html#a4b570983459b37d9fa2aa1da40f7c8db">VideoManager</a></li>
-<li>masterMixer&#160;:&#160;<a class="el" href="class_microphone_listener.html#a7cbb89d77ca15d398313c16dd236f45c">MicrophoneListener</a></li>
-<li>max&#160;:&#160;<a class="el" href="class_audio_visualizer_controller.html#ade06343952eb45603c16eb760bd4156f">AudioVisualizerController</a></li>
-<li>mediaMaxVol&#160;:&#160;<a class="el" href="class_audio_manager.html#a9db80cf35c8a04af9f171887e8c16b69">AudioManager</a></li>
-<li>mediaMinVol&#160;:&#160;<a class="el" href="class_audio_manager.html#a6be835678f8a61cef140da1ff1c3004c">AudioManager</a></li>
-<li>mediaStream&#160;:&#160;<a class="el" href="class_peer_connection_manager.html#ae0f714e0d41bae3f4e5c422cb196e17f">PeerConnectionManager</a></li>
-<li>microphoneCallbacks&#160;:&#160;<a class="el" href="class_audio_manager.html#a0fe43d7140e75c67526c4d8030872cb0">AudioManager</a></li>
-<li>MicrophoneIntoAudioSource()&#160;:&#160;<a class="el" href="class_microphone_listener.html#ae8287ee5dca8b1d320f547451a116171">MicrophoneListener</a></li>
-<li>microphoneListenerOn&#160;:&#160;<a class="el" href="class_microphone_listener.html#acdb845c3574e99b98cd5a3f627534bc7">MicrophoneListener</a></li>
-<li>MicrophonePermissionDenied()&#160;:&#160;<a class="el" href="class_audio_manager.html#aa96d0af05232c7d2babfb0364271b9b6">AudioManager</a></li>
-<li>MicrophonePermissionDeniedAndDontAskAgain()&#160;:&#160;<a class="el" href="class_audio_manager.html#a04d68ba5cdcccb8add793ae79563c2bf">AudioManager</a></li>
-<li>MicrophonePermissionGranted()&#160;:&#160;<a class="el" href="class_audio_manager.html#a4a895a6f17e3ccbb780c62acc7c15155">AudioManager</a></li>
-<li>min&#160;:&#160;<a class="el" href="class_audio_visualizer_controller.html#a28e710e6458d7c84a4cafe5668517542">AudioVisualizerController</a></li>
-<li>muteAudioIcon&#160;:&#160;<a class="el" href="class_topbar_u_i_controller.html#a4c591d91b9606b1e857b47eab43f1496">TopbarUIController</a></li>
-<li>muted&#160;:&#160;<a class="el" href="class_audio_manager.html#ab9f04672a600f7f6577bece98029dc9c">AudioManager</a></li>
-<li>muteMyAudioBtn&#160;:&#160;<a class="el" href="class_topbar_u_i_controller.html#a36848bf5f8d09076888c378b93121ef0">TopbarUIController</a></li>
-<li>myPeerType&#160;:&#160;<a class="el" href="class_a_r_brush.html#a72cbf21cd94ab3096e89f4d206784492">ARBrush</a>, <a class="el" href="class_a_r_marker.html#a21def37d40b4cc1ded7384c1403316f9">ARMarker</a>, <a class="el" href="class_a_r_pointer.html#a71b8fef7f30725584cc344e46f88fece">ARPointer</a>, <a class="el" href="class_a_r_text.html#a9a54f3e84e841ff49e7145e28906a1b5">ARText</a>, <a class="el" href="class_my_input_manager.html#a0e37bacbdc639222ce56628e592295f4">MyInputManager</a>, <a class="el" href="class_peer_connection_manager.html#a600be590415b9f5cf4197f27380c2e00">PeerConnectionManager</a></li>
+<li>MicrophonePermissionDenied()&#160;:&#160;<a class="el" href="d7/d31/class_audio_manager.html#aa96d0af05232c7d2babfb0364271b9b6">AudioManager</a></li>
+<li>MicrophonePermissionDeniedAndDontAskAgain()&#160;:&#160;<a class="el" href="d7/d31/class_audio_manager.html#a04d68ba5cdcccb8add793ae79563c2bf">AudioManager</a></li>
+<li>MicrophonePermissionGranted()&#160;:&#160;<a class="el" href="d7/d31/class_audio_manager.html#a4a895a6f17e3ccbb780c62acc7c15155">AudioManager</a></li>
+<li>myPeerType&#160;:&#160;<a class="el" href="d2/d48/class_peer_connection_manager.html#a600be590415b9f5cf4197f27380c2e00">PeerConnectionManager</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+  </ul>
+</div>
 </body>
 </html>

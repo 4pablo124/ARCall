@@ -1,23 +1,4 @@
 var searchData=
 [
-  ['samplingfreq_0',['samplingFreq',['../class_audio_manager.html#a06209a2916b63d691c1d2f57f554d079',1,'AudioManager']]],
-  ['scale_1',['scale',['../class_audio_visualizer_controller.html#a99038df1ddd402f835a476f2d669194e',1,'AudioVisualizerController']]],
-  ['scaledpixelratiox_2',['scaledPixelRatioX',['../class_my_input_manager.html#ae95bb222f6611fc12722c59fce45c047',1,'MyInputManager']]],
-  ['scaledpixelratioy_3',['scaledPixelRatioY',['../class_my_input_manager.html#ae83df4276ad3ffb14a6625ed252257bb',1,'MyInputManager']]],
-  ['scenestack_4',['SceneStack',['../class_my_scene_manager.html#a173605bff0a0c193b846b88e35084154',1,'MySceneManager']]],
-  ['screen_5fwidth_5',['SCREEN_WIDTH',['../class_android_utils.html#a3e7193deae2614eacb93c9d7616174cb',1,'AndroidUtils']]],
-  ['scrollcontent_6',['scrollContent',['../class_contacts_controller.html#ae1f994197bfded8887354348c7972db0',1,'ContactsController']]],
-  ['sdp_7',['sdp',['../class_data.html#ad3a4a1ea679d764959278df27095bc01',1,'Data']]],
-  ['selectedcolor_8',['selectedColor',['../class_toolbar_u_i_controller.html#ae8833ef2012209c3083bd5f41d9a92cf',1,'ToolbarUIController']]],
-  ['selectedtool_9',['selectedTool',['../class_toolbar_u_i_controller.html#a072350f11d6bb497af9e6f68984a39c4',1,'ToolbarUIController']]],
-  ['sendbtn_10',['sendBtn',['../class_register_phone_u_i_controller.html#a4595c0c87bc1bd10fae6c2c7bfe27824',1,'RegisterPhoneUIController']]],
-  ['sharebtn_11',['shareBtn',['../class_rooms_controller.html#a310cd82be529b137f15bd66ba62c4a6a',1,'RoomsController']]],
-  ['signoffbtn_12',['signOffBtn',['../class_main_u_i_controller.html#a36a81c840efe979205f957ee5f05fbf0',1,'MainUIController']]],
-  ['skipbtn_13',['skipBtn',['../class_register_phone_u_i_controller.html#a4b91c8ee43ea1e019442934dcd687011',1,'RegisterPhoneUIController']]],
-  ['spain_14',['SPAIN',['../struct_country_codes.html#a6c6b8eda6c30777247d0a85a5a7f16a6',1,'CountryCodes']]],
-  ['spectrum_15',['spectrum',['../class_audio_manager.html#acf98b7b6f726688bfa1e586b4af07c24',1,'AudioManager']]],
-  ['src_16',['src',['../class_microphone_listener.html#a66a8cfbf8e8fc13a687d09c856f5672e',1,'MicrophoneListener']]],
-  ['startmiconstartup_17',['startMicOnStartup',['../class_microphone_listener.html#aaa72bd4d83d9b4ca3a4932439506fcb9',1,'MicrophoneListener']]],
-  ['startmicrophonelistener_18',['startMicrophoneListener',['../class_microphone_listener.html#a35bea23cbec35c0d73cd4a753e476579',1,'MicrophoneListener']]],
-  ['stopmicrophonelistener_19',['stopMicrophoneListener',['../class_microphone_listener.html#a5cdaf3431a624114cd2087ba9dd5ee69',1,'MicrophoneListener']]]
+  ['width_0',['width',['../d2/dba/class_video_manager.html#aac72b8111557982a7731b1128716aab5',1,'VideoManager']]]
 ];

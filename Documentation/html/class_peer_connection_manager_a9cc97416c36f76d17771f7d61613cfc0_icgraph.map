@@ -1,8 +1,0 @@
-<map id="PeerConnectionManager.ImHost" name="PeerConnectionManager.ImHost">
-<area shape="rect" id="node1" title="Evalua si el par actual es host" alt="" coords="569,107,779,133"/>
-<area shape="rect" id="node2" href="$class_peer_connection_manager.html#acce72dd729e1abda9e126f7c1bd317ce" title="Crea los canales de datos" alt="" coords="249,5,521,32"/>
-<area shape="rect" id="node3" href="$class_peer_connection_manager.html#a058148001392c4d6106cc784ec477256" title="Llamada justo antes del primer fotograma" alt="" coords="5,56,201,83"/>
-<area shape="rect" id="node4" href="$class_peer_connection_manager.html#a5e4d5b8cfb094cae7a3d200a78a2a7b3" title="Crea los canales de video y audio" alt="" coords="270,107,501,133"/>
-<area shape="rect" id="node5" href="$class_peer_connection_manager.html#a82bd9ac926952fe7f22bef718cca64cb" title="Llamada al crear el GameObject asociado" alt="" coords="282,157,489,184"/>
-<area shape="rect" id="node6" href="$class_peer_connection_manager.html#a267f5ad1bb8760b277d6754418b5a4f1" title="Llamada cuando el GameObject asociado se destruye" alt="" coords="270,208,501,235"/>
-</map>

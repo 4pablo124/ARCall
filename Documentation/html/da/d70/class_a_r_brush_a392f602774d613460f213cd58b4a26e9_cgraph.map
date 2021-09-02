@@ -1,0 +1,6 @@
+<map id="ARBrush.Update" name="ARBrush.Update">
+<area shape="rect" id="node1" title="Llamada al comienzo de cada fotograma" alt="" coords="5,56,124,83"/>
+<area shape="rect" id="node2" href="$da/d70/class_a_r_brush.html#a04bbb34c0f1929faffb5da791891d40e" title="Crea el comienzo de la linea a dibujar" alt="" coords="187,5,353,32"/>
+<area shape="rect" id="node3" href="$da/d70/class_a_r_brush.html#a8f61277630b09d7c276ff81d937216e9" title="Coloca el siguiente punto en la linea que se esta dibujando actualmente" alt="" coords="172,56,368,83"/>
+<area shape="rect" id="node4" href="$d7/d5d/class_a_r_tool_manager.html#a86782ee29e1327a2f4ab387d8438c6a7" title="Coloca una guía en un trazo o marcador del par selecionado" alt="" coords="177,107,363,133"/>
+</map>

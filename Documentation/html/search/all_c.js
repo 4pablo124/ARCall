@@ -1,31 +1,4 @@
 var searchData=
 [
-  ['maincam_0',['mainCam',['../class_video_manager.html#a4b570983459b37d9fa2aa1da40f7c8db',1,'VideoManager']]],
-  ['mainuicontroller_1',['MainUIController',['../class_main_u_i_controller.html',1,'']]],
-  ['mainuicontroller_2ecs_2',['MainUIController.cs',['../_main_u_i_controller_8cs.html',1,'']]],
-  ['mastermixer_3',['masterMixer',['../class_microphone_listener.html#a7cbb89d77ca15d398313c16dd236f45c',1,'MicrophoneListener']]],
-  ['max_4',['max',['../class_audio_visualizer_controller.html#ade06343952eb45603c16eb760bd4156f',1,'AudioVisualizerController']]],
-  ['mediamaxvol_5',['mediaMaxVol',['../class_audio_manager.html#a9db80cf35c8a04af9f171887e8c16b69',1,'AudioManager']]],
-  ['mediaminvol_6',['mediaMinVol',['../class_audio_manager.html#a6be835678f8a61cef140da1ff1c3004c',1,'AudioManager']]],
-  ['mediastream_7',['mediaStream',['../class_peer_connection_manager.html#ae0f714e0d41bae3f4e5c422cb196e17f',1,'PeerConnectionManager']]],
-  ['message_8',['Message',['../class_message.html',1,'']]],
-  ['message_2ecs_9',['Message.cs',['../_message_8cs.html',1,'']]],
-  ['microphonecallbacks_10',['microphoneCallbacks',['../class_audio_manager.html#a0fe43d7140e75c67526c4d8030872cb0',1,'AudioManager']]],
-  ['microphoneintoaudiosource_11',['MicrophoneIntoAudioSource',['../class_microphone_listener.html#ae8287ee5dca8b1d320f547451a116171',1,'MicrophoneListener']]],
-  ['microphonelistener_12',['MicrophoneListener',['../class_microphone_listener.html',1,'']]],
-  ['microphonelistener_2ecs_13',['MicrophoneListener.cs',['../_microphone_listener_8cs.html',1,'']]],
-  ['microphonelisteneron_14',['microphoneListenerOn',['../class_microphone_listener.html#acdb845c3574e99b98cd5a3f627534bc7',1,'MicrophoneListener']]],
-  ['microphonepermissiondenied_15',['MicrophonePermissionDenied',['../class_audio_manager.html#aa96d0af05232c7d2babfb0364271b9b6',1,'AudioManager']]],
-  ['microphonepermissiondeniedanddontaskagain_16',['MicrophonePermissionDeniedAndDontAskAgain',['../class_audio_manager.html#a04d68ba5cdcccb8add793ae79563c2bf',1,'AudioManager']]],
-  ['microphonepermissiongranted_17',['MicrophonePermissionGranted',['../class_audio_manager.html#a4a895a6f17e3ccbb780c62acc7c15155',1,'AudioManager']]],
-  ['min_18',['min',['../class_audio_visualizer_controller.html#a28e710e6458d7c84a4cafe5668517542',1,'AudioVisualizerController']]],
-  ['mpeg_5f4_5fsp_19',['MPEG_4_SP',['../_android_utils_8cs.html#a639a955d9e0641742180a3205ba943f6a4444f3e09302d999f842e445011d6a2f',1,'AndroidUtils.cs']]],
-  ['muteaudioicon_20',['muteAudioIcon',['../class_topbar_u_i_controller.html#a4c591d91b9606b1e857b47eab43f1496',1,'TopbarUIController']]],
-  ['muted_21',['muted',['../class_audio_manager.html#ab9f04672a600f7f6577bece98029dc9c',1,'AudioManager']]],
-  ['mutemyaudiobtn_22',['muteMyAudioBtn',['../class_topbar_u_i_controller.html#a36848bf5f8d09076888c378b93121ef0',1,'TopbarUIController']]],
-  ['myinputmanager_23',['MyInputManager',['../class_my_input_manager.html',1,'']]],
-  ['myinputmanager_2ecs_24',['MyInputManager.cs',['../_my_input_manager_8cs.html',1,'']]],
-  ['mypeertype_25',['myPeerType',['../class_a_r_brush.html#a72cbf21cd94ab3096e89f4d206784492',1,'ARBrush.myPeerType()'],['../class_a_r_marker.html#a21def37d40b4cc1ded7384c1403316f9',1,'ARMarker.myPeerType()'],['../class_a_r_pointer.html#a71b8fef7f30725584cc344e46f88fece',1,'ARPointer.myPeerType()'],['../class_a_r_text.html#a9a54f3e84e841ff49e7145e28906a1b5',1,'ARText.myPeerType()'],['../class_my_input_manager.html#a0e37bacbdc639222ce56628e592295f4',1,'MyInputManager.myPeerType()'],['../class_peer_connection_manager.html#a600be590415b9f5cf4197f27380c2e00',1,'PeerConnectionManager.myPeerType()']]],
-  ['myscenemanager_26',['MySceneManager',['../class_my_scene_manager.html',1,'']]],
-  ['myscenemanager_2ecs_27',['MySceneManager.cs',['../_my_scene_manager_8cs.html',1,'']]]
+  ['name_0',['name',['../d7/d0e/class_colors_1_1_entry.html#a5eeb9cbf12a4d85463a37f04e2bc2b00',1,'Colors::Entry']]]
 ];

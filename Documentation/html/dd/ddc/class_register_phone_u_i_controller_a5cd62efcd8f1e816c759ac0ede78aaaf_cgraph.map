@@ -1,0 +1,8 @@
+<map id="RegisterPhoneUIController.Unsubscribe" name="RegisterPhoneUIController.Unsubscribe">
+<area shape="rect" id="node1" title="Se desuscribe de los eventos de clases estáticas" alt="" coords="5,107,256,133"/>
+<area shape="rect" id="node2" href="$dd/ddc/class_register_phone_u_i_controller.html#a5ebb5fa37ace52b830ee425ab69376e8" title="Llamada cuando se captura automáticamente el código" alt="" coords="304,5,655,32"/>
+<area shape="rect" id="node3" href="$dd/ddc/class_register_phone_u_i_controller.html#a1f99826db3bbc1b5bc00fe21b5241f5e" title="Llamada cuando se envíaa el código de verificación SMS" alt="" coords="353,56,605,83"/>
+<area shape="rect" id="node4" href="$dd/ddc/class_register_phone_u_i_controller.html#aa85933669dcb72558a71039eba32d88d" title="Llamada cuando se completa la verificación" alt="" coords="319,107,640,133"/>
+<area shape="rect" id="node6" href="$dd/ddc/class_register_phone_u_i_controller.html#a7838bc038a08379b5f1f50af435ac6d7" title="Llamada cuando falla la verificación" alt="" coords="332,157,627,184"/>
+<area shape="rect" id="node5" href="$d3/dda/class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="703,107,899,133"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="ARMarker.Update" name="ARMarker.Update">
+<area shape="rect" id="node1" title="Llamada al comienzo de cada fotograma" alt="" coords="5,31,131,57"/>
+<area shape="rect" id="node2" href="$d6/d6a/class_a_r_marker.html#a27ea41b1429123de21b990b94555b95d" title="Coloca el marcador en la posicion seleccionada" alt="" coords="198,5,345,32"/>
+<area shape="rect" id="node3" href="$d7/d5d/class_a_r_tool_manager.html#a86782ee29e1327a2f4ab387d8438c6a7" title="Coloca una guía en un trazo o marcador del par selecionado" alt="" coords="179,56,364,83"/>
+</map>

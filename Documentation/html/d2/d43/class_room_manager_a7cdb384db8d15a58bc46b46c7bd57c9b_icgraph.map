@@ -1,0 +1,4 @@
+<map id="RoomManager.GenerateRoomID" name="RoomManager.GenerateRoomID">
+<area shape="rect" id="node1" title="Genera un codigo de sala aleatorio" alt="" coords="204,5,413,32"/>
+<area shape="rect" id="node2" href="$d9/da4/class_rooms_controller.html#a38b3caf6336da28667fb457361f04193" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,156,32"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="OneSignalInit.Start" name="OneSignalInit.Start">
+<area shape="rect" id="node1" title="Llamada justo antes del primer fotograma" alt="" coords="5,31,136,57"/>
+<area shape="rect" id="node2" href="$d2/d84/class_one_signal_init.html#a60c9495cb3e70bfdef56251b55c09420" title="Llamada cuando un usuario abre una notificación" alt="" coords="184,31,496,57"/>
+<area shape="rect" id="node3" href="$d2/d84/class_one_signal_init.html#afac945779fdf4efc92743adb600c2862" title="Lee notificación y redirige a la videollamada correspondiente" alt="" coords="544,31,751,57"/>
+<area shape="rect" id="node4" href="$d2/d43/class_room_manager.html#a022ae9cafc8dedb55ca839e0d99c5b44" title="Mueve un par a una sala" alt="" coords="799,31,965,57"/>
+<area shape="rect" id="node5" href="$d3/dda/class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="1023,5,1219,32"/>
+<area shape="rect" id="node6" href="$d5/dd7/class_database_manager.html#a26b78f4ef7989b67f825194863df0357" title="Evalua si un código de sala existe en base de datos" alt="" coords="1013,56,1228,83"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="PeerConnectionManager" name="PeerConnectionManager">
+<area shape="rect" id="node1" title="Maneja la lógica de una conexión entre dos pares" alt="" coords="314,1619,725,2136"/>
+<area shape="rect" id="node2" title=" " alt="" coords="500,5,611,83"/>
+<area shape="rect" id="node3" href="$dc/d59/class_my_input_manager.html" title="Mapea la entrada de usuario real con la que debería indicada para el contenido actual" alt="" coords="148,1244,403,1527"/>
+<area shape="rect" id="node4" href="$d2/dba/class_video_manager.html" title="Maneja la lógica de la grabación y visualización de video" alt="" coords="291,132,543,532"/>
+<area shape="rect" id="node5" href="$d7/d31/class_audio_manager.html" title="Maneja la lógica de la captura y reproducción de audio" alt="" coords="426,556,800,1191"/>
+<area shape="rect" id="node6" href="$db/d71/class_client_manager.html" title="Maneja la lógica las acciones del cliente" alt="" coords="807,813,1027,934"/>
+<area shape="rect" id="node7" href="$d7/d5d/class_a_r_tool_manager.html" title="Maneja la lógica de las herramientas de RA" alt="" coords="851,1215,1223,1556"/>
+</map>

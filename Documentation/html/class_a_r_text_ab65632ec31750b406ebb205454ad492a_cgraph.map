@@ -1,6 +1,0 @@
-<map id="ARText.Update" name="ARText.Update">
-<area shape="rect" id="node1" title="Llamada al comienzo de cada fotograma" alt="" coords="5,56,116,83"/>
-<area shape="rect" id="node2" href="$class_a_r_text.html#ae9e02502945c44635028ea4c0a29553c" title="Coloca el texto en la posicion seleccionada" alt="" coords="193,5,325,32"/>
-<area shape="rect" id="node3" href="$class_my_input_manager.html#a491307ed67b25b941ef431d5bdbdad6c" title=" " alt="" coords="164,56,355,83"/>
-<area shape="rect" id="node4" href="$class_a_r_tool_manager.html#a86782ee29e1327a2f4ab387d8438c6a7" title="Coloca una guía en un trazo o marcador del par selecionado" alt="" coords="167,107,352,133"/>
-</map>

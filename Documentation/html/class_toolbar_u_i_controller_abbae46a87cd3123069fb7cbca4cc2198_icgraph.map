@@ -1,4 +1,0 @@
-<map id="ToolbarUIController.ToggleBar" name="ToolbarUIController.ToggleBar">
-<area shape="rect" id="node1" title="Alterna la visibilidad de la barra seleccionada" alt="" coords="216,5,409,32"/>
-<area shape="rect" id="node2" href="$class_toolbar_u_i_controller.html#a7c36bd2332e575e710320a80023b93de" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,168,32"/>
-</map>

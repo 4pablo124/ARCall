@@ -1,7 +1,0 @@
-<map id="AudioManager.SetVideocallAudio" name="AudioManager.SetVideocallAudio">
-<area shape="rect" id="node1" title="Configura los ajustes de Android para videollamada" alt="" coords="759,31,973,57"/>
-<area shape="rect" id="node2" href="$class_audio_manager.html#a0cf84c64f2f28215053ebece1818f94e" title="Llamada cuando el GameObject asociado de destruye" alt="" coords="534,5,705,32"/>
-<area shape="rect" id="node3" href="$class_audio_manager.html#aa60c57f6236c42f573fcfa0d28c88d9d" title="Comienza a grabar el audio" alt="" coords="528,56,711,83"/>
-<area shape="rect" id="node4" href="$class_peer_connection_manager.html#a5e4d5b8cfb094cae7a3d200a78a2a7b3" title="Crea los canales de video y audio" alt="" coords="249,56,480,83"/>
-<area shape="rect" id="node5" href="$class_peer_connection_manager.html#a058148001392c4d6106cc784ec477256" title="Llamada justo antes del primer fotograma" alt="" coords="5,56,201,83"/>
-</map>

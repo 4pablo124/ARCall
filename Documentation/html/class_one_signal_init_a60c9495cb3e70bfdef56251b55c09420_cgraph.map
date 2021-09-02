@@ -1,8 +1,0 @@
-<map id="OneSignalInit.OneSignalHandleNotificationOpened" name="OneSignalInit.OneSignalHandleNotificationOpened">
-<area shape="rect" id="node1" title="Llamada cuando un usuario abre una notificación" alt="" coords="5,56,317,83"/>
-<area shape="rect" id="node2" href="$class_one_signal_init.html#afac945779fdf4efc92743adb600c2862" title="Lee notificación y redirige a la videollamada correspondiente" alt="" coords="365,56,572,83"/>
-<area shape="rect" id="node3" href="$class_room_manager.html#a022ae9cafc8dedb55ca839e0d99c5b44" title="Mueve un par a una sala" alt="" coords="620,31,787,57"/>
-<area shape="rect" id="node6" href="$class_android_utils.html#af3ddee265b4dfc672eddae5699c8fb2b" title=" " alt="" coords="623,81,783,108"/>
-<area shape="rect" id="node4" href="$class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="844,5,1040,32"/>
-<area shape="rect" id="node5" href="$class_database_manager.html#a26b78f4ef7989b67f825194863df0357" title="Evalua si un código de sala existe en base de datos" alt="" coords="835,56,1049,83"/>
-</map>

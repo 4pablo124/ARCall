@@ -1,4 +1,0 @@
-<map id="AudioManager.OnDestroy" name="AudioManager.OnDestroy">
-<area shape="rect" id="node1" title="Llamada cuando el GameObject asociado de destruye" alt="" coords="5,5,176,32"/>
-<area shape="rect" id="node2" href="$class_audio_manager.html#a69c0d3b1c0d91a2972f2b5200b9e3ec5" title="Configura los ajustes de Android para videollamada" alt="" coords="224,5,439,32"/>
-</map>

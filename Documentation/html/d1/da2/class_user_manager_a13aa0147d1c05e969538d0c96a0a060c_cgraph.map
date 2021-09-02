@@ -1,0 +1,4 @@
+<map id="UserManager.LogIn" name="UserManager.LogIn">
+<area shape="rect" id="node1" title="Loguea al usuario actual" alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node2" href="$d1/da2/class_user_manager.html#a7c046e0a03e5802e7b1936f6ecdefe9e" title="Evalua si el usuario actual esta registrado" alt="" coords="188,5,391,32"/>
+</map>

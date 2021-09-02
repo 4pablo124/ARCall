@@ -1,5 +1,0 @@
-<map id="PeerConnectionManager.OnClientReadyDelegate" name="PeerConnectionManager.OnClientReadyDelegate">
-<area shape="rect" id="node1" title="Llamada cuando el cliente se conecta" alt="" coords="5,5,312,32"/>
-<area shape="rect" id="node2" href="$class_peer_connection_manager.html#a37051871d1e21f16a1e4ff5409a58f8c" title="Realiza la llamada para establecer la conexión" alt="" coords="360,5,551,32"/>
-<area shape="rect" id="node3" href="$class_database_manager.html#a31c16c7d1ec71b33cbf574d4e8810d71" title="Envia un mensaje de conexión a base de datos" alt="" coords="599,5,813,32"/>
-</map>

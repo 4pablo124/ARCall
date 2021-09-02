@@ -1,4 +1,0 @@
-<map id="DynamicLinksInit.OnDynamicLink" name="DynamicLinksInit.OnDynamicLink">
-<area shape="rect" id="node1" title="Lanzada cuando se recibe un enlace dinámico" alt="" coords="207,5,424,32"/>
-<area shape="rect" id="node2" href="$class_dynamic_links_init.html#a92aa11c79f26c2d5d1637e094eaa3530" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,159,32"/>
-</map>

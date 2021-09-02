@@ -1,0 +1,9 @@
+<map id="PeerConnectionManager.OnDestroy" name="PeerConnectionManager.OnDestroy">
+<area shape="rect" id="node1" title="Llamada cuando el GameObject asociado se destruye" alt="" coords="5,56,236,83"/>
+<area shape="rect" id="node2" href="$d2/d48/class_peer_connection_manager.html#a9cc97416c36f76d17771f7d61613cfc0" title="Evalua si el par actual es host" alt="" coords="350,5,559,32"/>
+<area shape="rect" id="node3" href="$d2/d48/class_peer_connection_manager.html#a9167cfeb3f97d6c07ae8abd9b48ac597" title="Llamada cuando el cliente se conecta" alt="" coords="301,56,608,83"/>
+<area shape="rect" id="node6" href="$d2/d48/class_peer_connection_manager.html#a0a284ceb0c5a0f89563f4c2515b98e2b" title="Llamada cuando se recibe un mensaje de base de datos" alt="" coords="284,107,625,133"/>
+<area shape="rect" id="node4" href="$d2/d48/class_peer_connection_manager.html#a37051871d1e21f16a1e4ff5409a58f8c" title="Realiza la llamada para establecer la conexión" alt="" coords="713,56,903,83"/>
+<area shape="rect" id="node5" href="$d5/dd7/class_database_manager.html#a31c16c7d1ec71b33cbf574d4e8810d71" title="Envia un mensaje de conexión a base de datos" alt="" coords="991,81,1205,108"/>
+<area shape="rect" id="node7" href="$d2/d48/class_peer_connection_manager.html#a55cfe5d454913d9aa216cba1e9e11b84" title="Lee un mensaje mediante la base de datos, se invoca cada vez que se envie un mensaje" alt="" coords="673,107,943,133"/>
+</map>

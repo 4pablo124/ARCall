@@ -1,4 +1,0 @@
-<map id="AudioManager.MicrophonePermissionDeniedAndDontAskAgain" name="AudioManager.MicrophonePermissionDeniedAndDontAskAgain">
-<area shape="rect" id="node1" title="Lanzada cuando se deniegan los permisos de audio y se indica que no se soliciten otra vez" alt="" coords="191,5,577,32"/>
-<area shape="rect" id="node2" href="$class_audio_manager.html#ab333270dca5bf5c039de3d70ca111ba9" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,143,32"/>
-</map>

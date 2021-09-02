@@ -1,5 +1,0 @@
-<map id="RegisterPhoneUIController.IsValidPhoneInput" name="RegisterPhoneUIController.IsValidPhoneInput">
-<area shape="rect" id="node1" title="Evalua si el teléfono introducido es válido" alt="" coords="272,31,555,57"/>
-<area shape="rect" id="node2" href="$class_register_phone_u_i_controller.html#abecd41c11aa752bec550978e4a58d2a1" title="Llamada justo antes del primer fotograma" alt="" coords="11,5,218,32"/>
-<area shape="rect" id="node3" href="$class_register_phone_u_i_controller.html#ab499207a8d2931f64b431941aec540c2" title="Llamada al comienzo de cada fotograma" alt="" coords="5,56,224,83"/>
-</map>

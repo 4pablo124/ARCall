@@ -1,18 +1,8 @@
 var dir_cd3d91439f4cb30a4b3962e951fe755c =
 [
-    [ "Colors.cs", "_colors_8cs.html", [
-      [ "Colors", "class_colors.html", "class_colors" ],
-      [ "Colors.Entry", "class_colors_1_1_entry.html", "class_colors_1_1_entry" ]
-    ] ],
-    [ "CountryCodes.cs", "_country_codes_8cs.html", [
-      [ "CountryCodes", "struct_country_codes.html", "struct_country_codes" ]
-    ] ],
-    [ "Message.cs", "_message_8cs.html", [
-      [ "Message", "class_message.html", "class_message" ],
-      [ "Data", "class_data.html", "class_data" ]
-    ] ],
-    [ "PeerType.cs", "_peer_type_8cs.html", "_peer_type_8cs" ],
-    [ "User.cs", "_user_8cs.html", [
-      [ "User", "class_user.html", "class_user" ]
-    ] ]
+    [ "Colors.cs", "d9/da4/_colors_8cs_source.html", null ],
+    [ "CountryCodes.cs", "db/dda/_country_codes_8cs_source.html", null ],
+    [ "Message.cs", "db/d0f/_message_8cs_source.html", null ],
+    [ "PeerType.cs", "d6/dd8/_peer_type_8cs_source.html", null ],
+    [ "User.cs", "dc/da5/_user_8cs_source.html", null ]
 ];

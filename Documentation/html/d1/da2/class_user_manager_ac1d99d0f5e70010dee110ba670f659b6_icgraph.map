@@ -1,0 +1,5 @@
+<map id="UserManager.VerifyPhone" name="UserManager.VerifyPhone">
+<area shape="rect" id="node1" title="Verifica el número de teléfono con el código SMS de verificación" alt="" coords="556,5,729,32"/>
+<area shape="rect" id="node2" href="$dd/ddc/class_register_phone_u_i_controller.html#a55f0c364a3d7f1920df9790b7c63da7c" title="Verifica el teléfono introducido con el código SMS introducido" alt="" coords="260,5,508,32"/>
+<area shape="rect" id="node3" href="$dd/ddc/class_register_phone_u_i_controller.html#abecd41c11aa752bec550978e4a58d2a1" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,212,32"/>
+</map>

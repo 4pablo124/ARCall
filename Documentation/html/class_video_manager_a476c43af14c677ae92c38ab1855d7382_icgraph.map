@@ -1,4 +1,0 @@
-<map id="VideoManager.ToggleVideo" name="VideoManager.ToggleVideo">
-<area shape="rect" id="node1" title="Alterna la visibilidad del video" alt="" coords="213,5,393,32"/>
-<area shape="rect" id="node2" href="$class_topbar_u_i_controller.html#a3a7804eb204105f4ceb9c87762adf09d" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,165,32"/>
-</map>

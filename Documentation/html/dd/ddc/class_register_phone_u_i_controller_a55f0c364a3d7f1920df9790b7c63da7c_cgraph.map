@@ -1,0 +1,12 @@
+<map id="RegisterPhoneUIController.VerifyPhone" name="RegisterPhoneUIController.VerifyPhone">
+<area shape="rect" id="node1" title="Verifica el teléfono introducido con el código SMS introducido" alt="" coords="5,136,253,163"/>
+<area shape="rect" id="node2" href="$d3/dda/class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="999,60,1195,87"/>
+<area shape="rect" id="node3" href="$dd/ddc/class_register_phone_u_i_controller.html#a5cd62efcd8f1e816c759ac0ede78aaaf" title="Se desuscribe de los eventos de clases estáticas" alt="" coords="301,136,552,163"/>
+<area shape="rect" id="node8" href="$d1/da2/class_user_manager.html#ac1d99d0f5e70010dee110ba670f659b6" title="Verifica el número de teléfono con el código SMS de verificación" alt="" coords="340,212,513,239"/>
+<area shape="rect" id="node4" href="$dd/ddc/class_register_phone_u_i_controller.html#a5ebb5fa37ace52b830ee425ab69376e8" title="Llamada cuando se captura automáticamente el código" alt="" coords="600,35,951,62"/>
+<area shape="rect" id="node5" href="$dd/ddc/class_register_phone_u_i_controller.html#a1f99826db3bbc1b5bc00fe21b5241f5e" title="Llamada cuando se envíaa el código de verificación SMS" alt="" coords="649,86,901,112"/>
+<area shape="rect" id="node6" href="$dd/ddc/class_register_phone_u_i_controller.html#aa85933669dcb72558a71039eba32d88d" title="Llamada cuando se completa la verificación" alt="" coords="615,136,936,163"/>
+<area shape="rect" id="node7" href="$dd/ddc/class_register_phone_u_i_controller.html#a7838bc038a08379b5f1f50af435ac6d7" title="Llamada cuando falla la verificación" alt="" coords="628,187,923,214"/>
+<area shape="rect" id="node9" href="$d1/da2/class_user_manager.html#a8473c8b09bc25b4ee3ccc8ad934f1a4d" title="Verifica el número de teléfono con un objeto de credenciales" alt="" coords="660,238,891,264"/>
+<area shape="rect" id="node10" href="$d5/dd7/class_database_manager.html#ae84a345ac51bb80ebf7fda88043ef499" title="Establece el userID de un usuario" alt="" coords="1001,238,1192,264"/>
+</map>

@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -27,65 +34,82 @@
 </div>
 <!-- end header part -->
 <!-- Generado por Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Buscar','.html');
+/* @license-end */
+</script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',false,false,'search.php','Buscar');
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('functions_c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
 <div class="contents">
-<div class="textblock">Lista de todos los campos de clases con enlaces a las classes a que pertenecen:</div>
+<div class="textblock">Lista de todos los campos de clases documentados con enlaces a la documentación de la clase para cada miembro:</div>
 
 <h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
-<li>Call()&#160;:&#160;<a class="el" href="class_peer_connection_manager.html#a37051871d1e21f16a1e4ff5409a58f8c">PeerConnectionManager</a></li>
-<li>cam&#160;:&#160;<a class="el" href="class_a_r_marker.html#a80ee8c2ba52a74911216caba4c038387">ARMarker</a>, <a class="el" href="class_a_r_text.html#a34763cf155b4244d3d0298341fbf8372">ARText</a>, <a class="el" href="class_look_at_camera.html#a44b281a3bf592660f8c8971cdeccf950">LookAtCamera</a></li>
-<li>ChangeResolution()&#160;:&#160;<a class="el" href="class_window_res.html#ab5f6e4d371f9a83cb64c46270d308678">WindowRes</a></li>
-<li>ChangeUsername()&#160;:&#160;<a class="el" href="class_user_manager.html#a0c464b2905659ab968549acfef58c915">UserManager</a></li>
-<li>clientActionDataChannel&#160;:&#160;<a class="el" href="class_peer_connection_manager.html#a9d512c91ea9c7a363521ac2d267c7141">PeerConnectionManager</a></li>
-<li>clientAspectRatio&#160;:&#160;<a class="el" href="class_my_input_manager.html#a365d05f970a7615c6ddf2255d7ce5550">MyInputManager</a></li>
-<li>clientDrawings&#160;:&#160;<a class="el" href="class_a_r_tool_manager.html#ac09cacb1c06eddc4e9fb31d8080b1662">ARToolManager</a></li>
-<li>clientGuides&#160;:&#160;<a class="el" href="class_a_r_tool_manager.html#a9d6bf18268a81f461013384745aa121a">ARToolManager</a></li>
-<li>clientInputDataChannel&#160;:&#160;<a class="el" href="class_peer_connection_manager.html#a1e7a55590ba419070758857870e449fe">PeerConnectionManager</a></li>
-<li>clientKeyboard&#160;:&#160;<a class="el" href="class_my_input_manager.html#a61bc1ac1a3b4f50049ba8afab64c75d2">MyInputManager</a></li>
-<li>clientManager&#160;:&#160;<a class="el" href="class_peer_connection_manager.html#a5dbe7cf26d3d096e2a923c20326ccf0c">PeerConnectionManager</a>, <a class="el" href="class_toolbar_u_i_controller.html#a4f0434e99b8e23e7192fc8b8bcc9bb30">ToolbarUIController</a></li>
-<li>clientMaterial&#160;:&#160;<a class="el" href="class_a_r_tool_manager.html#afae482535f6780da348a257c7c250cd5">ARToolManager</a></li>
-<li>clientPosition&#160;:&#160;<a class="el" href="class_my_input_manager.html#a28fc3dff762d52aade97f0329f6972a1">MyInputManager</a></li>
-<li>clientTools&#160;:&#160;<a class="el" href="class_a_r_tool_manager.html#a253c90c0b371f6f74d3609a19356e3bf">ARToolManager</a></li>
-<li>codeInput&#160;:&#160;<a class="el" href="class_register_phone_u_i_controller.html#ab3331ba7268447045e67231bb0213810">RegisterPhoneUIController</a></li>
-<li>color&#160;:&#160;<a class="el" href="class_colors_1_1_entry.html#a70bd43d6c228fd2a8ecd062b531a5a7e">Colors.Entry</a></li>
-<li>color1&#160;:&#160;<a class="el" href="class_toolbar_u_i_controller.html#a451fb9e912306bc343d513499b9bf951">ToolbarUIController</a></li>
-<li>color2&#160;:&#160;<a class="el" href="class_toolbar_u_i_controller.html#acaf48ab3c1c3f7486e0459c5b3741e57">ToolbarUIController</a></li>
-<li>color3&#160;:&#160;<a class="el" href="class_toolbar_u_i_controller.html#ae73d23136a50fe77e22bc6b8163e71d1">ToolbarUIController</a></li>
-<li>ColorBlue&#160;:&#160;<a class="el" href="class_a_r_tool_manager.html#ab287e392e01eed5bb27ea45bc8ca9b7f">ARToolManager</a></li>
-<li>ColorGreen&#160;:&#160;<a class="el" href="class_a_r_tool_manager.html#a9728a0ba5a418254649385a64a551f33">ARToolManager</a></li>
-<li>ColorRed&#160;:&#160;<a class="el" href="class_a_r_tool_manager.html#a6289b378e52c71338f53fd224c13c7e4">ARToolManager</a></li>
-<li>colors&#160;:&#160;<a class="el" href="class_colors.html#a5bd231b3aad76f51d397281a95e148fb">Colors</a></li>
-<li>colorsBar&#160;:&#160;<a class="el" href="class_toolbar_u_i_controller.html#a1cb27bacc9727e4e3ad9f15b2d178eca">ToolbarUIController</a></li>
-<li>ColorYellow&#160;:&#160;<a class="el" href="class_a_r_tool_manager.html#a7ee5be8efc1daf82e3ce53911b1d0e29">ARToolManager</a></li>
-<li>communicationDevice&#160;:&#160;<a class="el" href="class_audio_manager.html#a91be417f5abfd4417206d3b4ca1fe418">AudioManager</a></li>
-<li>contactPrefab&#160;:&#160;<a class="el" href="class_contacts_controller.html#ab29a9ed7680800e1e07f9ab4b0ccbca3">ContactsController</a></li>
-<li>contacts&#160;:&#160;<a class="el" href="class_contacts_controller.html#a4e81593b679c93f9ce5407f743937685">ContactsController</a></li>
-<li>context&#160;:&#160;<a class="el" href="class_audio_manager.html#aa0401ccefad375f2fe4bd8f3b88bde15">AudioManager</a></li>
-<li>createBtn&#160;:&#160;<a class="el" href="class_main_u_i_controller.html#add7abb744b264ac8436c27223afc20b9">MainUIController</a></li>
-<li>CreateDynamicRoomLink()&#160;:&#160;<a class="el" href="class_sharing_manager.html#a039a42cca85530f5e71e396bda0bc95b">SharingManager</a></li>
-<li>createLineStart()&#160;:&#160;<a class="el" href="class_a_r_brush.html#a04bbb34c0f1929faffb5da791891d40e">ARBrush</a></li>
-<li>croppedScreenHeight&#160;:&#160;<a class="el" href="class_my_input_manager.html#a8b3710815b6a968fe0c789f55465d230">MyInputManager</a></li>
-<li>croppedScreenWidth&#160;:&#160;<a class="el" href="class_my_input_manager.html#a9ef6da7ad6897a8cab4ce65482c3c1af">MyInputManager</a></li>
-<li>currentAspect&#160;:&#160;<a class="el" href="class_window_res.html#a1f8c088a611a8cd437008ccf5579c922">WindowRes</a></li>
-<li>currentMarker&#160;:&#160;<a class="el" href="class_a_r_text.html#ad51e3d921816c047dad9eecb56456493">ARText</a></li>
-<li>CurrentScene()&#160;:&#160;<a class="el" href="class_my_scene_manager.html#a209f9cda1c9a72071bae2ef6864492ba">MySceneManager</a></li>
-<li>CurrentUser&#160;:&#160;<a class="el" href="class_user_manager.html#a4f47693feb0c6e45d8222193bd23fca2">UserManager</a></li>
-<li>cursorWidth&#160;:&#160;<a class="el" href="class_a_r_guide.html#a42863d4769b41fe5905d99b53718e5ce">ARGuide</a>, <a class="el" href="class_a_r_pointer.html#a435faf414bd8ebb0588fee067b1ffcf1">ARPointer</a></li>
+<li>Call()&#160;:&#160;<a class="el" href="d2/d48/class_peer_connection_manager.html#a37051871d1e21f16a1e4ff5409a58f8c">PeerConnectionManager</a></li>
+<li>ChangeResolution()&#160;:&#160;<a class="el" href="dc/df2/class_window_res.html#ab5f6e4d371f9a83cb64c46270d308678">WindowRes</a></li>
+<li>ChangeUsername()&#160;:&#160;<a class="el" href="d1/da2/class_user_manager.html#a0c464b2905659ab968549acfef58c915">UserManager</a></li>
+<li>clientDrawings&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#ac09cacb1c06eddc4e9fb31d8080b1662">ARToolManager</a></li>
+<li>clientGuides&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#a9d6bf18268a81f461013384745aa121a">ARToolManager</a></li>
+<li>clientMaterial&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#afae482535f6780da348a257c7c250cd5">ARToolManager</a></li>
+<li>clientTools&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#a253c90c0b371f6f74d3609a19356e3bf">ARToolManager</a></li>
+<li>color&#160;:&#160;<a class="el" href="d7/d0e/class_colors_1_1_entry.html#a70bd43d6c228fd2a8ecd062b531a5a7e">Colors.Entry</a></li>
+<li>ColorBlue&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#ab287e392e01eed5bb27ea45bc8ca9b7f">ARToolManager</a></li>
+<li>ColorGreen&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#a9728a0ba5a418254649385a64a551f33">ARToolManager</a></li>
+<li>ColorRed&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#a6289b378e52c71338f53fd224c13c7e4">ARToolManager</a></li>
+<li>colors&#160;:&#160;<a class="el" href="d9/d36/class_colors.html#a5bd231b3aad76f51d397281a95e148fb">Colors</a></li>
+<li>ColorYellow&#160;:&#160;<a class="el" href="d7/d5d/class_a_r_tool_manager.html#a7ee5be8efc1daf82e3ce53911b1d0e29">ARToolManager</a></li>
+<li>CreateDynamicRoomLink()&#160;:&#160;<a class="el" href="dd/dcc/class_sharing_manager.html#a039a42cca85530f5e71e396bda0bc95b">SharingManager</a></li>
+<li>createLineStart()&#160;:&#160;<a class="el" href="da/d70/class_a_r_brush.html#a04bbb34c0f1929faffb5da791891d40e">ARBrush</a></li>
+<li>CurrentScene()&#160;:&#160;<a class="el" href="d3/dda/class_my_scene_manager.html#a209f9cda1c9a72071bae2ef6864492ba">MySceneManager</a></li>
+<li>CurrentUser&#160;:&#160;<a class="el" href="d1/da2/class_user_manager.html#a4f47693feb0c6e45d8222193bd23fca2">UserManager</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+  </ul>
+</div>
 </body>
 </html>

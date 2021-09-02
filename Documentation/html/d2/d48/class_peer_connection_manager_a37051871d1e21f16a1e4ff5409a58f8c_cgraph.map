@@ -1,0 +1,4 @@
+<map id="PeerConnectionManager.Call" name="PeerConnectionManager.Call">
+<area shape="rect" id="node1" title="Realiza la llamada para establecer la conexión" alt="" coords="5,5,196,32"/>
+<area shape="rect" id="node2" href="$d5/dd7/class_database_manager.html#a31c16c7d1ec71b33cbf574d4e8810d71" title="Envia un mensaje de conexión a base de datos" alt="" coords="244,5,459,32"/>
+</map>

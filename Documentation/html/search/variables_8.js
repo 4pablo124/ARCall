@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['joinbtn_0',['joinBtn',['../class_main_u_i_controller.html#aa0bccb61df6a369dbf1caa8b2e772846',1,'MainUIController.joinBtn()'],['../class_rooms_controller.html#ae7e14c41eadbe9e7f899f411002b6f72',1,'RoomsController.joinBtn()']]]
+  ['mypeertype_0',['myPeerType',['../d2/d48/class_peer_connection_manager.html#a600be590415b9f5cf4197f27380c2e00',1,'PeerConnectionManager']]]
 ];

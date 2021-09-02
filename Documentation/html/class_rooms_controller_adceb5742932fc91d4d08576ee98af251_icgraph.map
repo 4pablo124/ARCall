@@ -1,4 +1,0 @@
-<map id="RoomsController.JoinRoom" name="RoomsController.JoinRoom">
-<area shape="rect" id="node1" title="Lleva al usuario actual a la sala seleccionada" alt="" coords="204,5,383,32"/>
-<area shape="rect" id="node2" href="$class_rooms_controller.html#a38b3caf6336da28667fb457361f04193" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,156,32"/>
-</map>

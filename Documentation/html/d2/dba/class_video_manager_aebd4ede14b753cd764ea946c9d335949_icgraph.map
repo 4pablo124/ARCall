@@ -1,0 +1,6 @@
+<map id="VideoManager.ShowVideo" name="VideoManager.ShowVideo">
+<area shape="rect" id="node1" title="Establece la visibilidad del video" alt="" coords="488,31,663,57"/>
+<area shape="rect" id="node2" href="$d2/dba/class_video_manager.html#a409d28bd0a648196152b1c4394064263" title="Llamada cuando el estado de pausa de la aplicación cambia" alt="" coords="213,5,440,32"/>
+<area shape="rect" id="node3" href="$d2/dba/class_video_manager.html#a476c43af14c677ae92c38ab1855d7382" title="Alterna la visibilidad del video" alt="" coords="237,56,417,83"/>
+<area shape="rect" id="node4" href="$d7/d42/class_topbar_u_i_controller.html#a3a7804eb204105f4ceb9c87762adf09d" title="Llamada justo antes del primer fotograma" alt="" coords="5,56,165,83"/>
+</map>

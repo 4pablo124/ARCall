@@ -1,5 +1,0 @@
-<map id="AudioManager.RecordAudio" name="AudioManager.RecordAudio">
-<area shape="rect" id="node1" title="Comienza a grabar el audio" alt="" coords="528,5,711,32"/>
-<area shape="rect" id="node2" href="$class_peer_connection_manager.html#a5e4d5b8cfb094cae7a3d200a78a2a7b3" title="Crea los canales de video y audio" alt="" coords="249,5,480,32"/>
-<area shape="rect" id="node3" href="$class_peer_connection_manager.html#a058148001392c4d6106cc784ec477256" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,201,32"/>
-</map>

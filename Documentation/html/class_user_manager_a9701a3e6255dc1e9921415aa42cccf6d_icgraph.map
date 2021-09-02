@@ -1,5 +1,0 @@
-<map id="UserManager.SendVerificationCode" name="UserManager.SendVerificationCode">
-<area shape="rect" id="node1" title="Envia el código SMS de verificación y lanza los posibles eventos" alt="" coords="547,5,773,32"/>
-<area shape="rect" id="node2" href="$class_register_phone_u_i_controller.html#a41d4c768e35a4edf1db44a1807e179b5" title="Envia el código SMS al teléfono introducido" alt="" coords="260,5,499,32"/>
-<area shape="rect" id="node3" href="$class_register_phone_u_i_controller.html#abecd41c11aa752bec550978e4a58d2a1" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,212,32"/>
-</map>

@@ -1,0 +1,4 @@
+<map id="RegisterPhoneUIController.VerifyPhone" name="RegisterPhoneUIController.VerifyPhone">
+<area shape="rect" id="node1" title="Verifica el teléfono introducido con el código SMS introducido" alt="" coords="260,5,508,32"/>
+<area shape="rect" id="node2" href="$dd/ddc/class_register_phone_u_i_controller.html#abecd41c11aa752bec550978e4a58d2a1" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,212,32"/>
+</map>

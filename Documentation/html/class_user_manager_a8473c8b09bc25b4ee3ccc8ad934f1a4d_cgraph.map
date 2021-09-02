@@ -1,4 +1,0 @@
-<map id="UserManager.VerifyPhoneCredential" name="UserManager.VerifyPhoneCredential">
-<area shape="rect" id="node1" title="Verifica el número de teléfono con un objeto de credenciales" alt="" coords="5,5,236,32"/>
-<area shape="rect" id="node2" href="$class_database_manager.html#ae84a345ac51bb80ebf7fda88043ef499" title="Establece el userID de un usuario" alt="" coords="284,5,475,32"/>
-</map>

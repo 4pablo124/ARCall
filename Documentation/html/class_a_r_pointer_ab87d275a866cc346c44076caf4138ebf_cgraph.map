@@ -1,4 +1,0 @@
-<map id="ARPointer.Update" name="ARPointer.Update">
-<area shape="rect" id="node1" title="Llamada al comienzo de cada fotograma Comprueba la posición del puntero y lo muestra" alt="" coords="5,5,132,32"/>
-<area shape="rect" id="node2" href="$class_my_input_manager.html#a491307ed67b25b941ef431d5bdbdad6c" title=" " alt="" coords="180,5,371,32"/>
-</map>

@@ -1,0 +1,9 @@
+<map id="RegisterNameUIController.Start" name="RegisterNameUIController.Start">
+<area shape="rect" id="node1" title="Llamada justo antes del primer fotograma" alt="" coords="5,31,208,58"/>
+<area shape="rect" id="node2" href="$d8/d7d/class_register_name_u_i_controller.html#a696813b8f833ebda8231a48f9bb40ef2" title="Comprueba si el nombre introducido es valido" alt="" coords="256,6,532,33"/>
+<area shape="rect" id="node3" href="$d8/d7d/class_register_name_u_i_controller.html#afc29ac5c585c83664552ce4d7e228e04" title="Registra el nombre introducido del usuario actual" alt="" coords="265,57,523,83"/>
+<area shape="rect" id="node4" href="$d1/da2/class_user_manager.html#a0c464b2905659ab968549acfef58c915" title="Cambia el nombre del usuario actual" alt="" coords="831,57,1037,83"/>
+<area shape="rect" id="node5" href="$d1/da2/class_user_manager.html#a7c046e0a03e5802e7b1936f6ecdefe9e" title="Evalua si el usuario actual esta registrado" alt="" coords="580,31,783,58"/>
+<area shape="rect" id="node6" href="$d3/dda/class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="583,82,779,109"/>
+<area shape="rect" id="node7" href="$d1/da2/class_user_manager.html#a5a0827078b96620181c5f6615c218dec" title="Registra el nombre de usuario" alt="" coords="609,133,754,159"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="RecorderManager.StopRecording" name="RecorderManager.StopRecording">
+<area shape="rect" id="node1" title="Para la grabación" alt="" coords="509,31,723,57"/>
+<area shape="rect" id="node2" href="$dc/da3/class_recorder_manager.html#abd82dbc73dd3952cfdf7634936a3e01e" title="Llamada cuando el foco de la aplicación cambia" alt="" coords="216,5,461,32"/>
+<area shape="rect" id="node3" href="$dc/da3/class_recorder_manager.html#af4f6bc58b8be4b847c30c57d1fe6a730" title="Alterna entre comenzar la grabación o pararla" alt="" coords="235,56,442,83"/>
+<area shape="rect" id="node4" href="$d0/d5f/class_toolbar_u_i_controller.html#a7c36bd2332e575e710320a80023b93de" title="Llamada justo antes del primer fotograma" alt="" coords="5,56,168,83"/>
+</map>

@@ -1,7 +1,0 @@
-<map id="PeerConnectionManager.Call" name="PeerConnectionManager.Call">
-<area shape="rect" id="node1" title="Realiza la llamada para establecer la conexión" alt="" coords="639,56,829,83"/>
-<area shape="rect" id="node2" href="$class_peer_connection_manager.html#a9167cfeb3f97d6c07ae8abd9b48ac597" title="Llamada cuando el cliente se conecta" alt="" coords="284,31,591,57"/>
-<area shape="rect" id="node5" href="$class_peer_connection_manager.html#a058148001392c4d6106cc784ec477256" title="Llamada justo antes del primer fotograma" alt="" coords="339,81,535,108"/>
-<area shape="rect" id="node3" href="$class_peer_connection_manager.html#a82bd9ac926952fe7f22bef718cca64cb" title="Llamada al crear el GameObject asociado" alt="" coords="17,5,224,32"/>
-<area shape="rect" id="node4" href="$class_peer_connection_manager.html#a267f5ad1bb8760b277d6754418b5a4f1" title="Llamada cuando el GameObject asociado se destruye" alt="" coords="5,56,236,83"/>
-</map>

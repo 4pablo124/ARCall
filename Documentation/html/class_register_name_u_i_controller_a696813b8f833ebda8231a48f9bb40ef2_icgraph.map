@@ -1,5 +1,0 @@
-<map id="RegisterNameUIController.IsValidNameInput" name="RegisterNameUIController.IsValidNameInput">
-<area shape="rect" id="node1" title="Comprueba si el nombre introducido es valido" alt="" coords="269,31,545,57"/>
-<area shape="rect" id="node2" href="$class_register_name_u_i_controller.html#a5c7e76753bc91e585403685a869aaa96" title="Llamada justo antes del primer fotograma" alt="" coords="12,5,215,32"/>
-<area shape="rect" id="node3" href="$class_register_name_u_i_controller.html#af662c2e9793399d1d8c6f37378d57ee6" title="Llamada al comienzo de cada fotograma" alt="" coords="5,56,221,83"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="ARBrush.drawNextPointInLine" name="ARBrush.drawNextPointInLine">
-<area shape="rect" id="node1" title="Coloca el siguiente punto en la linea que se esta dibujando actualmente" alt="" coords="172,5,368,32"/>
-<area shape="rect" id="node2" href="$class_a_r_brush.html#a392f602774d613460f213cd58b4a26e9" title="Llamada al comienzo de cada fotograma" alt="" coords="5,5,124,32"/>
-</map>

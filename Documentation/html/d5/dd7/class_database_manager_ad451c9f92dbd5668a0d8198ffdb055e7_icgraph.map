@@ -1,0 +1,5 @@
+<map id="DatabaseManager.RemoveUserID" name="DatabaseManager.RemoveUserID">
+<area shape="rect" id="node1" title="Elimina el userID de un usuario" alt="" coords="396,5,612,32"/>
+<area shape="rect" id="node2" href="$d1/da2/class_user_manager.html#abc0325360c77d2c099e7807a3c1ff0fa" title="Cierra la sesion del usario actualmente logueado" alt="" coords="203,5,348,32"/>
+<area shape="rect" id="node3" href="$dd/d3b/class_main_u_i_controller.html#a0a5859a3d2f7c6ae487469bdbe76a7b2" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,155,32"/>
+</map>

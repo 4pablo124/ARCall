@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['peerconnectionmanager_0',['PeerConnectionManager',['../class_peer_connection_manager.html',1,'']]]
+  ['peerconnectionmanager_0',['PeerConnectionManager',['../d2/d48/class_peer_connection_manager.html',1,'']]]
 ];

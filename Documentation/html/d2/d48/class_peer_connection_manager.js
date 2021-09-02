@@ -1,0 +1,28 @@
+var class_peer_connection_manager =
+[
+    [ "AddDataChannels", "d2/d48/class_peer_connection_manager.html#acce72dd729e1abda9e126f7c1bd317ce", null ],
+    [ "AddTracks", "d2/d48/class_peer_connection_manager.html#a5e4d5b8cfb094cae7a3d200a78a2a7b3", null ],
+    [ "Awake", "d2/d48/class_peer_connection_manager.html#a82bd9ac926952fe7f22bef718cca64cb", null ],
+    [ "Call", "d2/d48/class_peer_connection_manager.html#a37051871d1e21f16a1e4ff5409a58f8c", null ],
+    [ "EnableAudioStream", "d2/d48/class_peer_connection_manager.html#aac8d251a66527dc0cb04ef9423bb1fef", null ],
+    [ "HangUp", "d2/d48/class_peer_connection_manager.html#ac4577b58d566fb35458448f45920978f", null ],
+    [ "ImHost", "d2/d48/class_peer_connection_manager.html#a9cc97416c36f76d17771f7d61613cfc0", null ],
+    [ "InitIceCandidate", "d2/d48/class_peer_connection_manager.html#a102aa0173b45a2515a67418df230412d", null ],
+    [ "OnApplicationFocus", "d2/d48/class_peer_connection_manager.html#a32e1f598ed2e0f51ded5bdee39c8c18c", null ],
+    [ "OnApplicationPause", "d2/d48/class_peer_connection_manager.html#a963a5f07932166a3233b9087fc2b0a81", null ],
+    [ "OnClientReadyDelegate", "d2/d48/class_peer_connection_manager.html#a9167cfeb3f97d6c07ae8abd9b48ac597", null ],
+    [ "OnDestroy", "d2/d48/class_peer_connection_manager.html#a267f5ad1bb8760b277d6754418b5a4f1", null ],
+    [ "OnDisconnect", "d2/d48/class_peer_connection_manager.html#a2b43b97a9280f9d5dd6dd4634009e566", null ],
+    [ "OnMessageReceivedDelegate", "d2/d48/class_peer_connection_manager.html#a0a284ceb0c5a0f89563f4c2515b98e2b", null ],
+    [ "OnSceneUnloaded< Scene >", "d2/d48/class_peer_connection_manager.html#a5a28d064eba699adacb983766109da54", null ],
+    [ "ReadMessageDB", "d2/d48/class_peer_connection_manager.html#a55cfe5d454913d9aa216cba1e9e11b84", null ],
+    [ "ReadyUser", "d2/d48/class_peer_connection_manager.html#a77481735fed0e6e7c602e8a2bea821d4", null ],
+    [ "ServersConfig", "d2/d48/class_peer_connection_manager.html#a079747542cc02816463a912e54c9a965", null ],
+    [ "SetAudioParameters", "d2/d48/class_peer_connection_manager.html#ad0c146757a24938792beafe8e3ebd8dd", null ],
+    [ "SetVideoParameters", "d2/d48/class_peer_connection_manager.html#a863ee7377abe7c93c3e09ac1ab37bb3c", null ],
+    [ "Start", "d2/d48/class_peer_connection_manager.html#a058148001392c4d6106cc784ec477256", null ],
+    [ "UnReadyUser", "d2/d48/class_peer_connection_manager.html#ad792df6efa61aa9a558aab9b76604a87", null ],
+    [ "Update", "d2/d48/class_peer_connection_manager.html#a8b9c44eaef490cea9d4ecb3c6c1ff7af", null ],
+    [ "myPeerType", "d2/d48/class_peer_connection_manager.html#a600be590415b9f5cf4197f27380c2e00", null ],
+    [ "OnUserConnected", "d2/d48/class_peer_connection_manager.html#a5e5c7f7ceaf86800eb1dc6cb97067901", null ]
+];

@@ -1,0 +1,6 @@
+<map id="UserManager.ChangeUsername" name="UserManager.ChangeUsername">
+<area shape="rect" id="node1" title="Cambia el nombre del usuario actual" alt="" coords="755,5,961,32"/>
+<area shape="rect" id="node2" href="$d8/d7d/class_register_name_u_i_controller.html#afc29ac5c585c83664552ce4d7e228e04" title="Registra el nombre introducido del usuario actual" alt="" coords="256,5,513,32"/>
+<area shape="rect" id="node4" href="$d1/da2/class_user_manager.html#a5a0827078b96620181c5f6615c218dec" title="Registra el nombre de usuario" alt="" coords="561,31,707,57"/>
+<area shape="rect" id="node3" href="$d8/d7d/class_register_name_u_i_controller.html#a5c7e76753bc91e585403685a869aaa96" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,208,32"/>
+</map>

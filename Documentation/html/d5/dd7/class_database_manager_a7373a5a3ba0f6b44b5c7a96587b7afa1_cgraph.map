@@ -1,0 +1,5 @@
+<map id="DatabaseManager.ReadyUser" name="DatabaseManager.ReadyUser">
+<area shape="rect" id="node1" title="Señaliza en base de datos que un par esta listo para la conexión" alt="" coords="5,31,200,57"/>
+<area shape="rect" id="node2" href="$d5/dd7/class_database_manager.html#a1854ec336517d562b14ec72287f986cb" title="Lanza el evento OnClientReady" alt="" coords="265,5,535,32"/>
+<area shape="rect" id="node3" href="$d5/dd7/class_database_manager.html#a195ea9d14ebff0203ccdf30de9801069" title="Lanza el evento OnMessageReceived" alt="" coords="248,56,552,83"/>
+</map>

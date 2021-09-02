@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Controla que el <see cref="GameObject"/> asociado apunte hacia la cámara
+/// </summary>
 public class LookAtCamera : MonoBehaviour
 {
 
@@ -16,7 +19,7 @@ public class LookAtCamera : MonoBehaviour
 
     /// <summary>
     /// Llamada al comienzo de cada fotograma
-    /// <para>Posiciona el <see cref="GameObject"/> asociado para ue apunte hacia la cámara</para>
+    /// <para>Posiciona el <see cref="GameObject"/> asociado para que apunte hacia la cámara</para>
     /// </summary>
     private void Update()
     {

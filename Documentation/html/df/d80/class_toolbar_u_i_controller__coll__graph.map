@@ -1,0 +1,11 @@
+<map id="ToolbarUIController" name="ToolbarUIController">
+<area shape="rect" id="node1" title="Controla la interfaz de la barra de heramientas en una videollamada o grabación" alt="" coords="752,2364,1093,2749"/>
+<area shape="rect" id="node2" title=" " alt="" coords="498,5,609,83"/>
+<area shape="rect" id="node3" href="$d2/d48/class_peer_connection_manager.html" title="Maneja la lógica de una conexión entre dos pares" alt="" coords="419,1784,829,2301"/>
+<area shape="rect" id="node4" href="$dc/d59/class_my_input_manager.html" title="Mapea la entrada de usuario real con la que debería indicada para el contenido actual" alt="" coords="321,1244,575,1527"/>
+<area shape="rect" id="node5" href="$d2/dba/class_video_manager.html" title="Maneja la lógica de la grabación y visualización de video" alt="" coords="510,132,762,532"/>
+<area shape="rect" id="node6" href="$d7/d31/class_audio_manager.html" title="Maneja la lógica de la captura y reproducción de audio" alt="" coords="77,556,451,1191"/>
+<area shape="rect" id="node7" href="$db/d71/class_client_manager.html" title="Maneja la lógica las acciones del cliente" alt="" coords="1133,1325,1353,1446"/>
+<area shape="rect" id="node8" href="$d7/d5d/class_a_r_tool_manager.html" title="Maneja la lógica de las herramientas de RA" alt="" coords="737,1215,1109,1556"/>
+<area shape="rect" id="node9" href="$dc/da3/class_recorder_manager.html" title="Maneja la lógica de la grabación de tutoriales" alt="" coords="1242,1580,1497,1760"/>
+</map>

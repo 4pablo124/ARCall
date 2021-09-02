@@ -1,23 +1,6 @@
 var searchData=
 [
-  ['actionbtn_0',['actionBtn',['../class_toolbar_u_i_controller.html#ab8ce64afa54db7c69a24f7cccb3b9f18',1,'ToolbarUIController']]],
-  ['androidaudiomanager_1',['androidAudioManager',['../class_audio_manager.html#ac5494f4a848cf57ca556ac0d2bb61fd4',1,'AudioManager']]],
-  ['androidutils_2',['androidUtils',['../class_recorder_manager.html#a62eb6151492e1b03ebe2a03918de96f3',1,'RecorderManager']]],
-  ['arcam_3',['arCam',['../class_a_r_brush.html#ad633efb0bdddab3ec21640e3508158d7',1,'ARBrush.arCam()'],['../class_a_r_guide.html#a3f4ce4e309c98de26efc51fc44ed9499',1,'ARGuide.arCam()'],['../class_video_manager.html#a0a673a090b8649d92f9d7f752571eae9',1,'VideoManager.arCam()']]],
-  ['arraycastmanager_4',['arRaycastManager',['../class_a_r_brush.html#a844eb750aba193e0eadbd545060dc859',1,'ARBrush.arRaycastManager()'],['../class_a_r_marker.html#aae17e87326573c1deaceaab54b673a86',1,'ARMarker.arRaycastManager()'],['../class_a_r_text.html#a8addf97d141e9f410d5725dc1d7fc4e7',1,'ARText.arRaycastManager()']]],
-  ['arsession_5',['arSession',['../class_video_manager.html#ad4a9e4d53c95698d0d8c693a91f26f13',1,'VideoManager']]],
-  ['artoolmanager_6',['aRToolManager',['../class_a_r_brush.html#a090803699df07b9b12dea7bfba7c7b8e',1,'ARBrush.aRToolManager()'],['../class_a_r_marker.html#ab696079ec3d35a77c188cfcbe04e2a4b',1,'ARMarker.aRToolManager()'],['../class_a_r_pointer.html#a3c44e2e72568f42d7b3ae117b22485ed',1,'ARPointer.aRToolManager()'],['../class_a_r_text.html#a3e33e213c48c00ac5d640b3a2005b945',1,'ARText.aRToolManager()']]],
-  ['artoolmanager_7',['arToolManager',['../class_toolbar_u_i_controller.html#a26fbdcf56398c50edcbec41e903f6caa',1,'ToolbarUIController.arToolManager()'],['../class_peer_connection_manager.html#afc8bc60d43ab98041615212646a712a2',1,'PeerConnectionManager.arToolManager()']]],
-  ['artoolsbar_8',['arToolsBar',['../class_toolbar_u_i_controller.html#a92d107711132d3fd2c9c6e387c4915fa',1,'ToolbarUIController']]],
-  ['artooltipsui_9',['arToolTipsUI',['../class_video_manager.html#a67129cc677b2ab38bb0a46dcdd251160',1,'VideoManager']]],
-  ['aspect_10',['aspect',['../class_window_res.html#a217b9ca5e6f86ca931e34432bcd0b43d',1,'WindowRes']]],
-  ['aspectratio_11',['aspectRatio',['../class_video_manager.html#aacfd2aec4d6778535758ee0a03b98e2c',1,'VideoManager']]],
-  ['aspectratiodatachannel_12',['aspectRatioDataChannel',['../class_peer_connection_manager.html#a073537fd40e2169e746e219763a6a41d',1,'PeerConnectionManager']]],
-  ['audioicon_13',['audioIcon',['../class_topbar_u_i_controller.html#a747c6c58edb61bd3d062b632ba05c168',1,'TopbarUIController']]],
-  ['audiomanager_14',['audioManager',['../class_audio_visualizer_controller.html#a7c914da53211f2abdcfaa6381cc24e42',1,'AudioVisualizerController.audioManager()'],['../class_topbar_u_i_controller.html#afed6fd3510c2288de8f8547c084884e6',1,'TopbarUIController.audioManager()'],['../class_peer_connection_manager.html#aa0d8fa7b74e95ec1c5ff12faf1892d41',1,'PeerConnectionManager.audioManager()']]],
-  ['audioready_15',['audioReady',['../class_audio_manager.html#a4630ecd1ff0ca008c6b5f6424105b694',1,'AudioManager']]],
-  ['audiosender_16',['audioSender',['../class_peer_connection_manager.html#a0762eb34ce6482251bbbf4528f17259e',1,'PeerConnectionManager']]],
-  ['audiosource_17',['audioSource',['../class_audio_visualizer_controller.html#a919a79808f9270747b98e45c126a3fdb',1,'AudioVisualizerController']]],
-  ['audiostreamtrack_18',['audioStreamTrack',['../class_audio_manager.html#a0771c8247df566c1b52e9ce9e850f449',1,'AudioManager']]],
-  ['auth_19',['Auth',['../class_user_manager.html#a9051c0e179e9783f56c727008723be7d',1,'UserManager']]]
+  ['aspectratio_0',['aspectRatio',['../d2/dba/class_video_manager.html#aacfd2aec4d6778535758ee0a03b98e2c',1,'VideoManager']]],
+  ['audioready_1',['audioReady',['../d7/d31/class_audio_manager.html#a4630ecd1ff0ca008c6b5f6424105b694',1,'AudioManager']]],
+  ['auth_2',['Auth',['../d1/da2/class_user_manager.html#a9051c0e179e9783f56c727008723be7d',1,'UserManager']]]
 ];

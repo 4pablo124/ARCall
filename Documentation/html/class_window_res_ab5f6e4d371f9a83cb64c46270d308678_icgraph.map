@@ -1,4 +1,0 @@
-<map id="WindowRes.ChangeResolution" name="WindowRes.ChangeResolution">
-<area shape="rect" id="node1" title="Cambia la resolución de la ventana" alt="" coords="215,5,415,32"/>
-<area shape="rect" id="node2" href="$class_window_res.html#ae244e52f7d4d32067c8e6189015abac5" title="Llamada al final de cada fotograma" alt="" coords="5,5,167,32"/>
-</map>

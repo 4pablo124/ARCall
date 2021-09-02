@@ -1,0 +1,4 @@
+<map id="PeerConnectionManager.ReadMessageDB" name="PeerConnectionManager.ReadMessageDB">
+<area shape="rect" id="node1" title="Lee un mensaje mediante la base de datos, se invoca cada vez que se envie un mensaje" alt="" coords="5,5,275,32"/>
+<area shape="rect" id="node2" href="$d5/dd7/class_database_manager.html#a31c16c7d1ec71b33cbf574d4e8810d71" title="Envia un mensaje de conexión a base de datos" alt="" coords="323,5,537,32"/>
+</map>

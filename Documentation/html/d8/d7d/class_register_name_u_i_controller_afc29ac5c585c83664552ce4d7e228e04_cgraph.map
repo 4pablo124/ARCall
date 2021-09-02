@@ -1,0 +1,7 @@
+<map id="RegisterNameUIController.RegisterName" name="RegisterNameUIController.RegisterName">
+<area shape="rect" id="node1" title="Registra el nombre introducido del usuario actual" alt="" coords="5,53,263,80"/>
+<area shape="rect" id="node2" href="$d1/da2/class_user_manager.html#a0c464b2905659ab968549acfef58c915" title="Cambia el nombre del usuario actual" alt="" coords="561,53,768,80"/>
+<area shape="rect" id="node3" href="$d1/da2/class_user_manager.html#a7c046e0a03e5802e7b1936f6ecdefe9e" title="Evalua si el usuario actual esta registrado" alt="" coords="311,28,513,54"/>
+<area shape="rect" id="node4" href="$d3/dda/class_my_scene_manager.html#a6787f49b73d5e0c4e80fd67d38f5550a" title="Carga la escena seleccionada" alt="" coords="314,78,510,105"/>
+<area shape="rect" id="node5" href="$d1/da2/class_user_manager.html#a5a0827078b96620181c5f6615c218dec" title="Registra el nombre de usuario" alt="" coords="339,129,485,156"/>
+</map>

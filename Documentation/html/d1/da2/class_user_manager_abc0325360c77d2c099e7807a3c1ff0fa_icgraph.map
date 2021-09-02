@@ -1,0 +1,4 @@
+<map id="UserManager.LogOut" name="UserManager.LogOut">
+<area shape="rect" id="node1" title="Cierra la sesion del usario actualmente logueado" alt="" coords="203,5,348,32"/>
+<area shape="rect" id="node2" href="$dd/d3b/class_main_u_i_controller.html#a0a5859a3d2f7c6ae487469bdbe76a7b2" title="Llamada justo antes del primer fotograma" alt="" coords="5,5,155,32"/>
+</map>

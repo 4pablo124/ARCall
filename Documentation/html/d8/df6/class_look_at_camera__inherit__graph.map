@@ -1,0 +1,4 @@
+<map id="LookAtCamera" name="LookAtCamera">
+<area shape="rect" id="node1" title="Controla que el GameObject asociado apunte hacia la cámara" alt="" coords="7,131,115,223"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,116,83"/>
+</map>

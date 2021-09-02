@@ -1,0 +1,4 @@
+<map id="ARMarker.AddMarker" name="ARMarker.AddMarker">
+<area shape="rect" id="node1" title="Coloca el marcador en la posicion seleccionada" alt="" coords="179,5,325,32"/>
+<area shape="rect" id="node2" href="$d6/d6a/class_a_r_marker.html#a37bcfc2d540eed2ffd496d758dd9ad6d" title="Llamada al comienzo de cada fotograma" alt="" coords="5,5,131,32"/>
+</map>

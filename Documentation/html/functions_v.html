@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -27,43 +34,68 @@
 </div>
 <!-- end header part -->
 <!-- Generado por Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Buscar','.html');
+/* @license-end */
+</script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',false,false,'search.php','Buscar');
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('functions_v.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
 <div class="contents">
-<div class="textblock">Lista de todos los campos de clases con enlaces a las classes a que pertenecen:</div>
+<div class="textblock">Lista de todos los campos de clases documentados con enlaces a la documentación de la clase para cada miembro:</div>
 
 <h3><a id="index_v" name="index_v"></a>- v -</h3><ul>
-<li>verificationId&#160;:&#160;<a class="el" href="class_user_manager.html#a7306bc19fb6781c405bdda59555a795f">UserManager</a></li>
-<li>verifyBtn&#160;:&#160;<a class="el" href="class_register_phone_u_i_controller.html#ad5f957b3194a046fe375520b70439c52">RegisterPhoneUIController</a></li>
-<li>VerifyPhone()&#160;:&#160;<a class="el" href="class_register_phone_u_i_controller.html#a55f0c364a3d7f1920df9790b7c63da7c">RegisterPhoneUIController</a>, <a class="el" href="class_user_manager.html#ac1d99d0f5e70010dee110ba670f659b6">UserManager</a></li>
-<li>VerifyPhoneCredential()&#160;:&#160;<a class="el" href="class_user_manager.html#a8473c8b09bc25b4ee3ccc8ad934f1a4d">UserManager</a></li>
-<li>VIDEO_NAME&#160;:&#160;<a class="el" href="class_android_utils.html#ac9583b41fdc812a4a3c5abef67fdc5be">AndroidUtils</a></li>
-<li>videoDisabled&#160;:&#160;<a class="el" href="class_video_manager.html#af56db656cf5ebe1dead99ebc4921b86b">VideoManager</a></li>
-<li>videoIcon&#160;:&#160;<a class="el" href="class_topbar_u_i_controller.html#ab4fac29155d925fafb3b8dbf0501feb8">TopbarUIController</a></li>
-<li>videoManager&#160;:&#160;<a class="el" href="class_a_r_guide.html#a59fbfb9e2389ea2945979b38ad2dce8b">ARGuide</a>, <a class="el" href="class_a_r_pointer.html#ac5493769bbaf12bc5153baa29c3a6ab5">ARPointer</a>, <a class="el" href="class_my_input_manager.html#a54d3709da7dcba8ab9970666e099197a">MyInputManager</a>, <a class="el" href="class_peer_connection_manager.html#a56c3107d12df8e6793cd6b9eee0a04c8">PeerConnectionManager</a>, <a class="el" href="class_topbar_u_i_controller.html#a18715a56457b87d6889632aec746a1f0">TopbarUIController</a></li>
-<li>videoRawImage&#160;:&#160;<a class="el" href="class_video_manager.html#ac982037e0b0fa666fdbbfee79f7d38b5">VideoManager</a></li>
-<li>VideoRecorderCallback()&#160;:&#160;<a class="el" href="class_android_utils.html#a327499d634e05121fadad512617beb8f">AndroidUtils</a></li>
-<li>videoSender&#160;:&#160;<a class="el" href="class_peer_connection_manager.html#ae50604b2f69e4331e9e3354732ea5a1f">PeerConnectionManager</a></li>
-<li>videoStreamTrack&#160;:&#160;<a class="el" href="class_video_manager.html#ae8b59275c6f8bf0b7e9800b01e478551">VideoManager</a></li>
-<li>voiceMaxVol&#160;:&#160;<a class="el" href="class_audio_manager.html#a8cfc0dbf1398187f31941e149e21cc72">AudioManager</a></li>
-<li>voiceMinVol&#160;:&#160;<a class="el" href="class_audio_manager.html#aae8be0956796ec4bb32f2646833cf621">AudioManager</a></li>
-<li>voiceVolume&#160;:&#160;<a class="el" href="class_audio_manager.html#a5e5f4b69386646cf7e39d553b8c00460">AudioManager</a></li>
-<li>volume&#160;:&#160;<a class="el" href="class_audio_visualizer_controller.html#a01801d347661897f5ce09866fe16cd4d">AudioVisualizerController</a></li>
-<li>volumeVisualizer&#160;:&#160;<a class="el" href="class_audio_visualizer_controller.html#a891505e1df3fc09adf61fb295bc5481a">AudioVisualizerController</a></li>
+<li>VerifyPhone()&#160;:&#160;<a class="el" href="dd/ddc/class_register_phone_u_i_controller.html#a55f0c364a3d7f1920df9790b7c63da7c">RegisterPhoneUIController</a>, <a class="el" href="d1/da2/class_user_manager.html#ac1d99d0f5e70010dee110ba670f659b6">UserManager</a></li>
+<li>VerifyPhoneCredential()&#160;:&#160;<a class="el" href="d1/da2/class_user_manager.html#a8473c8b09bc25b4ee3ccc8ad934f1a4d">UserManager</a></li>
+<li>volumeVisualizer&#160;:&#160;<a class="el" href="d6/d16/class_audio_visualizer_controller.html#a891505e1df3fc09adf61fb295bc5481a">AudioVisualizerController</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+  </ul>
+</div>
 </body>
 </html>

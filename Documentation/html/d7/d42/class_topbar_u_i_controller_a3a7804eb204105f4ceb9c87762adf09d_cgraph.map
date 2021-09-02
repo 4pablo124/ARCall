@@ -1,0 +1,11 @@
+<map id="TopbarUIController.Start" name="TopbarUIController.Start">
+<area shape="rect" id="node1" title="Llamada justo antes del primer fotograma" alt="" coords="5,107,165,133"/>
+<area shape="rect" id="node2" href="$d9/d36/class_colors.html#acc310b1cb4a0ad1791bf11c0d9d91a57" title="Devuelve el color dado el nombre" alt="" coords="263,5,378,32"/>
+<area shape="rect" id="node3" href="$dd/dcc/class_sharing_manager.html#a2ef248638c066a17876bf444b0bc3861" title="Comparte un código de sala" alt="" coords="227,56,415,83"/>
+<area shape="rect" id="node6" href="$d7/d31/class_audio_manager.html#a4caaf15cce1acf8cec94e1bc0abf47ce" title="Alterna la entrada de audio" alt="" coords="219,107,423,133"/>
+<area shape="rect" id="node7" href="$d7/d31/class_audio_manager.html#a857093f3621d4513ad357772dd97d42d" title="Alterna la salida de audio" alt="" coords="213,157,428,184"/>
+<area shape="rect" id="node8" href="$d2/dba/class_video_manager.html#a476c43af14c677ae92c38ab1855d7382" title="Alterna la visibilidad del video" alt="" coords="231,208,411,235"/>
+<area shape="rect" id="node4" href="$dd/dcc/class_sharing_manager.html#a039a42cca85530f5e71e396bda0bc95b" title="Crea un enlace dinámico a una sala" alt="" coords="476,31,743,57"/>
+<area shape="rect" id="node5" href="$dd/dcc/class_sharing_manager.html#a1297b7c8e2a23a2f1b179717015405a7" title="Crea el mensaje a compartir" alt="" coords="506,81,713,108"/>
+<area shape="rect" id="node9" href="$d2/dba/class_video_manager.html#aebd4ede14b753cd764ea946c9d335949" title="Establece la visibilidad del video" alt="" coords="522,208,697,235"/>
+</map>
